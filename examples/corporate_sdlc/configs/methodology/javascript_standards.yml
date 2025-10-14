@@ -1,0 +1,65 @@
+# JavaScript/TypeScript-Specific Methodology Overrides
+# Layer 2: Methodology customization for JS/TS projects
+
+methodology:
+  coding:
+    uri: "file://docs/methodologies/javascript_coding_standards.md"
+
+    standards:
+      style_guide: "Airbnb"
+      max_function_lines: 50
+      max_complexity: 10
+      naming_convention: "camelCase"
+      line_length: 100
+
+    linting:
+      tools:
+        - "eslint"
+        - "prettier"
+        - "typescript-eslint"
+      auto_format: true
+      config: ".eslintrc.js"
+
+    required_practices:
+      - "TypeScript for new code"
+      - "JSDoc comments"
+      - "Async/await (no callbacks)"
+      - "ES6+ features"
+      - "Immutable data patterns"
+      - "Error boundaries (React)"
+
+  testing:
+    uri: "file://docs/methodologies/javascript_testing_standards.md"
+    framework: "jest"
+    min_coverage: 80
+
+    frameworks:
+      unit: "jest"
+      e2e: "playwright"
+      component: "react-testing-library"
+
+    plugins:
+      - "@testing-library/jest-dom"
+      - "@testing-library/react"
+      - "@testing-library/user-event"
+
+tools:
+  package_management:
+    tool: "npm"
+    lock_file: "package-lock.json"
+    audit_enabled: true
+
+  bundler:
+    tool: "webpack"
+    config: "webpack.config.js"
+
+  ci_cd:
+    node_versions:
+      - "18.x"
+      - "20.x"
+
+security:
+  dependency_scan:
+    tools:
+      - "npm audit"
+      - "snyk"

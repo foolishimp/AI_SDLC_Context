@@ -1,0 +1,243 @@
+# Corporate SDLC - Base Layer
+# This is the foundation that all projects inherit
+# Layer 1 (Lowest Priority): Corporate-wide defaults
+
+organization:
+  name: "Acme Corporation"
+  division: "Engineering"
+  compliance_level: "SOC2"
+
+# Corporate Policies (URI references to policy documents)
+corporate:
+  policies:
+    security:
+      uri: "file://docs/policies/security_policy.md"
+      version: "2.1"
+      last_updated: "2024-Q4"
+      mandatory: true
+
+    data_privacy:
+      uri: "file://docs/policies/data_privacy_policy.md"
+      version: "1.5"
+      last_updated: "2024-Q3"
+      mandatory: true
+
+    code_review:
+      uri: "file://docs/policies/code_review_policy.md"
+      version: "3.0"
+      last_updated: "2024-Q4"
+      mandatory: true
+
+    incident_response:
+      uri: "file://docs/policies/incident_response.md"
+      version: "2.0"
+      last_updated: "2024-Q2"
+      mandatory: true
+
+  compliance:
+    required_approvals:
+      - "technical_lead"
+      - "security_review"
+
+    audit_trail: true
+    retention_days: 2555  # 7 years
+
+    prohibited_practices:
+      - "Hardcoded credentials"
+      - "Unencrypted PII storage"
+      - "Production data in dev"
+      - "Commits without code review"
+
+# Methodology (corporate standard process)
+methodology:
+  sdlc_process: "file://docs/methodologies/corporate_sdlc.md"
+
+  requirements:
+    uri: "file://docs/methodologies/requirements_process.md"
+    min_stakeholder_reviews: 2
+    approval_required: true
+
+  design:
+    uri: "file://docs/methodologies/design_process.md"
+    architecture_review: true
+    security_review: true
+
+  coding:
+    uri: "file://docs/methodologies/coding_standards.md"
+    standards:
+      style_guide: "corporate"
+      max_function_lines: 50
+      max_complexity: 10
+      naming_convention: "snake_case"  # Python
+
+    required_practices:
+      - "Type hints"
+      - "Docstrings"
+      - "Error handling"
+      - "Input validation"
+
+  testing:
+    uri: "file://docs/methodologies/testing_standards.md"
+    min_coverage: 80
+    required_types:
+      - "unit"
+      - "integration"
+      - "security"
+
+    frameworks:
+      python: "pytest"
+      javascript: "jest"
+      java: "junit"
+
+  deployment:
+    uri: "file://docs/methodologies/deployment_process.md"
+    environments:
+      - "development"
+      - "staging"
+      - "production"
+
+    approval_chain:
+      development: ["tech_lead"]
+      staging: ["tech_lead", "qa_lead"]
+      production: ["tech_lead", "qa_lead", "security_lead", "manager"]
+
+# Quality Gates (must pass to proceed)
+quality:
+  gates:
+    code_quality:
+      min_test_coverage: 80
+      max_code_smells: 5
+      max_critical_issues: 0
+      max_high_issues: 3
+
+    security:
+      dependency_scan: true
+      sast_scan: true
+      dast_scan: true  # Production only
+      secrets_scan: true
+
+    performance:
+      max_response_time_ms: 500
+      min_throughput_rps: 100
+
+# Tooling (corporate standard tools)
+tools:
+  version_control:
+    system: "git"
+    platform: "GitHub Enterprise"
+    branch_protection: true
+
+  ci_cd:
+    platform: "Jenkins"
+    required_stages:
+      - "build"
+      - "test"
+      - "security_scan"
+      - "deploy"
+
+  monitoring:
+    apm: "DataDog"
+    logs: "Splunk"
+    alerts: "PagerDuty"
+
+  security:
+    sast: "SonarQube"
+    dast: "OWASP ZAP"
+    dependency_scan: "Snyk"
+    secrets: "GitGuardian"
+
+# Documentation Requirements
+documentation:
+  required:
+    - type: "README"
+      sections: ["Overview", "Setup", "Usage", "API", "Contributing"]
+
+    - type: "ARCHITECTURE"
+      sections: ["System Design", "Data Flow", "Security", "Scalability"]
+
+    - type: "RUNBOOK"
+      sections: ["Deployment", "Monitoring", "Troubleshooting", "Rollback"]
+
+    - type: "API_DOCS"
+      format: "OpenAPI 3.0"
+      auto_generate: true
+
+# Git Standards
+git:
+  commit_message_format: |
+    [TICKET-ID] Brief summary (max 50 chars)
+
+    Detailed description of changes.
+
+    - Change 1
+    - Change 2
+
+    Tests: X unit, Y integration | Coverage: Z%
+    Reviewed-by: @reviewer
+    Approved-by: @approver
+
+  branch_naming:
+    feature: "feature/TICKET-ID-description"
+    bugfix: "bugfix/TICKET-ID-description"
+    hotfix: "hotfix/TICKET-ID-description"
+
+  protected_branches:
+    - "main"
+    - "production"
+    - "release/*"
+
+# Security Requirements
+security:
+  authentication:
+    method: "SSO"
+    mfa_required: true
+    session_timeout_minutes: 30
+
+  encryption:
+    data_at_rest: "AES-256"
+    data_in_transit: "TLS 1.3"
+    key_rotation_days: 90
+
+  secrets_management:
+    tool: "HashiCorp Vault"
+    no_hardcoded_secrets: true
+    auto_rotation: true
+
+  vulnerability_management:
+    scan_frequency: "daily"
+    critical_fix_sla_hours: 24
+    high_fix_sla_hours: 72
+
+# Compliance & Audit
+compliance:
+  frameworks:
+    - "SOC2"
+    - "ISO 27001"
+    - "GDPR"
+
+  audit_logging:
+    enabled: true
+    retention_days: 2555
+    tamper_proof: true
+
+  data_classification:
+    levels:
+      - "public"
+      - "internal"
+      - "confidential"
+      - "restricted"
+
+# Training Requirements
+training:
+  mandatory:
+    - name: "Security Awareness"
+      frequency_days: 365
+      provider: "KnowBe4"
+
+    - name: "Secure Coding"
+      frequency_days: 730
+      provider: "SANS"
+
+    - name: "Data Privacy"
+      frequency_days: 365
+      provider: "Internal"

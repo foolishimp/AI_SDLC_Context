@@ -1,0 +1,142 @@
+# Project: Payment Service
+# Layer 3: Project-specific overrides
+# Inherits: Corporate Base → Python Standards → This
+
+project:
+  name: "Payment Service"
+  code: "PAY-SVC"
+  team: "Payments Team"
+  tech_lead: "jane.smith@acme.com"
+  repo: "https://github.com/acme/payment-service"
+
+  classification: "restricted"  # Highest security
+  pci_compliant: true  # Additional compliance requirement
+
+# Project-specific documentation
+projects:
+  payment_service:
+    docs:
+      architecture: "file://docs/projects/payment_service/architecture.md"
+      api_spec: "file://docs/projects/payment_service/api_spec.yml"
+      runbook: "file://docs/projects/payment_service/runbook.md"
+      incident_playbook: "file://docs/projects/payment_service/incidents.md"
+
+# Override: Stricter requirements for payment processing
+methodology:
+  coding:
+    standards:
+      max_function_lines: 30  # Stricter than corporate
+      max_complexity: 7  # Stricter than corporate
+
+    # Additional requirements for PCI compliance
+    required_practices:
+      - "Type hints (PEP 484)"
+      - "Docstrings (Google style)"
+      - "Input sanitization"
+      - "Audit logging for all transactions"
+      - "No credit card data in logs"
+      - "Encrypt all sensitive data"
+
+  testing:
+    min_coverage: 95  # Much higher for payment service
+    required_types:
+      - "unit"
+      - "integration"
+      - "security"
+      - "penetration"  # Additional for payments
+      - "load"  # Additional for payments
+
+# Override: Additional security for payment data
+security:
+  pci_dss:
+    level: "Level 1"  # Highest PCI level
+    requirements_uri: "file://docs/projects/payment_service/pci_requirements.md"
+
+  encryption:
+    card_data: "AES-256-GCM"
+    tokenization: true
+    key_rotation_days: 30  # More frequent than corporate
+
+  vulnerability_management:
+    scan_frequency: "continuous"  # More frequent than corporate
+    critical_fix_sla_hours: 4  # Much faster than corporate 24hr
+    high_fix_sla_hours: 24  # Faster than corporate 72hr
+
+# Override: Stricter quality gates
+quality:
+  gates:
+    code_quality:
+      min_test_coverage: 95  # Higher than corporate 80%
+      max_code_smells: 0  # Stricter than corporate 5
+      max_critical_issues: 0
+      max_high_issues: 0  # Stricter than corporate 3
+
+    security:
+      dependency_scan: true
+      sast_scan: true
+      dast_scan: true  # Even in staging
+      secrets_scan: true
+      pci_scan: true  # Additional for payment service
+
+# Override: More rigorous deployment approval
+methodology:
+  deployment:
+    approval_chain:
+      development: ["tech_lead"]
+      staging: ["tech_lead", "qa_lead", "security_lead"]
+      production:
+        - "tech_lead"
+        - "qa_lead"
+        - "security_lead"
+        - "compliance_officer"  # Additional
+        - "cto"  # Additional for payment service
+
+# Project-specific tools
+tools:
+  payment_gateway:
+    provider: "Stripe"
+    api_version: "2024-10-01"
+    webhook_secret: "env://STRIPE_WEBHOOK_SECRET"
+
+  fraud_detection:
+    service: "Sift Science"
+    risk_threshold: 85
+
+  monitoring:
+    transaction_monitoring: true
+    alert_on_failures: true
+    alert_threshold_percent: 1  # Alert on 1% failure rate
+
+# Additional compliance for payment service
+compliance:
+  frameworks:
+    - "SOC2"
+    - "ISO 27001"
+    - "GDPR"
+    - "PCI DSS"  # Additional
+
+  audit_logging:
+    enabled: true
+    retention_days: 3650  # 10 years for payment data
+    include_transaction_data: true
+    redact_sensitive_fields: true
+
+# Team information
+team:
+  members:
+    - role: "tech_lead"
+      name: "Jane Smith"
+      email: "jane.smith@acme.com"
+
+    - role: "security_lead"
+      name: "Bob Johnson"
+      email: "bob.johnson@acme.com"
+
+    - role: "compliance_officer"
+      name: "Sarah Davis"
+      email: "sarah.davis@acme.com"
+
+  on_call:
+    schedule: "PagerDuty"
+    rotation_days: 7
+    escalation_minutes: 15

@@ -1,0 +1,71 @@
+# Python-Specific Methodology Overrides
+# Layer 2: Methodology customization for Python projects
+
+methodology:
+  coding:
+    # Override corporate standards with Python-specific ones
+    uri: "file://docs/methodologies/python_coding_standards.md"
+
+    standards:
+      style_guide: "PEP 8"
+      max_function_lines: 50
+      max_complexity: 10
+      naming_convention: "snake_case"
+      line_length: 88  # Black default
+
+    linting:
+      tools:
+        - "pylint"
+        - "flake8"
+        - "mypy"  # Type checking
+        - "black"  # Formatting
+      auto_format: true
+
+    required_practices:
+      - "Type hints (PEP 484)"
+      - "Docstrings (Google style)"
+      - "f-strings (no % or .format())"
+      - "Context managers for resources"
+      - "List comprehensions where appropriate"
+      - "Async/await for I/O operations"
+
+  testing:
+    uri: "file://docs/methodologies/python_testing_standards.md"
+    framework: "pytest"
+    min_coverage: 85  # Higher for Python
+
+    plugins:
+      - "pytest-cov"  # Coverage
+      - "pytest-mock"  # Mocking
+      - "pytest-asyncio"  # Async tests
+      - "pytest-xdist"  # Parallel execution
+
+    structure:
+      unit_tests: "tests/unit/"
+      integration_tests: "tests/integration/"
+      e2e_tests: "tests/e2e/"
+      fixtures: "tests/fixtures/"
+
+tools:
+  package_management:
+    tool: "poetry"
+    lock_file: "poetry.lock"
+    version_pinning: true
+
+  virtual_env:
+    tool: "venv"
+    location: ".venv"
+
+  ci_cd:
+    python_versions:
+      - "3.9"
+      - "3.10"
+      - "3.11"
+      - "3.12"
+
+security:
+  dependency_scan:
+    tools:
+      - "safety"  # Known vulnerabilities
+      - "bandit"  # Code security
+      - "pip-audit"  # PyPI packages
