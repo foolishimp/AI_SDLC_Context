@@ -1,0 +1,133 @@
+# AI Init Project Configuration - Base Layer
+# This demonstrates how ai_init structure can use AI_SDLC_config
+# for externalized documentation and process management
+
+project:
+  name: "AI Init"
+  type: "claude_development_tools"
+  version: "1.2.0"
+  description: "Claude Code development tools installer"
+
+# Development methodology references
+methodology:
+  bdd_process: "file://docs/BDD_PROCESS.md"
+  tdd_workflow: "file://docs/DEVELOPMENT_PROCESS.md"
+  quick_reference: "file://docs/QUICK_REFERENCE.md"
+  principles: "file://docs/PRINCIPLES_QUICK_CARD.md"
+  pair_programming: "file://docs/PAIR_PROGRAMMING_WITH_CLAUDE.md"
+
+# Task management structure
+tasks:
+  active_location: "claude_tasks/active/ACTIVE_TASKS.md"
+  finished_location: "claude_tasks/finished/"
+  template: "file://docs/TASK_TEMPLATE.md"
+  behaviors:
+    features: "claude_tasks/behaviors/features/"
+    step_definitions: "claude_tasks/behaviors/step_definitions/"
+    reports: "claude_tasks/behaviors/reports/"
+
+# Core principles (7 principles)
+principles:
+  test_driven:
+    name: "Test Driven Development"
+    description: "Behaviors before tests before code"
+    priority: 1
+
+  fail_fast:
+    name: "Fail Fast & Root Cause"
+    description: "Fix problems at source"
+    priority: 2
+
+  modular:
+    name: "Modular & Maintainable"
+    description: "Single responsibility"
+    priority: 3
+
+  reuse:
+    name: "Reuse Before Build"
+    description: "Check existing code first"
+    priority: 4
+
+  open_source:
+    name: "Open Source First"
+    description: "Suggest alternatives"
+    priority: 5
+
+  no_legacy:
+    name: "No Legacy Baggage"
+    description: "Clean slate approach"
+    priority: 6
+
+  excellence:
+    name: "Perfectionist Excellence"
+    description: "Best of breed only"
+    priority: 7
+
+# BDD principles
+bdd:
+  behavior_first:
+    enabled: true
+    description: "Start with business outcomes"
+
+  stakeholder_collaboration:
+    enabled: true
+    description: "Include business in specification"
+
+  living_documentation:
+    enabled: true
+    output_path: "claude_tasks/behaviors/reports/"
+
+  outside_in:
+    enabled: true
+    description: "Work from user value to implementation"
+
+# Installation components
+installation:
+  components:
+    claude_tasks:
+      enabled: true
+      description: "Claude Task Management System"
+      installer: "claude_init/setup_claude_tasks.py"
+
+    test_dashboard:
+      enabled: true
+      description: "Test Dashboard Module"
+      installer: "setup_test_dashboard.py"
+      default_port: 8085
+
+# Setup options
+setup:
+  default_target: "."
+  force_overwrite: false
+  update_gitignore: true
+  create_claude_md: true
+
+# Git commit template
+git:
+  commit_template: |
+    Task #{{task_number}}: {{task_title}}
+
+    {{description}}
+
+    Tests: {{test_count}} unit | Coverage: {{coverage}}%
+    {{workflow}}: {{steps}}
+
+# Claude Code instructions
+claude:
+  instruction_file: "CLAUDE.md"
+  session_starter: "file://docs/SESSION_STARTER.md"
+  check_before_start:
+    - "Review claude_tasks/BDD_PROCESS.md"
+    - "Check claude_tasks/active/ACTIVE_TASKS.md"
+    - "Run tests to ensure clean state"
+
+# Documentation structure
+docs:
+  readme: "README.md"
+  changelog: "CHANGELOG.md"
+  claude_guidance: "claude_init/CLAUDE.md"
+
+# URLs and references
+urls:
+  github: "https://github.com/foolishimp/claude_init"
+  installer_raw: "https://raw.githubusercontent.com/foolishimp/claude_init/main/setup_claude_tasks.py"

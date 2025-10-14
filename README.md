@@ -119,6 +119,26 @@ prompt_content = config.get_content("llm.agents.discovery.prompt")
 4. **Version control** - Track config structure separately from content
 5. **Dynamic loading** - Fetch latest content without redeploying
 
+## Examples
+
+### Basic Usage
+See `examples/basic_usage.py` for a simple introduction.
+
+### Advanced Features
+See `examples/advanced_usage.py` for custom resolvers and merge strategies.
+
+### Real-World Example: AI Init Integration
+See `examples/ai_init_example/` for a complete example showing how to use AI_SDLC_config with the ai_init project structure:
+- Multi-layer configuration (base, dev, prod)
+- URI-referenced documentation
+- BDD/TDD methodology configuration
+- Environment-specific behavior
+
+```bash
+cd examples/ai_init_example
+python ai_init_usage.py
+```
+
 ## Installation
 
 ```bash
@@ -128,7 +148,13 @@ pip install -e .
 
 ## Project Status
 
-🚧 **In Development** - Core library implementation in progress
+✅ **Core Library Complete** - Ready for use
+- HierarchyNode with dot notation
+- Priority-based merging
+- URI resolution (file://, http://, https://)
+- YAML loader
+- ConfigManager API
+- Comprehensive examples
 
 ## License
 
