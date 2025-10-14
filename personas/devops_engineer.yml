@@ -1,0 +1,85 @@
+persona:
+  name: "DevOps Engineer"
+  role: "devops_engineer"
+  focus_areas:
+    - "CI/CD pipelines"
+    - "Infrastructure as code"
+    - "Monitoring and observability"
+    - "Deployment automation"
+
+  preferences:
+    documentation:
+      style: "operational"
+      detail_level: "deployment_procedures"
+      include_runbooks: true
+      format: "markdown"
+
+  overrides:
+    methodology:
+      deployment:
+        emphasis:
+          - "Automation"
+          - "Infrastructure as code"
+          - "Monitoring"
+          - "Rollback procedures"
+
+        mandatory_artifacts:
+          - "deployment_pipeline"
+          - "infrastructure_code"
+          - "monitoring_config"
+          - "runbook"
+          - "rollback_plan"
+
+        ci_cd:
+          automated_tests: "all"
+          deployment_strategy: "blue_green"
+          rollback_automated: true
+          deployment_gates:
+            - "all_tests_passing"
+            - "security_scan_clean"
+            - "performance_benchmarks_met"
+
+        infrastructure:
+          iac_tool: "terraform"
+          container_platform: "kubernetes"
+          monitoring: "prometheus + grafana"
+          logging: "ELK stack"
+
+        observability:
+          logging: "centralized"
+          metrics: "comprehensive"
+          tracing: "distributed"
+          alerts: "actionable"
+
+      review:
+        checklist:
+          - "Is this deployable?"
+          - "Are there deployment scripts?"
+          - "Is rollback possible?"
+          - "Are there monitoring hooks?"
+          - "Is infrastructure code present?"
+
+  tools:
+    preferred:
+      - "Jenkins"
+      - "GitLab CI"
+      - "Terraform"
+      - "Kubernetes"
+      - "Prometheus"
+      - "Grafana"
+      - "Docker"
+
+  documentation_focus:
+    - "Deployment procedures"
+    - "Infrastructure diagrams"
+    - "Monitoring setup"
+    - "Troubleshooting guides"
+    - "Runbooks"
+
+  notifications:
+    interested_in:
+      - "deployment_failures"
+      - "infrastructure_changes"
+      - "performance_degradation"
+      - "security_alerts"
+      - "resource_limits"

@@ -1,0 +1,89 @@
+persona:
+  name: "Security Engineer"
+  role: "security_engineer"
+  focus_areas:
+    - "Security testing"
+    - "Vulnerability management"
+    - "Compliance"
+    - "Threat modeling"
+
+  preferences:
+    documentation:
+      style: "security_focused"
+      detail_level: "threat_analysis"
+      include_threat_models: true
+      format: "markdown"
+
+  overrides:
+    methodology:
+      security:
+        emphasis:
+          - "Secure by design"
+          - "Threat modeling"
+          - "Security testing"
+          - "Compliance"
+
+        mandatory_artifacts:
+          - "threat_model"
+          - "security_requirements"
+          - "penetration_test_results"
+          - "compliance_checklist"
+          - "security_scan_reports"
+
+        testing:
+          required_types:
+            - "sast"
+            - "dast"
+            - "dependency_scan"
+            - "penetration"
+            - "compliance"
+
+        vulnerability_management:
+          scan_frequency: "continuous"
+          critical_fix_sla_hours: 4
+          high_fix_sla_hours: 24
+
+        compliance:
+          frameworks:
+            - "OWASP Top 10"
+            - "CWE Top 25"
+            - "PCI DSS"
+          automated_checks: true
+
+      quality:
+        gates:
+          max_critical_security_issues: 0
+          max_high_security_issues: 0
+          security_review_required: true
+
+      review:
+        checklist:
+          - "Are there security vulnerabilities?"
+          - "Is authentication proper?"
+          - "Is data encrypted?"
+          - "Are inputs validated?"
+          - "Are secrets properly managed?"
+
+  tools:
+    preferred:
+      - "Snyk"
+      - "OWASP ZAP"
+      - "Burp Suite"
+      - "SonarQube"
+      - "Vault"
+      - "Trivy"
+
+  documentation_focus:
+    - "Threat models"
+    - "Security requirements"
+    - "Compliance documentation"
+    - "Incident response plans"
+    - "Security best practices"
+
+  notifications:
+    interested_in:
+      - "security_vulnerabilities"
+      - "compliance_violations"
+      - "security_incidents"
+      - "authentication_failures"
+      - "suspicious_activity"

@@ -1,0 +1,81 @@
+persona:
+  name: "QA Engineer"
+  role: "qa_engineer"
+  focus_areas:
+    - "Test planning"
+    - "Test automation"
+    - "Quality assurance"
+    - "Bug tracking"
+
+  preferences:
+    documentation:
+      style: "structured"
+      detail_level: "test_scenarios"
+      include_test_plans: true
+      format: "markdown"
+
+  overrides:
+    methodology:
+      testing:
+        emphasis:
+          - "Test coverage"
+          - "Test automation"
+          - "Regression testing"
+          - "Defect prevention"
+
+        mandatory_artifacts:
+          - "test_plan"
+          - "test_cases"
+          - "test_data"
+          - "automation_scripts"
+          - "bug_reports"
+
+        testing_levels:
+          - "unit"
+          - "integration"
+          - "system"
+          - "acceptance"
+          - "regression"
+          - "performance"
+          - "security"
+
+        automation:
+          framework: "pytest + selenium"
+          min_automation_coverage: 80
+
+        quality_gates:
+          zero_critical_bugs: true
+          zero_high_bugs_in_production: true
+          regression_suite_passing: true
+
+      review:
+        checklist:
+          - "Are there adequate tests?"
+          - "Are edge cases covered?"
+          - "Is test data representative?"
+          - "Are tests maintainable?"
+          - "Is test coverage sufficient?"
+
+  tools:
+    preferred:
+      - "pytest"
+      - "Selenium"
+      - "Postman"
+      - "JMeter"
+      - "JIRA"
+      - "TestRail"
+
+  documentation_focus:
+    - "Test plans"
+    - "Test cases"
+    - "Test data requirements"
+    - "Bug reproduction steps"
+    - "Quality metrics"
+
+  notifications:
+    interested_in:
+      - "test_failures"
+      - "new_features"
+      - "bug_reports"
+      - "release_candidates"
+      - "quality_gate_failures"
