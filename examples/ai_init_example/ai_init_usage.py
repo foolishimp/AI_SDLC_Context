@@ -68,7 +68,7 @@ def main():
     print("DEVELOPMENT PRINCIPLES (7 Core Principles)")
     print("=" * 70)
     principles = config_manager.find_all("principles.*")
-    for path, node in sorted(principles, key=lambda x: node.get_value_by_path("priority")):
+    for path, node in sorted(principles, key=lambda x: x[1].get_value_by_path("priority") or 999):
         priority = node.get_value_by_path("priority")
         name = node.get_value_by_path("name")
         desc = node.get_value_by_path("description")
