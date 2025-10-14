@@ -1,0 +1,27 @@
+# Production Configuration
+# This overrides base.yml for production environment
+
+system:
+  environment: "production"
+
+llm:
+  agents:
+    # Override discovery agent to use newer model
+    discovery:
+      model: "claude-3-7-sonnet-20250219"
+
+    # Override solution designer with extended thinking
+    solution_designer:
+      model: "claude-3-7-sonnet-20250219"
+      temperature: 1
+      extended_thinking:
+        enabled: true
+        budget_tokens: 32000
+
+logging:
+  level: "warning"  # Less verbose in production
+  format: "json"
+
+backup:
+  path: "/var/backups/ai_sdlc"
+  retention_days: 90
