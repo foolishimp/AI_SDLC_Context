@@ -51,11 +51,12 @@ class ConfigManager:
         Initialize configuration manager.
 
         Args:
-            base_path: Base path for resolving relative file URIs
+            base_path: Base path for resolving relative file URIs and config files
             merge_strategy: Strategy for merging conflicts
         """
+        self.base_path = Path(base_path) if base_path else Path.cwd()
         self.loader = YAMLLoader()
-        self.resolver = URIResolver(base_path or Path.cwd())
+        self.resolver = URIResolver(self.base_path)
         self.merger = HierarchyMerger(merge_strategy)
 
         self.hierarchies: List[HierarchyNode] = []
@@ -66,10 +67,15 @@ class ConfigManager:
         Load a configuration hierarchy from YAML file.
 
         Args:
-            file_path: Path to YAML configuration file
+            file_path: Path to YAML configuration file (absolute or relative to base_path)
             source_name: Optional name for tracking (defaults to file_path)
         """
-        hierarchy = self.loader.load(file_path, source_name)
+        # Resolve path relative to base_path if not absolute
+        path = Path(file_path)
+        if not path.is_absolute():
+            path = self.base_path / path
+
+        hierarchy = self.loader.load(str(path), source_name)
         self.hierarchies.append(hierarchy)
         # Clear merged hierarchy - needs re-merge
         self.merged_hierarchy = None

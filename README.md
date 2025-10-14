@@ -139,6 +139,87 @@ cd examples/ai_init_example
 python ai_init_usage.py
 ```
 
+### Corporate SDLC Multi-Layer Configuration
+See `examples/corporate_sdlc/` for an enterprise example demonstrating:
+- 4-layer hierarchy (Corporate → Methodology → Project → Runtime)
+- Corporate policies with different requirements per project
+- Language-specific methodology standards
+- Risk-based configuration (strict for payments, relaxed for internal tools)
+- Side-by-side project comparison
+
+```bash
+cd examples/corporate_sdlc
+python corporate_sdlc_demo.py payment_service
+python corporate_sdlc_demo.py internal_dashboard
+```
+
+## MCP Service
+
+AI_SDLC_config includes a **Model Context Protocol (MCP) service** that provides:
+
+1. **Project Management** - Create, read, update, delete configuration projects
+2. **Content Management** - Add/remove nodes, documents
+3. **Merge Operations** - Merge multiple projects to create deployment-ready configs
+4. **LLM Inspection** - Query projects using natural language via LLM
+5. **Git-Backed Storage** - All changes tracked in version control
+
+### Key Concepts: Custom vs Merged Projects
+
+**Custom Override Project** (e.g., `payment_service`):
+- Manually created YAML configuration
+- Contains only explicit overrides
+- Inherits from base projects at runtime
+- Living configuration for active development
+
+**Merged Project** (e.g., `payment_service_production`):
+- Auto-generated from merge operation
+- Contains full merged configuration
+- Includes merge metadata (sources, date, overrides)
+- Immutable snapshot for deployment
+
+### Running the MCP Service
+
+```bash
+# Install dependencies
+cd mcp_service
+pip install -r requirements.txt
+
+# Start MCP server (stdio mode for Claude Desktop)
+python -m server.main
+
+# Or specify custom repository path
+python -m server.main --repo-path /path/to/projects_repo
+```
+
+### Using with Claude Desktop
+
+Add to Claude Desktop configuration (`~/Library/Application Support/Claude/claude_desktop_config.json`):
+
+```json
+{
+  "mcpServers": {
+    "ai-sdlc-config": {
+      "command": "python",
+      "args": ["-m", "server.main"],
+      "cwd": "/Users/jim/src/apps/AI_SDLC_config/mcp_service"
+    }
+  }
+}
+```
+
+### MCP Service Examples
+
+```bash
+# Direct usage example (without MCP protocol)
+cd mcp_service/examples
+python direct_usage_example.py
+
+# MCP client example (requires MCP server running)
+python mcp_client_example.py
+```
+
+See `mcp_service/README.md` for complete MCP service documentation.
+
 ## Installation
 
 ```bash
