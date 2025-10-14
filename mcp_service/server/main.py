@@ -20,10 +20,14 @@ except ImportError:
     sys.exit(1)
 
 from ..storage.project_repository import ProjectRepository
+from .context_tools import ContextManager
+from .persona_manager import PersonaManager
 
 
-# Global repository instance
+# Global instances
 repo: Optional[ProjectRepository] = None
+context_manager: Optional[ContextManager] = None
+persona_manager: Optional[PersonaManager] = None
 
 
 # Tool definitions
@@ -242,6 +246,129 @@ TOOLS = [
             "required": ["project1", "project2"]
         }
     ),
+    # Context Management Tools
+    Tool(
+        name="load_context",
+        description="Load a project context for Claude to work with",
+        inputSchema={
+            "type": "object",
+            "properties": {
+                "project_name": {
+                    "type": "string",
+                    "description": "Project name to load context for"
+                }
+            },
+            "required": ["project_name"]
+        }
+    ),
+    Tool(
+        name="switch_context",
+        description="Switch from current context to a different project context",
+        inputSchema={
+            "type": "object",
+            "properties": {
+                "new_project": {
+                    "type": "string",
+                    "description": "Project name to switch to"
+                }
+            },
+            "required": ["new_project"]
+        }
+    ),
+    Tool(
+        name="query_context",
+        description="Query the current context for specific information",
+        inputSchema={
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": "What to query (e.g., 'testing requirements', 'security policies')"
+                }
+            },
+            "required": ["query"]
+        }
+    ),
+    Tool(
+        name="get_current_context",
+        description="Get information about the currently loaded context",
+        inputSchema={
+            "type": "object",
+            "properties": {}
+        }
+    ),
+    # Persona Management Tools
+    Tool(
+        name="list_personas",
+        description="List all available personas (roles like business_analyst, qa_engineer, etc.)",
+        inputSchema={
+            "type": "object",
+            "properties": {}
+        }
+    ),
+    Tool(
+        name="load_persona",
+        description="Load a persona to customize how Claude views the project",
+        inputSchema={
+            "type": "object",
+            "properties": {
+                "persona_name": {
+                    "type": "string",
+                    "description": "Persona name (e.g., 'business_analyst', 'software_engineer', 'qa_engineer')"
+                }
+            },
+            "required": ["persona_name"]
+        }
+    ),
+    Tool(
+        name="apply_persona_to_context",
+        description="Apply a persona to the current project context",
+        inputSchema={
+            "type": "object",
+            "properties": {
+                "persona_name": {
+                    "type": "string",
+                    "description": "Persona name to apply"
+                },
+                "project_name": {
+                    "type": "string",
+                    "description": "Project name (uses current context if not specified)"
+                }
+            },
+            "required": ["persona_name"]
+        }
+    ),
+    Tool(
+        name="switch_persona",
+        description="Switch from one persona to another and see what changed",
+        inputSchema={
+            "type": "object",
+            "properties": {
+                "from_persona": {
+                    "type": "string",
+                    "description": "Current persona name (optional)"
+                },
+                "to_persona": {
+                    "type": "string",
+                    "description": "Target persona name"
+                }
+            },
+            "required": ["to_persona"]
+        }
+    ),
+    Tool(
+        name="get_persona_checklist",
+        description="Get the review checklist for a specific persona",
+        inputSchema={
+            "type": "object",
+            "properties": {
+                "persona_name": {
+                    "type": "string",
+                    "description": "Persona name (uses current persona if not specified)"
+                }
+            }
+        }
+    ),
 ]
 
 
@@ -256,7 +383,7 @@ async def handle_tool_call(name: str, arguments: Dict[str, Any]) -> List[TextCon
     Returns:
         List of TextContent responses
     """
-    global repo
+    global repo, context_manager, persona_manager
 
     try:
         if name == "create_project":
@@ -456,6 +583,207 @@ async def handle_tool_call(name: str, arguments: Dict[str, Any]) -> List[TextCon
                 text=response
             )]
 
+        # Context Management Tools
+        elif name == "load_context":
+            if context_manager is None:
+                return [TextContent(
+                    type="text",
+                    text="Error: Context manager not initialized"
+                )]
+
+            context = context_manager.load_context(arguments["project_name"])
+            formatted = context_manager.format_context_for_llm(context)
+
+            return [TextContent(
+                type="text",
+                text=formatted
+            )]
+
+        elif name == "switch_context":
+            if context_manager is None:
+                return [TextContent(
+                    type="text",
+                    text="Error: Context manager not initialized"
+                )]
+
+            result = context_manager.switch_context(arguments["new_project"])
+
+            response = f"Switched context to: {result['new_project']}\n\n"
+            if result.get('requirements_changed'):
+                response += "Requirements that changed:\n"
+                for change in result['requirements_changed']:
+                    response += f"  • {change}\n"
+
+            return [TextContent(
+                type="text",
+                text=response
+            )]
+
+        elif name == "query_context":
+            if context_manager is None:
+                return [TextContent(
+                    type="text",
+                    text="Error: Context manager not initialized"
+                )]
+
+            result = context_manager.query_context(arguments["query"])
+
+            return [TextContent(
+                type="text",
+                text=json.dumps(result, indent=2)
+            )]
+
+        elif name == "get_current_context":
+            if context_manager is None:
+                return [TextContent(
+                    type="text",
+                    text="Error: Context manager not initialized"
+                )]
+
+            if context_manager.current_context is None:
+                return [TextContent(
+                    type="text",
+                    text="No context currently loaded"
+                )]
+
+            context_name = context_manager.current_context.get('metadata', {}).get('name', 'Unknown')
+            formatted = context_manager.format_context_for_llm(context_manager.current_context)
+
+            return [TextContent(
+                type="text",
+                text=f"Current Context: {context_name}\n\n{formatted}"
+            )]
+
+        # Persona Management Tools
+        elif name == "list_personas":
+            if persona_manager is None:
+                return [TextContent(
+                    type="text",
+                    text="Error: Persona manager not initialized"
+                )]
+
+            personas = persona_manager.list_personas()
+
+            response = f"Available Personas ({len(personas)}):\n\n"
+            for persona in personas:
+                response += f"👤 {persona['name']} ({persona['role']})\n"
+                response += f"   Focus: {', '.join(persona['focus_areas'][:3])}\n\n"
+
+            return [TextContent(
+                type="text",
+                text=response
+            )]
+
+        elif name == "load_persona":
+            if persona_manager is None:
+                return [TextContent(
+                    type="text",
+                    text="Error: Persona manager not initialized"
+                )]
+
+            persona = persona_manager.load_persona(arguments["persona_name"])
+
+            response = f"Loaded Persona: {persona['persona']['name']}\n\n"
+            response += "Focus Areas:\n"
+            for focus in persona['persona']['focus_areas']:
+                response += f"  • {focus}\n"
+
+            return [TextContent(
+                type="text",
+                text=response
+            )]
+
+        elif name == "apply_persona_to_context":
+            if persona_manager is None:
+                return [TextContent(
+                    type="text",
+                    text="Error: Persona manager not initialized"
+                )]
+            if context_manager is None:
+                return [TextContent(
+                    type="text",
+                    text="Error: Context manager not initialized"
+                )]
+
+            # Load persona
+            persona = persona_manager.load_persona(arguments["persona_name"])
+
+            # Get project context
+            if "project_name" in arguments:
+                project_context = context_manager.load_context(arguments["project_name"])
+            elif context_manager.current_context:
+                project_context = context_manager.current_context
+            else:
+                return [TextContent(
+                    type="text",
+                    text="Error: No context loaded. Specify project_name or load a context first."
+                )]
+
+            # Apply persona to context
+            persona_context = persona_manager.apply_persona_to_context(project_context, persona)
+
+            # Format for display
+            formatted = persona_manager.format_context_for_persona(persona_context, persona)
+
+            return [TextContent(
+                type="text",
+                text=formatted
+            )]
+
+        elif name == "switch_persona":
+            if persona_manager is None:
+                return [TextContent(
+                    type="text",
+                    text="Error: Persona manager not initialized"
+                )]
+
+            result = persona_manager.switch_persona(
+                arguments.get("from_persona"),
+                arguments["to_persona"]
+            )
+
+            response = f"Switched to: {result['to']}\n\n"
+            if result.get('focus_changed'):
+                if result['focus_changed'].get('added_focus'):
+                    response += "Added Focus Areas:\n"
+                    for focus in result['focus_changed']['added_focus']:
+                        response += f"  ✚ {focus}\n"
+                if result['focus_changed'].get('removed_focus'):
+                    response += "\nRemoved Focus Areas:\n"
+                    for focus in result['focus_changed']['removed_focus']:
+                        response += f"  ✖ {focus}\n"
+
+            return [TextContent(
+                type="text",
+                text=response
+            )]
+
+        elif name == "get_persona_checklist":
+            if persona_manager is None:
+                return [TextContent(
+                    type="text",
+                    text="Error: Persona manager not initialized"
+                )]
+
+            checklist = persona_manager.get_persona_review_checklist(
+                arguments.get("persona_name")
+            )
+
+            if not checklist:
+                return [TextContent(
+                    type="text",
+                    text="No checklist available for this persona"
+                )]
+
+            response = "Review Checklist:\n\n"
+            for item in checklist:
+                response += f"□ {item}\n"
+
+            return [TextContent(
+                type="text",
+                text=response
+            )]
+
         else:
             return [TextContent(
                 type="text",
@@ -469,14 +797,15 @@ async def handle_tool_call(name: str, arguments: Dict[str, Any]) -> List[TextCon
         )]
 
 
-async def main(repo_path: Optional[str] = None):
+async def main(repo_path: Optional[str] = None, personas_path: Optional[str] = None):
     """
     Run the MCP server.
 
     Args:
         repo_path: Path to project repository (defaults to ./projects_repo)
+        personas_path: Path to personas directory (defaults to ./personas)
     """
-    global repo
+    global repo, context_manager, persona_manager
 
     # Initialize repository
     if repo_path is None:
@@ -485,6 +814,17 @@ async def main(repo_path: Optional[str] = None):
         repo_path = Path(repo_path)
 
     repo = ProjectRepository(repo_path)
+
+    # Initialize context manager
+    context_manager = ContextManager(repo)
+
+    # Initialize persona manager
+    if personas_path is None:
+        personas_path = Path.cwd() / "personas"
+    else:
+        personas_path = Path(personas_path)
+
+    persona_manager = PersonaManager(personas_path)
 
     # Create server
     server = Server("ai-sdlc-config")
@@ -511,6 +851,10 @@ if __name__ == "__main__":
         "--repo-path",
         help="Path to project repository (default: ./projects_repo)"
     )
+    parser.add_argument(
+        "--personas-path",
+        help="Path to personas directory (default: ./personas)"
+    )
     args = parser.parse_args()
 
-    asyncio.run(main(args.repo_path))
+    asyncio.run(main(args.repo_path, args.personas_path))
