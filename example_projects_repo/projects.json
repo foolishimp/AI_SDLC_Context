@@ -1,0 +1,44 @@
+{
+  "acme_corporate": {
+    "type": "base",
+    "path": "acme_corporate",
+    "base_projects": []
+  },
+  "python_standards": {
+    "type": "methodology",
+    "path": "python_standards",
+    "base_projects": [
+      "acme_corporate"
+    ]
+  },
+  "payment_gateway": {
+    "type": "custom",
+    "path": "payment_gateway",
+    "base_projects": [
+      "acme_corporate",
+      "python_standards"
+    ]
+  },
+  "admin_dashboard": {
+    "type": "custom",
+    "path": "admin_dashboard",
+    "base_projects": [
+      "acme_corporate",
+      "python_standards"
+    ]
+  },
+  "payment_gateway_prod_v1_0_0": {
+    "type": "merged",
+    "path": "merged_projects/payment_gateway_prod_v1_0_0",
+    "base_projects": [
+      "acme_corporate",
+      "python_standards",
+      "payment_gateway"
+    ],
+    "merged_from": [
+      "acme_corporate",
+      "python_standards",
+      "payment_gateway"
+    ]
+  }
+}

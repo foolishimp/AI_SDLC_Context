@@ -1,0 +1,15 @@
+{
+  "name": "payment_gateway",
+  "project_type": "custom",
+  "version": "1.0.0",
+  "created": "2025-10-14T16:11:15.546136Z",
+  "modified": "2025-10-14T16:11:15.606064Z",
+  "base_projects": [
+    "acme_corporate",
+    "python_standards"
+  ],
+  "description": "High-security payment processing gateway",
+  "merged_from": null,
+  "merge_date": null,
+  "runtime_overrides": null
+}

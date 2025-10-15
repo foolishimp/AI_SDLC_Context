@@ -1,0 +1,14 @@
+{
+  "name": "python_standards",
+  "project_type": "methodology",
+  "version": "1.0.0",
+  "created": "2025-10-14T16:11:15.520684Z",
+  "modified": "2025-10-14T16:11:15.520684Z",
+  "base_projects": [
+    "acme_corporate"
+  ],
+  "description": "Python-specific coding standards and tools",
+  "merged_from": null,
+  "merge_date": null,
+  "runtime_overrides": null
+}
