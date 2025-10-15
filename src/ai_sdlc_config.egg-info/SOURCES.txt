@@ -16,3 +16,8 @@ src/ai_sdlc_config/mergers/__init__.py
 src/ai_sdlc_config/mergers/hierarchy_merger.py
 src/ai_sdlc_config/models/__init__.py
 src/ai_sdlc_config/models/hierarchy_node.py
+tests/test_config_manager.py
+tests/test_hierarchy_merger.py
+tests/test_hierarchy_node.py
+tests/test_uri_resolver.py
+tests/test_yaml_loader.py
