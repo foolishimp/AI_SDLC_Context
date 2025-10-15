@@ -1,5 +1,5 @@
 """
-Setup script for AI_SDLC_config
+Setup script for AI_SDLC_Context
 """
 from setuptools import setup, find_packages
 from pathlib import Path
@@ -16,7 +16,7 @@ setup(
     long_description_content_type="text/markdown",
     author="Your Name",
     author_email="your.email@example.com",
-    url="https://github.com/yourusername/AI_SDLC_config",
+    url="https://github.com/yourusername/AI_SDLC_Context",
     package_dir={"": "src"},
     packages=find_packages(where="src"),
     python_requires=">=3.9",

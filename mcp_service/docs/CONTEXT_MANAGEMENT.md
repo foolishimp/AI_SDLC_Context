@@ -2,7 +2,7 @@
 
 ## The Big Picture
 
-**AI_SDLC_config MCP Service** is a **dynamic context management system** that allows Claude to:
+**AI_SDLC_Context MCP Service** is a **dynamic context management system** that allows Claude to:
 - Switch between different project contexts on-demand
 - Load relevant configurations, policies, and documentation
 - Apply appropriate standards based on project type
@@ -362,7 +362,7 @@ async def context_query(question: str):
     "context-manager": {
       "command": "python",
       "args": ["-m", "server.main"],
-      "cwd": "/path/to/AI_SDLC_config/mcp_service",
+      "cwd": "/path/to/AI_SDLC_Context/mcp_service",
       "env": {
         "DEFAULT_CONTEXT": "corporate_base"
       }
@@ -508,7 +508,7 @@ recommend_context("Build payment processing")
 
 ## Summary
 
-**AI_SDLC_config MCP Service** transforms configuration management into **dynamic context management for Claude**:
+**AI_SDLC_Context MCP Service** transforms configuration management into **dynamic context management for Claude**:
 
 🎯 **Core Concept**: Projects are contexts that Claude can load, switch between, and apply
 

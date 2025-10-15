@@ -1,6 +1,6 @@
 # Corporate SDLC Multi-Layer Configuration
 
-A comprehensive example of using **AI_SDLC_config** for enterprise software development with multi-layered configuration management.
+A comprehensive example of using **AI_SDLC_Context** for enterprise software development with multi-layered configuration management.
 
 ## Overview
 
@@ -413,7 +413,7 @@ verify_approvals(approvers)
 
 ## Conclusion
 
-This example demonstrates how **AI_SDLC_config** enables:
+This example demonstrates how **AI_SDLC_Context** enables:
 - **Scalable governance** across many projects
 - **Flexible requirements** based on project criticality
 - **Language-specific** standards
@@ -424,4 +424,4 @@ Perfect for enterprise environments with multiple teams, languages, and complian
 
 ---
 
-*For questions or issues, see the main AI_SDLC_config repository.*
+*For questions or issues, see the main AI_SDLC_Context repository.*

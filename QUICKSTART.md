@@ -1,12 +1,12 @@
-# AI_SDLC_config Quick Start Guide
+# AI_SDLC_Context Quick Start Guide
 
-This guide shows you how to use the AI_SDLC_config system in 3 different ways:
+This guide shows you how to use the AI_SDLC_Context system in 3 different ways:
 1. Direct Python usage (programmatic)
 2. Command-line examples
 3. Through Claude Desktop (MCP)
 
 ## Table of Contents
-- [What is AI_SDLC_config?](#what-is-ai_sdlc_config)
+- [What is AI_SDLC_Context?](#what-is-ai_sdlc_config)
 - [Installation](#installation)
 - [Method 1: Direct Python Usage](#method-1-direct-python-usage)
 - [Method 2: MCP with Claude Desktop](#method-2-mcp-with-claude-desktop)
@@ -15,9 +15,9 @@ This guide shows you how to use the AI_SDLC_config system in 3 different ways:
 
 ---
 
-## What is AI_SDLC_config?
+## What is AI_SDLC_Context?
 
-AI_SDLC_config is a **5-layer hierarchical configuration management system** that enables:
+AI_SDLC_Context is a **5-layer hierarchical configuration management system** that enables:
 
 1. **Dynamic Context Switching** - Claude adapts to different project requirements
 2. **Persona-Based Views** - Same project, different perspectives (BA, Engineer, QA, etc.)
@@ -53,8 +53,8 @@ pip install mcp  # Only needed for Claude Desktop integration
 
 ```bash
 cd ~/src/apps
-git clone https://github.com/foolishimp/AI_SDLC_config.git
-cd AI_SDLC_config
+git clone https://github.com/foolishimp/AI_SDLC_Context.git
+cd AI_SDLC_Context
 ```
 
 ---
@@ -117,7 +117,7 @@ Claude: [uses get_persona_checklist]
 ### Available Demos
 
 ```bash
-cd /Users/jim/src/apps/AI_SDLC_config
+cd /Users/jim/src/apps/AI_SDLC_Context
 
 # 1. Direct usage example
 python mcp_service/examples/direct_usage_example.py

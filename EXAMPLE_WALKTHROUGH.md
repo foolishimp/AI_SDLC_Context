@@ -1,4 +1,4 @@
-# AI_SDLC_config Example Walkthrough
+# AI_SDLC_Context Example Walkthrough
 
 ## What You Just Saw
 
@@ -320,7 +320,7 @@ print(f"Deploying {merged.name} to production")
 
 ```bash
 # Run the example
-cd /Users/jim/src/apps/AI_SDLC_config
+cd /Users/jim/src/apps/AI_SDLC_Context
 python mcp_service/examples/quick_start_example.py
 
 # Explore the repository

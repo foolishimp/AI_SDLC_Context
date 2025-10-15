@@ -69,7 +69,7 @@ Follow the PRINCIPLES_QUICK_CARD.md guidelines."
 - Verify principle adherence
 - Approve or request changes
 
-## Using AI_SDLC_config Together
+## Using AI_SDLC_Context Together
 
 ### Share Configuration Context
 ```python

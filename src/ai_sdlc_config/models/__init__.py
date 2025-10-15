@@ -1,5 +1,5 @@
 """
-Data models for AI_SDLC_config
+Data models for AI_SDLC_Context
 """
 from .hierarchy_node import HierarchyNode, URIReference, NodeValue
 

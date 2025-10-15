@@ -1,6 +1,6 @@
 # MCP Server Setup for Claude Desktop
 
-This guide shows how to use the AI_SDLC_config MCP server with Claude Desktop for dynamic context and persona management.
+This guide shows how to use the AI_SDLC_Context MCP server with Claude Desktop for dynamic context and persona management.
 
 ## What This Enables
 
@@ -43,11 +43,11 @@ Current configuration:
     "ai-sdlc-config": {
       "command": "python",
       "args": [
-        "/Users/jim/src/apps/AI_SDLC_config/mcp_service/server/main.py",
+        "/Users/jim/src/apps/AI_SDLC_Context/mcp_service/server/main.py",
         "--repo-path",
-        "/Users/jim/src/apps/AI_SDLC_config/projects_repo",
+        "/Users/jim/src/apps/AI_SDLC_Context/projects_repo",
         "--personas-path",
-        "/Users/jim/src/apps/AI_SDLC_config/personas"
+        "/Users/jim/src/apps/AI_SDLC_Context/personas"
       ]
     }
   }
@@ -209,7 +209,7 @@ Claude: [uses switch_persona tool]
 
 3. Test server can start:
    ```bash
-   cd /Users/jim/src/apps/AI_SDLC_config
+   cd /Users/jim/src/apps/AI_SDLC_Context
    python mcp_service/server/main.py --help
    ```
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Advanced usage example for AI_SDLC_config
+Advanced usage example for AI_SDLC_Context
 
 This demonstrates:
 1. Merging base + environment + user configs (3 layers)
@@ -149,7 +149,7 @@ def demo_comparison_with_c4h():
           [100 lines of embedded text]
 """)
 
-    print("\nAI_SDLC_config approach (URI references):")
+    print("\nAI_SDLC_Context approach (URI references):")
     print("""
   agents:
     discovery:
@@ -168,7 +168,7 @@ def demo_comparison_with_c4h():
 
 def main():
     print("╔════════════════════════════════════════════════╗")
-    print("║  AI_SDLC_config Advanced Usage Examples       ║")
+    print("║  AI_SDLC_Context Advanced Usage Examples       ║")
     print("╚════════════════════════════════════════════════╝\n")
 
     demo_three_layer_merge()

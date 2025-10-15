@@ -1,4 +1,4 @@
-# Quick Reference - AI Init with AI_SDLC_config
+# Quick Reference - AI Init with AI_SDLC_Context
 
 ## Installation
 
@@ -6,7 +6,7 @@
 # Download installer
 curl -O https://raw.githubusercontent.com/foolishimp/claude_init/main/setup_claude_tasks.py
 
-# Run with AI_SDLC_config
+# Run with AI_SDLC_Context
 python setup_claude_tasks.py --config ai_init_config.yml
 
 # Clean up
@@ -195,7 +195,7 @@ if config.get_value("installation.components.claude_tasks.enabled"):
     run_claude_installer(force, target)
 ```
 
-## Benefits of AI_SDLC_config
+## Benefits of AI_SDLC_Context
 
 1. **Externalized Documentation**
    - Process docs live in separate markdown files
@@ -219,4 +219,4 @@ if config.get_value("installation.components.claude_tasks.enabled"):
 
 ---
 
-*AI Init + AI_SDLC_config = Flexible, externalized project configuration*
+*AI Init + AI_SDLC_Context = Flexible, externalized project configuration*

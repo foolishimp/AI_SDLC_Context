@@ -1,8 +1,8 @@
-# AI_SDLC_config Architecture
+# AI_SDLC_Context Architecture
 
 ## Design Philosophy
 
-AI_SDLC_config is inspired by the C4H configuration system (`c4h/config/system_config.yml` and `c4h_agents/config.py`) but designed to be:
+AI_SDLC_Context is inspired by the C4H configuration system (`c4h/config/system_config.yml` and `c4h_agents/config.py`) but designed to be:
 
 1. **Generic** - No C4H-specific logic; works with any domain
 2. **URI-based** - Content lives at URIs, not embedded in config files
@@ -152,9 +152,9 @@ if request.app_config:
     config = deep_merge(config, request.app_config)
 ```
 
-**AI_SDLC_config approach**:
+**AI_SDLC_Context approach**:
 ```python
-# AI_SDLC_config: Merge URI-based configs
+# AI_SDLC_Context: Merge URI-based configs
 manager = ConfigManager()
 manager.load_hierarchy("base.yml")
 manager.load_hierarchy("production.yml")
@@ -234,7 +234,7 @@ manager.merge()
 
 ### Similarities
 
-| Feature | C4H | AI_SDLC_config |
+| Feature | C4H | AI_SDLC_Context |
 |---------|-----|----------------|
 | Dot notation | ✅ `config.get_value("llm_config.agents.discovery")` | ✅ `manager.get_value("llm.agents.discovery")` |
 | Wildcard search | ✅ `config.find_all("*.agents.*")` | ✅ `manager.find_all("*.agents.*")` |
@@ -244,7 +244,7 @@ manager.merge()
 
 ### Differences
 
-| Aspect | C4H | AI_SDLC_config |
+| Aspect | C4H | AI_SDLC_Context |
 |--------|-----|----------------|
 | **Content storage** | Embedded in YAML | Referenced by URI |
 | **Content types** | YAML values only | Any content at any URI |
@@ -267,7 +267,7 @@ llm_config:
           [100 lines of embedded text]
 ```
 
-**AI_SDLC_config approach**:
+**AI_SDLC_Context approach**:
 ```yaml
 llm:
   agents:
@@ -478,7 +478,7 @@ Similar issue to C4H - merge does deep copy of trees.
 
 ## Summary
 
-AI_SDLC_config takes the elegant design of C4H's configuration system and extends it to work with **content at any URI**, making it:
+AI_SDLC_Context takes the elegant design of C4H's configuration system and extends it to work with **content at any URI**, making it:
 
 - ✅ **Generic** - Not tied to any specific domain
 - ✅ **Flexible** - Content can live anywhere

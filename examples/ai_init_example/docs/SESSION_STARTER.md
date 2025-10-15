@@ -1,4 +1,4 @@
-# Session Starter - AI Init with AI_SDLC_config
+# Session Starter - AI Init with AI_SDLC_Context
 
 ## Starting a Development Session
 

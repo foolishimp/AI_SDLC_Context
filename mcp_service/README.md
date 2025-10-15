@@ -1,4 +1,4 @@
-# AI_SDLC_config MCP Service
+# AI_SDLC_Context MCP Service
 
 Model Context Protocol (MCP) service for managing AI_SDLC configuration projects.
 
@@ -273,7 +273,7 @@ Add to Claude Desktop configuration:
     "ai-sdlc-config": {
       "command": "python",
       "args": ["-m", "mcp_service.server.main", "--stdio"],
-      "cwd": "/path/to/AI_SDLC_config/mcp_service"
+      "cwd": "/path/to/AI_SDLC_Context/mcp_service"
     }
   }
 }

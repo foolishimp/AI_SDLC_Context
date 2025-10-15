@@ -1,6 +1,6 @@
 # MCP Service API Reference
 
-Complete reference for all MCP tools provided by the AI_SDLC_config service.
+Complete reference for all MCP tools provided by the AI_SDLC_Context service.
 
 ## Table of Contents
 

@@ -79,7 +79,7 @@ Before committing:
 
 ## Configuration Access
 
-With AI_SDLC_config:
+With AI_SDLC_Context:
 
 ```python
 # Get all principles

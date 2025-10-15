@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-AI Init Example - Using AI_SDLC_config with ai_init structure
+AI Init Example - Using AI_SDLC_Context with ai_init structure
 
 This demonstrates how the ai_init project structure can use
-AI_SDLC_config for flexible, URI-based configuration management.
+AI_SDLC_Context for flexible, URI-based configuration management.
 
 Key concepts:
 1. Configuration layers (base, environment, runtime)
@@ -22,7 +22,7 @@ from ai_sdlc_config import ConfigManager
 
 def main():
     print("=" * 70)
-    print("AI Init + AI_SDLC_config Integration Example")
+    print("AI Init + AI_SDLC_Context Integration Example")
     print("=" * 70)
     print()
 

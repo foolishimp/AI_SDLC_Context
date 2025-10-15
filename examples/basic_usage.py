@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Basic usage example for AI_SDLC_config
+Basic usage example for AI_SDLC_Context
 
 This demonstrates:
 1. Loading multiple configuration files
@@ -18,7 +18,7 @@ from ai_sdlc_config import ConfigManager
 
 
 def main():
-    print("=== AI_SDLC_config Basic Usage Example ===\n")
+    print("=== AI_SDLC_Context Basic Usage Example ===\n")
 
     # Create config manager with base path for resolving file:// URIs
     examples_dir = Path(__file__).parent

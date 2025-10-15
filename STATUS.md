@@ -1,8 +1,8 @@
-# AI_SDLC_config - Project Status
+# AI_SDLC_Context - Project Status
 
 ## ✅ COMPLETE - Dynamic Context Management System for Claude
 
-**Repository**: https://github.com/foolishimp/AI_SDLC_config
+**Repository**: https://github.com/foolishimp/AI_SDLC_Context
 **Status**: All code committed and pushed
 **Date**: October 15, 2025
 
@@ -112,7 +112,7 @@
 ## 📦 Repository Structure
 
 ```
-AI_SDLC_config/
+AI_SDLC_Context/
 ├── src/ai_sdlc_config/          # Core library
 │   ├── models/                  # HierarchyNode, URIReference
 │   ├── loaders/                 # YAMLLoader, URIResolver
@@ -243,7 +243,7 @@ quality:
 ```
 bebe82b Add dynamic context management for Claude
 b76bb0c Add comprehensive example and walkthrough documentation
-d51f7b4 Add MCP service for AI_SDLC_config project management
+d51f7b4 Add MCP service for AI_SDLC_Context project management
 dc80e75 Add Corporate SDLC multi-layer configuration example
 0e6bbd6 Fix AI Init example - add missing docs and fix lambda bug
 213b92d Add AI Init integration example
@@ -256,7 +256,7 @@ b378c17 Initial commit: AI SDLC Config Management System
 
 ### 1. Install
 ```bash
-cd AI_SDLC_config
+cd AI_SDLC_Context
 pip install -e .
 ```
 
@@ -281,7 +281,7 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
     "ai-sdlc-config": {
       "command": "python",
       "args": ["-m", "server.main"],
-      "cwd": "/path/to/AI_SDLC_config/mcp_service"
+      "cwd": "/path/to/AI_SDLC_Context/mcp_service"
     }
   }
 }
@@ -363,6 +363,6 @@ if actual_coverage < min_coverage:
 
 **Everything is complete, tested, documented, and pushed to GitHub!**
 
-Repository: https://github.com/foolishimp/AI_SDLC_config
+Repository: https://github.com/foolishimp/AI_SDLC_Context
 
 Ready to use with Claude Desktop or integrate into your CI/CD pipelines! 🚀

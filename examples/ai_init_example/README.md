@@ -1,6 +1,6 @@
-# AI Init + AI_SDLC_config Integration Example
+# AI Init + AI_SDLC_Context Integration Example
 
-This example demonstrates how the **ai_init** project structure can leverage **AI_SDLC_config** for flexible, URI-based configuration management.
+This example demonstrates how the **ai_init** project structure can leverage **AI_SDLC_Context** for flexible, URI-based configuration management.
 
 ## What This Demonstrates
 
@@ -12,7 +12,7 @@ methodology:
   bdd_process: |
     [300 lines of embedded text]
 
-# AI_SDLC_config approach
+# AI_SDLC_Context approach
 methodology:
   bdd_process: "file://docs/BDD_PROCESS.md"
 ```
@@ -57,7 +57,7 @@ ai_init_example/
 ## Running the Example
 
 ```bash
-# From AI_SDLC_config root
+# From AI_SDLC_Context root
 cd examples/ai_init_example
 python ai_init_usage.py
 ```
@@ -142,7 +142,7 @@ documentation:
 
 ### Solution: URI-based references
 ```yaml
-# With AI_SDLC_config
+# With AI_SDLC_Context
 documentation:
   bdd_process: "file://claude_init/claude_tasks/BDD_PROCESS.md"
   quick_reference: "file://claude_init/claude_tasks/QUICK_REFERENCE.md"
@@ -219,7 +219,7 @@ if dashboard_enabled:
 
 ## Comparison with Current ai_init
 
-| Aspect | Current ai_init | With AI_SDLC_config |
+| Aspect | Current ai_init | With AI_SDLC_Context |
 |--------|----------------|---------------------|
 | Config format | Python scripts | YAML with URI refs |
 | Documentation | Embedded or separate | URI-referenced |
@@ -229,7 +229,7 @@ if dashboard_enabled:
 
 ## Next Steps
 
-To integrate AI_SDLC_config into ai_init:
+To integrate AI_SDLC_Context into ai_init:
 
 1. **Create base configuration** - Define defaults in YAML
 2. **Add environment configs** - Dev, staging, prod
@@ -250,4 +250,4 @@ To integrate AI_SDLC_config into ai_init:
 
 ---
 
-*This example shows AI_SDLC_config applied to the ai_init project structure*
+*This example shows AI_SDLC_Context applied to the ai_init project structure*

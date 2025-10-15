@@ -1,4 +1,4 @@
-# Usage Examples - AI_SDLC_config
+# Usage Examples - AI_SDLC_Context
 
 Practical examples showing different ways to use the system.
 
@@ -15,7 +15,7 @@ Practical examples showing different ways to use the system.
 The fastest way to see the system in action:
 
 ```bash
-cd /Users/jim/src/apps/AI_SDLC_config
+cd /Users/jim/src/apps/AI_SDLC_Context
 
 # Demo 1: Project Management
 python mcp_service/examples/direct_usage_example.py
@@ -431,4 +431,4 @@ nano personas/custom_role.yml
 
 ---
 
-**Start using AI_SDLC_config now!** 🚀
+**Start using AI_SDLC_Context now!** 🚀

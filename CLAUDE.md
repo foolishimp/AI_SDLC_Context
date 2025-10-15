@@ -1,10 +1,10 @@
-# CLAUDE.md - AI_SDLC_config Project Guide
+# CLAUDE.md - AI_SDLC_Context Project Guide
 
 This file provides guidance to Claude Code when working with this repository.
 
 ## Project Overview
 
-**AI_SDLC_config** is a generic URI-based dot hierarchy configuration merging system.
+**AI_SDLC_Context** is a generic URI-based dot hierarchy configuration merging system.
 
 ### Purpose
 
@@ -24,7 +24,7 @@ Inspired by the C4H configuration system (`c4h/config/system_config.yml` and `c4
 ## Project Structure
 
 ```
-AI_SDLC_config/
+AI_SDLC_Context/
 ├── src/ai_sdlc_config/
 │   ├── models/                 # Data structures
 │   │   └── hierarchy_node.py   # HierarchyNode, URIReference
@@ -189,7 +189,7 @@ class CustomStrategy(MergeStrategy):
 
 ## Comparison with C4H
 
-| Feature | C4H | AI_SDLC_config |
+| Feature | C4H | AI_SDLC_Context |
 |---------|-----|----------------|
 | Dot notation | ✅ | ✅ |
 | Priority merging | ✅ | ✅ |

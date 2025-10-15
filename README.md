@@ -1,10 +1,10 @@
-# AI_SDLC_config
+# AI_SDLC_Context
 
 A generic URI-based dot hierarchy configuration merging system.
 
 ## Overview
 
-AI_SDLC_config is a standalone library that enables:
+AI_SDLC_Context is a standalone library that enables:
 1. **URI-based content references** - Configuration nodes can reference content at any URI (file paths, URLs, etc.)
 2. **Dot hierarchy navigation** - Access nested configuration using paths like `"system.agents.discovery"`
 3. **Priority-based merging** - Merge multiple configuration hierarchies with override precedence
@@ -58,7 +58,7 @@ Content at URIs is loaded only when accessed, not during configuration merge.
 
 ## Inspiration
 
-This design is inspired by the C4H configuration system (`c4h_services/src/api/service.py`) which merges YAML configurations with priority layers. AI_SDLC_config extends this concept to:
+This design is inspired by the C4H configuration system (`c4h_services/src/api/service.py`) which merges YAML configurations with priority layers. AI_SDLC_Context extends this concept to:
 - Work with URIs instead of embedded text
 - Be completely generic (no C4H dependencies)
 - Support any content type (not just YAML)
@@ -128,7 +128,7 @@ See `examples/basic_usage.py` for a simple introduction.
 See `examples/advanced_usage.py` for custom resolvers and merge strategies.
 
 ### Real-World Example: AI Init Integration
-See `examples/ai_init_example/` for a complete example showing how to use AI_SDLC_config with the ai_init project structure:
+See `examples/ai_init_example/` for a complete example showing how to use AI_SDLC_Context with the ai_init project structure:
 - Multi-layer configuration (base, dev, prod)
 - URI-referenced documentation
 - BDD/TDD methodology configuration
@@ -155,7 +155,7 @@ python corporate_sdlc_demo.py internal_dashboard
 
 ## MCP Service
 
-AI_SDLC_config includes a **Model Context Protocol (MCP) service** that provides:
+AI_SDLC_Context includes a **Model Context Protocol (MCP) service** that provides:
 
 1. **Project Management** - Create, read, update, delete configuration projects
 2. **Content Management** - Add/remove nodes, documents
@@ -201,7 +201,7 @@ Add to Claude Desktop configuration (`~/Library/Application Support/Claude/claud
     "ai-sdlc-config": {
       "command": "python",
       "args": ["-m", "server.main"],
-      "cwd": "/Users/jim/src/apps/AI_SDLC_config/mcp_service"
+      "cwd": "/Users/jim/src/apps/AI_SDLC_Context/mcp_service"
     }
   }
 }
@@ -223,7 +223,7 @@ See `mcp_service/README.md` for complete MCP service documentation.
 ## Installation
 
 ```bash
-cd AI_SDLC_config
+cd AI_SDLC_Context
 pip install -e .
 ```
 

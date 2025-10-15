@@ -2,7 +2,7 @@
 """
 Corporate SDLC Multi-Layer Configuration Demo
 
-This demonstrates how a corporate developer can use AI_SDLC_config
+This demonstrates how a corporate developer can use AI_SDLC_Context
 to manage multi-layered SDLC configurations:
 
 Layer 1: Corporate Base (policies, standards)
