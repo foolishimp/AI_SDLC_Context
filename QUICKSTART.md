@@ -1,302 +1,261 @@
 # AI_SDLC_config Quick Start Guide
 
+This guide shows you how to use the AI_SDLC_config system in 3 different ways:
+1. Direct Python usage (programmatic)
+2. Command-line examples
+3. Through Claude Desktop (MCP)
+
+## Table of Contents
+- [What is AI_SDLC_config?](#what-is-ai_sdlc_config)
+- [Installation](#installation)
+- [Method 1: Direct Python Usage](#method-1-direct-python-usage)
+- [Method 2: MCP with Claude Desktop](#method-2-mcp-with-claude-desktop)
+- [Method 3: Examples and Demos](#method-3-examples-and-demos)
+- [Common Use Cases](#common-use-cases)
+
+---
+
 ## What is AI_SDLC_config?
 
-A library that lets you:
-1. **Store configuration structure** in YAML files
-2. **Store content** at any URI (files, web, S3, etc.)
-3. **Merge multiple configs** with clear priority rules
-4. **Access values** using simple dot notation
+AI_SDLC_config is a **5-layer hierarchical configuration management system** that enables:
 
-Think of it like C4H's config system, but **content lives at URIs** instead of being embedded.
+1. **Dynamic Context Switching** - Claude adapts to different project requirements
+2. **Persona-Based Views** - Same project, different perspectives (BA, Engineer, QA, etc.)
+3. **Priority-Based Merging** - Configurations merge with clear precedence
+4. **Git-Backed Storage** - Full audit trail of all changes
+
+### The 5 Layers (Lowest to Highest Priority)
+
+```
+5. Persona         ← Highest Priority (role-based overrides)
+4. Runtime         ← Environment-specific (dev, staging, prod)
+3. Project         ← Project-specific requirements
+2. Methodology     ← Language/framework standards
+1. Corporate Base  ← Lowest Priority (company defaults)
+```
+
+---
 
 ## Installation
 
+### Prerequisites
+
 ```bash
+# Python 3.11+
+python --version
+
+# Install dependencies
+pip install pyyaml
+pip install mcp  # Only needed for Claude Desktop integration
+```
+
+### Clone the Repository
+
+```bash
+cd ~/src/apps
+git clone https://github.com/foolishimp/AI_SDLC_config.git
 cd AI_SDLC_config
-pip install -e .
 ```
 
-## 5-Minute Tutorial
+---
 
-### Step 1: Create a base config
+## Method 1: Direct Python Usage
 
-`configs/base.yml`:
-```yaml
-system:
-  name: "My App"
-
-agents:
-  discovery:
-    model: "claude-3-opus"
-    prompt: "file://prompts/discovery.md"  # 👈 URI reference
-```
-
-### Step 2: Create the content file
-
-`prompts/discovery.md`:
-```markdown
-# Discovery Agent
-
-You are a discovery agent that analyzes code...
-```
-
-### Step 3: Use it in Python
-
-```python
-from ai_sdlc_config import ConfigManager
-
-# Create manager
-manager = ConfigManager()
-
-# Load config
-manager.load_hierarchy("configs/base.yml")
-manager.merge()
-
-# Get values
-name = manager.get_value("system.name")
-# Returns: "My App"
-
-model = manager.get_value("agents.discovery.model")
-# Returns: "claude-3-opus"
-
-# Get URI reference
-uri = manager.get_uri("agents.discovery.prompt")
-# Returns: "file://prompts/discovery.md"
-
-# Get resolved content
-content = manager.get_content("agents.discovery.prompt")
-# Returns: "# Discovery Agent\n\nYou are..."
-```
-
-## Priority Merging
-
-Create environment-specific overrides:
-
-`configs/production.yml`:
-```yaml
-agents:
-  discovery:
-    model: "claude-3-7-sonnet"  # Override base
-```
-
-```python
-# Load both configs (priority: base < production)
-manager.load_hierarchy("configs/base.yml")
-manager.load_hierarchy("configs/production.yml")
-manager.merge()
-
-model = manager.get_value("agents.discovery.model")
-# Returns: "claude-3-7-sonnet" (production wins)
-```
-
-## Runtime Overrides
-
-Add highest-priority overrides at runtime:
-
-```python
-manager.load_hierarchy("configs/base.yml")
-manager.load_hierarchy("configs/production.yml")
-
-# Add runtime overrides (highest priority)
-manager.add_runtime_overrides({
-    "agents.discovery.temperature": 0.5,
-    "system.debug": True
-})
-
-manager.merge()
-
-temp = manager.get_value("agents.discovery.temperature")
-# Returns: 0.5 (runtime override wins)
-```
-
-## Wildcard Searches
-
-Find all matching paths:
-
-```python
-# Find all agents
-agents = manager.find_all("agents.*")
-
-for path, node in agents:
-    print(f"{path}: {node.get_value_by_path('model')}")
-
-# Output:
-# agents.discovery: claude-3-7-sonnet
-# agents.coder: claude-3-opus
-# agents.solution_designer: claude-3-7-sonnet
-```
-
-## URI Schemes
-
-### Local Files
-```yaml
-prompt: "file://prompts/discovery.md"
-prompt: "file:///absolute/path/to/prompt.md"
-```
-
-### Web Resources
-```yaml
-prompt: "https://docs.company.com/prompts/v2/discovery"
-```
-
-### Cross-References
-```yaml
-common:
-  disclaimer: "file://legal/disclaimer.md"
-
-pages:
-  home:
-    footer: "ref:common.disclaimer"  # Reuse same content
-```
-
-### Custom Schemes
-
-Register your own resolvers:
-
-```python
-def resolve_env(uri_ref):
-    var_name = uri_ref.uri.replace("env://", "")
-    return os.environ.get(var_name, "")
-
-manager.register_uri_resolver("env", resolve_env)
-
-# Now use env:// in configs
-# api_key: "env://ANTHROPIC_API_KEY"
-```
-
-## Running Examples
+Run the included examples to see the system in action:
 
 ```bash
-cd examples
+# Basic project operations (CRUD, merge, git audit)
+python mcp_service/examples/direct_usage_example.py
 
-# Basic usage
-python basic_usage.py
+# Context management (load, switch, query)
+python mcp_service/examples/context_management_demo.py
 
-# Advanced features
-python advanced_usage.py
+# Persona system (6 roles viewing same project)
+python mcp_service/examples/persona_demo.py
 ```
 
-## Key Advantages
+---
 
-### vs. Embedded Config (like C4H)
+## Method 2: MCP with Claude Desktop
 
-**Traditional (C4H)**:
-```yaml
-agents:
-  discovery:
-    prompt: |
-      You are a discovery agent...
-      [100 lines of embedded text]
-```
+### Quick Setup
 
-**AI_SDLC_config**:
-```yaml
-agents:
-  discovery:
-    prompt: "file://prompts/discovery.md"
-```
+See [MCP_SETUP.md](MCP_SETUP.md) for complete instructions.
 
-**Benefits**:
-- ✅ Config file stays small
-- ✅ Content can be edited separately
-- ✅ Content can live on web (easy updates)
-- ✅ Same content can be referenced multiple times
-- ✅ Version control is cleaner
+**Summary:**
+1. `pip install mcp`
+2. Configure `~/Library/Application Support/Claude/claude_desktop_config.json`
+3. Restart Claude Desktop
+4. Ask Claude: "What MCP tools are available?"
 
-### Priority Merging
+### Using MCP Tools
 
-Like C4H's `deep_merge()`, but with URI preservation:
+**Example Conversation:**
 
 ```
-Layer 1: base.yml          (defaults)
-Layer 2: production.yml    (environment overrides)
-Layer 3: runtime overrides (highest priority)
-         ↓
-      Merged config
+You: "List the available personas"
+Claude: [uses list_personas]
+        Shows 6 personas with focus areas
+
+You: "Load the payment_gateway context"
+Claude: [uses load_context]
+        Loads PCI-compliant payment gateway requirements
+
+You: "Apply the security_engineer persona"
+Claude: [uses apply_persona_to_context]
+        Views project through security lens
+
+You: "What should I review?"
+Claude: [uses get_persona_checklist]
+        Shows security review checklist
 ```
 
-Later layers override earlier ones.
+---
 
-## Common Patterns
+## Method 3: Examples and Demos
 
-### Multi-Environment Setup
+### Available Demos
 
-```
-configs/
-  base.yml          # Common defaults
-  development.yml   # Dev overrides
-  staging.yml       # Staging overrides
-  production.yml    # Production overrides
-```
+```bash
+cd /Users/jim/src/apps/AI_SDLC_config
 
-```python
-env = os.environ.get("ENV", "development")
+# 1. Direct usage example
+python mcp_service/examples/direct_usage_example.py
 
-manager.load_hierarchy("configs/base.yml")
-manager.load_hierarchy(f"configs/{env}.yml")
-manager.merge()
-```
+# 2. Context management
+python mcp_service/examples/context_management_demo.py
 
-### Shared Content
+# 3. Persona demonstration
+python mcp_service/examples/persona_demo.py
 
-```yaml
-# base.yml
-templates:
-  header: "file://templates/header.html"
-  footer: "file://templates/footer.html"
-
-pages:
-  home:
-    header: "ref:templates.header"  # Reuse
-    footer: "ref:templates.footer"  # Reuse
-  about:
-    header: "ref:templates.header"  # Same header
-    footer: "ref:templates.footer"  # Same footer
+# 4. Validate MCP tools
+python mcp_service/examples/validate_tools.py
 ```
 
-### Web-Hosted Content
+### What Each Demo Shows
 
-```yaml
-prompts:
-  discovery: "https://prompts.company.com/discovery/latest"
-  coder: "https://prompts.company.com/coder/v2"
+**direct_usage_example.py:**
+- Create projects (base, methodology, custom)
+- Update configurations
+- Add documentation
+- Merge projects
+- Git audit trail
+
+**context_management_demo.py:**
+- Load project contexts
+- Switch between contexts
+- Detect requirement changes
+- Context-aware formatting
+
+**persona_demo.py:**
+- All 6 personas viewing same project
+- Different focus areas per persona
+- Role-specific review checklists
+- Persona switching with diff
+
+---
+
+## Common Use Cases
+
+### Use Case 1: Multi-Project Development
+
+**Scenario:** Working on multiple projects with different requirements.
+
+**With MCP (Claude Desktop):**
+```
+"Load the payment_gateway context"
+→ Claude generates PCI-compliant code with fraud detection
+
+"Switch to admin_dashboard context"
+→ Claude generates simpler code without heavy security
 ```
 
-Update prompts on server without redeploying code!
+### Use Case 2: Team Collaboration
 
-## Next Steps
+**Scenario:** Different team members review code from different perspectives.
 
-- **README.md** - Project overview
-- **ARCHITECTURE.md** - Detailed design
-- **examples/** - More usage patterns
-- **CLAUDE.md** - Development guide
+**With MCP:**
+```
+"Apply the qa_engineer persona"
+→ Checklist focuses on testing, automation, quality gates
 
-## Quick Reference
-
-```python
-# Create manager
-manager = ConfigManager(base_path=Path("configs"))
-
-# Load configs
-manager.load_hierarchy("base.yml")
-manager.load_hierarchy("production.yml")
-manager.add_runtime_overrides({"key": "value"})
-
-# Merge
-manager.merge()
-
-# Access
-value = manager.get_value("path.to.key")        # Get value
-uri = manager.get_uri("path.to.uri.ref")        # Get URI string
-content = manager.get_content("path.to.any")    # Get resolved content
-node = manager.get_node("path.to.section")      # Get sub-tree
-
-# Search
-matches = manager.find_all("path.*.pattern")    # Wildcard search
-
-# Custom resolvers
-manager.register_uri_resolver("scheme", func)   # Add custom scheme
+"Switch to security_engineer persona"
+→ Checklist focuses on vulnerabilities, encryption, compliance
 ```
 
-Happy configuring! 🚀
+### Use Case 3: Code Review
+
+**Scenario:** Need role-specific review checklist.
+
+**With MCP:**
+```
+"Apply the devops_engineer persona and get the review checklist"
+→ □ Is this deployable?
+  □ Are there deployment scripts?
+  □ Is rollback possible?
+  □ Are there monitoring hooks?
+```
+
+---
+
+## Available Tools
+
+### 20 MCP Tools
+
+**Project Management (11):**
+- create_project, get_project, list_projects
+- update_project, delete_project
+- add_node, remove_node, add_document
+- merge_projects, inspect_project, compare_projects
+
+**Context Management (4):**
+- load_context, switch_context
+- query_context, get_current_context
+
+**Persona Management (5):**
+- list_personas, load_persona
+- apply_persona_to_context, switch_persona
+- get_persona_checklist
+
+---
+
+## 6 Available Personas
+
+1. **business_analyst** - Requirements & business logic (hides technical details)
+2. **software_engineer** - Code quality & TDD (90% unit coverage)
+3. **qa_engineer** - Test coverage (7 testing levels, 80% automation)
+4. **data_architect** - Data modeling (3NF, ERD diagrams)
+5. **security_engineer** - Security & compliance (4-hour critical SLA)
+6. **devops_engineer** - CI/CD & infrastructure (blue-green deployments)
+
+---
+
+## Quick Example: End-to-End
+
+```bash
+# 1. Run the persona demo to see the system in action
+python mcp_service/examples/persona_demo.py
+
+# 2. Set up Claude Desktop (one time)
+# See MCP_SETUP.md
+
+# 3. In Claude Desktop, try:
+"List the available personas"
+"Load the payment_gateway context"
+"Apply the security_engineer persona"
+"Get the review checklist"
+```
+
+---
+
+## Documentation
+
+- [README.md](README.md) - Project overview
+- [ARCHITECTURE.md](ARCHITECTURE.md) - Detailed design
+- [MCP_SETUP.md](MCP_SETUP.md) - Claude Desktop setup guide
+- [CONTEXT_MANAGEMENT.md](mcp_service/docs/CONTEXT_MANAGEMENT.md) - Context system docs
+- [PERSONAS.md](mcp_service/docs/PERSONAS.md) - Persona system docs
+
+---
+
+**Ready to start!** Run the demos or set up Claude Desktop integration. 🚀
