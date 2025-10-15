@@ -1,13 +1,22 @@
 {
+  "ai_init_methodology": {
+    "type": "methodology",
+    "path": "ai_init_methodology",
+    "base_projects": [],
+    "description": "Core development methodology: Sacred Seven principles and TDD workflow"
+  },
   "acme_corporate": {
     "type": "base",
     "path": "acme_corporate",
-    "base_projects": []
+    "base_projects": [
+      "ai_init_methodology"
+    ]
   },
   "python_standards": {
     "type": "methodology",
     "path": "python_standards",
     "base_projects": [
+      "ai_init_methodology",
       "acme_corporate"
     ]
   },
@@ -15,6 +24,7 @@
     "type": "custom",
     "path": "payment_gateway",
     "base_projects": [
+      "ai_init_methodology",
       "acme_corporate",
       "python_standards"
     ]
@@ -23,6 +33,7 @@
     "type": "custom",
     "path": "admin_dashboard",
     "base_projects": [
+      "ai_init_methodology",
       "acme_corporate",
       "python_standards"
     ]
@@ -31,11 +42,13 @@
     "type": "merged",
     "path": "merged_projects/payment_gateway_prod_v1_0_0",
     "base_projects": [
+      "ai_init_methodology",
       "acme_corporate",
       "python_standards",
       "payment_gateway"
     ],
     "merged_from": [
+      "ai_init_methodology",
       "acme_corporate",
       "python_standards",
       "payment_gateway"

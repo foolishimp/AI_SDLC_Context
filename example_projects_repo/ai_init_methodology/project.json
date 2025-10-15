@@ -1,0 +1,19 @@
+{
+  "name": "ai_init_methodology",
+  "project_type": "methodology",
+  "version": "1.0.0",
+  "created": "2025-10-16T02:30:00Z",
+  "modified": "2025-10-16T02:30:00Z",
+  "base_projects": [],
+  "description": "Core development methodology: Sacred Seven principles and TDD workflow from ai_init",
+  "merged_from": null,
+  "merge_date": null,
+  "runtime_overrides": null,
+  "metadata": {
+    "origin": "https://github.com/foolishimp/ai_init",
+    "replaces": "ai_init",
+    "principles": "Sacred Seven",
+    "workflow": "TDD (RED→GREEN→REFACTOR)",
+    "mantra": "Excellence or nothing"
+  }
+}
