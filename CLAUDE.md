@@ -198,28 +198,83 @@ class CustomStrategy(MergeStrategy):
 | Domain | LLM agents | Generic |
 | Loading | Eager | Lazy |
 
+## Development Methodology
+
+**IMPORTANT**: This project follows the **Sacred Seven** principles from [ai_init](https://github.com/foolishimp/ai_init).
+
+### The Sacred Seven
+
+1. **Test Driven Development** - "No code without tests"
+2. **Fail Fast & Root Cause** - "Break loudly, fix completely"
+3. **Modular & Maintainable** - "Single responsibility, loose coupling"
+4. **Reuse Before Build** - "Check first, create second"
+5. **Open Source First** - "Suggest alternatives, human decides"
+6. **No Legacy Baggage** - "Clean slate, no debt"
+7. **Perfectionist Excellence** - "Best of breed only"
+
+**Ultimate Mantra**: **"Excellence or nothing"** 🔥
+
+👉 **Read Full Methodology**: [methodology/](methodology/)
+- [Sacred Seven Principles](methodology/principles/SACRED_SEVEN.md)
+- [TDD Workflow](methodology/processes/TDD_WORKFLOW.md)
+
+### TDD Workflow
+
+**Always follow**: RED → GREEN → REFACTOR
+
+1. **RED**: Write failing test first
+2. **GREEN**: Write minimal code to pass
+3. **REFACTOR**: Improve code quality
+4. **COMMIT**: Save with clear message
+5. **REPEAT**: Next test
+
+**No code without tests. Ever.**
+
+### Before You Code
+
+Ask these seven questions:
+
+1. Have I written tests first? (Principle #1)
+2. Will this fail loudly if wrong? (Principle #2)
+3. Is this module focused? (Principle #3)
+4. Did I check if this exists? (Principle #4)
+5. Have I researched alternatives? (Principle #5)
+6. Am I avoiding tech debt? (Principle #6)
+7. Is this excellent? (Principle #7)
+
+**If not "yes" to all seven, don't code yet.**
+
 ## Development Guidelines
 
 ### Adding New URI Schemes
 
-1. Add scheme to `URIScheme` enum in `models/hierarchy_node.py`
-2. Implement resolver method in `URIResolver` class
-3. Add tests for the new scheme
-4. Document in README.md
+1. **RED**: Write test for new scheme → Should FAIL
+2. Add scheme to `URIScheme` enum in `models/hierarchy_node.py`
+3. Implement resolver method in `URIResolver` class
+4. **GREEN**: Tests should PASS
+5. **REFACTOR**: Clean up implementation
+6. Document in README.md
+7. **COMMIT**: Save with tests
 
 ### Modifying Merge Logic
 
-1. Merge logic is in `mergers/hierarchy_merger.py`
-2. Core method: `_merge_two_nodes(base, override, priority)`
-3. Inspired by C4H's `deep_merge()` but works with HierarchyNode
-4. Add tests for merge scenarios
+1. **RED**: Write test for new behavior → Should FAIL
+2. Update logic in `mergers/hierarchy_merger.py`
+3. Core method: `_merge_two_nodes(base, override, priority)`
+4. **GREEN**: Tests should PASS
+5. **REFACTOR**: Improve implementation
+6. Add edge case tests
+7. **COMMIT**: Save with tests
 
-### Code Style
+### Code Standards
 
+- **Tests first** (always RED → GREEN → REFACTOR)
 - Use type hints
 - Follow PEP 8
 - Add docstrings to all public methods
 - Keep functions focused and small
+- No technical debt
+- Excellence or nothing
 
 ## Related Projects
 

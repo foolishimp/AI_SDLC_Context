@@ -1,6 +1,8 @@
 # AI_SDLC_Context
 
-A generic URI-based dot hierarchy configuration merging system.
+A generic URI-based dot hierarchy configuration merging system, built with the **Sacred Seven** methodology from [ai_init](https://github.com/foolishimp/ai_init).
+
+**Mantra**: **"Excellence or nothing"** 🔥
 
 ## Overview
 
@@ -9,6 +11,8 @@ AI_SDLC_Context is a standalone library that enables:
 2. **Dot hierarchy navigation** - Access nested configuration using paths like `"system.agents.discovery"`
 3. **Priority-based merging** - Merge multiple configuration hierarchies with override precedence
 4. **Content-agnostic** - Works with any content type (YAML, Markdown, JSON, web pages, etc.)
+
+**Built with**: Test-Driven Development, 156 tests (100% passing), comprehensive coverage
 
 ## Core Concepts
 
@@ -227,15 +231,48 @@ cd AI_SDLC_Context
 pip install -e .
 ```
 
+## Development Methodology
+
+This project follows the **Sacred Seven** principles from [ai_init](https://github.com/foolishimp/ai_init):
+
+1. **Test Driven Development** - "No code without tests"
+2. **Fail Fast & Root Cause** - "Break loudly, fix completely"
+3. **Modular & Maintainable** - "Single responsibility, loose coupling"
+4. **Reuse Before Build** - "Check first, create second"
+5. **Open Source First** - "Suggest alternatives, human decides"
+6. **No Legacy Baggage** - "Clean slate, no debt"
+7. **Perfectionist Excellence** - "Best of breed only"
+
+👉 **Full Methodology**: [methodology/](methodology/)
+
+### TDD Workflow
+
+**RED → GREEN → REFACTOR**
+
+All code follows Test-Driven Development:
+- 156 unit tests (100% passing)
+- Comprehensive test coverage
+- Tests written first, always
+- Execution time: ~0.16 seconds
+
+👉 **Test Suite**: [tests/](tests/)
+
 ## Project Status
 
-✅ **Core Library Complete** - Ready for use
-- HierarchyNode with dot notation
-- Priority-based merging
-- URI resolution (file://, http://, https://)
-- YAML loader
-- ConfigManager API
-- Comprehensive examples
+✅ **Core Library Complete** - Production ready
+- HierarchyNode with dot notation ✅
+- Priority-based merging ✅
+- URI resolution (file://, http://, https://) ✅
+- YAML loader ✅
+- ConfigManager API ✅
+- Comprehensive examples ✅
+- **156 passing tests** ✅
+- **Sacred Seven compliant** ✅
+
+## Related Projects
+
+- **[ai_init](https://github.com/foolishimp/ai_init)** - Baseline methodology (origin of Sacred Seven)
+- **[AI_INIT_REVIEW.md](AI_INIT_REVIEW.md)** - Detailed comparison and evolution
 
 ## License
 
