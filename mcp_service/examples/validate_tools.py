@@ -42,6 +42,7 @@ expected_tools = {
         "switch_context",
         "query_context",
         "get_current_context",
+        "get_full_context_state",
     ],
     "Persona Management": [
         "list_personas",
@@ -89,6 +90,7 @@ handler_keywords = [
     "elif name == \"switch_context\":",
     "elif name == \"query_context\":",
     "elif name == \"get_current_context\":",
+    "elif name == \"get_full_context_state\":",
     "elif name == \"list_personas\":",
     "elif name == \"load_persona\":",
     "elif name == \"apply_persona_to_context\":",
@@ -109,6 +111,6 @@ print("✅ VALIDATION COMPLETE")
 print("=" * 80)
 
 print("\nNew MCP Tools Added:")
-print("  • 4 Context Management tools")
+print("  • 5 Context Management tools")
 print("  • 5 Persona Management tools")
 print(f"  • Total: {total_expected} tools in MCP server")

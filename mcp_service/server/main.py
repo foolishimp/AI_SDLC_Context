@@ -297,6 +297,14 @@ TOOLS = [
             "properties": {}
         }
     ),
+    Tool(
+        name="get_full_context_state",
+        description="Get comprehensive view of entire context state including layers, merges, and materialized config",
+        inputSchema={
+            "type": "object",
+            "properties": {}
+        }
+    ),
     # Persona Management Tools
     Tool(
         name="list_personas",
@@ -652,6 +660,24 @@ async def handle_tool_call(name: str, arguments: Dict[str, Any]) -> List[TextCon
             return [TextContent(
                 type="text",
                 text=f"Current Context: {context_name}\n\n{formatted}"
+            )]
+
+        elif name == "get_full_context_state":
+            if context_manager is None:
+                return [TextContent(
+                    type="text",
+                    text="Error: Context manager not initialized"
+                )]
+
+            state = context_manager.get_full_context_state()
+
+            # Import the formatter
+            from .context_tools import format_full_context_state
+            formatted = format_full_context_state(state)
+
+            return [TextContent(
+                type="text",
+                text=formatted
             )]
 
         # Persona Management Tools

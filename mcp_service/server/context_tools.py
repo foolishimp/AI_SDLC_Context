@@ -371,6 +371,104 @@ Question: {question}
             "stack_depth": len(self.context_stack)
         }
 
+    def get_full_context_state(self) -> Dict[str, Any]:
+        """
+        Get comprehensive view of the entire context state.
+
+        This provides complete transparency into:
+        - Which configuration layers are active
+        - All merged configuration values
+        - Active persona (if any)
+        - Layer attribution (which values came from which layers)
+
+        Returns:
+            Complete context state with layer information
+        """
+        if not self.current_context:
+            return {
+                "status": "no_context_loaded",
+                "message": "No context loaded. Use /load-context or load_context tool first."
+            }
+
+        project_name = self.current_context["metadata"]["name"]
+        config_manager = self.repo.get_project_config(project_name)
+
+        # Get layer information
+        project_path = self.repo.root_path / project_name
+        layers = []
+
+        # Determine which config files exist and in what order
+        hierarchy_files = [
+            ("01_corporate_base.yml", "Corporate Base", "Company-wide standards and policies"),
+            ("02_methodology_python.yml", "Methodology", "Language/framework-specific standards"),
+            (f"03_project_{project_name}.yml", "Project-Specific", "Project-specific requirements")
+        ]
+
+        for filename, layer_name, description in hierarchy_files:
+            file_path = project_path / filename
+            if file_path.exists():
+                layers.append({
+                    "file": filename,
+                    "name": layer_name,
+                    "description": description,
+                    "path": str(file_path)
+                })
+
+        # Get active persona if any
+        active_persona = self.current_context.get("active_persona")
+        if active_persona:
+            layers.append({
+                "file": "persona_override",
+                "name": f"Persona: {active_persona.get('name', 'Unknown')}",
+                "description": f"Role-specific overrides for {active_persona.get('role', 'Unknown')}",
+                "path": "runtime_memory"
+            })
+
+        # Build complete materialized context
+        materialized = {
+            "project": {
+                "name": self.current_context["project"]["name"],
+                "team": self.current_context["project"].get("team"),
+                "tech_lead": self.current_context["project"].get("tech_lead"),
+                "classification": self.current_context["project"].get("classification"),
+                "pci_compliant": self.current_context["project"].get("pci_compliant")
+            },
+            "requirements": {
+                "testing": {
+                    "min_coverage": self.current_context["requirements"]["testing"]["min_coverage"],
+                    "required_types": self.current_context["requirements"]["testing"].get("required_types", []),
+                    "framework": self.current_context["requirements"]["testing"].get("framework")
+                },
+                "coding": {
+                    "style_guide": self.current_context["requirements"]["coding"].get("style_guide"),
+                    "max_function_lines": self.current_context["requirements"]["coding"].get("max_function_lines"),
+                    "max_complexity": self.current_context["requirements"]["coding"].get("max_complexity"),
+                    "linting_tools": self.current_context["requirements"]["coding"].get("linting_tools", [])
+                }
+            },
+            "security": self.current_context.get("security", {}),
+            "quality": self.current_context.get("quality", {}),
+            "deployment": self.current_context.get("deployment", {}),
+            "environment": self.current_context.get("environment", {}),
+            "build": self.current_context.get("build", {})
+        }
+
+        # Format for human-readable display
+        state = {
+            "status": "context_loaded",
+            "project_name": project_name,
+            "project_type": self.current_context["metadata"]["type"],
+            "active_layers": layers,
+            "layer_count": len(layers),
+            "merge_order": f"{' → '.join([l['name'] for l in layers])} (priority: lowest → highest)",
+            "active_persona": active_persona,
+            "materialized_context": materialized,
+            "policies_loaded": len(self.current_context.get("policies", {})),
+            "documentation_loaded": len(self.current_context.get("documentation", {}))
+        }
+
+        return state
+
 
 # Example usage helpers
 
@@ -435,5 +533,163 @@ def format_context_for_llm(context: Dict[str, Any]) -> str:
         for policy_name, policy_info in context['policies'].items():
             lines.append(f"- {policy_name.replace('_', ' ').title()}: {policy_info.get('uri', 'N/A')}")
         lines.append("")
+
+    return "\n".join(lines)
+
+
+def format_full_context_state(state: Dict[str, Any]) -> str:
+    """
+    Format full context state for human-readable display.
+
+    Args:
+        state: Context state from get_full_context_state()
+
+    Returns:
+        Formatted string for display
+    """
+    if state.get("status") == "no_context_loaded":
+        return "❌ No context loaded. Use /load-context <project> first."
+
+    lines = []
+
+    # Header
+    lines.extend([
+        "=" * 80,
+        f"🎯 FULL CONTEXT STATE: {state['project_name']}",
+        "=" * 80,
+        "",
+        f"**Project Type**: {state['project_type']}",
+        f"**Active Layers**: {state['layer_count']}",
+        ""
+    ])
+
+    # Show layer stack
+    lines.extend([
+        "## Configuration Layer Stack",
+        "",
+        f"**Merge Order**: {state['merge_order']}",
+        ""
+    ])
+
+    for i, layer in enumerate(state['active_layers'], 1):
+        lines.extend([
+            f"### Layer {i}: {layer['name']}",
+            f"- **File**: `{layer['file']}`",
+            f"- **Description**: {layer['description']}",
+            f"- **Path**: `{layer['path']}`",
+            ""
+        ])
+
+    # Active persona
+    if state.get('active_persona'):
+        persona = state['active_persona']
+        lines.extend([
+            "## Active Persona",
+            "",
+            f"**Name**: {persona.get('name')}",
+            f"**Role**: {persona.get('role')}",
+            f"**Focus Areas**:",
+        ])
+        for area in persona.get('focus_areas', []):
+            lines.append(f"  - {area}")
+        lines.append("")
+
+    # Materialized context
+    materialized = state['materialized_context']
+    lines.extend([
+        "## Materialized Context (Merged Configuration)",
+        "",
+        "### Project Information",
+        f"- **Name**: {materialized['project'].get('name')}",
+        f"- **Team**: {materialized['project'].get('team', 'N/A')}",
+        f"- **Tech Lead**: {materialized['project'].get('tech_lead', 'N/A')}",
+        f"- **Classification**: {materialized['project'].get('classification', 'N/A')}",
+        f"- **PCI Compliant**: {materialized['project'].get('pci_compliant', False)}",
+        "",
+        "### Testing Requirements",
+        f"- **Minimum Coverage**: {materialized['requirements']['testing'].get('min_coverage')}%",
+        f"- **Framework**: {materialized['requirements']['testing'].get('framework', 'N/A')}",
+        f"- **Required Test Types**:",
+    ])
+
+    # Handle test types (could be list or dict)
+    test_types = materialized['requirements']['testing'].get('required_types', [])
+    if isinstance(test_types, list):
+        for test_type in test_types:
+            lines.append(f"  - {test_type}")
+    elif isinstance(test_types, dict):
+        for test_type in test_types.values():
+            lines.append(f"  - {test_type}")
+
+    lines.extend([
+        "",
+        "### Coding Standards",
+        f"- **Style Guide**: {materialized['requirements']['coding'].get('style_guide', 'N/A')}",
+        f"- **Max Function Lines**: {materialized['requirements']['coding'].get('max_function_lines', 'N/A')}",
+        f"- **Max Complexity**: {materialized['requirements']['coding'].get('max_complexity', 'N/A')}",
+        f"- **Linting Tools**: {', '.join(materialized['requirements']['coding'].get('linting_tools', []))}",
+        ""
+    ])
+
+    # Security
+    security = materialized.get('security', {})
+    if security:
+        lines.extend(["### Security Requirements", ""])
+
+        vm = security.get('vulnerability_management', {})
+        if vm:
+            lines.extend([
+                "**Vulnerability Management**:",
+                f"  - Scan Frequency: {vm.get('scan_frequency', 'N/A')}",
+                f"  - Critical Fix SLA: {vm.get('critical_fix_sla_hours', 'N/A')} hours",
+                f"  - High Fix SLA: {vm.get('high_fix_sla_hours', 'N/A')} hours",
+                ""
+            ])
+
+        compliance = security.get('compliance', {})
+        if compliance:
+            frameworks = compliance.get('frameworks', [])
+            if frameworks:
+                lines.append("**Compliance Frameworks**:")
+                for framework in frameworks:
+                    lines.append(f"  - {framework}")
+                lines.append("")
+
+    # Quality gates
+    quality = materialized.get('quality', {})
+    if quality:
+        lines.extend(["### Quality Gates", ""])
+        gates = quality.get('gates', {})
+        code_quality = gates.get('code_quality', {})
+        if code_quality:
+            lines.extend([
+                "**Code Quality**:",
+                f"  - Min Maintainability: {code_quality.get('min_maintainability_index', 'N/A')}",
+                f"  - Max Code Smells: {code_quality.get('max_code_smells', 'N/A')}",
+                f"  - Max Technical Debt Ratio: {code_quality.get('max_technical_debt_ratio', 'N/A')}%",
+                ""
+            ])
+
+    # Deployment
+    deployment = materialized.get('deployment', {})
+    if deployment:
+        lines.extend(["### Deployment Requirements", ""])
+        approval = deployment.get('approval_chain', [])
+        if approval:
+            lines.append("**Approval Chain**:")
+            for approver in approval:
+                lines.append(f"  - {approver}")
+            lines.append("")
+
+    # Summary
+    lines.extend([
+        "## Summary",
+        "",
+        f"- **Policies Loaded**: {state['policies_loaded']}",
+        f"- **Documentation Files**: {state['documentation_loaded']}",
+        f"- **Configuration Layers**: {state['layer_count']}",
+        "",
+        "=" * 80
+    ])
 
     return "\n".join(lines)

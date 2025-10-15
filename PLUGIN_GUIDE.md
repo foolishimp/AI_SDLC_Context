@@ -27,8 +27,8 @@ AI_SDLC_Context is now a **Claude Code Plugin** that can be installed with a sin
 ```
 
 That's it! The plugin will install:
-- ✅ 10 slash commands
-- ✅ MCP server integration
+- ✅ 9 slash commands
+- ✅ 21 MCP tools
 - ✅ Auto-behavior hooks
 - ✅ Context and persona management
 
@@ -80,7 +80,7 @@ That's it! The plugin will install:
 
 ## Available Commands
 
-### Context Management (4 commands)
+### Context Management (5 commands)
 
 | Command | Description |
 |---------|-------------|
@@ -88,6 +88,7 @@ That's it! The plugin will install:
 | `/load-context <project>` | Load a project context |
 | `/switch-context <project>` | Switch to different context |
 | `/current-context` | Show active context |
+| `/show-full-context` | Display complete context state with all layers |
 
 ### Persona Management (4 commands)
 
