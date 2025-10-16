@@ -10,7 +10,7 @@ Subagents are **specialized AI assistants** for specific tasks in Claude Code:
 
 ## How They Fit in Your Plugin
 
-Your AI_SDLC_Context plugin can include subagents that work WITH your personas and contexts:
+Your AI_SDLC_Context plugin can include subagents that work WITH your role-based configurations and contexts:
 
 ```
 Plugin Components:
@@ -92,12 +92,12 @@ You are a multi-perspective code reviewer that can evaluate code
 from different role viewpoints (Security, QA, DevOps, etc.).
 
 Your capabilities:
-- Review code from 6 different personas
-- Apply persona-specific checklists
+- Review code from different role perspectives
+- Apply role-specific checklists
 - Identify role-specific issues
 - Provide comprehensive multi-role review
 
-Available personas:
+Available role configurations:
 - business_analyst: Requirements and business logic
 - software_engineer: Code quality and design
 - qa_engineer: Testing and quality gates
@@ -367,7 +367,7 @@ Example workflow:
 1. **Focused Expertise**: Each subagent should have one clear purpose
 2. **Tool Restrictions**: Limit tools to what's needed (security!)
 3. **Clear Prompts**: Detailed instructions for the subagent
-4. **Complementary**: Subagents should work WITH your personas/contexts
+4. **Complementary**: Subagents should work WITH your role configurations/contexts
 5. **Documented**: Explain when to use each subagent
 
 ## Example Usage Scenarios

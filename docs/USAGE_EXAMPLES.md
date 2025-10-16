@@ -405,11 +405,20 @@ Claude: [Generates comprehensive audit report:]
 ### Tip 4: Create Custom Personas
 
 ```bash
-# Copy existing persona
-cp personas/security_engineer.yml personas/custom_role.yml
+# Create a new persona project in example_projects_repo/
+mkdir -p example_projects_repo/custom_role/{config,docs}
 
-# Edit to customize focus areas, tools, overrides
-nano personas/custom_role.yml
+# Create project.json
+cat > example_projects_repo/custom_role/project.json <<EOF
+{
+  "name": "custom_role",
+  "project_type": "persona",
+  "description": "Custom role persona configuration"
+}
+EOF
+
+# Create config/config.yml with role-specific overrides
+# See example_projects_repo/ for reference structures
 ```
 
 ---

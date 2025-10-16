@@ -223,9 +223,9 @@ Claude: [uses switch_persona tool]
 
 ## Next Steps
 
-1. **Create Projects**: Use `create_project` to add more configuration projects
-2. **Add Custom Personas**: Create new YAML files in `personas/` directory
-3. **Build Workflows**: Combine context + persona for specialized behaviors
+1. **Create Projects**: Use `create_project` to add more configuration projects in `example_projects_repo/`
+2. **Add Custom Personas**: Create persona projects as hierarchical configurations
+3. **Build Workflows**: Combine contexts via merge tuples for specialized behaviors
 
 ## Documentation
 
