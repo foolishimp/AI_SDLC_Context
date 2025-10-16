@@ -5,7 +5,7 @@
   "created": "2025-10-14T16:11:15.520684Z",
   "modified": "2025-10-16T03:00:00Z",
   "base_projects": [
-    "ai_init_methodology"
+    "aisdlc_methodology"
   ],
   "description": "Python-specific coding standards and tools (inherits Sacred Seven methodology)",
   "merged_from": null,
@@ -15,6 +15,6 @@
     "language": "python",
     "style_guide": "PEP 8",
     "testing_framework": "pytest",
-    "inherits_from": "ai_init_methodology"
+    "inherits_from": "aisdlc_methodology"
   }
 }

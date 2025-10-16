@@ -129,7 +129,7 @@ See [example_projects_repo/](example_projects_repo/) for complete configuration 
 
 ### Available Projects
 
-- **ai_init_methodology/** - Sacred Seven principles and TDD workflow (base methodology)
+- **aisdlc_methodology/** - Sacred Seven principles and TDD workflow (base methodology)
 - **python_standards/** - Python-specific coding standards
 - **acme_corporate/** - Corporate-level policies and standards
 - **payment_gateway/** - High-risk project with strict requirements
@@ -230,7 +230,7 @@ This project follows the **Sacred Seven** principles from [ai_init](https://gith
 6. **No Legacy Baggage** - "Clean slate, no debt"
 7. **Perfectionist Excellence** - "Best of breed only"
 
-👉 **Full Methodology**: [ai_init_methodology](example_projects_repo/ai_init_methodology/)
+👉 **Full Methodology**: [aisdlc_methodology](example_projects_repo/aisdlc_methodology/)
 
 ### TDD Workflow
 
