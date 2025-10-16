@@ -243,7 +243,7 @@ This project follows the **Sacred Seven** principles from [ai_init](https://gith
 6. **No Legacy Baggage** - "Clean slate, no debt"
 7. **Perfectionist Excellence** - "Best of breed only"
 
-👉 **Full Methodology**: [methodology/](methodology/)
+👉 **Full Methodology**: [ai_init_methodology](example_projects_repo/ai_init_methodology/)
 
 ### TDD Workflow
 
