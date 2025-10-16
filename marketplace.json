@@ -1,0 +1,27 @@
+{
+  "name": "AI SDLC Context Marketplace",
+  "description": "Baseline development contexts and methodologies for AI-assisted software development",
+  "version": "1.0.0",
+  "author": "foolishimp",
+  "repository": "https://github.com/foolishimp/AI_SDLC_Context",
+  "plugins": [
+    {
+      "name": "aisdlc-methodology",
+      "displayName": "AI SDLC Methodology",
+      "description": "Sacred Seven development principles and TDD workflow",
+      "version": "1.0.0",
+      "path": "plugins/aisdlc-methodology",
+      "keywords": ["methodology", "tdd", "sacred-seven", "baseline"],
+      "dependencies": []
+    },
+    {
+      "name": "python-standards",
+      "displayName": "Python Standards",
+      "description": "Python-specific coding standards (PEP 8, pytest, type hints)",
+      "version": "1.0.0",
+      "path": "plugins/python-standards",
+      "keywords": ["python", "pep8", "pytest", "language"],
+      "dependencies": ["aisdlc-methodology"]
+    }
+  ]
+}

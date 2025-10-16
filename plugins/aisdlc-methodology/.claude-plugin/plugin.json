@@ -1,0 +1,22 @@
+{
+  "name": "aisdlc-methodology",
+  "version": "1.0.0",
+  "displayName": "AI SDLC Methodology",
+  "description": "Sacred Seven development principles and TDD workflow - Core methodology for AI_SDLC_Context",
+  "author": "foolishimp",
+  "license": "MIT",
+  "keywords": [
+    "methodology",
+    "tdd",
+    "sacred-seven",
+    "pair-programming",
+    "testing"
+  ],
+  "homepage": "https://github.com/foolishimp/AI_SDLC_Context",
+  "documentation": {
+    "principles": "docs/principles/SACRED_SEVEN.md",
+    "tdd_workflow": "docs/processes/TDD_WORKFLOW.md",
+    "pair_programming": "docs/guides/PAIR_PROGRAMMING_WITH_AI.md",
+    "session_starter": "docs/guides/SESSION_STARTER.md"
+  }
+}
