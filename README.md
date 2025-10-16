@@ -123,39 +123,26 @@ prompt_content = config.get_content("llm.agents.discovery.prompt")
 4. **Version control** - Track config structure separately from content
 5. **Dynamic loading** - Fetch latest content without redeploying
 
-## Examples
+## Example Projects
 
-### Basic Usage
-See `examples/basic_usage.py` for a simple introduction.
+See [example_projects_repo/](example_projects_repo/) for complete configuration examples:
 
-### Advanced Features
-See `examples/advanced_usage.py` for custom resolvers and merge strategies.
+### Available Projects
 
-### Real-World Example: AI Init Integration
-See `examples/ai_init_example/` for a complete example showing how to use AI_SDLC_Context with the ai_init project structure:
-- Multi-layer configuration (base, dev, prod)
-- URI-referenced documentation
-- BDD/TDD methodology configuration
-- Environment-specific behavior
+- **ai_init_methodology/** - Sacred Seven principles and TDD workflow (base methodology)
+- **python_standards/** - Python-specific coding standards
+- **acme_corporate/** - Corporate-level policies and standards
+- **payment_gateway/** - High-risk project with strict requirements
+- **admin_dashboard/** - Low-risk internal tool with relaxed standards
 
-```bash
-cd examples/ai_init_example
-python ai_init_usage.py
-```
+### Key Demonstrations
 
-### Corporate SDLC Multi-Layer Configuration
-See `examples/corporate_sdlc/` for an enterprise example demonstrating:
-- 4-layer hierarchy (Corporate → Methodology → Project → Runtime)
-- Corporate policies with different requirements per project
-- Language-specific methodology standards
-- Risk-based configuration (strict for payments, relaxed for internal tools)
-- Side-by-side project comparison
+1. **Multi-layer configuration** - Corporate → Methodology → Language → Project
+2. **URI-referenced documentation** - External content loaded on-demand
+3. **Configuration merging** - Combine multiple layers into deployment configs
+4. **Risk-based standards** - Different requirements based on project risk level
 
-```bash
-cd examples/corporate_sdlc
-python corporate_sdlc_demo.py payment_service
-python corporate_sdlc_demo.py internal_dashboard
-```
+See [example_projects_repo/README.md](example_projects_repo/README.md) for detailed documentation.
 
 ## MCP Service
 
