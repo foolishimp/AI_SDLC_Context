@@ -101,6 +101,95 @@ methodology:
         - Keep tests passing during refactor
         - Commit after each cycle
 
+    pair_programming:
+      _uri: "file://docs/guides/PAIR_PROGRAMMING_WITH_AI.md"
+
+      roles:
+        human_driver: "Strategic decisions, requirements, architecture"
+        ai_navigator: "Tactical implementation, suggestions, code writing"
+
+      workflow:
+        - phase: ALIGN
+          action: Establish shared understanding
+
+        - phase: PLAN
+          action: Agree on implementation approach
+
+        - phase: IMPLEMENT
+          action: Collaborate on coding
+
+        - phase: REVIEW
+          action: Mutual code assessment
+
+        - phase: VALIDATE
+          action: Confirm functionality
+
+      communication:
+        check_in_frequency: "Every 10-15 minutes"
+        think_aloud: required
+        clear_handoffs: required
+
+      anti_patterns:
+        - Silent coding without explanation
+        - Making architectural assumptions
+        - Big bang implementations
+        - Ignoring feedback
+        - No knowledge transfer
+
+    session_management:
+      _uri: "file://docs/guides/SESSION_STARTER.md"
+
+      start_of_session:
+        - Check git status and recent commits
+        - Review active tasks
+        - Run tests to ensure clean state
+        - Review core methodology documents
+        - Align on session goals
+
+      session_template:
+        sections:
+          - goals
+          - current_task
+          - approach
+          - check_in_schedule
+          - end_of_session_checklist
+
+      context_recovery:
+        commands:
+          - git status
+          - git diff
+          - git log --oneline -10
+
+    task_documentation:
+      _uri: "file://docs/guides/TASK_TEMPLATE.md"
+
+      required_sections:
+        - problem
+        - investigation
+        - solution
+        - files_modified
+        - files_created
+        - code_changes
+        - testing
+        - result
+        - side_effects
+        - future_considerations
+        - lessons_learned
+
+    unified_principles:
+      _uri: "file://docs/guides/UNIFIED_PRINCIPLES.md"
+
+      hierarchy:
+        - Test First (Principle 1)
+        - Fail Fast (Principle 2)
+        - Reuse Before Build (Principle 4)
+        - Open Source First (Principle 5)
+        - Quality Excellence (Principle 7)
+        - No Tech Debt (Principle 6)
+        - Modular Design (Principle 3)
+
+      conflict_resolution: "Follow decision tree in guide"
+
   quality_standards:
     testing:
       coverage_minimum: 80
@@ -161,6 +250,10 @@ methodology:
   documentation:
     principles_guide: "file://docs/principles/SACRED_SEVEN.md"
     tdd_workflow_guide: "file://docs/processes/TDD_WORKFLOW.md"
+    pair_programming_guide: "file://docs/guides/PAIR_PROGRAMMING_WITH_AI.md"
+    session_starter_guide: "file://docs/guides/SESSION_STARTER.md"
+    unified_principles_guide: "file://docs/guides/UNIFIED_PRINCIPLES.md"
+    task_template: "file://docs/guides/TASK_TEMPLATE.md"
     quick_reference: "file://docs/README.md"
 
   integration:

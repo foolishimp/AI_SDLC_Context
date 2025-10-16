@@ -41,10 +41,11 @@ methodology/
 │   └── SACRED_SEVEN.md           # The Sacred Seven
 ├── processes/                     # Development processes
 │   └── TDD_WORKFLOW.md           # Test-Driven Development
-├── templates/                     # Templates and examples
-│   └── (future: task templates)
-└── guides/                        # How-to guides
-    └── (future: specific guides)
+└── guides/                        # Practical guides
+    ├── PAIR_PROGRAMMING_WITH_AI.md  # Human-AI collaboration
+    ├── SESSION_STARTER.md           # Session checklist
+    ├── UNIFIED_PRINCIPLES.md        # Conflict resolution
+    └── TASK_TEMPLATE.md             # Task documentation template
 ```
 
 ---
@@ -76,6 +77,48 @@ Complete guide to Test-Driven Development:
 - Anti-patterns to avoid
 
 **When to read**: Daily, during development
+
+### Guides
+
+#### [Pair Programming with AI](guides/PAIR_PROGRAMMING_WITH_AI.md)
+Comprehensive guide to human-AI collaboration:
+- Role definitions (Driver/Navigator)
+- Communication patterns
+- Workflow stages (ALIGN → PLAN → IMPLEMENT → REVIEW → VALIDATE)
+- Anti-patterns to avoid
+- Best practices from traditional pair programming
+
+**When to read**: At session start, when starting pair programming
+
+#### [Session Starter](guides/SESSION_STARTER.md)
+Checklist for starting every development session:
+- Check current state (git status, tests)
+- Review core documents
+- Align on goals
+- Choose working mode
+- Set up for success
+
+**When to read**: At the beginning of EVERY session
+
+#### [Unified Principles](guides/UNIFIED_PRINCIPLES.md)
+Resolving principle conflicts and clarifications:
+- Core hierarchy of principles
+- Resolved clarifications
+- Decision tree for conflicts
+- Anti-principles (what we DON'T do)
+- Application examples
+
+**When to read**: When principles seem to conflict, when making complex decisions
+
+#### [Task Template](guides/TASK_TEMPLATE.md)
+Template for documenting completed tasks:
+- Problem, investigation, solution
+- Files modified/created
+- Code changes
+- Testing approach
+- Results and lessons learned
+
+**When to read**: When documenting completed work
 
 ---
 
