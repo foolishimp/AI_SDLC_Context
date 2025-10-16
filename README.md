@@ -123,26 +123,34 @@ prompt_content = config.get_content("llm.agents.discovery.prompt")
 4. **Version control** - Track config structure separately from content
 5. **Dynamic loading** - Fetch latest content without redeploying
 
-## Example Projects
+## Contexts and Examples
 
-See [example_projects_repo/](example_projects_repo/) for complete configuration examples:
+### Baseline Contexts ([contexts/](contexts/))
 
-### Available Projects
+**Read-only reference contexts** provided by AI_SDLC_Context:
+- **aisdlc_methodology/** - Sacred Seven principles and TDD workflow
+- **python_standards/** - Python language standards and best practices
 
-- **aisdlc_methodology/** - Sacred Seven principles and TDD workflow (base methodology)
-- **python_standards/** - Python-specific coding standards
-- **acme_corporate/** - Corporate-level policies and standards
-- **payment_gateway/** - High-risk project with strict requirements
-- **admin_dashboard/** - Low-risk internal tool with relaxed standards
+These contexts can be served by MCP context servers and composed via **context tuples**.
 
-### Key Demonstrations
+See [contexts/README.md](contexts/README.md) for details.
 
-1. **Multi-layer configuration** - Corporate → Methodology → Language → Project
-2. **URI-referenced documentation** - External content loaded on-demand
-3. **Configuration merging** - Combine multiple layers into deployment configs
-4. **Risk-based standards** - Different requirements based on project risk level
+---
 
-See [example_projects_repo/README.md](example_projects_repo/README.md) for detailed documentation.
+### Example Projects ([examples/](examples/))
+
+**Example local projects** demonstrating federated context usage:
+- **acme_corporate/** - Example corporate-level policies
+- **payment_gateway/** - Example high-risk enterprise project
+- **admin_dashboard/** - Example low-risk internal tool
+
+**Key demonstrations**:
+1. **Federated contexts** - Load from multiple MCP servers (corporate, division, local)
+2. **Context tuples** - Compose layers with priority-based merging
+3. **Multi-layer inheritance** - Corporate → Division → Team → Project
+4. **Local customization** - Override baseline contexts for specific needs
+
+See [examples/README.md](examples/README.md) for comprehensive federated context guide.
 
 ## MCP Service
 
@@ -230,7 +238,7 @@ This project follows the **Sacred Seven** principles from [ai_init](https://gith
 6. **No Legacy Baggage** - "Clean slate, no debt"
 7. **Perfectionist Excellence** - "Best of breed only"
 
-👉 **Full Methodology**: [aisdlc_methodology](example_projects_repo/aisdlc_methodology/)
+👉 **Full Methodology**: [aisdlc_methodology](contexts/aisdlc_methodology/)
 
 ### TDD Workflow
 
