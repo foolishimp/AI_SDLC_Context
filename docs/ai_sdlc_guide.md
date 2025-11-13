@@ -222,13 +222,16 @@ All work types are fed into a **single Builder engine** that:
 
 ### **2.6.1 What is Deploy & Execute**
 
-* **Deployer** promotes assets to live environments.
+* **Deployment** (external CI/CD platform) promotes assets to live environments.
 * **Executor** runs these assets against **Domain Data**.
+
+> **Note**: Deployment is handled by external CI/CD platforms (Jenkins, GitLab CI, GitHub Actions, ArgoCD, etc.) and is **outside the AI SDLC scope**. The AI SDLC integrates with any CI/CD platform. See [Section 10.0](#100-runtime-feedback-and-deployment-integration) for details.
 
 ### **2.6.2 Why Deploy & Execute Matters**
 
 * Provides a clear separation between building and running.
 * Supports multiple runtime targets (batch, streaming, services, UIs).
+* Runtime feedback (tagged with requirement keys) closes the loop back to Requirements.
 
 ---
 
@@ -1341,260 +1344,72 @@ Templates stored in AI_SDLC_Context reference:
 
 ---
 
-# **10.0 Deployment and Runtime Feedback**
+# **10.0 Runtime Feedback and Deployment Integration**
 
-## **10.1 Deployment – Overview**
+## **10.1 Overview**
 
-### **10.1.1 What is Deployment**
-Transfer of approved assets (application code and data assets) into production or target runtime environments under controlled conditions, including data migration and schema evolution.
+**Deployment** (the actual CI/CD mechanics of releasing code and data to production) is handled by external release platforms and is **outside the scope of the AI SDLC**. The AI SDLC is **platform-agnostic** and can integrate with any CI/CD system (Jenkins, GitLab CI, GitHub Actions, ArgoCD, etc.).
 
-### **10.1.2 Why Deployment Matters**
+The AI SDLC's concern with deployment is:
+1. **Requirement key tracking** in release manifests
+2. **Runtime feedback** with requirement key tagging to close the loop
 
-* Ensures change is safe, auditable, and reversible for both code and data.
-* Coordinates application and data deployments to maintain consistency.
-* Validates data migration and cutover procedures.
-* Keeps regulatory and operational controls intact.
-
----
-
-## **10.2 Deployment & Runtime – Sub-Diagram**
+## **10.2 Deployment Integration**
 
 ```mermaid
 flowchart TD
-    UAT["User Acceptance Test"] --> D["Deployer / Release Mgmt"]
-    D --> EX["Executor / Runtime System"]
-    EX -->|"Behaviour, metrics, incidents"| IM["Intent Manager"]
+    UAT["UAT Stage
+    (AI SDLC Output)"] --> CICD["CI/CD Platform
+    (External: Jenkins, GitLab, etc.)"]
+    CICD --> PROD["Production Runtime"]
+    PROD -->|"Telemetry tagged with REQ keys"| FEEDBACK["Runtime Feedback"]
+    FEEDBACK --> INTENT["Intent Manager
+    (AI SDLC Input)"]
 ```
 
----
+### **10.2.1 Release Manifest with Requirement Keys**
 
-## **10.3 Deployment and Feedback – Detailed Explanation**
+When deploying, the CI/CD platform should track which requirement keys are being deployed:
 
-### **10.3.1 Personas**
-
-* **Deployer / Release Manager / SRE** – coordinates application and infrastructure releases.
-* **Data Operations Engineer** – manages data deployments, migrations, and cutover.
-
-### **10.3.2 Responsibilities**
-
-* Coordinate releases for both application and data components.
-* **Track deployed requirement keys** in release manifests:
-  ```yaml
-  Release: v2.5.0
-  Date: 2025-11-13
-  Requirements Deployed:
-    - REQ-F-AUTH-001 (v1)
-    - REQ-NFR-PERF-001 (v2)
-    - REQ-DATA-001 (v1)
-    - REQ-DATA-CQ-001 (v1)
-  ```
-* Execute data migration and schema evolution procedures.
-* **Data deployment activities**:
-  - Schema migration execution (DDL changes)
-  - Data backfill and historical data loading
-  - Reference data and master data updates
-  - Data pipeline deployment and activation
-  - Cutover validation and reconciliation
-  - Rollback procedures for data changes (with requirement key tracking)
-* Monitor rollouts and rollbacks.
-* Ensure alignment with change management policies.
-* Maintain **deployment-to-requirement traceability** for audit and compliance.
-
-### **10.3.3 Runtime Feedback**
-
-* **Application telemetry** (tagged with requirement keys):
-  - Logs, metrics, and traces
-  - Error rates and performance metrics (linked to NFR requirement keys)
-  - User complaints or unexpected behaviours
-  - Example: `ERROR: REQ-F-AUTH-001 - Authentication failure rate exceeds threshold`
-* **Data observability** (tagged with data requirement keys):
-  - Data quality metrics (completeness, accuracy, freshness) → linked to `REQ-DATA-CQ-*`
-  - Data lineage and impact analysis
-  - Schema drift detection
-  - Data volume and growth trends
-  - Pipeline health and SLA adherence
-  - Data access patterns and usage analytics
-  - Example: `ALERT: REQ-DATA-CQ-001 - Data completeness dropped to 92% (threshold: 95%)`
-* **Compliance and governance**:
-  - Regulatory or audit findings (linked to compliance requirement keys)
-  - Data privacy incidents
-  - Access control violations
-
-**All runtime issues are tagged with requirement keys**, enabling:
-* Direct traceability from production issues back to originating requirements
-* Impact analysis: "Which requirements are affected by this incident?"
-* Trend analysis: "Which requirements generate the most issues?"
-
-All of these feed back into the **Intent Manager**, creating **new or refined intent**, which re-enters the lifecycle at Requirements.
-
----
-
-## **10.4 Deployment – Stage Context**
-
-### **10.4.1 Context Constraints**
-
-The Deployment stage operates within these constraints:
-
-* **Release Windows**: Allowed deployment times (e.g., off-hours, maintenance windows, no-deploy periods)
-* **Deployment Procedures**: Approved deployment methods (blue-green, canary, rolling, feature flags)
-* **Environment Context**: Production topology, infrastructure constraints, capacity limits
-* **Data Migration Context**: Data cutover procedures, zero-downtime migration strategies
-* **Rollback Procedures**: Rollback time limits, rollback approval process, data rollback constraints
-* **Change Management**: CAB approval, change freezes, emergency change procedures
-* **Monitoring and Alerting**: Observability requirements, alert thresholds, on-call procedures
-* **Compliance and Audit**: Deployment audit trail, separation of duties, regulatory requirements
-* **Data Operations Context**: Data refresh schedules, ETL dependencies, downstream system impacts
-
-### **10.4.2 Templates**
-
-Templates stored in AI_SDLC_Context reference:
-- Deployment strategy (blue-green, canary, feature flags), environment configs
-- Deployment templates (release plans, runbooks, rollback plans, release notes)
-- Data operations (migration, cutover, reconciliation), monitoring/observability
-- Change management (CAB process, emergency changes), governance (approval, audit trail)
-
-**Release Plan Template** should contain:
-- Release overview with requirement keys deployed, application and data changes
-- Pre-deployment checklist, deployment steps with rollback procedures
-- Validation criteria, rollback criteria, monitoring/observability setup
-- Communication plan, post-deployment activities, risk assessment
-
-**Data Migration Plan Template** should contain:
-- Migration overview, schema changes (DDL), data migration steps
-- Pre-migration validation, data reconciliation queries
-- Rollback plan with criteria and procedures, post-migration validation
-- Monitoring metrics (data quality, pipeline performance)
-
-## Data Migration Steps
-| Step | Description | SQL/Script | Duration | Validation |
-|------|-------------|------------|----------|------------|
-| 1 | [Migration step] | [Script/SQL] | [Duration] | [Validation query] |
-| 2 | Backfill email_verified | [Backfill script] | [Duration] | SELECT COUNT(*) WHERE email_verified IS NULL |
-| 3 | Apply data transformations | [Transform script] | [Duration] | [Validation query] |
-
-## Pre-Migration Validation
-- [ ] Source data quality validated (REQ-DATA-CQ-###)
-- [ ] Target schema deployed and validated
-- [ ] Migration scripts tested in staging
-- [ ] Rollback scripts prepared and tested
-- [ ] Database backups verified
-- [ ] Data reconciliation queries prepared
-- [ ] Monitoring and alerting configured
-
-## Data Reconciliation
-```sql
--- Source row count
-SELECT COUNT(*) FROM source_system.customers;
-
--- Target row count
-SELECT COUNT(*) FROM target_system.customers;
-
--- Data quality validation (REQ-DATA-CQ-###)
-SELECT
-  COUNT(*) as total_rows,
-  SUM(CASE WHEN email IS NULL THEN 1 ELSE 0 END) as null_emails,
-  SUM(CASE WHEN email_verified IS NULL THEN 1 ELSE 0 END) as null_verified
-FROM target_system.customers;
-
--- Expected: null_emails = 0, null_verified = 0
+```yaml
+Release: v2.5.0
+Date: 2025-11-13
+Requirements Deployed:
+  - REQ-F-AUTH-001 (v1)
+  - REQ-NFR-PERF-001 (v2)
+  - REQ-DATA-001 (v1)
+  - REQ-DATA-CQ-001 (v1)
 ```
 
-## Rollback Plan
-**Rollback Criteria**:
-- Data reconciliation fails (source ≠ target)
-- Data quality below threshold (REQ-DATA-CQ-###)
-- Migration duration exceeds [time]
-- Critical errors during migration
+This enables **deployment-to-requirement traceability** for audit and impact analysis.
 
-**Rollback Steps**:
-```sql
--- Revert schema changes
-ALTER TABLE customers DROP COLUMN email_verified;
-DROP INDEX idx_email_verified;
+### **10.2.2 Runtime Feedback Loop**
 
--- Restore from backup if needed
--- [Restore commands]
-```
+**Critical for AI SDLC**: Production runtime must tag telemetry and issues with requirement keys to close the feedback loop.
 
-## Post-Migration Validation
-- [ ] Row count reconciliation passed
-- [ ] Data quality checks passed (REQ-DATA-CQ-###)
-- [ ] Referential integrity validated
-- [ ] Application smoke tests passed
-- [ ] Downstream systems validated
-- [ ] Performance benchmarks met
+**Application Telemetry** (tagged with requirement keys):
+- Logs, metrics, traces tagged with requirement keys from code annotations
+- Example: `ERROR: REQ-F-AUTH-001 - Authentication failure rate exceeds threshold`
+- Error rates and performance metrics linked to NFR requirement keys
 
-## Monitoring
-- **Data Quality Metrics**:
-  - Completeness rate (REQ-DATA-CQ-###)
-  - Accuracy rate
-  - Migration lag
-- **Pipeline Metrics**:
-  - Migration throughput
-  - Error rate
-  - Duration
-```
+**Data Observability** (tagged with data requirement keys):
+- Data quality metrics (completeness, accuracy, freshness) → linked to `REQ-DATA-CQ-*`
+- Example: `ALERT: REQ-DATA-CQ-001 - Data completeness dropped to 92% (threshold: 95%)`
+- Data lineage, schema drift, pipeline health, data access patterns
 
-### **10.4.3 Assets Produced**
+**Compliance and Governance**:
+- Regulatory or audit findings linked to compliance requirement keys
+- Data privacy incidents, access control violations
 
-| Asset Type | Description | Tagged With |
-|-----------|-------------|-------------|
-| Release Plan | Comprehensive deployment strategy | All requirement keys in release |
-| Deployment Runbook | Step-by-step deployment procedures | Requirement keys |
-| Rollback Plan | Procedures to revert deployment | Requirement keys |
-| Release Notes | User-facing and technical changes | Requirement keys |
-| Data Migration Plan | Schema and data migration procedures | REQ-DATA-* keys |
-| Release Manifest | Traceable record of deployed requirements | All requirement keys and versions |
-| Deployment Audit Trail | Timestamped log of all deployment actions | Requirement keys |
-| Post-Deployment Report | Deployment success metrics and issues | Requirement keys |
+### **10.2.3 Feedback Enables Traceability**
 
-### **10.4.4 Governance**
+**All runtime issues tagged with requirement keys** enable:
+- **Direct traceability**: Production issues → Originating requirements
+- **Impact analysis**: "Which requirements are affected by this incident?"
+- **Trend analysis**: "Which requirements generate the most issues?"
+- **Root cause**: Trace from alert → Code → Design → Requirement → Intent
 
-* **Quality Gates**:
-  - UAT sign-off obtained for all requirements
-  - CAB approval obtained (if required)
-  - All pre-deployment checks passed
-  - Rollback plan tested and approved
-  - Data migration tested in staging
-  - Monitoring and alerting configured
-  - Audit trail prepared
-  - Release window approved
-
-* **Deployment Checklist**:
-  - [ ] Pre-deployment validation complete
-  - [ ] Database backups verified
-  - [ ] Deployment runbook reviewed
-  - [ ] Rollback plan prepared and tested
-  - [ ] Data migration plan validated
-  - [ ] Monitoring dashboards configured
-  - [ ] Stakeholders notified
-  - [ ] On-call team briefed
-  - [ ] Deployment executed per runbook
-  - [ ] Smoke tests passed
-  - [ ] Data reconciliation complete
-  - [ ] Validation criteria met
-  - [ ] Post-deployment monitoring active
-  - [ ] Audit trail documented
-  - [ ] Release notes published
-
-* **Deployment Approval Workflow**:
-  - **Low-risk changes**: Release Manager approval
-  - **Medium-risk changes**: Release Manager + Product Owner approval
-  - **High-risk changes**: CAB approval required
-  - **Data migrations**: Data Operations + Release Manager approval
-  - **Emergency changes**: CTO or designated authority approval
-
-* **Rollback Decision Authority**:
-  - **On-Call Engineer**: Can initiate immediate rollback if automated criteria met
-  - **Release Manager**: Can authorize rollback based on manual assessment
-  - **Product Owner**: Final decision on rollback vs. forward fix
-
-* **Audit and Compliance**:
-  - All deployments logged with timestamp, user, requirement keys
-  - Approval chain documented and auditable
-  - Change management process followed
-  - Separation of duties enforced (deployer ≠ approver)
-  - Deployment-to-requirement traceability maintained
+All runtime feedback feeds into the **Intent Manager**, creating **new or refined intent**, which re-enters the lifecycle at Requirements, **closing the loop**.
 
 ---
 
