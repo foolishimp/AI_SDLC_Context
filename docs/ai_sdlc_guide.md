@@ -539,32 +539,11 @@ requirements_stage:
     traceability_required: true
 ```
 
-**Example User Story Template:**
-```markdown
-## [REQ-F-XXX-###] Story Title
-
-**As a** [persona]
-**I want** [capability]
-**So that** [business value]
-
-### Acceptance Criteria
-- [ ] Criterion 1 (links to UAT test case)
-- [ ] Criterion 2
-- [ ] Data: [describe data requirements]
-
-### Non-Functional Requirements
-- Performance: [specify thresholds]
-- Security: [specify requirements]
-- Data Quality: [specify quality expectations]
-
-### Regulatory Considerations
-- [ ] GDPR compliant (if handling PII)
-- [ ] SOC 2 controls applied
-
-### Dependencies
-- Depends on: [other requirement keys]
-- Blocks: [other requirement keys]
-```
+**User Story Template** should contain:
+- User story in Given/When/Then or As-a/I-want/So-that format with requirement key
+- Acceptance criteria linked to requirement key
+- Non-functional requirements (performance, security, data quality)
+- Regulatory considerations and dependencies
 
 ### **4.4.3 Assets Produced**
 
@@ -711,54 +690,12 @@ design_stage:
     design_review_checklist: "file://governance/design_review_checklist.md"
 ```
 
-**Example Component Design Template:**
-```markdown
-# Component Design: [Component Name]
-
-**Satisfies Requirements**: REQ-F-XXX-###, REQ-NFR-XXX-###
-
-## Overview
-[Brief description of component purpose and responsibilities]
-
-## Architecture Pattern
-- Pattern: [e.g., Microservice, Event-Driven, Layered]
-- Reference: [link to approved pattern]
-
-## Technical Specification
-- **Technology**: [e.g., Python 3.11, FastAPI]
-- **Framework**: [based on tech stack context]
-- **Dependencies**: [list of approved libraries]
-
-## API Design
-- **Endpoints**: [REST/GraphQL/gRPC]
-- **Authentication**: [OAuth 2.0, JWT - per security context]
-- **Rate Limiting**: [per performance context]
-
-## Data Design
-- **Data Model**: [link to data model]
-- **Storage**: [PostgreSQL, DynamoDB - per data architecture context]
-- **Schema**: [reference schema definition]
-- **Data Quality**: [validation rules per REQ-DATA-CQ-*]
-
-## Integration Points
-- **Upstream**: [services this depends on]
-- **Downstream**: [services that depend on this]
-- **Events**: [events published/consumed]
-
-## Non-Functional Considerations
-- **Performance**: [based on REQ-NFR-PERF-*]
-- **Security**: [based on REQ-NFR-SEC-*]
-- **Scalability**: [horizontal/vertical scaling approach]
-- **Resilience**: [circuit breakers, retries, fallbacks]
-
-## Trade-offs
-[Explicit architectural trade-offs made and why]
-
-## Compliance
-- [ ] Architecture review completed
-- [ ] Security review completed
-- [ ] Data governance review completed
-```
+**Component Design Template** should contain:
+- Component overview with requirement keys it satisfies
+- Architecture pattern reference, tech stack, API design
+- Data model and storage design with data quality rules
+- Integration points, NFR considerations (performance, security, scalability)
+- Explicit trade-offs and compliance checklist
 
 ### **5.4.3 Assets Produced**
 
@@ -892,60 +829,12 @@ tasks_stage:
     requirement_key_required: true
 ```
 
-**Example Task Template:**
-```markdown
-# TASK-###: [Task Title]
-
-**Implements Requirements**: REQ-F-XXX-###, REQ-DATA-XXX-###
-
-## Type
-- [ ] Feature Development
-- [ ] Data Engineering
-- [ ] Bug Fix
-- [ ] Technical Debt
-- [ ] Infrastructure
-- [ ] Testing
-
-## Description
-[Detailed description of what needs to be done]
-
-## Acceptance Criteria
-- [ ] Criterion 1 (must be testable)
-- [ ] Criterion 2
-- [ ] Code reviewed and approved
-- [ ] Tests written and passing
-- [ ] Documentation updated
-
-## Technical Approach
-[High-level approach based on design]
-
-## Dependencies
-- Blocked by: [TASK-###, TASK-###]
-- Blocks: [TASK-###]
-- Requires: [external dependencies, APIs, data]
-
-## Estimation
-- Story Points: [1, 2, 3, 5, 8, 13]
-- Hours (if applicable): [estimated hours]
-- Confidence Level: [High/Medium/Low]
-
-## Data Considerations
-- Data sources: [which data is needed]
-- Data quality: [quality requirements per REQ-DATA-CQ-*]
-- Data volume: [expected volume]
-- Data migration: [if applicable]
-
-## Subtasks
-- [ ] Subtask 1
-- [ ] Subtask 2
-- [ ] Code implementation
-- [ ] Unit tests
-- [ ] Integration tests
-- [ ] Documentation
-
-## Notes
-[Any additional context, risks, or considerations]
-```
+**Task Template** should contain:
+- Task ID and requirement keys it implements
+- Task type (feature, data, bug fix, tech debt), description, acceptance criteria
+- Technical approach, dependencies, estimation (story points/hours)
+- Data considerations (sources, quality, volume)
+- Subtasks breakdown and notes
 
 ### **6.4.3 Assets Produced**
 
@@ -1122,112 +1011,13 @@ code_stage:
     coverage_threshold: 80
 ```
 
-**Example Service Code Template:**
-```python
-"""
-Service: [ServiceName]
-Implements: REQ-F-XXX-###, REQ-NFR-XXX-###
-
-[Service description and responsibilities]
-"""
-
-from typing import Optional, List
-import logging
-
-# Imports based on approved libraries
-from fastapi import HTTPException
-from pydantic import BaseModel
-
-logger = logging.getLogger(__name__)
-
-
-class [ServiceName]Request(BaseModel):
-    """
-    Request model for [ServiceName].
-    Data requirements: REQ-DATA-XXX-###
-    """
-    # Fields based on data standards
-    pass
-
-
-class [ServiceName]Response(BaseModel):
-    """
-    Response model for [ServiceName].
-    """
-    pass
-
-
-class [ServiceName]Service:
-    """
-    Service implementation.
-
-    Requirements:
-    - REQ-F-XXX-###: [requirement description]
-    - REQ-NFR-PERF-###: [performance requirement]
-    - REQ-NFR-SEC-###: [security requirement]
-
-    Design: [link to design doc]
-    """
-
-    def __init__(self, config: dict):
-        """Initialize service with configuration."""
-        self.config = config
-        logger.info(f"Initialized {self.__class__.__name__}")
-
-    async def execute(self, request: [ServiceName]Request) -> [ServiceName]Response:
-        """
-        Execute service logic.
-
-        Args:
-            request: Service request
-
-        Returns:
-            Service response
-
-        Raises:
-            HTTPException: On validation or processing errors
-
-        Requirements:
-        - REQ-F-XXX-###: [requirement]
-        """
-        try:
-            # Implementation based on design
-            # Following coding standards and security guidelines
-            logger.debug(f"Processing request: {request}")
-
-            # Validate input per REQ-DATA-CQ-###
-            self._validate_input(request)
-
-            # Execute business logic
-            result = await self._process(request)
-
-            # Validate output per REQ-DATA-CQ-###
-            self._validate_output(result)
-
-            return result
-
-        except ValueError as e:
-            logger.error(f"Validation error: {e}", exc_info=True)
-            raise HTTPException(status_code=400, detail=str(e))
-        except Exception as e:
-            logger.error(f"Processing error: {e}", exc_info=True)
-            raise HTTPException(status_code=500, detail="Internal server error")
-
-    def _validate_input(self, request: [ServiceName]Request) -> None:
-        """Validate input per data quality requirements."""
-        # REQ-DATA-CQ-###: Input validation
-        pass
-
-    async def _process(self, request: [ServiceName]Request) -> [ServiceName]Response:
-        """Core business logic."""
-        # REQ-F-XXX-###: Business logic implementation
-        pass
-
-    def _validate_output(self, response: [ServiceName]Response) -> None:
-        """Validate output per data quality requirements."""
-        # REQ-DATA-CQ-###: Output validation
-        pass
-```
+**Service Code Template** should contain:
+- Module docstring with requirement keys and service description
+- Type-safe request/response models with data requirement keys
+- Service class with requirement keys in class docstring
+- Public methods with requirement keys in method docstrings
+- Input/output validation methods referencing data quality requirements
+- Error handling, logging, and security practices per context standards
 
 ### **7.4.3 Assets Produced**
 
@@ -1430,135 +1220,15 @@ system_test_stage:
     defect_triage: "file://testing/governance/defect_triage_process.md"
 ```
 
-**Example Test Plan Template** (`templates/testing/test_plan_template.md`):
+**Test Plan Template** should contain:
+- Requirements covered, test scope (in/out), test strategy and environment
+- Test schedule with phases, entry/exit criteria
+- Risk assessment and test metrics (coverage, defect density, pass/fail rate)
 
-```markdown
-# Test Plan: [Feature/Component Name]
-
-## Requirements Covered
-- REQ-F-XXX-###: [Functional requirement description]
-- REQ-NFR-PERF-###: [Performance requirement description]
-- REQ-DATA-CQ-###: [Data quality requirement description]
-
-## Test Scope
-### In Scope
-- [List features/functionalities to be tested]
-
-### Out of Scope
-- [List exclusions]
-
-## Test Strategy
-- **Approach**: [Risk-based/Exploratory/Scripted]
-- **Levels**: [Unit/Integration/System/E2E]
-- **Types**: [Functional/Performance/Data Quality/Security]
-
-## Test Environment
-- **Environment**: [Staging/Pre-Prod]
-- **Configuration**: [Link to environment config]
-- **Test Data**: [Link to test data provisioning]
-
-## Test Schedule
-| Phase | Start Date | End Date | Owner |
-|-------|-----------|----------|-------|
-| Test preparation | YYYY-MM-DD | YYYY-MM-DD | [Name] |
-| Test execution | YYYY-MM-DD | YYYY-MM-DD | [Name] |
-| Defect resolution | YYYY-MM-DD | YYYY-MM-DD | [Name] |
-| Regression testing | YYYY-MM-DD | YYYY-MM-DD | [Name] |
-
-## Entry Criteria
-- [ ] Code complete and peer reviewed
-- [ ] Unit tests passing (≥80% coverage)
-- [ ] Test environment available
-- [ ] Test data provisioned
-- [ ] Test cases reviewed and approved
-
-## Exit Criteria
-- [ ] All planned tests executed
-- [ ] Requirement coverage ≥95%
-- [ ] No critical/high defects open
-- [ ] Performance tests meet NFRs
-- [ ] Data quality tests passing
-- [ ] Test summary report approved
-
-## Risks
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-
-## Test Metrics
-- Test cases planned vs executed
-- Requirement coverage %
-- Defect density
-- Pass/fail rate
-- Performance against NFRs
-- Data quality scores
-```
-
-**Example Data Quality Test Template** (`templates/testing/data_quality_test_template.md`):
-
-```python
-# Data Quality Test: [Dataset/Pipeline Name]
-# Validates: REQ-DATA-CQ-###
-
-import great_expectations as ge
-import pytest
-
-class TestCustomerDataQuality:
-    """
-    Data quality tests for customer dataset.
-    Requirements: REQ-DATA-CQ-001 (Customer Data Quality)
-    """
-
-    def setup_method(self):
-        """Load test dataset."""
-        self.df = ge.read_csv("test_data/customers.csv")
-
-    def test_completeness_required_fields(self):
-        """Validate: REQ-DATA-CQ-001 - No nulls in required fields."""
-        # Completeness: customer_id, email, created_at must not be null
-        assert self.df.expect_column_values_to_not_be_null("customer_id").success
-        assert self.df.expect_column_values_to_not_be_null("email").success
-        assert self.df.expect_column_values_to_not_be_null("created_at").success
-
-    def test_accuracy_email_format(self):
-        """Validate: REQ-DATA-CQ-001 - Email format validation."""
-        # Accuracy: email must match regex pattern
-        assert self.df.expect_column_values_to_match_regex(
-            "email",
-            r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-        ).success
-
-    def test_uniqueness_customer_id(self):
-        """Validate: REQ-DATA-CQ-001 - Customer ID uniqueness."""
-        # Uniqueness: customer_id must be unique
-        assert self.df.expect_column_values_to_be_unique("customer_id").success
-
-    def test_consistency_referential_integrity(self):
-        """Validate: REQ-DATA-CQ-001 - Referential integrity."""
-        # Consistency: all region_id values exist in regions table
-        valid_regions = get_valid_regions()  # From test fixture
-        assert self.df.expect_column_values_to_be_in_set(
-            "region_id",
-            valid_regions
-        ).success
-
-    def test_timeliness_data_freshness(self):
-        """Validate: REQ-DATA-CQ-001 - Data freshness < 24 hours."""
-        # Timeliness: created_at within last 24 hours
-        from datetime import datetime, timedelta
-        cutoff = datetime.now() - timedelta(hours=24)
-        assert self.df.expect_column_values_to_be_between(
-            "created_at",
-            min_value=cutoff.isoformat(),
-            max_value=datetime.now().isoformat()
-        ).success
-
-    def test_data_volume(self):
-        """Validate: REQ-NFR-PERF-001 - Expected data volume."""
-        # Performance: dataset contains expected row count range
-        row_count = len(self.df)
-        assert 1000 <= row_count <= 10000, f"Expected 1000-10000 rows, got {row_count}"
-```
+**Data Quality Test Template** should contain:
+- Test class with requirement keys, Great Expectations assertions
+- Tests for completeness, accuracy, uniqueness, consistency, timeliness
+- Data volume and performance validation
 
 ### **8.4.3 Assets Produced**
 
@@ -1797,137 +1467,15 @@ uat_stage:
     escalation_process: "file://uat/governance/escalation_process.md"
 ```
 
-**Example UAT Script Template** (`templates/uat/uat_script_template.md`):
+**UAT Script Template** should contain:
+- Requirements validated, business scenario (As-a/I-want/So-that), prerequisites
+- Test steps with expected results, data validation checks
+- Business user feedback, issues log, acceptance decision, sign-off
 
-```markdown
-# UAT Script: [Feature/Workflow Name]
-
-## Requirements Validated
-- REQ-F-XXX-###: [Functional requirement description]
-- REQ-BR-XXX-###: [Business rule requirement description]
-- REQ-DATA-XXX-###: [Data requirement description]
-
-## Business Scenario
-**As a** [user role]
-**I want to** [business goal]
-**So that** [business value]
-
-## Prerequisites
-- [ ] UAT environment accessible
-- [ ] Test user accounts provisioned
-- [ ] Test data loaded and validated
-- [ ] Business SME available
-
-## Test Steps
-
-| Step | Action | Expected Result | Actual Result | Status |
-|------|--------|-----------------|---------------|--------|
-| 1 | [Action description] | [Expected outcome per REQ-F-XXX-###] | [To be filled during test] | ☐ Pass / ☐ Fail |
-| 2 | [Action description] | [Expected outcome per REQ-BR-XXX-###] | [To be filled during test] | ☐ Pass / ☐ Fail |
-| 3 | Validate data accuracy | Data matches business expectations per REQ-DATA-XXX-### | [To be filled during test] | ☐ Pass / ☐ Fail |
-
-## Data Validation Checks
-
-| Check | Requirement | Expected | Actual | Status |
-|-------|-------------|----------|--------|--------|
-| Data completeness | REQ-DATA-CQ-### | [Completeness threshold] | [Measured %] | ☐ Pass / ☐ Fail |
-| Business rule validation | REQ-BR-### | [Business rule description] | [Validation result] | ☐ Pass / ☐ Fail |
-| Data reconciliation | REQ-DATA-### | Source = Target ± tolerance | [Reconciliation report] | ☐ Pass / ☐ Fail |
-
-## Business User Feedback
-- **Usability**: [Easy to use? Any friction points?]
-- **Data Quality**: [Is data accurate and complete?]
-- **Performance**: [Acceptable response times?]
-- **Business Value**: [Does this solve the business problem?]
-
-## Issues Identified
-| Issue ID | Description | Severity | Requirement | Resolution |
-|----------|-------------|----------|-------------|------------|
-| UAT-### | [Issue description] | [Critical/High/Medium/Low] | REQ-XXX-### | [Action plan] |
-
-## Acceptance Decision
-- [ ] **ACCEPTED** - All acceptance criteria met, proceed to deployment
-- [ ] **ACCEPTED WITH CONDITIONS** - Minor issues, but deployable with workarounds
-- [ ] **REJECTED** - Critical issues, return to development
-
-## Sign-off
-- **Business SME**: _________________ Date: _______
-- **Data Steward**: _________________ Date: _______
-- **UAT Lead**: ____________________ Date: _______
-```
-
-**Example Data Validation Template** (`templates/uat/data_validation_template.md`):
-
-```markdown
-# Data Validation: [Dataset/Feature Name]
-
-## Requirements Validated
-- REQ-DATA-XXX-###: [Data requirement description]
-- REQ-DATA-CQ-###: [Data quality requirement description]
-- REQ-BR-XXX-###: [Business rule requirement description]
-
-## Data Reconciliation
-
-### Source to Target Reconciliation
-| Metric | Source System | Target System | Delta | Tolerance | Status |
-|--------|---------------|---------------|-------|-----------|--------|
-| Row count | [count] | [count] | [difference] | ±0.01% | ☐ Pass / ☐ Fail |
-| Sum(amount) | [sum] | [sum] | [difference] | ±$100 | ☐ Pass / ☐ Fail |
-| Distinct customers | [count] | [count] | [difference] | 0 | ☐ Pass / ☐ Fail |
-
-### Business Rule Validation
-| Business Rule | Requirement | Sample Records | Pass Rate | Threshold | Status |
-|---------------|-------------|----------------|-----------|-----------|--------|
-| [Rule description] | REQ-BR-### | [count] | [%] | ≥99% | ☐ Pass / ☐ Fail |
-| [Rule description] | REQ-BR-### | [count] | [%] | 100% | ☐ Pass / ☐ Fail |
-
-## Data Quality Validation
-
-### Completeness
-| Field | Requirement | Null Rate | Threshold | Status |
-|-------|-------------|-----------|-----------|--------|
-| customer_id | REQ-DATA-CQ-### | [%] | 0% | ☐ Pass / ☐ Fail |
-| email | REQ-DATA-CQ-### | [%] | <5% | ☐ Pass / ☐ Fail |
-
-### Accuracy
-| Field | Requirement | Valid Rate | Threshold | Status |
-|-------|-------------|------------|-----------|--------|
-| email_format | REQ-DATA-CQ-### | [%] | ≥99% | ☐ Pass / ☐ Fail |
-| date_range | REQ-DATA-CQ-### | [%] | 100% | ☐ Pass / ☐ Fail |
-
-### Timeliness
-| Dataset | Requirement | Data Freshness | SLA | Status |
-|---------|-------------|----------------|-----|--------|
-| Customer data | REQ-DATA-CQ-### | [hours old] | <24h | ☐ Pass / ☐ Fail |
-
-## Business User Validation
-
-### Data Usability
-- [ ] Data is easy to find and access
-- [ ] Data definitions are clear
-- [ ] Data values match business understanding
-- [ ] Data granularity supports business needs
-- [ ] Data aggregations are correct
-
-### Spot Checks
-| Sample Record | Business Expectation | Actual Value | Match? |
-|---------------|---------------------|--------------|--------|
-| Customer ABC | [expected values] | [actual values] | ☐ Yes / ☐ No |
-| Order XYZ | [expected values] | [actual values] | ☐ Yes / ☐ No |
-
-## Issues Identified
-| Issue | Description | Severity | Requirement | Impact |
-|-------|-------------|----------|-------------|--------|
-| DATA-### | [Issue description] | [Critical/High/Medium/Low] | REQ-XXX-### | [Business impact] |
-
-## Data Acceptance
-- [ ] **ACCEPTED** - Data meets all business quality requirements
-- [ ] **ACCEPTED WITH MONITORING** - Minor issues, but acceptable with ongoing monitoring
-- [ ] **REJECTED** - Data quality unacceptable for business use
-
-## Sign-off
-- **Business Data Steward**: _________________ Date: _______
-```
+**Data Validation Template** should contain:
+- Requirements validated, source-to-target reconciliation, business rule validation
+- Data quality validation (completeness, accuracy, timeliness)
+- Business user validation (usability, spot checks), issues log, data acceptance decision
 
 ### **9.4.3 Assets Produced**
 
@@ -2133,153 +1681,17 @@ deployment_stage:
     compliance_checks: "file://deployment/governance/compliance_checklist.md"
 ```
 
-**Example Release Plan Template** (`templates/deployment/release_plan_template.md`):
+**Release Plan Template** should contain:
+- Release overview with requirement keys deployed, application and data changes
+- Pre-deployment checklist, deployment steps with rollback procedures
+- Validation criteria, rollback criteria, monitoring/observability setup
+- Communication plan, post-deployment activities, risk assessment
 
-```markdown
-# Release Plan: v[VERSION]
-
-## Release Overview
-- **Release Version**: v[VERSION]
-- **Release Date**: YYYY-MM-DD
-- **Release Window**: [Start Time] - [End Time]
-- **Release Manager**: [Name]
-- **On-Call Engineer**: [Name]
-
-## Requirements Deployed
-| Requirement Key | Description | Type | Version |
-|-----------------|-------------|------|---------|
-| REQ-F-XXX-### | [Feature description] | Feature | v# |
-| REQ-NFR-PERF-### | [Performance enhancement] | Performance | v# |
-| REQ-DATA-### | [Data change description] | Data | v# |
-| REQ-DATA-CQ-### | [Data quality improvement] | Data Quality | v# |
-
-## Application Changes
-- **Services Modified**: [List services]
-- **APIs Changed**: [List API changes]
-- **Configuration Changes**: [List config changes]
-- **Dependencies Updated**: [List dependency updates]
-
-## Data Changes
-- **Schema Changes**: [List DDL changes]
-- **Data Migration**: [Describe data migration]
-- **Data Volume**: [Expected volume]
-- **Migration Duration**: [Estimated time]
-- **Cutover Strategy**: [Zero-downtime/Scheduled downtime]
-
-## Pre-Deployment Checklist
-- [ ] UAT sign-off obtained (all requirement keys accepted)
-- [ ] CAB approval obtained
-- [ ] Release notes published
-- [ ] Deployment runbook reviewed
-- [ ] Rollback plan reviewed and tested
-- [ ] Database backups verified
-- [ ] Data migration tested in staging
-- [ ] Monitoring and alerting configured
-- [ ] On-call team notified
-- [ ] Stakeholder communication sent
-
-## Deployment Steps
-| Step | Description | Owner | Duration | Rollback Step |
-|------|-------------|-------|----------|---------------|
-| 1 | [Deployment action] | [Owner] | [Duration] | [Rollback action] |
-| 2 | Execute data migration | Data Ops | [Duration] | [Data rollback] |
-| 3 | Deploy application v[VERSION] | SRE | [Duration] | [App rollback] |
-| 4 | Smoke tests | QA | [Duration] | N/A |
-| 5 | Data reconciliation | Data Ops | [Duration] | N/A |
-
-## Validation Criteria
-- [ ] Application health checks passing
-- [ ] API response times < [threshold] (REQ-NFR-PERF-###)
-- [ ] Error rate < [threshold]
-- [ ] Data migration complete (100% records migrated)
-- [ ] Data quality checks passing (REQ-DATA-CQ-###)
-- [ ] Data reconciliation complete (source = target)
-- [ ] No critical alerts
-
-## Rollback Criteria
-**Automatic Rollback**: If any of these occur:
-- Error rate > [threshold]% for > [time]
-- Response time > [threshold] for > [time]
-- Data quality < [threshold]% (REQ-DATA-CQ-###)
-- Critical production alert
-
-**Manual Rollback Decision**:
-- Data inconsistencies detected
-- Business impact exceeds acceptable threshold
-- Unforeseen issues during deployment
-
-## Rollback Procedures
-1. **Application Rollback**: [Describe rollback steps]
-2. **Data Rollback**: [Describe data rollback strategy]
-   - Schema rollback: [DDL rollback scripts]
-   - Data restoration: [Point-in-time recovery or replay]
-   - Reconciliation: [Verify data consistency]
-3. **Validation**: [Post-rollback validation]
-4. **Communication**: [Stakeholder notification]
-
-## Monitoring and Observability
-- **Application Metrics**: [List key metrics with requirement keys]
-  - auth_success_rate (REQ-F-AUTH-###)
-  - api_response_time_p95 (REQ-NFR-PERF-###)
-- **Data Metrics**: [List data metrics with requirement keys]
-  - data_completeness_rate (REQ-DATA-CQ-###)
-  - data_freshness_lag (REQ-DATA-CQ-###)
-  - pipeline_success_rate (REQ-DATA-###)
-- **Dashboards**: [Links to monitoring dashboards]
-- **Alerts**: [Key alerts configured]
-
-## Communication Plan
-- **Pre-Deployment**: [Who to notify, when]
-- **During Deployment**: [Status updates frequency]
-- **Post-Deployment**: [Success/failure notification]
-- **Rollback**: [Emergency communication plan]
-
-## Post-Deployment Activities
-- [ ] Deployment retrospective scheduled
-- [ ] Deployment metrics collected
-- [ ] Audit trail documented
-- [ ] Release notes published
-- [ ] Stakeholder notification sent
-- [ ] Monitoring dashboard verified
-
-## Risk Assessment
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-| Data migration failure | High | Automated rollback, point-in-time recovery |
-| Performance degradation | Medium | Canary deployment, gradual rollout |
-
-## Contacts
-- **Release Manager**: [Name/Contact]
-- **On-Call SRE**: [Name/Contact]
-- **Data Operations**: [Name/Contact]
-- **Product Owner**: [Name/Contact]
-- **CAB Chair**: [Name/Contact]
-```
-
-**Example Data Migration Plan Template** (`templates/deployment/data_migration_plan_template.md`):
-
-```markdown
-# Data Migration Plan: [Migration Name]
-
-## Requirements Implemented
-- REQ-DATA-XXX-###: [Data requirement description]
-- REQ-DATA-CQ-XXX-###: [Data quality requirement]
-
-## Migration Overview
-- **Migration Type**: [Schema change/Data backfill/Data transformation]
-- **Source System**: [System name]
-- **Target System**: [System name]
-- **Data Volume**: [Expected row count]
-- **Migration Duration**: [Estimated time]
-- **Downtime Required**: [Yes/No - duration if yes]
-
-## Schema Changes
-```sql
--- DDL Changes (REQ-DATA-###)
-ALTER TABLE customers ADD COLUMN email_verified BOOLEAN DEFAULT FALSE;
-CREATE INDEX idx_email_verified ON customers(email_verified);
-```
+**Data Migration Plan Template** should contain:
+- Migration overview, schema changes (DDL), data migration steps
+- Pre-migration validation, data reconciliation queries
+- Rollback plan with criteria and procedures, post-migration validation
+- Monitoring metrics (data quality, pipeline performance)
 
 ## Data Migration Steps
 | Step | Description | SQL/Script | Duration | Validation |
