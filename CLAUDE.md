@@ -4,203 +4,228 @@ This file provides guidance to Claude Code when working with this repository.
 
 ## Project Overview
 
-**AI_SDLC_Context** is a generic URI-based dot hierarchy configuration merging system.
+**AI_SDLC_Context** provides a complete **Intent-Driven AI SDLC Methodology** with full lifecycle traceability from intent to runtime.
 
 ### Purpose
 
-Enable flexible configuration management where:
-1. Content can exist at any URI (files, web, S3, etc.)
-2. Configuration structure uses dot notation (`"system.agents.discovery"`)
-3. Multiple configurations can be merged with clear priority
-4. Content is loaded lazily (only when accessed)
+Enable AI-augmented software development where:
+1. **7-Stage Lifecycle** - Complete SDLC from Requirements to Runtime Feedback
+2. **Requirement Traceability** - Track REQ keys (REQ-F-*, REQ-NFR-*, REQ-DATA-*) through all stages
+3. **AI Agent Configurations** - Detailed specifications for AI agents at each SDLC stage
+4. **Bidirectional Feedback** - Production issues flow back to requirements and generate new intents
+5. **Claude Code Plugins** - Installable methodology and standards as plugins
+6. **Federated Architecture** - Compose contexts across corporate → division → team → project
 
-### Inspiration
+### Key Features
 
-Inspired by the C4H configuration system (`c4h/config/system_config.yml` and `c4h_agents/config.py`) but designed to be:
-- **Generic** - No domain-specific logic
-- **URI-based** - Content referenced, not embedded
-- **Extensible** - Custom URI schemes supported
+✅ **Complete 7-Stage Methodology** - Requirements → Design → Tasks → Code → System Test → UAT → Runtime Feedback
+✅ **Sacred Seven Principles** - Foundation for Code stage (TDD, Fail Fast, Modular, etc.)
+✅ **TDD Workflow** - RED → GREEN → REFACTOR → COMMIT cycle
+✅ **BDD Testing** - Given/When/Then scenarios for System Test and UAT stages
+✅ **AI Agent Specifications** - 1,273-line configuration file with detailed agent specs
+✅ **Requirement Key Tagging** - Automatic propagation of REQ keys from intent to runtime
+
+---
 
 ## Project Structure
 
 ```
 AI_SDLC_Context/
-├── src/ai_sdlc_config/
-│   ├── models/                 # Data structures
-│   │   └── hierarchy_node.py   # HierarchyNode, URIReference
-│   ├── loaders/                # Loading configurations
-│   │   ├── yaml_loader.py      # Parse YAML → HierarchyNode
-│   │   └── uri_resolver.py     # Resolve URIs → content
-│   ├── mergers/                # Merge logic
-│   │   └── hierarchy_merger.py # Priority-based merging
-│   └── core/                   # High-level API
-│       └── config_manager.py   # ConfigManager (main interface)
+├── docs/
+│   ├── ai_sdlc_guide.md         # ⭐ Complete 7-stage methodology (3,300+ lines)
+│   ├── ai_sdlc_full_flow.md     # Flow diagrams
+│   ├── README.md                # Documentation index with role-based learning paths
+│   └── guides/                  # Configuration system guides (legacy)
+├── plugins/
+│   ├── aisdlc-methodology/      # 7-stage methodology plugin (v2.0.0)
+│   │   ├── .claude-plugin/
+│   │   │   └── plugin.json      # Plugin metadata
+│   │   ├── config/
+│   │   │   ├── stages_config.yml  # 7-stage agent specifications (1,273 lines)
+│   │   │   └── config.yml         # Sacred Seven + Code stage config
+│   │   ├── docs/
+│   │   │   ├── principles/SACRED_SEVEN.md
+│   │   │   └── processes/TDD_WORKFLOW.md
+│   │   └── project.json         # Legacy: for MCP service compatibility
+│   ├── python-standards/        # Python language standards plugin
+│   └── README.md                # Plugin creation and usage guide
 ├── examples/
-│   ├── configs/                # Example YAML configs
-│   ├── prompts/                # Example referenced content
-│   ├── basic_usage.py          # Simple demo
-│   └── advanced_usage.py       # Advanced features demo
-├── tests/                      # Unit tests (TODO)
-├── docs/                       # Documentation
-├── README.md                   # Project overview
-├── ARCHITECTURE.md             # Detailed design doc
-└── setup.py                    # Installation
+│   ├── local_projects/
+│   │   └── customer_portal/     # ⭐ Complete 7-stage example (800+ lines)
+│   │       ├── config/config.yml  # 7-stage agent configuration (650+ lines)
+│   │       └── README.md          # Detailed walkthrough
+│   └── README.md                # All examples overview
+├── mcp_service/                 # MCP service for non-Claude LLMs
+│   ├── server/                  # MCP server implementation
+│   ├── docs/                    # MCP documentation
+│   ├── README.md                # MCP overview
+│   └── MCP_SDLC_INTEGRATION_PLAN.md  # 7-stage integration roadmap
+├── README.md                    # Project overview
+├── QUICKSTART.md                # Quick start guide
+├── PLUGIN_GUIDE.md              # Plugin creation and usage guide
+└── CLAUDE.md                    # This file
 ```
 
-## Core Concepts
+---
 
-### 1. HierarchyNode
+## The 7-Stage AI SDLC Methodology
 
-The fundamental data structure representing a node in the configuration tree.
+### Complete Lifecycle
 
-```python
-@dataclass
-class HierarchyNode:
-    path: str                           # Dot-delimited path
-    value: Optional[NodeValue] = None   # Can be URIReference
-    children: Dict[str, HierarchyNode]  # Nested nodes
-    source: Optional[str] = None        # Origin tracking
-    priority: int = 0                   # Merge priority
+```
+Intent → Requirements → Design → Tasks → Code → System Test → UAT → Runtime Feedback
+           ↑                                                                    ↓
+           └────────────────────── Feedback Loop ──────────────────────────────┘
 ```
 
-### 2. URIReference
+### Stage Details
 
-Represents a reference to content at a URI.
+#### 1. Requirements Stage (Section 4.0)
+**Agent**: Requirements Agent
+**Purpose**: Transform intent into structured requirements with unique, immutable keys
+**Input**: Raw intent from Intent Manager
+**Output**:
+- REQ-F-* (functional requirements)
+- REQ-NFR-* (non-functional requirements)
+- REQ-DATA-* (data quality requirements)
+- REQ-BR-* (business rules)
 
-```python
-@dataclass
-class URIReference:
-    uri: str                    # e.g., "file://prompts/discovery.md"
-    scheme: URIScheme          # file, http, https, data, ref
-    content_type: Optional[str]
-    metadata: Dict[str, Any]
+#### 2. Design Stage (Section 5.0)
+**Agent**: Design Agent / Solution Designer
+**Purpose**: Transform requirements into technical solution architecture
+**Input**: Structured requirements from Requirements stage
+**Output**: Component diagrams, data models, API specs, ADRs, traceability matrix
+
+#### 3. Tasks Stage (Section 6.0)
+**Agent**: Tasks Stage Orchestrator
+**Purpose**: Break design into work units and orchestrate Jira workflow
+**Input**: Design artifacts
+**Output**: Jira tickets with requirement tags, dependency graph, capacity planning
+
+#### 4. Code Stage (Section 7.0)
+**Agent**: Code Agent / Developer Agent
+**Purpose**: Implement work units using TDD workflow
+**Input**: Work units from Tasks stage
+**Output**: Production code with requirement tags, unit tests, integration tests
+**Methodology**: TDD (RED → GREEN → REFACTOR) + Sacred Seven principles
+
+#### 5. System Test Stage (Section 8.0)
+**Agent**: System Test Agent / QA Agent
+**Purpose**: Create BDD integration tests validating requirements
+**Input**: Deployed code
+**Output**: BDD feature files (Gherkin), step definitions, coverage matrix
+**Methodology**: BDD (Given/When/Then)
+
+#### 6. UAT Stage (Section 9.0)
+**Agent**: UAT Agent
+**Purpose**: Business validation and sign-off
+**Input**: System test passed
+**Output**: Manual UAT test cases, automated UAT tests, business sign-off
+**Methodology**: BDD in pure business language
+
+#### 7. Runtime Feedback Stage (Section 10.0)
+**Agent**: Runtime Feedback Agent
+**Purpose**: Close the feedback loop from production to requirements
+**Input**: Production deployment
+**Output**: Release manifests, runtime telemetry (tagged with REQ keys), alerts, new intents
+
+---
+
+## Requirement Traceability Example
+
+```
+Intent: INT-001 "Customer self-service portal"
+  ↓
+Requirements: REQ-F-AUTH-001 "User login with email/password"
+  ↓
+Design: AuthenticationService → REQ-F-AUTH-001
+  ↓
+Tasks: PORTAL-123 (Jira ticket) → REQ-F-AUTH-001
+  ↓
+Code: auth_service.py
+      # Implements: REQ-F-AUTH-001
+      def login(email, password):
+          ...
+  ↓
+Tests: test_auth.py # Validates: REQ-F-AUTH-001
+       auth.feature # BDD: Given/When/Then for REQ-F-AUTH-001
+  ↓
+UAT: UAT-001 → REQ-F-AUTH-001 (Business sign-off ✅)
+  ↓
+Runtime: Datadog alert: "ERROR: REQ-F-AUTH-001 - Auth timeout"
+  ↓
+Feedback: New intent: INT-042 "Fix auth timeout"
+  [Cycle repeats...]
 ```
 
-### 3. Priority Merging
-
-Multiple configurations are merged with clear precedence:
-
-```python
-# Lower priority → Higher priority
-configs = [base, production, runtime]
-merged = merger.merge(configs)
-# Result: runtime > production > base
-```
+---
 
 ## Common Operations
+
+### Using the Methodology
+
+```bash
+# Install Claude Code plugin
+/plugin marketplace add foolishimp/AI_SDLC_Context
+/plugin install @aisdlc/aisdlc-methodology
+
+# Claude now has access to complete 7-stage methodology
+```
+
+### Ask Claude to Follow 7-Stage Process
+
+```
+You: "Implement authentication feature using AI SDLC methodology"
+
+Claude will guide you through:
+1. Requirements: Generate REQ-F-AUTH-001, REQ-NFR-PERF-001, etc.
+2. Design: Create AuthenticationService component, API specs
+3. Tasks: Break into Jira tickets (PORTAL-123) with REQ tags
+4. Code: TDD implementation (RED → GREEN → REFACTOR)
+5. System Test: BDD scenarios (Given/When/Then)
+6. UAT: Business validation test cases
+7. Runtime Feedback: Setup telemetry with REQ key tagging
+```
 
 ### Running Examples
 
 ```bash
-# Basic usage example
-cd examples
-python basic_usage.py
-
-# Advanced features example
-python advanced_usage.py
+# See complete 7-stage example
+cd examples/local_projects/customer_portal
+cat README.md  # 800+ line walkthrough
+cat config/config.yml  # 650+ line agent configuration
 ```
 
-### Using the Library
+### Accessing the Methodology
 
 ```python
-from ai_sdlc_config import ConfigManager
+from pathlib import Path
+import yaml
 
-# Create manager
-manager = ConfigManager(base_path=Path("configs"))
+# Load 7-stage methodology configuration
+stages_config = Path("plugins/aisdlc-methodology/config/stages_config.yml")
+with open(stages_config) as f:
+    methodology = yaml.safe_load(f)
 
-# Load configurations (priority order)
-manager.load_hierarchy("base.yml")
-manager.load_hierarchy("production.yml")
-manager.add_runtime_overrides({"system.debug": True})
+# Access stage specifications
+requirements_stage = methodology['ai_sdlc']['stages']['requirements']
+code_stage = methodology['ai_sdlc']['stages']['code']
 
-# Merge all layers
-manager.merge()
+# Get agent configuration
+requirements_agent = requirements_stage['agent']
+print(f"Role: {requirements_agent['role']}")
+print(f"Purpose: {requirements_agent['purpose']}")
 
-# Access values
-value = manager.get_value("system.agents.discovery.model")
-uri = manager.get_uri("system.agents.discovery.prompt")
-content = manager.get_content("system.agents.discovery.prompt")
-
-# Wildcard search
-agents = manager.find_all("system.agents.*")
+# Get Sacred Seven principles
+sacred_seven = code_stage['sacred_seven']
+print(f"TDD Workflow: {sacred_seven['tdd']['workflow']}")
 ```
 
-### Testing
-
-```bash
-# Run tests (when implemented)
-pytest tests/
-
-# Run with coverage
-pytest --cov=ai_sdlc_config tests/
-```
-
-## Key Design Principles
-
-### 1. Separation of Structure and Content
-
-**Structure** (in YAML):
-```yaml
-agents:
-  discovery:
-    prompt: "file://prompts/discovery.md"
-```
-
-**Content** (at URI):
-```markdown
-# Discovery Agent Prompt
-You are a discovery agent...
-```
-
-### 2. Lazy Resolution
-
-URIs are not resolved during merge - only when `get_content()` is called.
-
-### 3. Priority Override
-
-Later configurations override earlier ones:
-- Base config provides defaults
-- Environment config overrides for specific environments
-- Runtime config has highest priority
-
-### 4. No Domain Coupling
-
-Unlike C4H which is specific to LLM agents, this library is generic and can be used for any configuration needs.
-
-## Extension Points
-
-### Custom URI Schemes
-
-```python
-def resolve_s3(uri_ref: URIReference) -> str:
-    # Fetch from AWS S3
-    bucket, key = parse_s3_uri(uri_ref.uri)
-    return s3_client.get_object(Bucket=bucket, Key=key)['Body'].read()
-
-manager.register_uri_resolver("s3", resolve_s3)
-```
-
-### Custom Merge Strategies
-
-```python
-class CustomStrategy(MergeStrategy):
-    CONCATENATE = "concatenate"  # Combine instead of override
-```
-
-## Comparison with C4H
-
-| Feature | C4H | AI_SDLC_Context |
-|---------|-----|----------------|
-| Dot notation | ✅ | ✅ |
-| Priority merging | ✅ | ✅ |
-| Content storage | Embedded in YAML | Referenced by URI |
-| Content types | YAML values | Any content at any URI |
-| Domain | LLM agents | Generic |
-| Loading | Eager | Lazy |
+---
 
 ## Development Methodology
 
-**IMPORTANT**: This project follows the **Sacred Seven** principles from [ai_init](https://github.com/foolishimp/ai_init).
+**IMPORTANT**: This project follows the **Sacred Seven** principles, which are now integrated as the foundation for the Code stage (Section 7.0) in the complete 7-stage AI SDLC methodology.
 
 ### The Sacred Seven
 
@@ -214,23 +239,23 @@ class CustomStrategy(MergeStrategy):
 
 **Ultimate Mantra**: **"Excellence or nothing"** 🔥
 
-👉 **Read Full Methodology**: [methodology/](methodology/)
-- [Sacred Seven Principles](methodology/principles/SACRED_SEVEN.md)
-- [TDD Workflow](methodology/processes/TDD_WORKFLOW.md)
+👉 **Read Full Principles**: [plugins/aisdlc-methodology/docs/principles/SACRED_SEVEN.md](plugins/aisdlc-methodology/docs/principles/SACRED_SEVEN.md)
 
-### TDD Workflow
+### TDD Workflow (Code Stage)
 
-**Always follow**: RED → GREEN → REFACTOR
+**Always follow**: RED → GREEN → REFACTOR → COMMIT
 
 1. **RED**: Write failing test first
 2. **GREEN**: Write minimal code to pass
 3. **REFACTOR**: Improve code quality
-4. **COMMIT**: Save with clear message
+4. **COMMIT**: Save with clear message (tagged with REQ key)
 5. **REPEAT**: Next test
 
 **No code without tests. Ever.**
 
-### Before You Code
+👉 **Read Full Workflow**: [plugins/aisdlc-methodology/docs/processes/TDD_WORKFLOW.md](plugins/aisdlc-methodology/docs/processes/TDD_WORKFLOW.md)
+
+### Before You Code (7 Questions)
 
 Ask these seven questions:
 
@@ -244,57 +269,235 @@ Ask these seven questions:
 
 **If not "yes" to all seven, don't code yet.**
 
+---
+
+## Key Documentation
+
+### Must-Read Documents
+
+1. **[docs/ai_sdlc_guide.md](docs/ai_sdlc_guide.md)** ⭐ - Complete 7-stage methodology (3,300+ lines)
+   - Section 1.0: Introduction
+   - Section 2.0: End-to-End Intent Lifecycle
+   - Section 3.0: Builder Pipeline Overview
+   - Section 4.0: Requirements Stage
+   - Section 5.0: Design Stage
+   - Section 6.0: Tasks Stage
+   - Section 7.0: Code Stage (Sacred Seven + TDD)
+   - Section 8.0: System Test Stage (BDD)
+   - Section 9.0: UAT Stage
+   - Section 10.0: Runtime Feedback Stage
+   - Section 11.0: Personas & Collaboration
+   - Section 12.0: Data Quality Integration
+   - Section 13.0: Governance & Compliance
+
+2. **[plugins/aisdlc-methodology/config/stages_config.yml](plugins/aisdlc-methodology/config/stages_config.yml)** - 7-stage agent specifications (1,273 lines)
+
+3. **[examples/local_projects/customer_portal/README.md](examples/local_projects/customer_portal/README.md)** - Complete 7-stage walkthrough (800+ lines)
+
+### Role-Based Learning Paths
+
+See [docs/README.md](docs/README.md) for learning paths tailored to:
+- Business Analysts / Product Owners → Focus on Requirements & UAT stages
+- Architects / Technical Leads → Focus on Design stage
+- Developers → Focus on Code stage (TDD + Sacred Seven)
+- QA Engineers → Focus on System Test & UAT stages (BDD)
+- DevOps / SRE → Focus on Runtime Feedback stage
+- Project Managers / Scrum Masters → Focus on Tasks stage
+
+---
+
 ## Development Guidelines
 
-### Adding New URI Schemes
+### Implementing a New Feature (7-Stage Process)
 
-1. **RED**: Write test for new scheme → Should FAIL
-2. Add scheme to `URIScheme` enum in `models/hierarchy_node.py`
-3. Implement resolver method in `URIResolver` class
-4. **GREEN**: Tests should PASS
-5. **REFACTOR**: Clean up implementation
-6. Document in README.md
-7. **COMMIT**: Save with tests
+1. **Requirements Stage**: Generate REQ-* keys
+   ```yaml
+   - REQ-F-AUTH-001: "User login with email/password"
+   - REQ-NFR-PERF-001: "Login response < 500ms"
+   - REQ-DATA-001: "Email must be valid format"
+   ```
 
-### Modifying Merge Logic
+2. **Design Stage**: Create technical solution
+   ```yaml
+   Component: AuthenticationService
+   API: POST /api/v1/auth/login
+   Data Model: User table (email, password_hash)
+   Dependencies: ValidationService, TokenService
+   ```
 
-1. **RED**: Write test for new behavior → Should FAIL
-2. Update logic in `mergers/hierarchy_merger.py`
-3. Core method: `_merge_two_nodes(base, override, priority)`
-4. **GREEN**: Tests should PASS
-5. **REFACTOR**: Improve implementation
-6. Add edge case tests
-7. **COMMIT**: Save with tests
+3. **Tasks Stage**: Break into work units
+   ```yaml
+   - PORTAL-123: Implement AuthenticationService (REQ-F-AUTH-001)
+   - PORTAL-124: Add validation (REQ-DATA-001)
+   - PORTAL-125: Optimize performance (REQ-NFR-PERF-001)
+   ```
+
+4. **Code Stage**: TDD implementation
+   ```python
+   # RED: Write failing test
+   def test_user_login_with_valid_credentials():
+       user = create_test_user()
+       result = login(user.email, "password123")
+       assert result.success == True
+
+   # GREEN: Implement minimal solution
+   # Implements: REQ-F-AUTH-001
+   def login(email: str, password: str) -> LoginResult:
+       user = User.get_by_email(email)
+       if user and user.check_password(password):
+           return LoginResult(success=True, user=user)
+       return LoginResult(success=False)
+
+   # REFACTOR: Improve code quality
+   # (Add logging, error handling, type hints, etc.)
+
+   # COMMIT: Save with REQ tag
+   git commit -m "Add user login (REQ-F-AUTH-001)"
+   ```
+
+5. **System Test Stage**: BDD scenarios
+   ```gherkin
+   Feature: User Authentication
+     # Validates: REQ-F-AUTH-001
+
+     Scenario: Successful login
+       Given I am on the login page
+       When I enter valid email "user@example.com"
+       And I enter valid password "password123"
+       And I click "Login"
+       Then I should see "Welcome back"
+   ```
+
+6. **UAT Stage**: Business validation
+   ```yaml
+   UAT-001:
+     title: "Validate user login flow"
+     requirement: REQ-F-AUTH-001
+     tester: Business Analyst
+     status: APPROVED ✅
+   ```
+
+7. **Runtime Feedback Stage**: Telemetry
+   ```python
+   # Tag metrics with requirement keys
+   logger.info("User login", extra={
+       "requirement": "REQ-F-AUTH-001",
+       "latency_ms": 120,
+       "success": True
+   })
+
+   # If production issue occurs
+   Alert: "ERROR: REQ-F-AUTH-001 - Auth timeout"
+   → Traces back to requirements
+   → Generates new intent: INT-042 "Fix auth timeout"
+   ```
 
 ### Code Standards
 
 - **Tests first** (always RED → GREEN → REFACTOR)
+- **Tag code with REQ keys** (# Implements: REQ-F-AUTH-001)
 - Use type hints
-- Follow PEP 8
+- Follow PEP 8 (for Python projects)
 - Add docstrings to all public methods
 - Keep functions focused and small
 - No technical debt
 - Excellence or nothing
 
+---
+
+## Plugin System
+
+### Creating a Project Plugin
+
+See [PLUGIN_GUIDE.md](PLUGIN_GUIDE.md) for complete guide.
+
+**Quick example:**
+
+```yaml
+# .claude-plugins/my-project/config.yml
+ai_sdlc:
+  methodology_plugin: "file://plugins/aisdlc-methodology/config/stages_config.yml"
+
+  enabled_stages:
+    - requirements
+    - design
+    - tasks
+    - code
+    - system_test
+    - uat
+    - runtime_feedback
+
+  stages:
+    code:
+      testing:
+        coverage_minimum: 90
+      sacred_seven:
+        enabled: true
+```
+
+### Federated Architecture
+
+```
+Corporate Marketplace
+  ├─ aisdlc-methodology (v2.0.0)
+  └─ python-standards (v1.0.0)
+       ↓
+Division Marketplace
+  ├─ backend-standards
+  └─ payment-services-standards
+       ↓
+Project Plugin
+  └─ payment-gateway-context
+```
+
+Plugin loading order determines priority - later plugins override earlier ones.
+
+---
+
+## MCP Service (For Non-Claude LLMs)
+
+The MCP service provides 7-stage AI SDLC support for non-Claude LLMs (Copilot, Gemini, etc.).
+
+### Integration Status
+
+See [mcp_service/MCP_SDLC_INTEGRATION_PLAN.md](mcp_service/MCP_SDLC_INTEGRATION_PLAN.md) for:
+- 7 AI agent persona specifications
+- Enhanced human persona structure
+- New MCP tools for stage context loading
+- Requirement traceability tools
+- 4-week implementation timeline
+
+### Current MCP Tools (Legacy)
+
+- Project CRUD: create_project, get_project, list_projects, update_project, delete_project
+- Content CRUD: add_node, remove_node, add_document
+- Merge Operations: merge_projects
+- LLM Inspection: inspect_project, compare_projects
+
+### Planned MCP Tools (7-Stage)
+
+- Stage Context: load_stage_context, list_available_stages
+- Requirement Traceability: trace_requirement_key, get_requirement_lineage
+- Agent Personas: load_agent_persona, switch_agent_persona
+
+---
+
 ## Related Projects
 
-- **C4H** (`/Users/jim/src/apps/c4h`) - Inspiration for this project
-- Similar pattern: Structure + content separation
-- Similar API: Dot notation, priority merging
-- Key difference: C4H embeds content, we reference it
+This project evolved from and replaces:
+- **ai_init** (https://github.com/foolishimp/ai_init) - Original Sacred Seven methodology (now integrated as Code stage)
 
-## Future Enhancements
-
-See ARCHITECTURE.md "Future Enhancements" section for planned features:
-- Async URI resolution
-- Content validation
-- Cache persistence
-- Hot reload
-- Visual tools
+---
 
 ## Questions?
 
-- See `README.md` for quick start
-- See `ARCHITECTURE.md` for detailed design
-- See `examples/` for usage patterns
-- Ask Claude Code for help!
+- **Quick Start**: See [QUICKSTART.md](QUICKSTART.md)
+- **Plugin Guide**: See [PLUGIN_GUIDE.md](PLUGIN_GUIDE.md)
+- **Complete Methodology**: See [docs/ai_sdlc_guide.md](docs/ai_sdlc_guide.md)
+- **Examples**: See [examples/local_projects/customer_portal/](examples/local_projects/customer_portal/)
+- **Documentation Index**: See [docs/README.md](docs/README.md)
+- **Ask Claude Code**: I'm here to help!
+
+---
+
+**"Excellence or nothing"** 🔥
