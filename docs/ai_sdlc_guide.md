@@ -1553,7 +1553,7 @@ The AI SDLC methodology is **recursive and composable**. Major activities within
 2. **Parallel lifecycles** - Independent activities running concurrently
 3. **Coordinated lifecycles** - Multiple SDLCs synchronized through requirement keys
 
-This section demonstrates **three key sub-vectors** where the AI SDLC pattern repeats at different scales.
+This section demonstrates **three key sub-vectors** where the AI SDLC pattern repeats at different scales, often **developing in parallel** with the main SDLC.
 
 ---
 
@@ -1668,7 +1668,7 @@ REQ-ARCH-SEC-001: "System must be PCI DSS compliant"
 
 **Intent**: "We need comprehensive UAT test coverage for user authentication feature"
 
-The **UAT stage** involves creating both test cases AND automation code, which can be structured as its own AI SDLC running **in parallel** with the main code SDLC:
+The **UAT stage** involves creating both test cases AND automation code, which can be structured as its own AI SDLC **developing in parallel** with the main code SDLC:
 
 ```mermaid
 flowchart TD
@@ -1731,9 +1731,9 @@ flowchart TD
 * **UAT**: Business SME and QA Lead review and approval
 * **Deployment**: Tests added to CI/CD pipeline
 
-### **12.3.2 Parallel Execution Pattern**
+### **12.3.2 Parallel Development Pattern**
 
-The UAT test SDLC runs **in parallel** with the main code SDLC:
+The UAT test SDLC **develops in parallel** with the main code SDLC:
 
 ```
 Timeline:
@@ -1799,7 +1799,7 @@ REQ-F-AUTH-001 → REQ-UAT-AUTH-001 → "Login with valid credentials" → test_
 
 **Intent**: "We need a scalable data platform for analytics and ML"
 
-Data platform development can be structured as its own AI SDLC running **independently** or **in parallel** with application development:
+Data platform development can be structured as its own AI SDLC **developing independently** or **in parallel** with application development:
 
 ```mermaid
 flowchart TD
@@ -1860,9 +1860,9 @@ flowchart TD
 
 ### **12.4.2 Integration with Application SDLC**
 
-The data platform SDLC can run:
+The data platform SDLC can develop:
 - **Independently**: Data platform built as separate system
-- **In parallel**: Data platform built alongside application
+- **In parallel**: Data platform development runs concurrently with application development
 - **Integrated**: Application and data share requirements (REQ-DATA-*)
 
 ```
@@ -1915,7 +1915,7 @@ Use AI SDLC sub-vectors when:
 
 1. **Complexity warrants decomposition**: Activity is complex enough to benefit from full lifecycle structure
 2. **Independent delivery**: Sub-vector can deliver value independently (e.g., architecture docs, test suites)
-3. **Parallel execution**: Sub-vector can run concurrently with main SDLC to accelerate delivery
+3. **Parallel development**: Sub-vector can develop concurrently with main SDLC to accelerate delivery
 4. **Separate ownership**: Different teams own sub-vector (e.g., architecture team, QA team, data team)
 
 ### **12.5.2 Sub-Vector Coordination**
@@ -1946,7 +1946,7 @@ Coordinate multiple AI SDLCs through:
 
 ### **12.5.3 Benefits of Sub-Vectors**
 
-1. **Parallelization**: Multiple teams work concurrently on coordinated lifecycles
+1. **Parallel Development**: Multiple teams develop concurrently on coordinated lifecycles
 2. **Specialization**: Each sub-vector can have specialized personas, tools, and processes
 3. **Scalability**: Large projects decompose into manageable sub-lifecycles
 4. **Reusability**: Sub-vectors (e.g., architecture SDLC) can be reused across projects
@@ -1982,7 +1982,7 @@ The AI SDLC methodology provides a **closed-loop, intent-driven** framework that
 * **Impact analysis** capabilities: "What will break if we change this requirement?"
 * **Root cause analysis** from production issues back to originating requirements.
 * **Recursive and composable**: AI SDLC sub-vectors enable parallel and nested lifecycles for architecture, testing, and data platforms.
-* **Parallelization**: UAT test development can run in parallel with main code development, accelerating delivery.
+* **Parallel development**: UAT test development, architecture work, and data platform development can proceed in parallel with main code development, accelerating delivery.
 * AI used responsibly as a **context-aware augmenter**.
 
 ---
