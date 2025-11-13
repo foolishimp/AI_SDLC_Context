@@ -1065,60 +1065,10 @@ The System Test stage operates within these constraints:
 
 ### **8.4.2 Templates**
 
-System Test templates are stored in AI_SDLC_Context:
-
-```yaml
-system_test_stage:
-  test_strategy:
-    approach: "file://testing/strategy/test_approach.md"
-    risk_matrix: "file://testing/strategy/risk_based_testing.md"
-
-  test_frameworks:
-    unit:
-      python: "file://testing/frameworks/pytest_config.md"
-      java: "file://testing/frameworks/junit_config.md"
-    integration:
-      api: "file://testing/frameworks/rest_assured_config.md"
-      messaging: "file://testing/frameworks/kafka_testing.md"
-    e2e:
-      ui: "file://testing/frameworks/selenium_config.md"
-      api: "file://testing/frameworks/postman_config.md"
-    performance:
-      load: "file://testing/frameworks/k6_config.md"
-      stress: "file://testing/frameworks/locust_config.md"
-    data_quality:
-      validation: "file://testing/frameworks/great_expectations_config.md"
-      profiling: "file://testing/frameworks/data_profiling.md"
-
-  templates:
-    test_plan: "file://templates/testing/test_plan_template.md"
-    test_case: "file://templates/testing/test_case_template.md"
-    test_suite: "file://templates/testing/test_suite_template.md"
-    data_quality_test: "file://templates/testing/data_quality_test_template.md"
-    performance_test: "file://templates/testing/performance_test_template.md"
-    defect_report: "file://templates/testing/defect_report_template.md"
-
-  test_data:
-    provisioning: "file://testing/data/test_data_provisioning.md"
-    masking: "file://testing/data/pii_masking_rules.md"
-    synthetic: "file://testing/data/synthetic_data_generation.md"
-    refresh: "file://testing/data/test_data_refresh_schedule.md"
-
-  coverage_requirements:
-    code_coverage: "file://testing/coverage/code_coverage_thresholds.md"
-    requirement_coverage: "file://testing/coverage/requirement_coverage_rules.md"
-    data_coverage: "file://testing/coverage/data_quality_coverage.md"
-
-  environments:
-    staging: "file://environments/staging_environment.md"
-    pre_prod: "file://environments/pre_prod_environment.md"
-    performance: "file://environments/performance_test_environment.md"
-
-  governance:
-    entry_criteria: "file://testing/governance/test_entry_criteria.md"
-    exit_criteria: "file://testing/governance/test_exit_criteria.md"
-    defect_triage: "file://testing/governance/defect_triage_process.md"
-```
+Templates stored in AI_SDLC_Context reference:
+- Test strategy, test frameworks (unit, integration, e2e, performance, data quality)
+- Test templates (plans, cases, suites), test data provisioning
+- Coverage requirements, test environments, governance (entry/exit criteria)
 
 **Test Plan Template** should contain:
 - Requirements covered, test scope (in/out), test strategy and environment
@@ -1324,48 +1274,10 @@ The UAT stage operates within these constraints:
 
 ### **9.4.2 Templates**
 
-UAT templates are stored in AI_SDLC_Context:
-
-```yaml
-uat_stage:
-  uat_strategy:
-    approach: "file://uat/strategy/uat_approach.md"
-    user_scenarios: "file://uat/strategy/user_scenarios.md"
-    business_rules: "file://uat/strategy/business_rules_validation.md"
-
-  templates:
-    uat_plan: "file://templates/uat/uat_plan_template.md"
-    uat_script: "file://templates/uat/uat_script_template.md"
-    uat_checklist: "file://templates/uat/uat_checklist_template.md"
-    data_validation: "file://templates/uat/data_validation_template.md"
-    sign_off: "file://templates/uat/sign_off_template.md"
-
-  user_personas:
-    end_users: "file://uat/personas/end_user_profiles.md"
-    business_analysts: "file://uat/personas/business_analyst_profiles.md"
-    data_stewards: "file://uat/personas/data_steward_profiles.md"
-    compliance_officers: "file://uat/personas/compliance_officer_profiles.md"
-
-  data_validation:
-    reconciliation: "file://uat/data/reconciliation_procedures.md"
-    business_rules: "file://uat/data/business_rule_validation.md"
-    data_quality: "file://uat/data/business_data_quality_checks.md"
-    sample_data: "file://uat/data/production_like_samples.md"
-
-  sign_off_process:
-    approval_workflow: "file://uat/governance/approval_workflow.md"
-    stakeholder_matrix: "file://uat/governance/stakeholder_matrix.md"
-    sign_off_criteria: "file://uat/governance/sign_off_criteria.md"
-
-  environments:
-    uat_environment: "file://environments/uat_environment.md"
-    production_like_data: "file://environments/uat_data_provisioning.md"
-
-  governance:
-    entry_criteria: "file://uat/governance/uat_entry_criteria.md"
-    exit_criteria: "file://uat/governance/uat_exit_criteria.md"
-    escalation_process: "file://uat/governance/escalation_process.md"
-```
+Templates stored in AI_SDLC_Context reference:
+- UAT strategy, user scenarios, user personas (end users, analysts, stewards)
+- UAT templates (plans, scripts, checklists), data validation procedures
+- Sign-off process, UAT environment, governance (entry/exit criteria, escalation)
 
 **UAT Script Template** should contain:
 - Requirements validated, business scenario (As-a/I-want/So-that), prerequisites
@@ -1535,51 +1447,11 @@ The Deployment stage operates within these constraints:
 
 ### **10.4.2 Templates**
 
-Deployment templates are stored in AI_SDLC_Context:
-
-```yaml
-deployment_stage:
-  deployment_strategy:
-    approach: "file://deployment/strategy/deployment_approach.md"
-    blue_green: "file://deployment/strategy/blue_green_deployment.md"
-    canary: "file://deployment/strategy/canary_deployment.md"
-    feature_flags: "file://deployment/strategy/feature_flag_strategy.md"
-
-  templates:
-    release_plan: "file://templates/deployment/release_plan_template.md"
-    deployment_runbook: "file://templates/deployment/deployment_runbook_template.md"
-    rollback_plan: "file://templates/deployment/rollback_plan_template.md"
-    release_notes: "file://templates/deployment/release_notes_template.md"
-    deployment_checklist: "file://templates/deployment/deployment_checklist_template.md"
-    data_migration_plan: "file://templates/deployment/data_migration_plan_template.md"
-
-  environment_configs:
-    production: "file://environments/production_config.md"
-    staging: "file://environments/staging_config.md"
-    dr_site: "file://environments/disaster_recovery_config.md"
-
-  data_operations:
-    migration_procedures: "file://deployment/data/migration_procedures.md"
-    cutover_checklist: "file://deployment/data/cutover_checklist.md"
-    reconciliation: "file://deployment/data/post_deployment_reconciliation.md"
-    rollback_data: "file://deployment/data/data_rollback_procedures.md"
-
-  monitoring:
-    deployment_metrics: "file://deployment/monitoring/deployment_metrics.md"
-    alerting_rules: "file://deployment/monitoring/alerting_rules.md"
-    observability: "file://deployment/monitoring/observability_setup.md"
-    data_observability: "file://deployment/monitoring/data_observability.md"
-
-  change_management:
-    cab_process: "file://deployment/governance/cab_approval_process.md"
-    emergency_change: "file://deployment/governance/emergency_change_procedure.md"
-    release_calendar: "file://deployment/governance/release_calendar.md"
-
-  governance:
-    deployment_approval: "file://deployment/governance/deployment_approval_workflow.md"
-    audit_trail: "file://deployment/governance/audit_trail_requirements.md"
-    compliance_checks: "file://deployment/governance/compliance_checklist.md"
-```
+Templates stored in AI_SDLC_Context reference:
+- Deployment strategy (blue-green, canary, feature flags), environment configs
+- Deployment templates (release plans, runbooks, rollback plans, release notes)
+- Data operations (migration, cutover, reconciliation), monitoring/observability
+- Change management (CAB process, emergency changes), governance (approval, audit trail)
 
 **Release Plan Template** should contain:
 - Release overview with requirement keys deployed, application and data changes
