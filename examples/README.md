@@ -7,9 +7,11 @@ This directory contains **example projects** demonstrating how to use AI_SDLC_Co
 ```
 examples/
 ├── local_projects/              # Example local project configurations
+│   ├── customer_portal/        # ⭐ NEW: Complete 7-stage AI SDLC example
 │   ├── acme_corporate/         # Corporate-level standards
 │   ├── payment_gateway/        # High-risk enterprise project
-│   └── admin_dashboard/        # Low-risk internal tool
+│   ├── admin_dashboard/        # Low-risk internal tool
+│   └── api_platform/           # Public API with backwards compatibility
 │
 ├── federated_setup/            # Example federated configurations
 │   └── (to be added)           # Multi-server context composition
@@ -170,6 +172,24 @@ EOF
 ---
 
 ## Example Projects Explained
+
+### customer_portal/ ⭐ **NEW - 7-Stage AI SDLC Example**
+
+**Purpose**: Demonstrates **complete 7-stage AI SDLC methodology** with full requirement traceability
+**Inherits**: `aisdlc_methodology` (v2.0), `python_standards`, `acme_corporate`
+**Demonstrates**:
+- All 7 stages: Requirements → Design → Tasks → Code → System Test → UAT → Runtime Feedback
+- Requirement key propagation (REQ-F-*, REQ-NFR-*, REQ-DATA-*)
+- TDD workflow (RED → GREEN → REFACTOR)
+- BDD testing (Given/When/Then scenarios)
+- Bidirectional traceability (Intent ↔ Runtime)
+- Agent orchestration and feedback loops
+
+**Use case**: **Start here** to understand the complete AI SDLC methodology
+
+👉 See [customer_portal/README.md](local_projects/customer_portal/README.md) for detailed walkthrough
+
+---
 
 ### acme_corporate/
 

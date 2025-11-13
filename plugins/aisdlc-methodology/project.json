@@ -1,11 +1,11 @@
 {
   "name": "aisdlc_methodology",
   "project_type": "methodology",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "created": "2025-10-16T02:30:00Z",
-  "modified": "2025-10-17T00:55:00Z",
+  "modified": "2025-11-14T02:09:00Z",
   "base_projects": [],
-  "description": "AI_SDLC_Context core development methodology: Sacred Seven principles and TDD workflow",
+  "description": "Complete AI SDLC methodology with 7-stage agent configurations (Requirements, Design, Tasks, Code, System Test, UAT, Runtime Feedback) integrating Sacred Seven principles and full lifecycle traceability",
   "merged_from": null,
   "merge_date": null,
   "runtime_overrides": null,
@@ -13,7 +13,10 @@
     "origin": "https://github.com/foolishimp/ai_init",
     "replaces": "ai_init",
     "principles": "Sacred Seven",
-    "workflow": "TDD (RED→GREEN→REFACTOR)",
-    "mantra": "Excellence or nothing"
+    "workflow": "Multi-Stage AI SDLC (7 stages)",
+    "mantra": "Excellence or nothing",
+    "stages": 7,
+    "reference_guide": "../../docs/ai_sdlc_guide.md",
+    "methodologies": ["TDD", "BDD", "Requirement Traceability"]
   }
 }
