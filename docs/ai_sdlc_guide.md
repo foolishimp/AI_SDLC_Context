@@ -9,41 +9,89 @@
 ## **1.1 Purpose**
 
 ### **1.1.1 Definition**
-This document defines the **AI-Augmented Software Development Lifecycle (AI SDLC)**: a unified, intent-driven methodology for designing, building, validating, and deploying digital assets with **human-in-the-loop AI**.
+This document defines the **AI-Augmented Software Development Lifecycle (AI SDLC)**: a unified, intent-driven methodology for designing, building, validating, and deploying digital assets where **AI assistants work alongside humans at every stage**.
+
+**What is AI-Augmented?** Artificial Intelligence (AI) tools—particularly Large Language Models (LLMs) like GPT, Claude, and others—assist human practitioners throughout the development process. Humans remain in control and accountable; AI accelerates and enriches their work.
 
 ### **1.1.2 Goals**
 The methodology aims to preserve:
 
-* **Traceability** – from real-world intent through to deployed system state.
-* **Iterability** – every stage can be revisited and refined.
-* **Context preservation** – across personas, artifacts, and tools.
-* **Governance & safety** – through continuous observation, evaluation, and feedback.
+* **Traceability** – Track every asset from initial business need through to live system behavior
+* **Iterability** – Every stage can be revisited and improved based on feedback
+* **Context preservation** – Maintain shared understanding of constraints, standards, and decisions across all team members and stages
+* **Governance & safety** – Continuously monitor system behavior against expectations and respond to deviations
 
 ## **1.2 Core Principles**
 
 ### **1.2.1 Intent First**
-All change originates in **intent**, triggered when observed reality diverges from an internal mental model.
 
-### **1.2.2 Requirements as the Intent Store and Signal Source**
-Requirements are the **single source of truth** for system intent. Every gap, discovery, or refinement is fed back into Requirements. Requirements contain the **full signal** of what needs to be built - they drive all subsequent stages.
+**What is Intent?** Intent is the desire for change—something that should be built, fixed, or improved.
 
-Each downstream stage transforms this signal through the lens of **stage-specific context**:
-- **Requirements** → Pure intent signal (the "what" and "why")
-- **Design** → Intent + Architecture context (technical constraints, patterns, platforms)
-- **Tasks** → Intent + Workload context (capacity, priorities, dependencies)
-- **Code** → Intent + Standards context (coding standards, templates, libraries)
-- **System Test** → Intent + Quality context (test strategies, coverage requirements)
-- **UAT** → Intent + Business context (user expectations, acceptance criteria)
-- **Deployment** → Intent + Operations context (release windows, rollback procedures)
+**How does Intent arise?** A person (domain expert, user, developer, manager) observes a problem, opportunity, or risk in the real world. They compare what they see with what they **expect or desire** (their mental model). When these don't match, they form an **intent** to change the system.
+
+**Example**:
+- **Observation**: "Users are complaining about slow login times"
+- **Mental Model**: "Login should be fast and responsive"
+- **Mismatch**: Slow login ≠ Fast login
+- **Intent**: "Make login faster" → enters the AI SDLC
+
+### **1.2.2 Requirements as the Control System**
+
+**Requirements serve two critical roles:**
+
+1. **Intent Store**: Requirements capture and document all intents in a structured, traceable format. Every requirement gets a unique identifier (e.g., REQ-F-AUTH-001) that flows through the entire lifecycle.
+
+2. **Control System**: Requirements define the **target state** the system should maintain (like a thermostat's temperature setting). The system continuously compares actual behavior against these targets and generates corrective actions when deviations occur.
+
+**Signal Transformation**: Each stage transforms the requirement "signal" by adding stage-specific constraints:
+
+- **Requirements** → Pure intent: "What needs to be built and why"
+- **Design** → Intent + Architecture: "What technical approach and patterns to use"
+- **Tasks** → Intent + Workload: "How to break work into manageable pieces"
+- **Code** → Intent + Standards: "What coding style, libraries, and security rules to follow"
+- **System Test** → Intent + Quality: "What tests to run and what coverage is needed"
+- **UAT** → Intent + Business: "How users will validate the solution works"
+- **Deployment** → Intent + Operations: "How to safely release to production"
 
 ### **1.2.3 Persona-Centric Stages**
-Each stage has clear **personas**, **artifacts**, and **responsibilities**, ensuring that context is explicit and reproducible.
+
+**What are Personas?** Personas are the **roles** of people who work on the system (e.g., Product Owner, Developer, Tester).
+
+**Why Personas matter**: Each stage clearly defines:
+- **Who** does the work (persona)
+- **What** they produce (artifacts like documents, code, tests)
+- **What** they're responsible for (decisions, approvals, quality)
+
+This clarity ensures everyone knows their role and that work is reproducible when team members change.
 
 ### **1.2.4 AI as an Augmenter, Not a Replacement**
-AI agents (LLMs, tools, etc.) accelerate and enrich human workflows but do not remove accountability.
+
+**AI Role**: AI assistants (Large Language Models like GPT-4, Claude, GitHub Copilot) help humans by:
+- Suggesting code implementations
+- Generating test cases
+- Drafting documentation
+- Analyzing data quality
+- Identifying patterns and issues
+
+**Human Role**: Humans remain in control:
+- Make final decisions
+- Review and approve AI suggestions
+- Take accountability for outcomes
+- Apply judgment and domain expertise
+
+**Key principle**: AI accelerates work but does not replace human responsibility.
 
 ### **1.2.5 Continuous Feedback**
-Runtime behaviour, incidents, and metrics continuously generate new intent, closing the loop.
+
+**What is Continuous Feedback?** The system constantly monitors how the live application behaves and compares it to requirements.
+
+**Feedback sources**:
+- **Runtime behavior**: Performance metrics (response times, error rates)
+- **Incidents**: System failures, bugs, security breaches
+- **Usage metrics**: How users actually interact with the system
+- **Data quality**: Accuracy and completeness of data
+
+**Closing the loop**: When feedback reveals a problem or opportunity, it generates new **intent**, which flows back into Requirements, restarting the cycle.
 
 ## **1.3 Scope and Diagrams**
 
@@ -248,6 +296,130 @@ All work types are fed into a **single Builder engine** that:
 * Creates a **homeostatic system** – always correcting towards desired state.
 * Governance is not a one-off gate; it is continuous.
 
+### **2.7.3 The Homeostasis Model and Requirements**
+
+**The homeostasis model IS the Requirements phase output.**
+
+The Governance Loop creates a **self-regulating system** analogous to biological homeostasis (e.g., body temperature regulation). The AI SDLC captures this model explicitly within the **Requirements phase**:
+
+#### **Requirements Define the Homeostasis Model**
+
+The Requirements phase captures three types of requirements that together form the homeostasis model:
+
+1. **Functional Requirements** – Define desired system behavior
+   - *Example*: "Users must be able to log in within 2 seconds"
+   - *Homeostasis role*: Target functional state
+
+2. **Non-Functional Requirements (NFRs)** – Define quality attributes and constraints
+   - *Examples*:
+     - Performance: "99.9% uptime" (SLA)
+     - Security: "All passwords must be hashed with bcrypt"
+     - Scalability: "Support 100k concurrent users"
+   - *Homeostasis role*: Target quality thresholds
+
+3. **Data Requirements** – Define data quality, governance, and lineage expectations
+   - *Examples*:
+     - Data quality: "Customer email addresses must be 95% valid"
+     - Data governance: "PII must be encrypted at rest"
+     - Data lineage: "All data transformations must be tracked"
+   - *Homeostasis role*: Target data health state
+
+#### **How the Homeostasis Loop Works**
+
+```
+Requirements Phase
+  ↓
+Defines Homeostasis Model
+  ↓
+(Design → Code → Test → Deploy → Execute)
+  ↓
+Runtime Execution produces Observable Behavior
+  ↓
+Observer collects metrics/logs/incidents
+  ↓
+Evaluator compares: Observed Behavior vs. Homeostasis Model
+  ↓
+Deviation detected?
+  ├─ No → System is in homeostasis (desired state)
+  └─ Yes → Generate corrective Intent
+        ↓
+     Intent Manager classifies Intent (Create/Update/Remediation)
+        ↓
+     Requirements Phase captures NEW requirement
+        ↓
+     Updates Homeostasis Model
+        ↓
+     (SDLC loop repeats with updated model)
+```
+
+#### **Homeostasis Examples**
+
+**Example 1: Performance Degradation**
+
+| **Phase** | **Activity** |
+|-----------|-------------|
+| **Requirements (initial)** | NFR: "Login response time < 2 seconds (p95)" |
+| **Execute** | System runs in production |
+| **Observer** | Detects: Login response time = 5 seconds (p95) |
+| **Evaluator** | Deviation: 5s > 2s threshold → Generate Intent: "Performance degradation detected" |
+| **Intent Manager** | Classify as: **Update (Remediation)** |
+| **Requirements (updated)** | New requirement: "Optimize login query performance" + Update NFR: "Login response time < 1.5 seconds (p95)" |
+| **SDLC executes** | Design → Code → Test → Deploy optimized query |
+| **Execute** | New system runs with optimization |
+| **Observer** | Detects: Login response time = 1.2 seconds (p95) |
+| **Evaluator** | Within threshold → **Homeostasis restored** |
+
+**Example 2: Data Quality Issue**
+
+| **Phase** | **Activity** |
+|-----------|-------------|
+| **Requirements (initial)** | Data Req: "Customer email addresses must be 95% valid" |
+| **Execute** | Data pipeline runs in production |
+| **Observer** | Detects: Email validation rate = 78% |
+| **Evaluator** | Deviation: 78% < 95% threshold → Generate Intent: "Data quality below threshold" |
+| **Intent Manager** | Classify as: **Update (Remediation)** |
+| **Requirements (updated)** | New requirement: "Add email validation at data ingestion" + Update Data Req: "Email validation must occur at ingestion with rejection logging" |
+| **SDLC executes** | Design → Code validation logic → Test → Deploy |
+| **Execute** | Pipeline runs with validation |
+| **Observer** | Detects: Email validation rate = 97% |
+| **Evaluator** | Within threshold → **Homeostasis restored** |
+
+**Example 3: New Business Goal (Proactive Evolution)**
+
+| **Phase** | **Activity** |
+|-----------|-------------|
+| **Requirements (initial)** | Functional: "Support 10k concurrent users" |
+| **Execute** | System runs successfully |
+| **Observer** | Detects: Usage growth trend → will hit 10k in 3 months |
+| **Evaluator** | Predictive deviation → Generate Intent: "Scale capacity proactively" |
+| **Intent Manager** | Classify as: **Create** (new capacity) |
+| **Requirements (updated)** | New requirement: "Support 50k concurrent users" + NFR: "Horizontal scaling with Kubernetes" |
+| **SDLC executes** | Design → Code → Test → Deploy scaled infrastructure |
+| **Execute** | System runs with new capacity |
+| **Observer** | Detects: System handles 15k users with headroom |
+| **Evaluator** | Ahead of threshold → **Homeostasis maintained proactively** |
+
+#### **Key Insights**
+
+1. **Requirements ARE the homeostasis model** – They define the desired state the system should maintain
+2. **Governance Loop is continuous** – Not a one-time gate, but constant observation and correction
+3. **Deviations drive new Requirements** – Runtime observations create new intent, which updates the model
+4. **Self-regulating system** – Like biological homeostasis, the system self-corrects toward desired state
+5. **Requirements evolve** – The homeostasis model is not static; it improves based on feedback
+
+#### **Homeostasis Model as Living Requirements**
+
+Traditional SDLC treats requirements as **fixed specifications** written once at the beginning.
+
+AI SDLC treats requirements as a **living homeostasis model** that:
+- Defines target state (functional, quality, data)
+- Is continuously compared against runtime behavior
+- Evolves based on deviations and insights
+- Drives corrective action automatically
+- Improves over time through feedback
+
+**This is the fundamental shift**: Requirements become the **control system** for maintaining desired system behavior, not just a static blueprint.
+
 ---
 
 # **3.0 AI SDLC Builder Pipeline (Micro View)**
@@ -360,9 +532,72 @@ Assets: UAT scripts, data validation, sign-off"]
 
 ---
 
-# **3.5 Stage Context Framework**
+## **3.3 How to Read Figure 3.1**
 
-## **3.5.1 Context as Stage Constraints**
+**Figure 3.1** shows the complete AI SDLC Builder Pipeline from intent through to deployment. Here's how to understand it:
+
+### **3.3.1 The Flow: Left to Right, Top to Bottom**
+
+1. **Intent Manager** → **Requirements Stage**: All intents (problems, goals, risks) flow into Requirements, where they are structured into formal requirements with unique keys
+
+2. **Requirements** → **Design Stage**: Requirements drive the Design stage, which is informed by:
+   - **Architecture Context**: Technical standards, platforms, patterns
+   - **Data Architecture Context**: Data models, schemas, governance rules
+
+3. **Design** → **Tasks Stage**: Design outputs are broken down into work items (epics, stories, tickets) by Product Owners and Tech Leads
+
+4. **Tasks** → **Code Stage**: Developers and data engineers implement the solution, guided by:
+   - **Coding & Data Standards**: Style guides, security rules, naming conventions
+
+5. **Code** → **System Test Stage**: Testers verify the implementation with functional, integration, and data quality tests
+
+6. **System Test** → **UAT Stage**: Business users validate that the solution meets their needs, using:
+   - Acceptance criteria from Requirements
+   - Test results from System Test
+
+7. **UAT** → **Deployer**: Approved assets are handed off for deployment to production
+
+8. **Deployer** → **Runtime System**: Assets are released to the live environment
+
+9. **Runtime System** → **Intent Manager**: Runtime behavior, metrics, and incidents flow back as new intent
+
+### **3.3.2 Feedback Loops (Dotted Arrows)**
+
+The dotted arrows show **backward feedback** when gaps or issues are discovered:
+
+- **Design → Requirements**: Architectural gaps or ambiguities discovered during design
+- **Tasks → Requirements**: Scope or feasibility issues during work breakdown
+- **Code → Requirements**: Implementation constraints or discoveries during coding
+- **System Test → Requirements**: Defects, missing scenarios, or data issues found during testing
+- **UAT → Requirements**: Business mismatches or new needs identified during user validation
+
+**Key insight**: Feedback flows back to **Requirements**, not to the previous stage. This ensures the intent store remains the single source of truth.
+
+### **3.3.3 Iteration Within Stages (Self-Loops)**
+
+Several stages show self-loops (arrows back to themselves):
+
+- **Design**: "Iterate / refine design" - multiple design iterations before moving forward
+- **Tasks**: "Re-scope / re-prioritise" - work breakdown is adjusted as needed
+- **Code**: "Refactor / improve" - code is improved iteratively
+- **System Test**: "Add/adjust tests" - tests are refined as defects are found
+- **UAT**: "UAT cycles / re-tests" - multiple UAT rounds before approval
+
+---
+
+## **3.4 Stage Context Framework**
+
+### **3.4.1 What is Stage Context?**
+
+**Context** in the AI SDLC refers to the **constraints, standards, templates, and governance rules** that guide how work is performed at each stage.
+
+**Why Context matters**:
+- Ensures **consistency**: Everyone follows the same standards
+- Enables **quality**: Clear governance and review processes
+- Supports **AI augmentation**: AI assistants use context to generate better suggestions
+- Maintains **traceability**: Context decisions are documented and version-controlled
+
+### **3.4.2 Context as Stage Constraints**
 
 Each AI SDLC stage operates on the **requirement signal** but applies **stage-specific context** that constrains and guides the transformation:
 
@@ -375,36 +610,44 @@ Each AI SDLC stage operates on the **requirement signal** but applies **stage-sp
 | **Assets Produced** | Tangible outputs tagged with requirement keys | Design docs, code files, test suites, reports |
 | **Governance** | Quality gates, reviews, approvals | Code reviews, test coverage thresholds, sign-offs |
 
+**Explanation of each component**:
+
+- **Persona**: The role responsible for the work ensures accountability and clear ownership
+- **Input**: What information the stage needs to begin work
+- **Context Constraints**: The rules and standards that must be followed (e.g., "all APIs must use REST", "all passwords must be hashed")
+- **Templates**: Starting points that provide structure (e.g., a standard design document template, a code file template)
+- **Assets Produced**: The deliverables tagged with requirement keys for traceability
+- **Governance**: The checks and approvals required before moving to the next stage
+
 ---
 
-## **3.5.2 Context Integration with AI_SDLC_Context**
+### **3.4.3 Context Management Principles**
 
-The **AI_SDLC_Context configuration system** manages these stage-specific contexts:
+**How should context be managed?**
 
-```yaml
-# Example: contexts/stages/design.yml
-design_stage:
-  architecture_context:
-    tech_stack: "file://architecture/tech_stack.md"
-    patterns: "file://architecture/patterns/"
-    platform_constraints: "file://architecture/platforms/"
+Context must be managed with the same rigor as source code:
 
-  data_architecture_context:
-    data_models: "file://data/models/"
-    schemas: "file://data/schemas/"
-    governance: "file://data/governance.md"
+1. **Version Controlled**: All context (standards, templates, governance rules) must be versioned
+   - **Why**: Track what standards were in effect when each asset was created
+   - **Example**: If security standards change, you know which code was built under old vs new standards
 
-  templates:
-    component_design: "file://templates/design/component_template.md"
-    data_flow_diagram: "file://templates/design/data_flow.md"
+2. **Explicitly Documented**: No tribal knowledge or implicit assumptions
+   - **Why**: New team members can onboard and understand constraints
+   - **Example**: "We use PostgreSQL" is documented in architecture context, not just known informally
 
-  governance:
-    review_required: true
-    reviewers: ["senior-architect", "data-architect"]
-    approval_threshold: 2
-```
+3. **Hierarchical and Inherited**: Context is organized by scope (organization → team → project → stage)
+   - **Why**: Enables reuse and consistency across projects
+   - **Example**: Organization security standards apply to all projects; project-specific standards only apply to one project
 
-Each stage loads its context via URI references, ensuring consistency and version control.
+4. **Referenced, Not Embedded**: Context references external documents rather than duplicating content
+   - **Why**: Updates in one place propagate everywhere; avoids inconsistency
+   - **Example**: Design stage references the architecture standards document; when standards are updated, all designs use the new version
+
+5. **Governed and Reviewed**: Context changes require appropriate review and approval
+   - **Why**: Poor context leads to poor assets; context quality matters
+   - **Example**: Security standard changes must be reviewed by security team before adoption
+
+**See Appendix A.5 for detailed context management principles.**
 
 ---
 
@@ -413,14 +656,14 @@ Each stage loads its context via URI references, ensuring consistency and versio
 ## **4.1 Requirements – Overview**
 
 ### **4.1.1 What is Requirements**
-The Requirements stage is the **intent store**. It translates raw intent into structured requirements, constraints, and acceptance criteria. **Each requirement is assigned a unique, immutable key** that provides end-to-end traceability throughout the entire lifecycle.
+The Requirements stage is the **intent store**. It translates raw intent into structured requirements, constraints, and acceptance criteria. **Each requirement is assigned a unique, immutable key** (a key that never changes) that provides end-to-end traceability throughout the entire lifecycle.
 
 ### **4.1.2 Why Requirements Matter**
 
-* Provides a **canonical representation** of what the system should do.
-* Acts as the nexus for **all feedback loops**.
-* Ensures that every iteration is anchored in an updated understanding of intent.
-* **Unique requirement keys** enable full traceability from intent → requirements → design → code → tests → deployment → runtime behavior.
+* Provides the **authoritative single source** of what the system should do (no conflicting versions across teams or documents)
+* Acts as the central hub for **all feedback loops** (all stages feed discoveries back here)
+* Ensures that every iteration is anchored in an updated understanding of intent
+* **Unique requirement keys** enable full traceability from intent → requirements → design → code → tests → deployment → runtime behavior
 
 ---
 
@@ -451,9 +694,9 @@ Assets: Stories, NFRs, domain rules, data requirements"]
 
 ### **4.3.2 Inputs**
 
-* Intent from **Intent Manager** (problems, goals, risks).
-* Discovery results (from “Read / Analyse” work type).
-* Changes from governance, regulatory, or risk teams.
+* Intent from **Intent Manager** (problems, goals, risks)
+* Discovery results from **"Read / Analyse" work type** (investigations into existing systems, documentation efforts, exploratory analysis)
+* Changes from governance, regulatory, or risk teams
 
 ### **4.3.3 Outputs**
 
@@ -465,8 +708,11 @@ Assets: Stories, NFRs, domain rules, data requirements"]
   - Data sources and acquisition needs
   - Data quality expectations (completeness, accuracy, timeliness, consistency)
   - Data retention and archival policies
-  - Privacy and sensitivity classifications (PII, PHI, etc.)
-  - Data lineage and traceability requirements
+  - Privacy and sensitivity classifications:
+    - **PII** (Personally Identifiable Information): name, email, SSN
+    - **PHI** (Protected Health Information): medical records, diagnoses
+    - Other sensitive data per regulatory requirements
+  - **Data lineage** requirements (tracking where data comes from, how it's transformed, and where it goes)
   - Master data and reference data needs
 
 ### **4.3.4 Requirement Key Structure**
@@ -503,10 +749,10 @@ Examples:
 
 ### **4.3.5 Why This Stage is Critical**
 
-* Requirements are the **sole reference** against which UAT validates.
-* All other stages push **gaps back here**, avoiding silent drift.
-* **Unique requirement keys** enable auditors and governance bodies to trace behavior to intent across the entire lifecycle.
-* Requirement keys provide **bi-directional traceability**: from intent forward to deployed code, and from runtime issues backward to originating requirements.
+* Requirements are the **only authoritative source** that UAT uses to determine if the system is correct (UAT validates against Requirements, not against informal conversations or emails)
+* All other stages push **discovered gaps back to Requirements**, avoiding silent drift where different teams have different understandings
+* **Unique requirement keys** enable auditors and governance bodies to trace behavior to intent across the entire lifecycle
+* Requirement keys provide **bi-directional traceability**: from intent forward to deployed code, and from runtime issues backward to originating requirements
 
 ---
 
@@ -515,20 +761,29 @@ Examples:
 ### **4.4.1 Context Constraints**
 
 Requirements are shaped by:
-* **Regulatory context** – compliance requirements, data privacy laws (GDPR, CCPA, HIPAA)
+* **Regulatory context** – compliance requirements, data privacy laws:
+  - **GDPR** (General Data Protection Regulation): EU data privacy law
+  - **CCPA** (California Consumer Privacy Act): California data privacy law
+  - **HIPAA** (Health Insurance Portability and Accountability Act): US healthcare data privacy law
 * **Business context** – strategic goals, market conditions, competitive landscape
 * **Domain context** – industry-specific rules, domain knowledge, business processes
 * **Risk context** – risk appetite, security requirements, audit requirements
 
 ### **4.4.2 Templates**
 
-Templates stored in AI_SDLC_Context reference:
-- Stage-specific templates (user stories, designs, tasks, code, tests, deployment plans)
-- Context constraints (standards, patterns, approved tools)
-- Governance rules (quality gates, approval workflows)
+**What templates does the Requirements stage use?**
+
+Requirements stage templates provide consistent structure for capturing intent:
+
+* **User Story Template**
+* **Non-Functional Requirements (NFR) Template**
+* **Data Requirements Template**
+* **Business Rules Template**
 
 **User Story Template** should contain:
-- User story in Given/When/Then or As-a/I-want/So-that format with requirement key
+- User story in standard format with requirement key:
+  - **Given/When/Then** format: "Given [context], When [action], Then [outcome]"
+  - **As-a/I-want/So-that** format: "As a [persona], I want [capability], So that [benefit]"
 - Acceptance criteria linked to requirement key
 - Non-functional requirements (performance, security, data quality)
 - Regulatory considerations and dependencies
@@ -545,17 +800,19 @@ Templates stored in AI_SDLC_Context reference:
 
 ### **4.4.4 Governance**
 
-* **Quality Gates**:
+**What are Quality Gates?** Quality gates are checkpoints that requirements must pass before moving to the next stage. They ensure requirements meet minimum quality standards.
+
+* **Quality Gates** (requirements must pass all checks):
   - All requirements have unique keys
   - All requirements have acceptance criteria
   - All requirements reviewed by Product Owner
   - Data requirements reviewed by Data Steward
   - Compliance requirements reviewed by Compliance Officer
 
-* **Traceability**:
+* **Traceability** (audit trail requirements):
   - Each requirement traces to originating intent
-  - Each requirement has clear ownership
-  - Changes tracked with version history
+  - Each requirement has clear ownership (who is accountable)
+  - Changes tracked with version history (what changed, when, why, by whom)
 
 ---
 
@@ -800,188 +1057,362 @@ Templates stored in AI_SDLC_Context reference:
 
 ---
 
-# **7.0 Code Stage**
+# **7.0 Code Stage (TDD-Driven)**
 
 ## **7.1 Code – Overview**
 
-### **7.1.1 What is Code**
-The Code stage creates the actual executable **artifacts**: application code, data transformations, configurations, pipelines.
+### **7.1.1 What is Code Stage**
 
-### **7.1.2 Why Code Matters**
+The Code stage creates executable artifacts using **Test-Driven Development (TDD)**. Developers and AI agents write **tests first**, then implement code to pass those tests.
 
-* It is where abstract design becomes concrete behaviour.
-* Choices here directly affect maintainability, performance, and risk.
+**TDD Purpose**: Ensure code correctness at the component level through fast, automated unit tests.
+
+### **7.1.2 Why TDD Matters**
+
+* **Constrains AI agents**: Tests define exact behavior before code is written
+* **Enables safe refactoring**: Tests protect against breaking changes during iteration
+* **Documents intent**: Tests show how code should be used
+* **Fast feedback**: Unit tests run in milliseconds, enabling rapid iteration
+* **Facilitates discovery**: TDD cycles support solution discovery within requirements constraints
+
+### **7.1.3 TDD vs BDD**
+
+**TDD (This Section - Code Stage)**:
+- **Focus**: Internal code correctness (unit/component level)
+- **Language**: Technical assertions, mocking, test frameworks
+- **Audience**: Developers and AI agents
+- **Scope**: Functions, methods, classes
+- **Speed**: Milliseconds (isolated unit tests)
+
+**BDD (Sections 8 & 9 - System Test & UAT)**:
+- **Focus**: External system behavior (integration/end-to-end)
+- **Language**: Business-readable scenarios (Given/When/Then)
+- **Audience**: Testers (Section 8) and business users (Section 9)
+- **Scope**: Features, user journeys, business rules
+- **Speed**: Seconds to minutes (integrated tests)
 
 ---
 
-## **7.2 Code – Sub-Diagram**
+## **7.2 TDD Cycle (The Core Development Loop)**
 
-```mermaid
-flowchart TD
-    TASKS["Tasks / Backlog"] --> CODE["Code / Config"]
-    STANDARDS["Coding & Data Standards"] --> CODE
-    CODE --> CODE
-    CODE -.->|"Implementation constraints / discoveries"| REQ
+### **7.2.1 Overview**
+
+Every code change follows the **RED → GREEN → REFACTOR** cycle:
+
+```
+Requirements (REQ-F-AUTH-001)
+  ↓
+[TDD CYCLE]
+  ↓
+RED: Write failing test that validates requirement
+  ↓ (Test fails - no implementation yet)
+GREEN: Write minimal code to pass test
+  ↓ (Test passes - requirement met)
+REFACTOR: Improve code quality while keeping tests green
+  ↓ (Tests still pass - code improved)
+COMMIT: Save with requirement traceability
+  ↓
+[Repeat for next requirement or edge case]
 ```
 
----
+### **7.2.2 RED Phase: Write Failing Test First**
 
-## **7.3 Code – Detailed Explanation**
+**Requirements**:
+- Write test before any implementation code
+- Test must validate a specific requirement
+- Test must fail when run (proves it's testing something)
+- Tag test with requirement keys
 
-### **7.3.1 Personas**
+**Example** (concept only - no code):
+- Test: `test_hash_password_uses_bcrypt()` validates REQ-F-AUTH-001
+- Expected result: Test FAILS (function doesn't exist yet)
 
-* **Application Developer** – implements application logic and APIs.
-* **Data Engineer** – implements data pipelines, transformations, and data infrastructure.
-* **Both roles** work collaboratively to ensure application and data components are integrated.
+### **7.2.3 GREEN Phase: Write Minimal Code**
 
-### **7.3.2 Inputs**
+**Requirements**:
+- Write simplest code that makes test pass
+- No premature optimization
+- Focus on correctness first
+- All tests must pass
 
-* Tasks / stories from backlog.
-* Coding & data standards (style guides, secure coding, naming conventions, schema standards).
+**Purpose**: Proves test validates requirement; establishes baseline for refactoring
 
-### **7.3.3 Outputs**
+### **7.2.4 REFACTOR Phase: Improve Quality**
 
-* **Application code** (with requirement key traceability):
-  - Version-controlled source code with annotations:
-    ```python
-    # Implements: REQ-F-AUTH-001, REQ-NFR-SEC-001
-    class AuthenticationService:
-        """
-        Handles user authentication and session management.
-        Requirements: REQ-F-AUTH-001 (User Login), REQ-NFR-SEC-001 (Secure Auth)
-        """
-    ```
-  - API implementations
-  - Business logic and domain models
-* **Data assets** (with requirement key traceability):
-  - Data pipeline code (ingestion, transformation, aggregation)
-    ```python
-    # Implements: REQ-DATA-001, REQ-DATA-CQ-001
-    def customer_data_pipeline():
-        """
-        Customer data ingestion and quality validation.
-        Requirements: REQ-DATA-001 (Customer Data), REQ-DATA-CQ-001 (Data Quality)
-        """
-    ```
-  - SQL/stored procedures for data processing
-  - Schema definitions and migration scripts (tagged with requirement keys)
-  - Data quality validation logic
-  - Data transformation rules and mappings
-  - Streaming job configurations
-  - Data access layer implementations
-* **Infrastructure-as-code** (tagged with NFR requirement keys):
-  - Data platform configurations
-  - Storage provisioning
-  - Network and security rules
-  - CI/CD pipeline definitions
-* **Traceability artifacts**:
-  - Code-to-requirement mapping maintained in version control
-  - Automated tools can extract requirement keys from code annotations
+**What can be improved**:
+- Code structure and organization
+- Performance optimization
+- Pattern application
+- Error handling
+- Documentation
 
-### **7.3.4 Why Feedback to Requirements**
+**Constraint**: All tests must remain green (passing)
 
-Implementation reveals:
+### **7.2.5 COMMIT Phase: Save with Traceability**
 
-* Unforeseen complexity.
-* Performance constraints.
-* Integration limitations.
-* **Data-specific discoveries**:
-  - Data quality issues in source systems
-  - Schema incompatibilities
-  - Volume/velocity challenges requiring architectural changes
-  - Missing data elements or transformations
-  - Regulatory compliance gaps (e.g., data residency, encryption)
+**Commit must include**:
+- Requirement keys in commit message
+- Description of what was implemented
+- TDD phase indicators (RED → GREEN → REFACTOR)
+- Test coverage metrics
 
-These often imply either **scope adjustments** or **new non-functional requirements**.
+### **7.2.6 Multiple TDD Cycles per Requirement**
+
+Complex requirements need multiple cycles:
+- Cycle 1: Core functionality
+- Cycle 2: Error handling
+- Cycle 3: Edge cases
+- Cycle 4: Performance optimization
+- Integration: Combine cycles, validate interactions
 
 ---
 
-## **7.4 Code Stage Context**
+## **7.3 AI Agent TDD Constraints**
 
-### **7.4.1 Context Constraints**
+### **7.3.1 Mandatory TDD Rules**
+
+AI agents **must** follow these constraints:
+
+1. **No code without tests first**
+   - Cannot write implementation until test exists and fails
+   - Test must be executed and confirmed failing
+
+2. **One cycle at a time**
+   - Complete RED → GREEN → REFACTOR before next cycle
+   - Commit after each complete cycle
+
+3. **Test coverage gates**
+   - Minimum 80% line coverage
+   - All public methods must have tests
+   - Critical paths (security, data) require 100% coverage
+
+4. **Tests must be meaningful**
+   - Test behavior, not implementation details
+   - Include edge cases and error conditions
+   - Tag with requirement keys
+
+5. **Refactoring preserves green**
+   - All existing tests must pass after refactoring
+   - Can add tests, cannot remove tests
+   - Cannot weaken assertions
+
+### **7.3.2 Agent Work Unit Execution with TDD**
+
+From Section 6 agent orchestration, agents execute TDD cycles:
+
+**Agent receives work unit** → **Executes TDD**:
+1. Analyze requirement → identify test scenarios
+2. RED: Generate failing test
+3. Validate: Test fails (no implementation)
+4. GREEN: Implement minimal code
+5. Validate: Test passes
+6. REFACTOR: Improve code quality
+7. Validate: Tests still pass, coverage ≥ threshold
+8. COMMIT: Save with requirement keys
+9. Report: Update Jira ticket (Section 6.4)
+
+---
+
+## **7.4 Code Stage Outputs**
+
+### **7.4.1 Personas**
+
+* **Application Developer** – implements application logic with TDD
+* **Data Engineer** – implements data pipelines with TDD
+* **AI Agents** – execute TDD cycles autonomously per work units (Section 6.3)
+
+### **7.4.2 Code Assets with Unit Tests**
+
+**Application code**:
+- Services, APIs, business logic with requirement keys in docstrings
+- Type-safe models and interfaces
+- Error handling and logging
+
+**Unit tests** (TDD):
+- Test files co-located with code
+- Tests tagged with requirement keys
+- Coverage ≥ 80%, critical paths 100%
+
+**Data assets**:
+- Data pipeline code (ingestion, transformation, aggregation)
+- SQL/stored procedures with requirement keys
+- Schema definitions and migration scripts
+- Data quality validation logic
+
+**Infrastructure-as-code**:
+- Platform configurations tagged with NFR keys
+- Storage and network provisioning
+- CI/CD pipeline definitions
+
+---
+
+## **7.5 Iteration Within Build Loop**
+
+### **7.5.1 Inner Loop: TDD Cycles (Agent Autonomous)**
+
+Agents iterate rapidly within TDD without human intervention:
+
+```
+Design → Agent Work Unit
+  ↓
+[AGENT AUTONOMOUS ITERATION]
+  TDD Cycle 1: Core feature
+  TDD Cycle 2: Error handling
+  TDD Cycle 3: Edge cases
+  TDD Cycle 4: Performance optimization
+[END AUTONOMOUS]
+  ↓
+All cycles complete → Report status to Section 6
+```
+
+### **7.5.2 When to Escalate**
+
+**Escalate to Design (Section 5)** when:
+- Design is ambiguous (can't write clear test)
+- Design approach doesn't work (tests can't pass with current architecture)
+- Performance NFRs can't be met with current design
+
+**Escalate to Requirements (Section 4)** when:
+- Requirement is contradictory (tests for two requirements conflict)
+- Technical impossibility (requirement can't be implemented)
+- External dependency blocking (requirement assumes unavailable system)
+
+---
+
+## **7.6 Code Stage Context**
+
+### **7.6.1 Context Constraints**
 
 Code implementation is constrained by:
-* **Coding standards context** – style guides, linting rules, formatting conventions
-* **Technology context** – approved languages, frameworks, libraries, versions
-* **Security context** – secure coding practices, OWASP guidelines, vulnerability scanning
-* **Performance context** – optimization guidelines, resource limits
-* **Data standards context** – schema naming conventions, data type standards, SQL style guides
+* **TDD context** – Test frameworks (pytest, JUnit, Jest), mocking libraries, coverage tools (≥ 80%)
+* **Coding standards context** – Style guides, linting rules, formatting conventions
+* **Technology context** – Approved languages, frameworks, libraries, versions
+* **Security context** – Secure coding practices, OWASP guidelines, vulnerability scanning
+* **Data standards context** – Schema naming conventions, data type standards, SQL style guides
 
-### **7.4.2 Templates**
+### **7.6.2 Templates**
 
-Templates stored in AI_SDLC_Context reference:
-- Stage-specific templates (user stories, designs, tasks, code, tests, deployment plans)
-- Context constraints (standards, patterns, approved tools)
-- Governance rules (quality gates, approval workflows)
+**Code template requirements**:
+- Module docstring with requirement keys
+- Type-safe models with data requirement keys
+- Public methods with requirement keys in docstrings
+- Unit test template with test-to-requirement mapping
 
-**Service Code Template** should contain:
-- Module docstring with requirement keys and service description
-- Type-safe request/response models with data requirement keys
-- Service class with requirement keys in class docstring
-- Public methods with requirement keys in method docstrings
-- Input/output validation methods referencing data quality requirements
-- Error handling, logging, and security practices per context standards
-
-### **7.4.3 Assets Produced**
+### **7.6.3 Assets Produced**
 
 | Asset Type | Description | Tagged With |
 |-----------|-------------|-------------|
 | Application Code | Services, APIs, business logic | REQ-F-* keys in docstrings |
+| Unit Tests (TDD) | Component-level tests | Requirement keys |
 | Data Pipeline Code | ETL, streaming, transformations | REQ-DATA-* keys |
 | SQL Scripts | Queries, stored procedures, migrations | REQ-DATA-*, REQ-BR-* keys |
-| Infrastructure Code | Terraform, CloudFormation, K8s manifests | REQ-NFR-* keys |
-| Unit Tests | Component-level tests | Requirement keys |
-| Integration Tests | API and service integration tests | Requirement keys |
-| Configuration Files | App config, environment variables | Requirement keys |
+| Infrastructure Code | Terraform, K8s manifests | REQ-NFR-* keys |
 
-### **7.4.4 Governance**
+### **7.6.4 Governance**
 
-* **Quality Gates**:
-  - Code follows coding standards (linting passes)
-  - Security scan passes (no critical vulnerabilities)
-  - Unit test coverage ≥ 80%
-  - Code review approved by ≥ 2 reviewers
-  - All requirement keys documented in code
-  - No unapproved dependencies
-  - Performance benchmarks meet NFRs
+**TDD Quality Gates**:
+- ✅ All code has corresponding unit tests (TDD cycle followed)
+- ✅ All tests pass (GREEN)
+- ✅ Unit test coverage ≥ 80% (critical paths 100%)
+- ✅ Code follows coding standards (linting passes)
+- ✅ Security scan clean (no critical vulnerabilities)
+- ✅ All requirement keys documented in code and tests
+- ✅ Git history shows RED → GREEN → REFACTOR commits
 
-* **Code Review Checklist**:
-  - [ ] Implements specified requirements
-  - [ ] Follows coding standards
-  - [ ] Secure coding practices applied
-  - [ ] Error handling comprehensive
-  - [ ] Logging appropriate
-  - [ ] Unit tests comprehensive
-  - [ ] Documentation complete
-  - [ ] Data quality validations implemented
-  - [ ] Performance optimizations applied
+**TDD Audit Trail**:
+- Tests committed before implementation
+- Requirement keys in all test docstrings
+- Coverage reports linked to requirements
 
 ---
 
-# **8.0 System Test Stage**
+# **8.0 System Test Stage (BDD-Driven)**
 
 ## **8.1 System Test – Overview**
 
 ### **8.1.1 What is System Test**
-Verifies that the integrated solution works correctly across components and data flows, including comprehensive data quality validation.
 
-### **8.1.2 Why System Test Matters**
+The System Test stage verifies **system behavior** using **Behavior-Driven Development (BDD)**. Testers write scenarios in business language (Given/When/Then) that validate the integrated system.
 
-* Catches integration and environment issues.
-* Provides objective evidence of behavioural correctness for both application logic and data flows.
-* Validates data quality, integrity, and compliance requirements.
-* Serves as a regression safety net for code and data.
+**BDD Purpose**: Ensure the system behaves correctly from an external perspective, validating business requirements through executable, business-readable specifications.
+
+### **8.1.2 Why BDD Matters**
+
+* **Business-readable**: Non-technical stakeholders can understand test scenarios
+* **Requirements validation**: BDD scenarios directly map to and validate requirements
+* **Integration testing**: Tests system components working together
+* **Living documentation**: BDD scenarios document expected system behavior
+* **Regression safety net**: Automated BDD scenarios catch breaking changes
+
+### **8.1.3 BDD vs TDD**
+
+**TDD (Section 7 - Completed)**:
+- Developer/agent focused
+- Unit tests (fast, isolated)
+- Technical assertions
+- Focus: Code correctness
+
+**BDD (This Section - System Test)**:
+- Tester focused
+- Integration/system tests (integrated components)
+- Business scenarios (Given/When/Then)
+- Focus: System behavior
+
+**BDD (Section 9 - UAT)**:
+- Business user focused
+- End-to-end user journeys
+- Pure business language
+- Focus: User acceptance
 
 ---
 
-## **8.2 System Test – Sub-Diagram**
+## **8.2 BDD Scenario Structure**
 
-```mermaid
-flowchart TD
-    CODE["Code / Config"] --> ST["System Test"]
-    ST --> ST
-    ST -.->|"Missing scenarios, data issues, defects"| REQ
+### **8.2.1 Given/When/Then Format**
+
+All BDD scenarios use business-readable format:
+
+**Structure**:
+- **Feature**: High-level capability being tested
+- **Background**: Common setup for all scenarios
+- **Scenario**: Specific test case in Given/When/Then format
+- **Tags**: Requirement keys for traceability
+
+**Gherkin syntax** (example structure):
 ```
+Feature: User Authentication
+  # Validates: REQ-F-AUTH-001, REQ-NFR-SEC-001
+
+  Scenario: Successful authentication with valid credentials
+    Given a user exists with username "testuser" and password "ValidPass123!"
+    When the user attempts to authenticate
+    Then authentication succeeds
+    And a valid session token is returned
+    And the token expires in 3600 seconds
+```
+
+### **8.2.2 Scenario Types**
+
+**Functional scenarios** (REQ-F-* requirements):
+- Happy path flows
+- Error handling
+- Edge cases
+
+**Integration scenarios** (system interactions):
+- Service-to-service communication
+- API contracts
+- Message flows
+
+**Data quality scenarios** (REQ-DATA-CQ-* requirements):
+- Completeness validation
+- Accuracy checks
+- Consistency verification
+- Timeliness requirements
+
+**Performance scenarios** (REQ-NFR-PERF-* requirements):
+- Load testing
+- Response time validation
+- Throughput requirements
 
 ---
 
@@ -989,167 +1420,132 @@ flowchart TD
 
 ### **8.3.1 Personas**
 
-* **System Tester / QA** – owns functional and integration test coverage.
-* **Data Quality Engineer** – owns data validation, quality testing, and compliance verification.
+* **System Tester / QA Engineer** – writes and executes BDD scenarios for functional and integration testing
+* **Data Quality Engineer** – writes BDD scenarios for data validation and compliance
 
-### **8.3.2 Types of Tests**
+### **8.3.2 BDD Test Automation**
 
-All tests are **tagged with the requirement keys they validate**, enabling requirement coverage reporting.
+**BDD frameworks**: Behave (Python), Cucumber (Java/JS), SpecFlow (.NET)
 
-* **Functional tests** (end-to-end scenarios, business logic validation):
-  ```python
-  # Validates: REQ-F-AUTH-001
-  def test_user_login_success():
-      """Test successful user authentication."""
-      assert authenticate_user("valid_user", "password123")
-  ```
-* **Integration tests** (APIs, message flows, system-to-system interactions).
-* **Data quality tests**:
-  - Completeness checks (null rates, required fields)
-  - Accuracy validation (value ranges, format validation)
-  - Consistency checks (cross-field validation, referential integrity)
-  - Timeliness verification (freshness, latency, SLA compliance)
-  - Uniqueness validation (duplicate detection)
-  - Data lineage verification (source-to-target traceability)
-* **Data compliance tests**:
-  - Privacy compliance (PII masking, data residency)
-  - Retention policy enforcement
-  - Access control validation
-  - Encryption verification
-* **Performance and resilience tests**:
-  - Data volume scalability
-  - Query performance
-  - Pipeline throughput
-  - Failure recovery and data reconciliation
+**Step definitions**: Implement Given/When/Then steps in code
+- Given steps: Setup/preconditions
+- When steps: Actions/operations
+- Then steps: Assertions/validations
+
+**Execution**: Automated BDD scenarios run in CI/CD pipeline
 
 ### **8.3.3 Requirement Coverage Reporting**
 
-System Test produces **requirement coverage reports** showing:
-* Which requirements are validated by tests
-* Test pass/fail status per requirement
-* Untested requirements (coverage gaps)
+System Test produces **requirement coverage reports**:
+- Which requirements have BDD scenarios
+- Scenario pass/fail status per requirement
+- Coverage gaps (requirements without scenarios)
 
+**Example coverage report**:
 ```
-Requirement Coverage Report:
-REQ-F-AUTH-001: ✅ Covered (3 tests, all passing)
-REQ-NFR-PERF-001: ✅ Covered (2 tests, all passing)
-REQ-DATA-CQ-001: ⚠️ Covered (4 tests, 1 failing)
-REQ-BR-CALC-001: ❌ Not covered (no tests found)
+REQ-F-AUTH-001: ✅ Covered (3 scenarios, all passing)
+REQ-NFR-PERF-001: ✅ Covered (2 scenarios, all passing)
+REQ-DATA-CQ-001: ⚠️  Covered (4 scenarios, 1 failing)
+REQ-BR-CALC-001: ❌ Not covered (no scenarios)
 ```
 
 ### **8.3.4 Why Feedback to Requirements**
 
-* Reveals where requirements were incomplete or ambiguous.
-* Identifies missing NFRs (e.g. performance not specified).
-* Exposes **data quality gaps** in requirements:
-  - Unstated data quality thresholds
-  - Missing data governance rules
-  - Incomplete data lineage requirements
-  - Unspecified data retention or archival policies
-* **Coverage gaps** trigger creation of missing requirements or clarification of existing ones.
-* Helps refine acceptance criteria for UAT.
+**Coverage gaps drive action**:
+- Missing scenarios → Create requirements or add scenarios
+- Failing scenarios → Defects or requirement clarification needed
+- Ambiguous scenarios → Requirements need refinement
+
+**Common feedback triggers**:
+- Requirements incomplete or contradictory
+- Missing NFRs (performance, security)
+- Data quality thresholds unspecified
+- Integration assumptions invalid
 
 ---
 
-## **8.4 System Test – Stage Context**
+## **8.4 System Test Stage Context**
 
 ### **8.4.1 Context Constraints**
 
-The System Test stage operates within these constraints:
+**BDD context**:
+- BDD frameworks (Behave, Cucumber, SpecFlow)
+- Gherkin scenario writing standards
+- Step definition libraries
+- Test environments (staging, pre-prod)
 
-* **Test Strategies**: Defines the testing approach (e.g., risk-based testing, exploratory testing, automated regression)
-* **Test Frameworks**: Technology and tooling constraints (JUnit, pytest, Selenium, k6, Great Expectations)
-* **Test Environments**: Infrastructure constraints (staging, pre-prod, test data availability)
-* **Test Data Management**: Test data provisioning, masking, and refresh strategies
-* **Coverage Requirements**: Minimum thresholds for code coverage, requirement coverage, data quality coverage
-* **Performance Baselines**: Expected NFR targets for latency, throughput, scalability
-* **Data Quality Thresholds**: Acceptable limits for completeness, accuracy, consistency
-* **Compliance Requirements**: Regulatory testing requirements (GDPR, HIPAA, SOC2)
+**Test execution context**:
+- Automated regression testing
+- Performance baselines (NFR thresholds)
+- Data quality thresholds
+- Test data provisioning strategies
 
 ### **8.4.2 Templates**
 
-Templates stored in AI_SDLC_Context reference:
-- Test strategy, test frameworks (unit, integration, e2e, performance, data quality)
-- Test templates (plans, cases, suites), test data provisioning
-- Coverage requirements, test environments, governance (entry/exit criteria)
+**BDD Feature template**:
+- Feature description with requirement keys
+- Background setup (common preconditions)
+- Scenario structure (Given/When/Then)
+- Tags for requirement traceability
 
-**Test Plan Template** should contain:
-- Requirements covered, test scope (in/out), test strategy and environment
-- Test schedule with phases, entry/exit criteria
-- Risk assessment and test metrics (coverage, defect density, pass/fail rate)
-
-**Data Quality Test Template** should contain:
-- Test class with requirement keys, Great Expectations assertions
-- Tests for completeness, accuracy, uniqueness, consistency, timeliness
-- Data volume and performance validation
+**Step definition template**:
+- Given/When/Then implementations
+- Requirement key annotations
+- Reusable step patterns
 
 ### **8.4.3 Assets Produced**
 
 | Asset Type | Description | Tagged With |
 |-----------|-------------|-------------|
-| Test Plans | Overall testing strategy and schedule | Requirement keys |
-| Test Cases | Detailed test scenarios and steps | REQ-F-*, REQ-NFR-* keys |
-| Test Scripts | Automated test code | Requirement keys in docstrings |
-| Data Quality Tests | Great Expectations suites, validation rules | REQ-DATA-CQ-* keys |
-| Performance Tests | Load/stress test scripts | REQ-NFR-PERF-* keys |
-| Test Reports | Execution results, coverage reports | Linked to requirement keys |
-| Defect Reports | Bug tracking with requirement traceability | Original requirement keys |
-| Coverage Matrix | Requirement-to-test traceability | All requirement keys |
+| BDD Feature Files | Gherkin scenarios | Requirement keys in comments |
+| Step Definitions | Automated test implementations | Requirement keys |
+| Test Reports | Scenario execution results | Requirement coverage |
+| Coverage Matrix | Scenario-to-requirement mapping | All requirement keys |
+| Defect Reports | Bug tracking | Original requirement keys |
 
 ### **8.4.4 Governance**
 
-* **Quality Gates**:
-  - All planned test cases executed
-  - Requirement coverage ≥ 95%
-  - Code coverage ≥ 80% (unit tests)
-  - No critical or high-severity defects open
-  - Performance tests meet all NFRs
-  - Data quality tests pass with ≥ 95% accuracy
-  - Security tests pass (no vulnerabilities ≥ high severity)
-  - Test summary report approved by QA lead
-
-* **Test Execution Checklist**:
-  - [ ] Entry criteria met
-  - [ ] Test environment validated
-  - [ ] Test data provisioned and masked
-  - [ ] Functional tests executed
-  - [ ] Integration tests executed
-  - [ ] Data quality tests executed
-  - [ ] Performance tests executed
-  - [ ] Security tests executed
-  - [ ] Defects logged and triaged
-  - [ ] Regression tests executed
-  - [ ] Coverage report generated
-  - [ ] Exit criteria met
-  - [ ] Test sign-off obtained
-
-* **Defect Triage Process**:
-  - **Critical**: Blocks release, immediate fix required
-  - **High**: Major functionality broken, fix before release
-  - **Medium**: Functionality impaired, fix if time permits
-  - **Low**: Minor issue, defer to backlog
-
-* **Coverage Reporting**:
-  - Generate requirement coverage matrix showing which tests validate each requirement
-  - Track coverage trends over sprints
-  - Flag untested requirements for review
-  - Report data quality test coverage separately
+**BDD Quality Gates**:
+- ✅ All requirements have ≥ 1 BDD scenario
+- ✅ All scenarios pass (or failures documented with tickets)
+- ✅ Requirement coverage ≥ 95%
+- ✅ No critical defects open
+- ✅ Performance scenarios meet NFRs
+- ✅ Data quality scenarios pass
+- ✅ QA Lead approves test summary
 
 ---
 
-# **9.0 User Acceptance Testing (UAT)**
+# **9.0 User Acceptance Test Stage (BDD-Driven)**
 
 ## **9.1 UAT – Overview**
 
 ### **9.1.1 What is UAT**
-UAT checks whether the system **actually solves the intended business problem** in a way users can accept, including validation that data meets business expectations for accuracy, completeness, and usability.
 
-### **9.1.2 Why UAT Matters**
+User Acceptance Test validates that the system meets **business expectations** through **BDD scenarios written in pure business language**. Business users confirm the system solves their problems using Given/When/Then scenarios they can read and approve.
 
-* It is the final validation against **real-world intent**.
-* Ensures data delivered to business users is fit for purpose.
-* Validates that data supports decision-making and operational needs.
-* Provides business sign-off for deployment.
+**UAT BDD Purpose**: Business stakeholders validate functionality through scenarios in plain language, with no technical jargon.
+
+### **9.1.2 Why UAT BDD Matters**
+
+* **Business validation**: Users confirm system meets their needs in their language
+* **Plain language**: Scenarios use business terms, not technical terms
+* **Acceptance criteria**: BDD scenarios ARE the acceptance criteria
+* **Sign-off**: Passing scenarios = approved requirements, ready for deployment
+
+### **9.1.3 UAT BDD vs System Test BDD**
+
+**System Test BDD (Section 8)**:
+- Written by: QA Engineers
+- Focus: Technical integration and system behavior
+- Language: Some technical detail acceptable
+- Audience: Testers and developers
+
+**UAT BDD (This Section)**:
+- Written by: Business Analysts with user input
+- Focus: User journeys and business value
+- Language: Pure business terms only
+- Audience: Business users and stakeholders
 
 ---
 
@@ -1369,19 +1765,15 @@ flowchart TD
 
 ### **10.2.1 Release Manifest with Requirement Keys**
 
-When deploying, the CI/CD platform should track which requirement keys are being deployed:
+When deploying, the CI/CD platform should track which requirement keys are being deployed.
 
-```yaml
-Release: v2.5.0
-Date: 2025-11-13
-Requirements Deployed:
-  - REQ-F-AUTH-001 (v1)
-  - REQ-NFR-PERF-001 (v2)
-  - REQ-DATA-001 (v1)
-  - REQ-DATA-CQ-001 (v1)
-```
+**Release manifest structure**:
+- Release identifier (version/tag)
+- Deployment date
+- List of requirement keys with versions
+- Example: `v2.5.0: REQ-F-AUTH-001 (v1), REQ-NFR-PERF-001 (v2), REQ-DATA-001 (v1)`
 
-This enables **deployment-to-requirement traceability** for audit and impact analysis.
+**Purpose**: Enables deployment-to-requirement traceability for audit and impact analysis.
 
 ### **10.2.2 Runtime Feedback Loop**
 
@@ -1413,6 +1805,45 @@ All runtime feedback feeds into the **Intent Manager**, creating **new or refine
 
 ---
 
+## **10.3 Runtime Feedback Context**
+
+### **10.3.1 Context Constraints**
+
+**Observability context**:
+- Observability platforms (Datadog, New Relic, Prometheus, Grafana)
+- Telemetry standards (requirement key tagging in logs, metrics, traces)
+- Alert routing to Intent Manager
+
+**Integration context**:
+- CI/CD platforms (Jenkins, GitLab CI, GitHub Actions, ArgoCD)
+- Release management tools
+- Incident management systems (PagerDuty, Opsgenie)
+
+### **10.3.2 Assets Produced**
+
+| Asset Type | Description | Tagged With |
+|-----------|-------------|-------------|
+| Release Manifests | Deployed requirement keys per release | Requirement keys with versions |
+| Runtime Telemetry | Metrics, logs, traces | Requirement keys from code |
+| Alerts | Issues and anomalies | Requirement keys |
+| Feedback Reports | New intent from runtime observations | Links to requirement keys |
+
+### **10.3.3 Governance**
+
+**Runtime observability gates**:
+- ✅ All deployed code tagged with requirement keys
+- ✅ Telemetry systems configured to capture requirement keys
+- ✅ Alerts routed to Intent Manager
+- ✅ Release manifests include requirement traceability
+- ✅ Incident response links issues to requirements
+
+**Feedback loop health**:
+- Telemetry coverage (% of code with requirement key tags)
+- Feedback latency (time from issue to new intent)
+- Traceability completeness (% of alerts with requirement keys)
+
+---
+
 # **11.0 End-to-End Requirement Traceability**
 
 ## **11.1 Overview**
@@ -1423,11 +1854,20 @@ End-to-end requirement traceability ensures that **every requirement has a uniqu
 > **Note on Requirement Keys**: Throughout this document, we use the example format `REQ-F-AUTH-001` for requirement keys. This is illustrative only. Your organization can use any identifier system (GUIDs, Jira keys, sequential IDs, etc.) as long as each key is **unique and immutable**. See [Section 4.3.4](#434-requirement-key-structure) for more details.
 
 ### **11.1.2 Why Traceability Matters**
-* **Auditability** – Regulators and auditors can trace any system behavior back to its originating intent.
+
+**Current benefits**:
+* **Auditability** – Regulators and auditors can trace any system behavior back to its originating intent
 * **Impact Analysis** – Teams can answer "What will break if we change this requirement?"
-* **Coverage Analysis** – Teams can identify untested or unimplemented requirements.
-* **Root Cause Analysis** – Production issues can be traced back to specific requirements.
-* **Change Management** – Teams can assess the scope and risk of proposed changes.
+* **Coverage Analysis** – Teams can identify untested or unimplemented requirements
+* **Root Cause Analysis** – Production issues can be traced back to specific requirements
+* **Change Management** – Teams can assess the scope and risk of proposed changes
+
+**Future critical importance** (AI-generated applications):
+* **Runtime Assurance** – Requirements enable automated assurance over AI-built applications
+* **Probabilistic Behavior Control** – LLM-based agents need requirements as behavioral constraints
+* **Post-Run Verification** – Every data artifact traces to requirement for audit after execution
+* **Automatic Observer Generation** – Requirements enable auto-generated monitoring and evaluation
+* **On-Demand Application Building** – Requirements are the specification for AI to build entire applications
 
 ---
 
@@ -1543,17 +1983,214 @@ requirement:
 
 ---
 
-# **12.0 AI SDLC Sub-Vectors: Nested and Parallel Lifecycles**
+## **11.5 Future Evolution: AI-Generated Applications and Runtime Assurance**
+
+### **11.5.1 The Future of AI-Built Applications**
+
+**Assumption**: Future AI-powered development will enable **on-demand application generation** where AI systems build entire applications from requirements specifications using the AI SDLC methodology.
+
+**This transforms requirements from documentation to executable specifications**:
+- Requirements become the **primary artifact** (code is derived, not primary)
+- AI agents build applications on-demand from requirement specifications
+- Applications can be regenerated/adapted as requirements evolve
+- Traditional code becomes a **transient implementation detail**
+
+### **11.5.2 Requirements-Based Runtime Assurance**
+
+**Challenge**: AI-generated applications, especially those with **probabilistic LLM-based compute** (agentic AI applications), require runtime assurance mechanisms to ensure correct behavior despite non-deterministic execution.
+
+**Solution**: Requirements-based traceability enables **automatic runtime assurance**:
+
+**Assurance through requirements**:
+1. **Requirements define expected behavior** (deterministic specification)
+2. **Observers auto-generated from requirements** (monitor actual behavior)
+3. **Evaluators auto-generated from requirements** (compare expected vs actual)
+4. **Feedback auto-generated when deviations occur** (homeostasis correction)
+
+**Example**:
+```
+Requirement: REQ-F-AUTH-001
+"Authentication must succeed within 2 seconds with valid credentials"
+
+Auto-generated Observer:
+- Monitors auth_response_time metric
+- Monitors auth_success_rate metric
+- Tags all observations with REQ-F-AUTH-001
+
+Auto-generated Evaluator:
+- Expected: response_time < 2000ms (p95)
+- Expected: success_rate > 99%
+- Evaluates: Observed vs Expected
+- Tags deviations with REQ-F-AUTH-001
+
+Auto-generated Feedback:
+- Deviation detected → Generate Intent
+- Intent: "REQ-F-AUTH-001 violated: response time 3200ms"
+- Feeds back to Intent Manager
+- Triggers AI SDLC remediation cycle
+```
+
+### **11.5.3 Data-Level Traceability for Post-Run Assurance**
+
+**Challenge**: AI-generated agentic applications produce data artifacts during execution. With probabilistic LLM compute, we need **post-run verification** that output data meets requirements.
+
+**Solution**: Tag every data artifact with requirement keys during creation.
+
+**Data tagging requirements**:
+- Every database record tagged with requirement key that caused its creation
+- Every file written tagged with requirement key
+- Every API response tagged with requirement key
+- Every LLM-generated output tagged with requirement key
+
+**Post-run assurance flow**:
+```
+1. Agentic application runs (LLM-based agent executes task)
+   ↓
+2. Agent creates data artifacts (records, files, API calls)
+   ↓
+3. Every artifact tagged with requirement key
+   Example: customer_record.metadata = {req_key: "REQ-F-CUST-001"}
+   ↓
+4. Post-run evaluator scans all created data
+   ↓
+5. For each artifact, validate against requirement
+   Example: Does customer_record meet REQ-F-CUST-001 criteria?
+   ↓
+6. Violations generate feedback
+   Example: "REQ-F-CUST-001 violated: email field missing in 15% of records"
+   ↓
+7. Feedback triggers remediation or requirement refinement
+```
+
+**Benefits**:
+- **Audit trail**: Every data artifact traces to originating requirement
+- **Post-run verification**: Validate probabilistic LLM output after execution
+- **Compliance**: Prove every data creation was requirement-driven
+- **Debugging**: Trace incorrect data back to requirement and implementation
+- **Quality assurance**: Automated checking of LLM-generated outputs
+
+### **11.5.4 Automatic Observer and Evaluator Generation**
+
+**Vision**: Requirements specifications should be sufficient to **automatically generate** Observers and Evaluators (Section 2.7 Governance Loop).
+
+**Current state** (manual):
+- Developers manually instrument code with observability
+- Developers manually write monitoring rules
+- Developers manually configure alerts
+
+**Future state** (automatic from requirements):
+
+**Functional Requirements → Observers**:
+```
+REQ-F-AUTH-001: "User authentication must complete within 2s"
+  ↓ Auto-generates
+Observer:
+- Metric: auth_duration_ms (tagged: REQ-F-AUTH-001)
+- Metric: auth_success_count (tagged: REQ-F-AUTH-001)
+- Metric: auth_failure_count (tagged: REQ-F-AUTH-001)
+- Log: auth_event (tagged: REQ-F-AUTH-001)
+```
+
+**NFRs → Evaluators**:
+```
+REQ-NFR-PERF-001: "p95 response time < 500ms"
+  ↓ Auto-generates
+Evaluator:
+- Threshold: response_time_p95 < 500
+- Window: 5 minutes
+- Alert: "REQ-NFR-PERF-001 violated" if exceeded
+- Action: Generate remediation intent
+```
+
+**Data Requirements → Data Observers**:
+```
+REQ-DATA-CQ-001: "Customer email completeness ≥ 95%"
+  ↓ Auto-generates
+Observer:
+- Metric: customer_email_completeness_rate (tagged: REQ-DATA-CQ-001)
+- Schedule: Every 1 hour
+Evaluator:
+- Threshold: completeness_rate ≥ 0.95
+- Alert: "REQ-DATA-CQ-001 violated" if below threshold
+- Action: Generate data quality remediation intent
+```
+
+**Implementation approach**:
+1. Requirements written in structured, machine-readable format
+2. Observer generator parses requirements
+3. Generates observability instrumentation code
+4. Generates evaluator rules and thresholds
+5. Deploys observers and evaluators with application
+6. Observers/evaluators auto-update when requirements change
+
+### **11.5.5 Why This Matters for AI-Generated Apps**
+
+**Probabilistic AI behavior requires deterministic requirements**:
+- LLM agents have **non-deterministic execution** (probabilistic outputs)
+- Traditional testing catches known issues, not probabilistic drift
+- Requirements + auto-generated assurance = **continuous verification**
+
+**Homeostatic control for AI agents**:
+- Requirements define **target behavior** (homeostasis model)
+- Observers detect **actual behavior** (runtime monitoring)
+- Evaluators detect **deviations** (expected vs actual)
+- Feedback triggers **corrective action** (regenerate/refine)
+
+**On-demand application regeneration**:
+- Requirements stable, implementations transient
+- AI regenerates application when requirements change
+- Auto-generated assurance ensures regenerated app meets requirements
+- Continuous verification even as AI modifies code
+
+### **11.5.6 Path to Implementation**
+
+**Phase 1** (Current): Manual traceability
+- Developers manually tag code, tests, data with requirement keys
+- Manual observer and evaluator configuration
+
+**Phase 2** (Near-term): Semi-automated assurance
+- Tools extract requirement keys from code automatically
+- Templates generate basic observers from requirements
+- Dashboards show requirement health
+
+**Phase 3** (Future): Fully automated assurance
+- Requirements are machine-readable specifications
+- Observers and evaluators auto-generated from requirements
+- AI builds applications from requirements
+- Data artifacts auto-tagged during creation
+- Post-run verification automatic
+
+**Phase 4** (Vision): AI-native SDLC
+- AI generates entire application from requirements on-demand
+- Requirements = executable specification
+- Continuous assurance through auto-generated observers/evaluators
+- Applications regenerate as requirements evolve
+- Full traceability from intent → generated code → runtime behavior → data artifacts
+
+---
+
+# **12.0 AI SDLC Sub-Vectors: Nested and Concurrent Lifecycles**
 
 ## **12.1 Overview**
 
-The AI SDLC methodology is **recursive and composable**. Major activities within a stage can themselves be structured as complete AI SDLC lifecycles. This creates powerful patterns for:
+The AI SDLC methodology is **recursive and composable**. Major activities within a stage can themselves be structured as complete AI SDLC lifecycles.
 
-1. **Nested lifecycles** - Complex activities decomposed into their own SDLC
-2. **Parallel lifecycles** - Independent activities running concurrently
-3. **Coordinated lifecycles** - Multiple SDLCs synchronized through requirement keys
+### **12.1.1 What is a Sub-Vector?**
 
-This section demonstrates **three key sub-vectors** where the AI SDLC pattern repeats at different scales, often **developing in parallel** with the main SDLC.
+A **sub-vector** is a complete AI SDLC instance (Intent → Requirements → Design → Tasks → Code → Test → UAT → Deploy) that:
+- **Produces a specific deliverable** (e.g., architecture documentation, test suites, data pipelines)
+- **Operates within or alongside** the main application SDLC
+- **Maintains traceability** through requirement keys that link back to the main SDLC
+
+### **12.1.2 Sub-Vector Patterns**
+
+This creates powerful patterns for:
+
+1. **Nested lifecycles** - Complex activities decomposed into their own SDLC (e.g., architecture design within Design stage)
+2. **Concurrent lifecycles** - Independent activities running at the same time (e.g., UAT test development alongside code development)
+3. **Coordinated lifecycles** - Multiple SDLCs synchronized through requirement keys and shared context
+
+This section demonstrates **three key sub-vectors** where the AI SDLC pattern repeats at different scales, often **running concurrently** with the main SDLC.
 
 ---
 
@@ -1561,7 +2198,13 @@ This section demonstrates **three key sub-vectors** where the AI SDLC pattern re
 
 **Intent**: "We need a scalable, secure architecture for our e-commerce platform"
 
-The **Design stage** can be structured as its own complete AI SDLC:
+The **Design stage** can be structured as its own complete AI SDLC.
+
+### **12.2.1 Figure 12.2 – Architecture Development as Complete SDLC**
+
+**Diagram Title**: Architecture Design as Independent AI SDLC Sub-Vector
+
+The diagram below shows how architecture development follows the complete AI SDLC pattern:
 
 ```mermaid
 flowchart TD
@@ -1609,7 +2252,7 @@ flowchart TD
     DEPLOY -.->|"Architecture gaps, new patterns"| REQ
 ```
 
-### **12.2.1 Key Characteristics**
+### **12.2.2 Key Characteristics**
 
 * **Final Asset**: Technical Architecture (documented, code-defined, validated)
 * **Requirements**: Architecture requirements (REQ-ARCH-*)
@@ -1618,7 +2261,7 @@ flowchart TD
 * **UAT**: Architecture review and approval by technical stakeholders
 * **Deployment**: Publishing architecture docs and deploying IaC to environments
 
-### **12.2.2 Integration with Main SDLC**
+### **12.2.3 Integration with Main SDLC**
 
 The architecture SDLC runs **before the main code SDLC**:
 
@@ -1633,42 +2276,57 @@ Main SDLC Design Stage
 Main SDLC Code Stage (constrained by architecture)
 ```
 
-### **12.2.3 Example Architecture Requirements**
+### **12.2.4 Example Architecture Requirements**
 
-```yaml
-# Architecture Requirements
-REQ-ARCH-SCALE-001: "System must scale to 100k concurrent users"
-  type: architecture
-  domain: scalability
-  acceptance_criteria:
-    - Load test demonstrates 100k concurrent users
-    - Response time p95 < 500ms at peak load
-    - Auto-scaling policies validated
+**REQ-ARCH-SCALE-001**: "System must scale to 100k concurrent users"
+- Type: architecture, Domain: scalability
+- Acceptance criteria:
+  - Load test demonstrates 100k concurrent users
+  - Response time p95 < 500ms at peak load
+  - Auto-scaling policies validated
 
-REQ-ARCH-HA-001: "System must achieve 99.99% uptime"
-  type: architecture
-  domain: high_availability
-  acceptance_criteria:
-    - Multi-region deployment active
-    - Automated failover tested
-    - RTO < 5 minutes, RPO < 1 minute
+**REQ-ARCH-HA-001**: "System must achieve 99.99% uptime"
+- Type: architecture, Domain: high_availability
+- Acceptance criteria:
+  - Multi-region deployment active
+  - Automated failover tested
+  - RTO < 5 minutes, RPO < 1 minute
 
-REQ-ARCH-SEC-001: "System must be PCI DSS compliant"
-  type: architecture
-  domain: security
-  acceptance_criteria:
-    - Security architecture review approved
-    - PCI compliance scans passing
-    - Encryption at rest and in transit validated
-```
+**REQ-ARCH-SEC-001**: "System must be PCI DSS compliant"
+- Type: architecture, Domain: security
+- Acceptance criteria:
+  - Security architecture review approved
+  - PCI compliance scans passing
+  - Encryption at rest and in transit validated
 
 ---
 
-## **12.3 Sub-Vector #2: UAT Test Development as Parallel AI SDLC**
+## **12.3 Sub-Vector #2: UAT Test Development as Concurrent AI SDLC**
 
 **Intent**: "We need comprehensive UAT test coverage for user authentication feature"
 
-The **UAT stage** involves creating both test cases AND automation code, which can be structured as its own AI SDLC **developing in parallel** with the main code SDLC:
+### **12.3.1 Overview**
+
+UAT (User Acceptance Testing) is not just a gate at the end of the SDLC—it's a **development effort** that produces three types of assets:
+
+1. **Manual UAT test cases**: Business-readable scenarios for human validation
+2. **Automated UAT tests**: Executable BDD tests (e.g., Selenium, Playwright)
+3. **Data validation tests**: Automated data quality checks (e.g., Great Expectations)
+
+Because UAT test development involves creating complex test scenarios, test code, and data validation logic, it can be **structured as its own concurrent AI SDLC** that runs alongside the main code development.
+
+**Key insight**: While the main SDLC develops the authentication feature, the UAT test SDLC simultaneously develops comprehensive tests to validate that feature.
+
+---
+
+### **12.3.2 Figure 12.3 – UAT Test Development as Concurrent SDLC**
+
+**Diagram Title**: Concurrent Development of Application Code and UAT Tests
+
+The diagram below shows two AI SDLCs running concurrently:
+- **Left**: Main code SDLC develops the authentication feature
+- **Right**: UAT test SDLC develops comprehensive test coverage for that feature
+- **Connections**: Requirements and design from main SDLC inform the UAT test SDLC
 
 ```mermaid
 flowchart TD
@@ -1679,7 +2337,7 @@ flowchart TD
         MAIN_CODE["Code: auth.py"]
     end
 
-    subgraph "Parallel UAT Test SDLC"
+    subgraph "Concurrent UAT Test SDLC"
         UAT_INTENT["Intent: Validate Authentication Feature"]
         UAT_REQ["Requirements: UAT Test Requirements
         REQ-UAT-AUTH-001: Login scenarios
@@ -1719,7 +2377,28 @@ flowchart TD
     UAT_UAT --> UAT_DEPLOY
 ```
 
-### **12.3.1 Key Characteristics**
+**How to read this diagram**:
+
+1. **Main Code SDLC** (left): Develops the authentication feature from intent through to code
+2. **Concurrent UAT Test SDLC** (right): Goes through a complete SDLC to develop comprehensive tests
+3. **Dotted arrows**: Show how main SDLC informs UAT test SDLC
+   - Main requirements **trigger** UAT test intent
+   - Main design **informs** UAT test scenarios
+   - Final UAT tests **validate** the main code
+4. **UAT Test SDLC stages**:
+   - **Requirements**: Define what UAT tests are needed (REQ-UAT-*)
+   - **Design**: Design test scenarios (happy path, edge cases, error cases)
+   - **Tasks**: Break down test deliverables (manual cases, automation, data tests)
+   - **Code**: Implement test code (BDD tests, data validation scripts)
+   - **System Test**: Meta-tests that verify the tests work correctly
+   - **UAT**: Business SME and QA Lead review test scenarios
+   - **Deployment**: Tests added to CI/CD pipeline
+
+---
+
+### **12.3.3 Key Characteristics**
+
+**What does the UAT test SDLC produce?**
 
 * **Final Assets**:
   - Manual UAT test cases (business-readable scenarios)
@@ -1731,109 +2410,142 @@ flowchart TD
 * **UAT**: Business SME and QA Lead review and approval
 * **Deployment**: Tests added to CI/CD pipeline
 
-### **12.3.2 Parallel Development Pattern**
+**Why is this a separate SDLC?**
 
-The UAT test SDLC **develops in parallel** with the main code SDLC:
-
-```
-Timeline:
-Sprint 1:
-  - Main SDLC: Requirements → Design
-  - UAT Test SDLC: Requirements → Design (test scenarios)
-
-Sprint 2:
-  - Main SDLC: Code → Unit Tests
-  - UAT Test SDLC: Code (implement UAT tests) → Test (validate tests)
-
-Sprint 3:
-  - Main SDLC: Integration Tests → System Test
-  - UAT Test SDLC: UAT (review test cases) → Deploy (to CI/CD)
-
-Sprint 4:
-  - Main SDLC: UAT (using the test cases from UAT Test SDLC) → Deploy
-```
-
-### **12.3.3 Example UAT Test Requirements**
-
-```yaml
-# UAT Test Requirements
-REQ-UAT-AUTH-001: "UAT test cases for successful authentication flows"
-  type: uat_test
-  domain: authentication
-  source_requirement: REQ-F-AUTH-001  # Links to main requirement
-  deliverables:
-    - Manual test case: "User login with valid credentials"
-    - Automated BDD test: test_user_login_success()
-    - Data test: verify_user_credentials_in_db()
-
-REQ-UAT-AUTH-002: "UAT test cases for authentication error handling"
-  type: uat_test
-  domain: authentication
-  source_requirement: REQ-F-AUTH-001
-  deliverables:
-    - Manual test case: "User login with invalid credentials"
-    - Automated BDD test: test_user_login_invalid_credentials()
-    - Data test: verify_failed_login_logged()
-
-REQ-UAT-DATA-001: "Data validation tests for customer data quality"
-  type: uat_test
-  domain: data_quality
-  source_requirement: REQ-DATA-CQ-001
-  deliverables:
-    - Automated data test: test_customer_data_completeness()
-    - Automated data test: test_customer_data_accuracy()
-    - Data reconciliation test: test_customer_source_target_match()
-```
-
-### **12.3.4 UAT Test Traceability**
-
-```
-Main Requirement → UAT Test Requirement → Test Cases → Test Code
-REQ-F-AUTH-001 → REQ-UAT-AUTH-001 → "Login with valid credentials" → test_user_login_success()
-                                  → "Login with invalid credentials" → test_user_login_invalid_credentials()
-```
+UAT test development is complex enough to warrant its own SDLC because:
+- Test scenarios must be **designed** (not just written ad-hoc)
+- Test code must be **implemented** and **tested** (meta-tests)
+- Business SMEs must **review** test scenarios for completeness
+- Tests must be **deployed** to CI/CD pipelines
 
 ---
 
-## **12.4 Sub-Vector #3: Data Platform as AI SDLC**
+### **12.3.4 Concurrent Development Pattern**
 
-**Intent**: "We need a scalable data platform for analytics and ML"
+**How does concurrent development work in practice?**
 
-Data platform development can be structured as its own AI SDLC **developing independently** or **in parallel** with application development:
+In an **agentic AI SDLC**, a single developer manages multiple AI agents running concurrently:
+
+**Concurrent execution flow**:
+1. **Main code agent(s)**: Develop authentication feature (Requirements → Design → Code)
+2. **UAT test agent(s)**: Simultaneously develop test coverage (Requirements → Design → Test Code)
+3. **Synchronization points**:
+   - Main requirements trigger UAT test requirements
+   - Main design informs UAT test scenarios
+   - UAT tests validate main code at UAT stage
+
+**Developer orchestration**:
+- Developer monitors both SDLCs through dashboard/status
+- Agents coordinate through shared requirement keys
+- Feedback loops operate independently for each SDLC
+- Integration happens at natural synchronization points
+
+**Concurrency principle**: When a common asset like Requirements exists, all dependent tasks can trigger and run concurrently. Any work that can run in parallel should run in parallel.
+
+---
+
+### **12.3.5 Example UAT Test Requirements**
+
+**What do UAT test requirements look like?**
+
+UAT test requirements (REQ-UAT-*) link back to main requirements (REQ-F-*, REQ-DATA-*) and define test deliverables:
+
+**REQ-UAT-AUTH-001**: "UAT test cases for successful authentication flows"
+- Type: uat_test, Domain: authentication
+- Source requirement: REQ-F-AUTH-001
+- Deliverables:
+  - Manual test case: "User login with valid credentials"
+  - Automated BDD test: test_user_login_success()
+  - Data test: verify_user_credentials_in_db()
+
+**REQ-UAT-AUTH-002**: "UAT test cases for authentication error handling"
+- Type: uat_test, Domain: authentication
+- Source requirement: REQ-F-AUTH-001
+- Deliverables:
+  - Manual test case: "User login with invalid credentials"
+  - Automated BDD test: test_user_login_invalid_credentials()
+  - Data test: verify_failed_login_logged()
+
+**REQ-UAT-DATA-001**: "Data validation tests for customer data quality"
+- Type: uat_test, Domain: data_quality
+- Source requirement: REQ-DATA-CQ-001
+- Deliverables:
+  - Automated data test: test_customer_data_completeness()
+  - Automated data test: test_customer_data_accuracy()
+  - Data reconciliation test: test_customer_source_target_match()
+
+### **12.3.6 UAT Test Traceability**
+
+**How do UAT tests trace back to main requirements?**
+
+Every UAT test requirement links back to the main requirement it validates, creating full traceability:
+
+```
+Traceability Chain:
+
+Main Requirement → UAT Test Requirement → Test Cases → Test Code → Test Results
+
+Example:
+REQ-F-AUTH-001     →  REQ-UAT-AUTH-001    →  "Login with valid credentials"      →  test_user_login_success()      → ✅ Pass
+(User Login)          (Login scenarios)      "Login with invalid credentials"    →  test_user_login_invalid()      → ✅ Pass
+                                              "Password reset flow"               →  test_password_reset()          → ❌ Fail
+                                                                                                                        ↓
+                                                                                                              (Feedback to Main SDLC)
+```
+
+**Benefits of traceability**:
+- Every test is linked to a requirement (no orphaned tests)
+- Test failures trace back to the requirement they validate
+- Coverage gaps are visible (requirements without UAT tests)
+- Impact analysis: Which tests need updating when a requirement changes?
+
+---
+
+## **12.4 Sub-Vector #3: Data Pipeline as AI SDLC**
+
+**Intent**: "We need a data pipeline to deliver customer analytics data product"
+
+Data pipeline development can be structured as its own AI SDLC **running concurrently** with application development.
+
+### **12.4.1 Figure 12.4 – Data Pipeline Development as AI SDLC**
+
+**Diagram Title**: Data Pipeline as Independent AI SDLC Sub-Vector
+
+The diagram below shows how data pipeline development follows the complete AI SDLC pattern:
 
 ```mermaid
 flowchart TD
-    INTENT["Intent: Data Platform for Analytics & ML"]
-    REQ["Requirements: Data Platform Requirements
-    REQ-DATA-PLAT-001: Ingest 1TB/day
-    REQ-DATA-PLAT-002: Real-time streaming
-    REQ-DATA-PLAT-003: Data lake storage"]
-    DESIGN["Design: Data Architecture
-    - Lambda architecture
-    - Data lake (S3) + warehouse (Snowflake)
-    - Streaming (Kafka) + batch (Airflow)"]
-    TASKS["Tasks: Data Platform Deliverables
-    - Data ingestion pipelines
-    - Data transformation jobs
-    - Data quality monitors
-    - Data catalog"]
-    CODE["Code: Data Platform Implementation
-    - Airflow DAGs
-    - Kafka producers/consumers
-    - dbt transformations
-    - Great Expectations suites"]
-    TEST["System Test: Data Platform Validation
-    - Pipeline throughput tests
+    INTENT["Intent: Customer Analytics Data Product"]
+    REQ["Requirements: Data Pipeline Requirements
+    REQ-DATA-PIPE-001: Daily customer aggregates
+    REQ-DATA-PIPE-002: Data quality validation
+    REQ-DATA-PIPE-003: Analytics dashboard ready"]
+    DESIGN["Design: Pipeline Architecture
+    - Extract: Source database queries
+    - Transform: Aggregation logic
+    - Load: Analytics warehouse"]
+    TASKS["Tasks: Pipeline Deliverables
+    - Extraction scripts
+    - Transformation logic
+    - Data quality tests
+    - Documentation"]
+    CODE["Code: Pipeline Implementation
+    - SQL extraction queries
+    - Python transformation scripts
+    - Great Expectations tests
+    - Airflow DAG"]
+    TEST["System Test: Pipeline Validation
+    - End-to-end pipeline execution
     - Data quality validation
-    - End-to-end data flow tests"]
-    UAT["UAT: Data Steward & Analyst Review
-    - Data quality acceptable
-    - Data accessible and queryable
-    - Performance meets SLAs"]
-    DEPLOY["Deployment: Data Platform Go-Live
-    - Pipelines deployed to production
-    - Data quality monitors active
-    - Data catalog published"]
+    - Performance testing"]
+    UAT["UAT: Analyst & Stakeholder Review
+    - Data accuracy verified
+    - Dashboard meets needs
+    - Query performance acceptable"]
+    DEPLOY["Deployment: Pipeline Go-Live
+    - Airflow DAG deployed
+    - Monitoring alerts active
+    - Documentation published"]
 
     INTENT --> REQ
     REQ --> DESIGN
@@ -1842,68 +2554,63 @@ flowchart TD
     CODE --> TEST
     TEST --> UAT
     UAT --> DEPLOY
-    DEPLOY -.->|"Data gaps, new sources"| REQ
+    DEPLOY -.->|"Data gaps, new requirements"| REQ
 ```
 
-### **12.4.1 Key Characteristics**
+### **12.4.2 Key Characteristics**
 
 * **Final Assets**:
-  - Data ingestion pipelines (code)
-  - Data transformation jobs (dbt, Spark)
-  - Data quality monitors (Great Expectations)
-  - Data catalog and documentation
-* **Requirements**: Data platform requirements (REQ-DATA-PLAT-*)
-* **Code**: Data pipeline code (Airflow, dbt, Kafka, Spark)
-* **Tests**: Data quality tests, pipeline tests, end-to-end data flow tests
-* **UAT**: Data stewards and analysts validate data quality and accessibility
-* **Deployment**: Pipelines and monitors deployed to production
+  - Data extraction scripts
+  - Transformation logic (SQL, Python)
+  - Data quality tests
+  - Pipeline orchestration (Airflow DAG)
+  - Data product documentation
+* **Requirements**: Data pipeline requirements (REQ-DATA-PIPE-*)
+* **Code**: Pipeline code (SQL, Python, Airflow)
+* **Tests**: Data quality tests, pipeline execution tests
+* **UAT**: Analysts and stakeholders validate data accuracy and usability
+* **Deployment**: Pipeline deployed with monitoring
 
-### **12.4.2 Integration with Application SDLC**
+### **12.4.3 Integration with Application SDLC**
 
-The data platform SDLC can develop:
-- **Independently**: Data platform built as separate system
-- **In parallel**: Data platform development runs concurrently with application development
-- **Integrated**: Application and data share requirements (REQ-DATA-*)
+The data pipeline SDLC can run:
+- **Concurrently**: Pipeline development runs alongside application development
+- **Integrated**: Application and pipeline share data requirements (REQ-DATA-*)
+- **Coordinated**: Pipeline produces data products consumed by application
 
 ```
 Application SDLC:
   Requirements (REQ-F-*) → Design → Code (app.py) → Test → UAT → Deploy
 
-Data Platform SDLC (parallel):
-  Requirements (REQ-DATA-PLAT-*) → Design → Code (pipelines) → Test → UAT → Deploy
+Data Pipeline SDLC (concurrent):
+  Requirements (REQ-DATA-PIPE-*) → Design → Code (pipeline) → Test → UAT → Deploy
 
 Shared Data Requirements (REQ-DATA-*):
   Used by both SDLCs, ensuring data consistency
 ```
 
-### **12.4.3 Example Data Platform Requirements**
+### **12.4.4 Example Data Pipeline Requirements**
 
-```yaml
-# Data Platform Requirements
-REQ-DATA-PLAT-INGEST-001: "Ingest customer data from source systems"
-  type: data_platform
-  domain: ingestion
-  acceptance_criteria:
-    - Ingest 1TB customer data per day
-    - Latency < 15 minutes (near real-time)
-    - Data quality checks pass (REQ-DATA-CQ-*)
+**REQ-DATA-PIPE-001**: "Daily customer aggregates for analytics"
+- Type: data_pipeline, Domain: transformation
+- Acceptance criteria:
+  - Daily aggregates calculated by 6 AM
+  - All customers from previous day included
+  - Aggregates match source data validation
 
-REQ-DATA-PLAT-TRANSFORM-001: "Transform customer data for analytics"
-  type: data_platform
-  domain: transformation
-  acceptance_criteria:
-    - dbt transformations complete in < 30 minutes
-    - Data models documented in data catalog
-    - Business rules applied (REQ-BR-*)
+**REQ-DATA-PIPE-002**: "Data quality validation for customer data"
+- Type: data_pipeline, Domain: quality
+- Acceptance criteria:
+  - No null values in required fields
+  - No duplicate customer records
+  - All foreign keys valid
 
-REQ-DATA-PLAT-QUALITY-001: "Monitor data quality continuously"
-  type: data_platform
-  domain: quality
-  acceptance_criteria:
-    - Great Expectations suites run on every pipeline execution
-    - Data quality dashboards updated real-time
-    - Alerts triggered for quality violations
-```
+**REQ-DATA-PIPE-003**: "Analytics dashboard data refresh"
+- Type: data_pipeline, Domain: delivery
+- Acceptance criteria:
+  - Dashboard data refreshed daily
+  - Query response time < 2 seconds
+  - Data latency < 1 hour
 
 ---
 
@@ -1914,9 +2621,9 @@ REQ-DATA-PLAT-QUALITY-001: "Monitor data quality continuously"
 Use AI SDLC sub-vectors when:
 
 1. **Complexity warrants decomposition**: Activity is complex enough to benefit from full lifecycle structure
-2. **Independent delivery**: Sub-vector can deliver value independently (e.g., architecture docs, test suites)
-3. **Parallel development**: Sub-vector can develop concurrently with main SDLC to accelerate delivery
-4. **Separate ownership**: Different teams own sub-vector (e.g., architecture team, QA team, data team)
+2. **Independent delivery**: Sub-vector can deliver value independently (e.g., architecture docs, test suites, data pipelines)
+3. **Concurrent development**: Sub-vector can run alongside main SDLC to accelerate delivery
+4. **Separate concerns**: Different deliverables with distinct requirements (e.g., architecture, testing, data)
 
 ### **12.5.2 Sub-Vector Coordination**
 
@@ -1930,12 +2637,10 @@ Coordinate multiple AI SDLCs through:
    ```
 
 2. **Shared Context**: Use AI_SDLC_Context to share constraints, templates, standards
-   ```yaml
-   # Shared context used by all sub-vectors
-   shared_context:
-     coding_standards: "file://standards/coding_standards.md"
-     data_standards: "file://standards/data_standards.md"
-   ```
+   - Coding standards referenced by all code sub-vectors
+   - Data standards referenced by all data sub-vectors
+   - Security policies referenced across all sub-vectors
+   - Template libraries shared for consistency
 
 3. **Synchronization Points**: Define dependencies and integration points
    ```
@@ -1946,10 +2651,10 @@ Coordinate multiple AI SDLCs through:
 
 ### **12.5.3 Benefits of Sub-Vectors**
 
-1. **Parallel Development**: Multiple teams develop concurrently on coordinated lifecycles
-2. **Specialization**: Each sub-vector can have specialized personas, tools, and processes
-3. **Scalability**: Large projects decompose into manageable sub-lifecycles
-4. **Reusability**: Sub-vectors (e.g., architecture SDLC) can be reused across projects
+1. **Concurrent Development**: Multiple AI agents develop coordinated lifecycles simultaneously under single developer oversight
+2. **Specialization**: Each sub-vector can have specialized agents, contexts, and validation criteria
+3. **Scalability**: Complex projects decompose into manageable sub-lifecycles
+4. **Reusability**: Sub-vector patterns (architecture, testing, data) reusable across projects
 5. **Traceability**: Requirement keys maintain traceability across all sub-vectors
 
 ---
@@ -1961,8 +2666,8 @@ Coordinate multiple AI SDLCs through:
 The AI SDLC methodology provides a **closed-loop, intent-driven** framework that:
 
 * Connects **real-world observations** to **system change**.
-* Uses **CRUD work types** to structure intent.
-* Channels all work through a **Builder.CRUD AI SDLC pipeline**.
+* Uses **CRUD work types** to structure intent (Create, Read, Update, Delete).
+* Channels all work through the **Builder AI SDLC pipeline**.
 * Maintains **Requirements** as a single, evolving source of truth.
 * Ensures **continuous governance** through observation and evaluation.
 * Provides **end-to-end traceability** through unique, immutable requirement keys.
@@ -1975,25 +2680,35 @@ The AI SDLC methodology provides a **closed-loop, intent-driven** framework that
   - Forward traceability: Intent → Requirements → Design → Code → Tests → Deployment → Runtime
   - Backward traceability: Production issues → Code → Requirements → Intent
 * Strong **governance** and auditability across the full software and data lifecycle.
-* Clear **persona responsibilities** and artifacts for application and data engineering.
+* Clear **role responsibilities** and artifacts for AI agents, developers, and stakeholders.
 * **Data as a first-class concern** throughout all stages, not an afterthought.
 * Comprehensive **data quality and compliance** validation at every stage.
 * **Requirement coverage analysis** at every stage (design, code, test, UAT).
 * **Impact analysis** capabilities: "What will break if we change this requirement?"
 * **Root cause analysis** from production issues back to originating requirements.
-* **Recursive and composable**: AI SDLC sub-vectors enable parallel and nested lifecycles for architecture, testing, and data platforms.
-* **Parallel development**: UAT test development, architecture work, and data platform development can proceed in parallel with main code development, accelerating delivery.
+* **Recursive and composable**: AI SDLC sub-vectors enable concurrent and nested lifecycles for architecture, testing, and data pipelines.
+* **Concurrent development**: UAT test development, architecture work, and data pipeline development can run concurrently with main code development under AI agent orchestration, accelerating delivery.
+* **Future-ready for AI-generated applications**: Requirements provide deterministic control over probabilistic AI behavior, enabling automatic observer/evaluator generation and runtime assurance for on-demand AI-built applications.
 * AI used responsibly as a **context-aware augmenter**.
 
 ---
 
 ## **13.3 Next Steps**
 
-Depending on your environment, you can:
+### **For Implementation:**
 
-* Attach **RACI matrices** to each stage.
-* Map **concrete tools** (e.g. Jira, Git, CI/CD, Data Platforms) to each box.
-* Add **AI agent roles** (Req-Agent, Design-Agent, Code-Agent, Test-Agent) as overlays on this methodology.
+* **Configure AI_SDLC_Context**: Set up hierarchical context management with standards, templates, and constraints
+* **Define AI agent orchestration**: Establish agent roles (Req-Agent, Design-Agent, Code-Agent, Test-Agent) and coordination patterns
+* **Enable concurrent execution**: Configure agents to run sub-vectors concurrently when dependencies allow
+* **Map concrete tools**: Integrate Jira (work visibility), Git (version control), CI/CD (deployment), and monitoring platforms
+* **Establish requirement key schema**: Define naming conventions (REQ-F-*, REQ-NFR-*, REQ-DATA-*, etc.)
+
+### **For Governance:**
+
+* **Attach RACI matrices** to each stage to clarify human oversight responsibilities
+* **Define quality gates** and approval workflows at stage boundaries
+* **Configure observability**: Set up dashboards to monitor AI agent progress and SDLC status
+* **Establish feedback loops**: Integrate runtime monitoring back to requirements for continuous improvement
 
 ---
 
@@ -2085,15 +2800,12 @@ The input to asset creation consists of two components:
   - **Organizational context**: Templates, standards, approved libraries
 
 **Example Context** (from AI_SDLC_Context):
-```yaml
-code_stage:
-  coding_standards: "file://standards/coding/python_style_guide.md"
-  security: "file://standards/security/secure_coding.md"
-  templates:
-    service: "file://templates/code/service_template.py"
-  approved_libraries:
-    authentication: ["bcrypt", "PyJWT", "passlib"]
-```
+
+**Code Stage Context:**
+- **Coding standards**: `file://standards/coding/python_style_guide.md`
+- **Security standards**: `file://standards/security/secure_coding.md`
+- **Service template**: `file://templates/code/service_template.py`
+- **Approved authentication libraries**: bcrypt, PyJWT, passlib
 
 ### **A.3.2 Synthesis: Creating the Asset**
 
@@ -2105,27 +2817,22 @@ code_stage:
 - **Iterative refinement**: Multiple synthesis rounds may occur
 
 **Example Synthesis Process**:
-```python
-# Intent: REQ-F-AUTH-001 - Implement user authentication
-# Context: Python coding standards + security guidelines + service template
 
-# Synthesis Step 1: Start with template
-# (Load from: file://templates/code/service_template.py)
+**Intent**: REQ-F-AUTH-001 - Implement user authentication
+**Context**: Python coding standards + security guidelines + service template
 
-# Synthesis Step 2: Apply security context
-# (Reference: file://standards/security/secure_coding.md)
-# - Use approved library: bcrypt
-# - Implement password hashing
-# - Add rate limiting
+**Synthesis steps**:
+1. **Start with template**: Load from `file://templates/code/service_template.py`
+2. **Apply security context** (from `file://standards/security/secure_coding.md`):
+   - Use approved library: bcrypt
+   - Implement password hashing
+   - Add rate limiting
+3. **Follow coding standards** (from `file://standards/coding/python_style_guide.md`):
+   - Type hints
+   - Docstrings with requirement keys
+   - Error handling
 
-# Synthesis Step 3: Follow coding standards
-# (Reference: file://standards/coding/python_style_guide.md)
-# - Type hints
-# - Docstrings with requirement keys
-# - Error handling
-
-# Result: auth_service.py (asset)
-```
+**Result**: `auth_service.py` (asset)
 
 ### **A.3.3 Asset: The Output**
 
@@ -2141,29 +2848,16 @@ The **asset** is the tangible output of synthesis:
   - Tests: Test cases, automated tests, data quality tests
   - Documentation: Runbooks, release notes, architecture decisions
 
-**Example Asset**:
-```python
-# Asset: auth_service.py
-# Implements: REQ-F-AUTH-001 (User Authentication)
-# Context Used:
-#   - file://standards/coding/python_style_guide.md
-#   - file://standards/security/secure_coding.md
-#   - file://templates/code/service_template.py
+**Example Asset Structure**:
 
-class AuthenticationService:
-    """
-    Service for user authentication.
-
-    Requirements:
-    - REQ-F-AUTH-001: User Login
-    - REQ-NFR-SEC-001: Secure Authentication
-    """
-
-    def authenticate(self, username: str, password: str) -> AuthToken:
-        """Authenticate user and return token."""
-        # Implementation using bcrypt (approved library)
-        ...
-```
+**Asset**: `auth_service.py`
+- **Implements**: REQ-F-AUTH-001 (User Authentication), REQ-NFR-SEC-001 (Secure Authentication)
+- **Context used**:
+  - `file://standards/coding/python_style_guide.md`
+  - `file://standards/security/secure_coding.md`
+  - `file://templates/code/service_template.py`
+- **Structure**: `AuthenticationService` class with `authenticate()` method
+- **Implementation**: Uses bcrypt (approved library) for password hashing
 
 ### **A.3.4 Observe: Inspecting the Asset**
 
@@ -2186,25 +2880,12 @@ class AuthenticationService:
   - Data quality scores
 
 **Example Observation**:
-```bash
-# Observe the asset through multiple lenses
 
-# 1. Run linter
-pylint auth_service.py
-# Result: 9.5/10 score, 2 minor warnings
-
-# 2. Run tests
-pytest tests/test_auth_service.py -v
-# Result: 12 tests, 11 passed, 1 failed
-
-# 3. Security scan
-bandit auth_service.py
-# Result: No high-severity issues
-
-# 4. Check coverage
-pytest --cov=auth_service tests/
-# Result: 85% coverage
-```
+**Observation results for auth_service.py**:
+1. **Linting** (`pylint auth_service.py`): 9.5/10 score, 2 minor warnings
+2. **Tests** (`pytest tests/test_auth_service.py -v`): 12 tests, 11 passed, 1 failed
+3. **Security scan** (`bandit auth_service.py`): No high-severity issues
+4. **Coverage** (`pytest --cov=auth_service tests/`): 85% coverage
 
 ### **A.3.5 Evaluate: Assessing Quality**
 
@@ -2222,66 +2903,59 @@ pytest --cov=auth_service tests/
   - ❌ **Reject**: Critical issues, must be fixed before proceeding
 
 **Example Evaluation**:
-```yaml
-Evaluation Result for auth_service.py (REQ-F-AUTH-001):
 
-Functional Correctness:
-  ✅ Implements login functionality
-  ❌ Password reset flow missing (REQ-F-AUTH-002)
+**Evaluation Result for auth_service.py (REQ-F-AUTH-001):**
 
-Context Compliance:
-  ✅ Follows Python style guide
-  ✅ Uses approved library (bcrypt)
-  ⚠️ Missing docstring for one method
+**Functional Correctness:**
+- ✅ Implements login functionality
+- ❌ Password reset flow missing (REQ-F-AUTH-002)
 
-Quality Gates:
-  ✅ Linting: 9.5/10 (threshold: 8.0)
-  ❌ Test coverage: 85% (threshold: 90%)
-  ✅ Security scan: No high issues
-  ⚠️ Tests: 1 test failing
+**Context Compliance:**
+- ✅ Follows Python style guide
+- ✅ Uses approved library (bcrypt)
+- ⚠️ Missing docstring for one method
 
-Decision: ❌ REJECT - Fix failing test and improve coverage
-```
+**Quality Gates:**
+- ✅ Linting: 9.5/10 (threshold: 8.0)
+- ❌ Test coverage: 85% (threshold: 90%)
+- ✅ Security scan: No high issues
+- ⚠️ Tests: 1 test failing
+
+**Decision**: ❌ REJECT - Fix failing test and improve coverage
 
 ### **A.3.6 Feedback: Learning and Refinement**
 
-**Feedback** captures learnings and informs the next iteration:
+**Key Principle**: Feedback closes the loop, enabling continuous improvement of both assets and context.
 
-- **Feedback types**:
-  - **Refinement feedback**: How to improve the current asset
-  - **Intent feedback**: Was the intent clear? Does it need revision?
-  - **Context feedback**: Are context constraints complete? Do we need new templates/standards?
-  - **Process feedback**: What worked well? What should change?
+**Four types of feedback:**
 
-- **Feedback destinations**:
-  - **Back to Input**: Refine intent, clarify requirements
-  - **Back to Context**: Update templates, add new constraints, revise standards
-  - **Forward to next stage**: Inform downstream stages about discoveries
-  - **Back to Requirements**: Gaps or ambiguities discovered
+1. **Refinement feedback**: Improve the current asset
+   - Fix defects discovered during observation
+   - Address quality gaps (coverage, documentation, performance)
+   - Refine implementation details
 
-**Example Feedback**:
-```yaml
-Feedback for auth_service.py (REQ-F-AUTH-001):
+2. **Intent feedback**: Clarify or update requirements
+   - Requirement incomplete or ambiguous
+   - New requirements discovered during implementation
+   - Acceptance criteria need revision
 
-Refinement Feedback:
-  - Fix failing test: test_authenticate_with_expired_token
-  - Add missing docstring for _hash_password method
-  - Increase test coverage to 90%+ (add edge case tests)
+3. **Context feedback**: Update constraints and standards for future assets
+   - Missing standards discovered (e.g., token management policy)
+   - Templates need enhancement (e.g., add logging best practices)
+   - New patterns emerge that should be documented
 
-Intent Feedback:
-  - REQ-F-AUTH-001 incomplete: missing password reset requirement
-  - New requirement needed: REQ-F-AUTH-002 (Password Reset)
+4. **Process feedback**: Improve the development process itself
+   - Workflow improvements (e.g., shift security scans earlier)
+   - Tool changes (e.g., add new quality gates)
+   - Stage ordering adjustments
 
-Context Feedback:
-  - Token expiration policy not documented in security standards
-  - ADD to context: file://standards/security/token_management.md
-  - Service template should include logging best practices
-  - UPDATE: file://templates/code/service_template.py
+**Feedback destinations:**
 
-Process Feedback:
-  - Security scan should run before code review (shift left)
-  - UPDATE: file://processes/code_review_checklist.md
-```
+- **Current asset** (Refinement): Fix and improve before proceeding
+- **Requirements** (Intent): Update requirement definitions
+- **Context** (Standards): Add/update templates, standards, patterns
+- **Process** (Workflow): Improve how work flows through stages
+- **Next iteration** (Learning): Apply lessons to future assets
 
 ---
 
@@ -2306,6 +2980,10 @@ Updated Requirements (REQ-F-AUTH-001 v2)
 ```
 
 ### **A.4.1 Chain Example: From Requirement to Code**
+
+**Diagram Title**: Asset Chaining Through Three SDLC Stages
+
+This diagram shows how assets chain together, with each asset becoming input to the next:
 
 ```mermaid
 flowchart TD
@@ -2354,152 +3032,259 @@ flowchart TD
 
 ### **A.4.2 Context Evolution Through the Chain**
 
-As assets are created, **context evolves**:
+**Key Principle**: Context grows and evolves as assets move through the SDLC chain.
 
-```yaml
-# Initial Context (Requirements Stage)
-requirements_stage:
-  regulatory: "file://context/regulatory/gdpr.md"
-  business_rules: "file://context/business/auth_rules.md"
+**How context evolves:**
 
-# Context Grows (Design Stage)
-design_stage:
-  # Inherits from requirements_stage
-  architecture: "file://architecture/microservices_patterns.md"
-  auth_pattern: "file://architecture/patterns/oauth2.md"
+1. **Stage-specific context adds constraints**: Each stage introduces new context relevant to that stage's work
+   - Requirements stage: Regulatory requirements, business rules
+   - Design stage: Architecture patterns, design standards
+   - Code stage: Coding standards, security guidelines, templates
+   - Test stage: Test frameworks, quality gates
+   - Deployment stage: Deployment procedures, runbook templates
 
-# Context Grows (Code Stage)
-code_stage:
-  # Inherits from design_stage
-  coding_standards: "file://standards/coding/python_style_guide.md"
-  security: "file://standards/security/secure_coding.md"
-  templates: "file://templates/code/service_template.py"
+2. **Context inheritance**: Later stages inherit all context from earlier stages
+   - Code stage has access to both Requirements and Design context
+   - Test stage has access to Requirements, Design, and Code context
+   - This ensures consistency across the entire SDLC
 
-# Context Feedback (New constraint discovered)
-code_stage:
-  # ADD: New context discovered during coding
-  token_management: "file://standards/security/token_management.md"  # NEW!
-```
+3. **Feedback updates context**: When gaps are discovered, context is updated for future use
+   - Missing security policy discovered during code review → Add to security standards
+   - New pattern emerges from design work → Add to architecture patterns
+   - Test reveals compliance gap → Update regulatory requirements documentation
+
+4. **Context becomes reusable**: Updated context benefits all future assets
+   - Token management policy added once → Used by all future authentication code
+   - New test template created → Used by all future test development
+   - Architecture pattern documented → Applied to all future designs
 
 ---
 
-## **A.5 AI_SDLC_Context: The Context Repository**
+## **A.5 Context Management Principles**
 
-The **AI_SDLC_Context** system stores all context constraints as URI references:
+As shown in A.4, **context evolves** throughout the asset creation chain. Because context and requirements are what code is **derived from**, they require the same rigor and discipline as code maintenance itself.
 
-### **A.5.1 Context Structure**
+### **A.5.1 Context as Code**
 
-```yaml
-# AI_SDLC_Context configuration
-ai_sdlc_context:
+**Context and requirements replace traditional code as the primary artifacts requiring rigorous maintenance:**
 
-  # Shared context (used by all stages)
-  shared:
-    regulatory: "file://context/regulatory/gdpr.md"
-    data_governance: "file://context/data/governance_policies.md"
+- **Code is derived**: Code is synthesized from context + requirements
+- **Context is foundational**: If context is wrong, all derived code will be wrong
+- **Requirements drive intent**: Requirements define what to build; context defines how to build it
 
-  # Stage-specific context
-  stages:
-    requirements:
-      templates:
-        user_story: "file://templates/requirements/user_story_template.md"
-        nfr: "file://templates/requirements/nfr_template.md"
-      context:
-        business_rules: "file://context/business/domain_rules.md"
+**Therefore**: Context and requirements must be treated with **at least the same rigor as source code**.
 
-    design:
-      architecture:
-        patterns: "file://architecture/patterns/microservices.md"
-        tech_stack: "file://architecture/tech_stack.md"
-      templates:
-        api_spec: "file://templates/design/api_spec_template.yaml"
+### **A.5.2 Version Control and Traceability**
 
-    code:
-      coding_standards:
-        python: "file://standards/coding/python_style_guide.md"
-        security: "file://standards/security/secure_coding.md"
-      templates:
-        service: "file://templates/code/service_template.py"
-      approved_libraries:
-        authentication: ["bcrypt", "PyJWT", "passlib"]
+**All context must be version controlled:**
 
-    test:
-      test_frameworks:
-        unit: "file://testing/frameworks/pytest_config.md"
-        data_quality: "file://testing/frameworks/great_expectations_config.md"
-      templates:
-        test_case: "file://templates/testing/test_case_template.md"
+- **Version everything**: Templates, standards, patterns, guidelines, constraints
+- **Track changes**: Every context update should have a clear reason (linked to feedback)
+- **Enable rollback**: If a context change causes problems, you can revert
+- **Audit trail**: Know when, why, and by whom context was changed
+
+**Example**: If a security standard is updated (e.g., "Minimum password length: 12 characters"), all future assets will use the new standard, while existing assets remain traceable to the old version.
+
+### **A.5.3 Explicit Over Implicit**
+
+**All constraints must be explicitly documented:**
+
+- **No tribal knowledge**: "We always do it this way" is not sufficient
+- **No implicit standards**: If it's not written down, it doesn't exist
+- **No assumptions**: Context should be understandable by someone new to the team
+
+**Anti-pattern**: Developer says "We use bcrypt for passwords" but there's no documented standard → New team member uses a different library
+
+**Correct pattern**: Security standards document explicitly lists approved libraries → Everyone follows the same standard
+
+### **A.5.4 Reusability and Consistency**
+
+**Context should be reusable across projects and teams:**
+
+- **Shared standards**: Coding standards apply to all projects (unless explicitly overridden)
+- **Template reuse**: Service templates, test templates, design templates are shared
+- **Organizational consistency**: All teams follow the same security guidelines, regulatory requirements
+
+**Benefit**: New projects start with accumulated organizational knowledge, not from scratch.
+
+### **A.5.5 Context Hierarchy and Inheritance**
+
+**Context is organized hierarchically:**
+
+- **Organization-level context**: Applies to all projects (e.g., regulatory requirements, security policies)
+- **Team-level context**: Applies to all projects within a team (e.g., tech stack choices)
+- **Project-level context**: Project-specific constraints (e.g., performance requirements)
+- **Stage-level context**: Context specific to SDLC stages (e.g., coding standards for Code stage)
+
+**Inheritance**: Lower levels inherit from higher levels but can add or override constraints.
+
+**Example hierarchy**:
+```
+Organization Context (GDPR compliance)
+  ↓ inherits
+Team Context (Python tech stack, microservices architecture)
+  ↓ inherits
+Project Context (User authentication project, 100k user scale requirement)
+  ↓ inherits
+Stage Context (Code stage: Python style guide, security coding standards)
 ```
 
-### **A.5.2 Lazy Loading of Context**
+### **A.5.6 Feedback Updates Context**
 
-Context is loaded **lazily** (only when needed):
+**Context evolves based on feedback (A.3.6):**
 
-```python
-# Example: Asset creation for auth_service.py
+- **Continuous improvement**: Each asset creation can improve context for future assets
+- **Close the loop**: Feedback shouldn't just fix the current asset—it should update context
+- **Learning organization**: Context becomes smarter over time
 
-# Step 1: Load intent
-intent = get_requirement("REQ-F-AUTH-001")
+**Example feedback loop**:
+1. Developer implements authentication service
+2. Security scan reveals token expiration vulnerability
+3. **Feedback**: Add token management policy to security standards
+4. **Context update**: New standard added for all future authentication code
+5. **Result**: Future authentication implementations automatically follow the new policy
 
-# Step 2: Load relevant context (lazy)
-context = config_manager.get_context("code_stage")
-# Only now are the URIs resolved:
-#   - file://standards/coding/python_style_guide.md → content loaded
-#   - file://standards/security/secure_coding.md → content loaded
-#   - file://templates/code/service_template.py → content loaded
+### **A.5.7 Context Quality Gates**
 
-# Step 3: Synthesis with intent + context
-asset = synthesize(intent, context)
+**Context itself should have quality standards:**
 
-# Step 4-6: Observe, Evaluate, Feedback
-...
-```
+- **Completeness**: Does context cover all necessary constraints?
+- **Clarity**: Is context unambiguous and understandable?
+- **Consistency**: Does new context conflict with existing context?
+- **Testability**: Can compliance with context be objectively verified?
+
+**Review process**: Just as code goes through code review, context updates should be reviewed by appropriate stakeholders (architects, security leads, compliance officers).
+
+### **A.5.8 Separation of Content and Reference**
+
+**Context should separate structure from content:**
+
+- **Structure**: Configuration defining what context exists (templates, standards, patterns)
+- **Content**: The actual documents, specifications, guidelines
+
+**Benefit**: Large context documents don't need to be loaded until needed (lazy loading), improving performance and maintainability.
+
+**Example**:
+- Structure says: "Security standards exist at this location"
+- Content: The actual 50-page secure coding guide
+- Asset creation: Only loads the content when synthesizing a security-sensitive asset
+
+### **A.5.9 Multi-Format Support**
+
+**Context can exist in multiple formats:**
+
+- **Text documents**: Markdown, plain text (for guidelines, patterns, principles)
+- **Structured data**: YAML, JSON, XML (for configuration, approved lists)
+- **Diagrams**: Architecture diagrams, flowcharts (for visual patterns)
+- **Code**: Template files, reference implementations (for starting points)
+- **External references**: URLs to external standards (ISO, OWASP, regulatory bodies)
+
+**Principle**: Use the format that best communicates the constraint, not a one-size-fits-all approach.
+
+### **A.5.10 Context Ownership and Governance**
+
+**Context requires clear ownership:**
+
+- **Coding standards**: Engineering leadership
+- **Security standards**: Security team/CISO
+- **Architecture patterns**: Architecture review board
+- **Business rules**: Product management + domain experts
+- **Regulatory requirements**: Compliance team + legal
+
+**Governance process**:
+- Owners maintain and update their context domains
+- Changes go through appropriate review processes
+- All stakeholders can propose context improvements (via feedback)
+
+---
+
+**Summary**: Context and requirements are the **source of truth** from which all code is derived. They must be maintained with the same rigor, version control, review processes, and quality standards as source code itself. Poor context → Poor code, no matter how good the synthesis process.
 
 ---
 
 ## **A.6 The Building Block at Every Scale**
 
-This building block pattern operates at **multiple scales**:
+The **same fundamental pattern** (Intent + Context → Synthesis → Asset → Observe → Evaluate → Feedback) works at **all levels of granularity**—from a single function to an entire product feature. This universality is what makes the pattern so powerful.
+
+Think of it like **fractals**: the same structure repeats at different zoom levels.
 
 ### **A.6.1 Micro Scale: Single Function**
-```
-Intent: "Implement password hashing"
-Context: Approved libraries (bcrypt), secure coding standards
-Synthesis: Write hash_password() function
-Observe: Unit tests
-Evaluate: Tests pass, follows standards
-Feedback: Function approved
-```
+
+At the smallest level, you apply the pattern to write **individual functions**.
+
+**Example: Implementing password hashing**
+
+| **Step**       | **What Happens**                                                                 |
+|----------------|----------------------------------------------------------------------------------|
+| **Intent**     | "Implement password hashing for user authentication"                              |
+| **Context**    | • Approved libraries: `bcrypt` (from security standards)<br>• Secure coding guide: Don't store plaintext passwords<br>• Python style guide: Use type hints |
+| **Synthesis**  | Developer writes `hash_password()` function using `bcrypt`                        |
+| **Asset**      | `hash_password()` function in `auth_service.py`                                   |
+| **Observe**    | Run unit tests: `test_hash_password_creates_valid_hash()`, `test_hash_password_is_deterministic()` |
+| **Evaluate**   | ✅ Tests pass<br>✅ Follows security standards<br>✅ Type hints present              |
+| **Feedback**   | Function approved, proceed to next function                                       |
+
+**Key insight**: Even a single function goes through the full cycle.
+
+---
 
 ### **A.6.2 Meso Scale: Service Implementation**
-```
-Intent: REQ-F-AUTH-001 (User Authentication)
-Context: Coding standards, security guidelines, service template
-Synthesis: Write AuthenticationService class
-Observe: Unit + integration tests, security scan
-Evaluate: 85% coverage, 1 test failing
-Feedback: Fix failing test, improve coverage
-```
+
+At the module level, you apply the pattern to create **classes or services**.
+
+**Example: Building an Authentication Service**
+
+| **Step**       | **What Happens**                                                                 |
+|----------------|----------------------------------------------------------------------------------|
+| **Intent**     | REQ-F-AUTH-001: "User Authentication" (login, logout, token management)           |
+| **Context**    | • Coding standards (Python style guide)<br>• Security guidelines (secure coding.md)<br>• Service template (service_template.py)<br>• Approved libraries: bcrypt, PyJWT |
+| **Synthesis**  | Developer writes `AuthenticationService` class with methods for login, logout, token validation |
+| **Asset**      | `auth_service.py` containing `AuthenticationService` class                        |
+| **Observe**    | • Run unit tests (12 tests)<br>• Run integration tests (3 tests)<br>• Security scan with Bandit<br>• Measure test coverage |
+| **Evaluate**   | ✅ Linting: 9.5/10<br>❌ Test coverage: 85% (threshold: 90%)<br>⚠️ 1 test failing: `test_authenticate_with_expired_token`<br>✅ Security scan: No high issues |
+| **Feedback**   | **Refinement needed**:<br>• Fix failing test for expired token handling<br>• Add edge case tests to reach 90% coverage<br><br>**Context update**:<br>• Missing token expiration policy in security standards → Add `token_management.md` |
+
+**Key insight**: A service is more complex than a function, so the **Observe** and **Evaluate** steps involve multiple checks. Feedback can trigger both **asset refinement** and **context updates**.
+
+---
 
 ### **A.6.3 Macro Scale: Complete Feature**
-```
-Intent: User authentication feature
-Context: All stage contexts (requirements → deployment)
-Synthesis: Full SDLC (Requirements → Design → Code → Test → UAT → Deploy)
-Observe: System tests, UAT validation, production metrics
-Evaluate: UAT approved, metrics healthy
-Feedback: Feature successful, identify improvements for next iteration
-```
+
+At the feature level, you apply the pattern across the **entire SDLC** (Requirements → Design → Code → Test → UAT → Deployment).
+
+**Example: Building a User Authentication Feature**
+
+| **Step**       | **What Happens**                                                                 |
+|----------------|----------------------------------------------------------------------------------|
+| **Intent**     | "Users need to securely log in to access their accounts"                         |
+| **Context**    | • All stage contexts:<br>&nbsp;&nbsp;- Requirements: Business rules, regulatory requirements (GDPR)<br>&nbsp;&nbsp;- Design: Architecture patterns (OAuth2), API design standards<br>&nbsp;&nbsp;- Code: Coding standards, security guidelines, service templates<br>&nbsp;&nbsp;- Test: Test frameworks (pytest), test case templates<br>&nbsp;&nbsp;- UAT: UAT test plans, acceptance criteria<br>&nbsp;&nbsp;- Deployment: Deployment checklist, runbook template |
+| **Synthesis**  | **Full SDLC execution**:<br>1. Requirements: Write REQ-F-AUTH-001 (user story)<br>2. Design: Design `AuthenticationService` API<br>3. Code: Implement `auth_service.py`<br>4. Test: Write unit + integration tests<br>5. UAT: Create UAT test cases, run with business SMEs<br>6. Deploy: Create release plan, deploy to production |
+| **Asset**      | **Complete feature** including:<br>• Requirements doc (REQ-F-AUTH-001)<br>• Design spec (API spec)<br>• Code (auth_service.py)<br>• Tests (test_auth_service.py)<br>• UAT test cases<br>• Deployment plan<br>• Runbook |
+| **Observe**    | • System tests in staging environment<br>• UAT validation with business users<br>• Production metrics: login success rate, latency, error rate |
+| **Evaluate**   | ✅ UAT approved by business SMEs<br>✅ Production metrics healthy (99.9% success rate)<br>✅ All stage gates passed                       |
+| **Feedback**   | **Feature successful**.<br><br>**Learnings for next iteration**:<br>• Password reset flow is missing → New requirement: REQ-F-AUTH-002<br>• Production monitoring revealed slow response times for MFA → Add performance requirement: REQ-NFR-PERF-003 |
+
+**Key insight**: At this scale, the **Asset** is not a single file but a **complete feature** spanning all SDLC stages. The **Observe** step includes production runtime metrics, and **Feedback** informs future requirements.
+
+---
 
 ### **A.6.4 Meta Scale: Sub-Vector SDLC**
-```
-Intent: Build UAT test automation framework
-Context: Test frameworks, BDD patterns, data quality standards
-Synthesis: Complete UAT Test SDLC (Section 12.3)
-Observe: Tests validate main code, detect failures
-Evaluate: Test coverage 95%, business SME approves
-Feedback: Test framework accelerates delivery
-```
+
+At the meta level, you apply the pattern to build **the infrastructure itself**—like test frameworks or CI/CD pipelines.
+
+**Example: Building a UAT Test Automation Framework**
+
+| **Step**       | **What Happens**                                                                 |
+|----------------|----------------------------------------------------------------------------------|
+| **Intent**     | "We need an automated UAT test framework so business SMEs can validate features without manual testing" |
+| **Context**    | • Test frameworks: pytest, Selenium, BDD (Behave)<br>• Data quality standards: Great Expectations<br>• CI/CD integration: Jenkins, GitHub Actions<br>• Business-readable test format: Gherkin (Given/When/Then) |
+| **Synthesis**  | **Complete UAT Test SDLC** (see Section 12.3):<br>1. Requirements: Define UAT test framework requirements<br>2. Design: Design test framework architecture (BDD + Selenium)<br>3. Code: Implement test framework (`uat_framework/`)<br>4. Test: Test the test framework (meta-tests)<br>5. UAT: Validate framework with business SMEs<br>6. Deploy: Integrate into CI/CD pipeline |
+| **Asset**      | **UAT Test Framework** including:<br>• Test framework code (Python + Selenium)<br>• BDD step definitions<br>• Test templates (Gherkin templates)<br>• CI/CD integration<br>• Documentation for business SMEs |
+| **Observe**    | • Run meta-tests: Does the framework detect failures correctly?<br>• Business SMEs write sample tests using the framework<br>• Measure: Test coverage of main application features |
+| **Evaluate**   | ✅ Test framework detects 95% of known bugs<br>✅ Business SMEs can write tests without developer help<br>✅ Tests run in CI/CD pipeline successfully |
+| **Feedback**   | **Test framework accelerates delivery**:<br>• UAT cycle time reduced from 2 weeks to 3 days<br>• Business confidence improved<br><br>**Context update**:<br>• Add UAT framework documentation to AI_SDLC_Context → `file://testing/frameworks/uat_framework_guide.md` |
+
+**Key insight**: At this scale, you're building the **testing infrastructure itself** using the same pattern. This is a **meta-level SDLC** (a sub-vector)—building the tools that will be used to test future features. The framework becomes part of the **Context** for future asset creation.
 
 ---
 
