@@ -519,25 +519,10 @@ Requirements are shaped by:
 
 ### **4.4.2 Templates**
 
-```yaml
-# contexts/stages/requirements.yml
-requirements_stage:
-  templates:
-    user_story: "file://templates/requirements/user_story_template.md"
-    nfr: "file://templates/requirements/nfr_template.md"
-    data_requirement: "file://templates/requirements/data_requirement_template.md"
-    acceptance_criteria: "file://templates/requirements/acceptance_criteria_template.md"
-
-  context:
-    regulatory: "file://context/regulatory/compliance_requirements.md"
-    business_rules: "file://context/business/domain_rules.md"
-    data_governance: "file://context/data/governance_policies.md"
-
-  governance:
-    review_required: true
-    reviewers: ["product-owner", "business-analyst", "compliance-officer"]
-    traceability_required: true
-```
+Templates stored in AI_SDLC_Context reference:
+- Stage-specific templates (user stories, designs, tasks, code, tests, deployment plans)
+- Context constraints (standards, patterns, approved tools)
+- Governance rules (quality gates, approval workflows)
 
 **User Story Template** should contain:
 - User story in Given/When/Then or As-a/I-want/So-that format with requirement key
@@ -653,42 +638,10 @@ Design is constrained by:
 
 ### **5.4.2 Templates**
 
-```yaml
-# contexts/stages/design.yml
-design_stage:
-  architecture_context:
-    tech_stack: "file://architecture/tech_stack.md"
-    patterns:
-      microservices: "file://architecture/patterns/microservices.md"
-      event_driven: "file://architecture/patterns/event_driven.md"
-      api_gateway: "file://architecture/patterns/api_gateway.md"
-    platforms:
-      cloud: "file://architecture/platforms/aws.md"
-      container: "file://architecture/platforms/kubernetes.md"
-
-  data_architecture_context:
-    data_modeling: "file://data/modeling_standards.md"
-    storage_patterns:
-      relational: "file://data/storage/postgres_patterns.md"
-      nosql: "file://data/storage/dynamodb_patterns.md"
-      data_lake: "file://data/storage/s3_data_lake.md"
-    integration_patterns:
-      batch: "file://data/integration/batch_etl.md"
-      streaming: "file://data/integration/kafka_streaming.md"
-      cdc: "file://data/integration/cdc_patterns.md"
-
-  templates:
-    component_design: "file://templates/design/component_design_template.md"
-    api_design: "file://templates/design/api_design_template.md"
-    data_model: "file://templates/design/data_model_template.md"
-    data_flow: "file://templates/design/data_flow_diagram_template.md"
-
-  governance:
-    review_required: true
-    reviewers: ["senior-architect", "data-architect", "security-architect"]
-    approval_threshold: 2
-    design_review_checklist: "file://governance/design_review_checklist.md"
-```
+Templates stored in AI_SDLC_Context reference:
+- Stage-specific templates (user stories, designs, tasks, code, tests, deployment plans)
+- Context constraints (standards, patterns, approved tools)
+- Governance rules (quality gates, approval workflows)
 
 **Component Design Template** should contain:
 - Component overview with requirement keys it satisfies
@@ -803,31 +756,10 @@ Task breakdown is constrained by:
 
 ### **6.4.2 Templates**
 
-```yaml
-# contexts/stages/tasks.yml
-tasks_stage:
-  capacity_context:
-    team_velocity: "file://planning/team_velocity.md"
-    skill_matrix: "file://planning/skill_matrix.md"
-    sprint_capacity: "file://planning/capacity_planning.md"
-
-  estimation_context:
-    story_point_guide: "file://planning/story_points.md"
-    complexity_factors: "file://planning/complexity_estimation.md"
-    historical_data: "file://planning/historical_velocity.csv"
-
-  templates:
-    epic: "file://templates/tasks/epic_template.md"
-    user_story: "file://templates/tasks/user_story_task_template.md"
-    technical_task: "file://templates/tasks/technical_task_template.md"
-    data_task: "file://templates/tasks/data_task_template.md"
-    spike: "file://templates/tasks/spike_template.md"
-
-  governance:
-    estimation_required: true
-    acceptance_criteria_required: true
-    requirement_key_required: true
-```
+Templates stored in AI_SDLC_Context reference:
+- Stage-specific templates (user stories, designs, tasks, code, tests, deployment plans)
+- Context constraints (standards, patterns, approved tools)
+- Governance rules (quality gates, approval workflows)
 
 **Task Template** should contain:
 - Task ID and requirement keys it implements
@@ -974,42 +906,10 @@ Code implementation is constrained by:
 
 ### **7.4.2 Templates**
 
-```yaml
-# contexts/stages/code.yml
-code_stage:
-  coding_standards:
-    python: "file://standards/coding/python_style_guide.md"
-    java: "file://standards/coding/java_style_guide.md"
-    sql: "file://standards/coding/sql_style_guide.md"
-    security: "file://standards/security/secure_coding.md"
-
-  data_standards:
-    naming: "file://standards/data/naming_conventions.md"
-    schema_design: "file://standards/data/schema_design.md"
-    data_types: "file://standards/data/data_types.md"
-    sql_patterns: "file://standards/data/sql_patterns.md"
-
-  templates:
-    service_class: "file://templates/code/service_template.py"
-    api_controller: "file://templates/code/api_controller_template.py"
-    data_pipeline: "file://templates/code/data_pipeline_template.py"
-    sql_migration: "file://templates/code/sql_migration_template.sql"
-    unit_test: "file://templates/code/unit_test_template.py"
-
-  approved_libraries:
-    python: "file://standards/libraries/python_approved.yml"
-    java: "file://standards/libraries/java_approved.yml"
-
-  governance:
-    code_review_required: true
-    min_reviewers: 2
-    automated_checks:
-      - linting
-      - security_scan
-      - test_coverage
-      - dependency_check
-    coverage_threshold: 80
-```
+Templates stored in AI_SDLC_Context reference:
+- Stage-specific templates (user stories, designs, tasks, code, tests, deployment plans)
+- Context constraints (standards, patterns, approved tools)
+- Governance rules (quality gates, approval workflows)
 
 **Service Code Template** should contain:
 - Module docstring with requirement keys and service description
