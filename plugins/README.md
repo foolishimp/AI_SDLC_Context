@@ -1,29 +1,49 @@
 # AI SDLC Context Plugins
 
-This directory contains **Claude Code plugins** that provide baseline development contexts and methodologies.
+This directory contains **Claude Code plugins** that provide AI-Augmented Software Development Lifecycle (AI SDLC) methodology and standards.
 
 ## Available Plugins
 
-### aisdlc-methodology
-**Core development methodology** - Sacred Seven principles and TDD workflow
-- Sacred Seven development principles
-- TDD workflow (RED → GREEN → REFACTOR)
-- Pair programming practices
-- Session management guides
-- Task documentation templates
+### aisdlc-methodology ⭐ **v2.0.0**
+
+**Complete 7-Stage AI SDLC Methodology** - Intent-driven development with full lifecycle traceability
+
+**What It Provides**:
+- **7-Stage AI SDLC**: Requirements → Design → Tasks → Code → System Test → UAT → Runtime Feedback
+- **AI Agent Configurations**: Detailed specifications for AI agents at each SDLC stage (1,273 lines)
+- **Sacred Seven Principles**: Foundation for Code stage (TDD, Fail Fast, Modular, etc.)
+- **Requirement Traceability**: Track requirement keys (REQ-F-*, REQ-NFR-*, REQ-DATA-*) from intent to runtime
+- **TDD Workflow**: RED → GREEN → REFACTOR → COMMIT cycle
+- **BDD Testing**: Given/When/Then scenarios for System Test and UAT stages
+- **Bidirectional Feedback**: Production issues flow back to requirements and generate new intents
+
+**Key Files**:
+- `config/stages_config.yml` - Complete 7-stage agent specifications (1,273 lines)
+- `config/config.yml` - Sacred Seven principles and Code stage configuration
+- `docs/principles/SACRED_SEVEN.md` - The seven core development principles
+- `docs/processes/TDD_WORKFLOW.md` - Complete TDD cycle documentation
 
 **Dependencies**: None (foundation plugin)
+
+**Version History**:
+- v2.0.0 (2025-11-14): Added 7-stage AI SDLC methodology (Requirements, Design, Tasks, Code, System Test, UAT, Runtime Feedback)
+- v1.0.0 (2025-10-16): Initial release with Sacred Seven principles and TDD workflow
+
+**Reference**: [Complete 7-Stage Methodology Guide](../docs/ai_sdlc_guide.md) (3,300+ lines)
 
 ---
 
 ### python-standards
+
 **Python language standards** - PEP 8, pytest, type hints, tooling
+
+**What It Provides**:
 - PEP 8 style guidelines
 - Python testing practices (pytest)
 - Type hints and documentation standards
-- Python tooling (black, mypy, pylint)
+- Python tooling configuration (black, mypy, pylint)
 
-**Dependencies**: `aisdlc-methodology`
+**Dependencies**: `aisdlc-methodology` (v2.0.0+)
 
 ---
 
@@ -69,6 +89,74 @@ git clone https://github.com/foolishimp/AI_SDLC_Context.git
 cd your-project
 /plugin marketplace add ../AI_SDLC_Context
 /plugin install aisdlc-methodology
+```
+
+---
+
+## The 7-Stage AI SDLC Methodology
+
+The **aisdlc-methodology v2.0.0** plugin provides complete agent configurations for all 7 SDLC stages:
+
+### 1. Requirements Stage (Section 4.0)
+**Agent**: Requirements Agent
+**Purpose**: Transform intent into structured requirements with unique, immutable keys
+**Output**: REQ-F-* (functional), REQ-NFR-* (non-functional), REQ-DATA-* (data quality), REQ-BR-* (business rules)
+
+### 2. Design Stage (Section 5.0)
+**Agent**: Design Agent / Solution Designer
+**Purpose**: Transform requirements into technical solution architecture
+**Output**: Component diagrams, data models, API specs, ADRs, traceability matrix
+
+### 3. Tasks Stage (Section 6.0)
+**Agent**: Tasks Stage Orchestrator
+**Purpose**: Break design into work units and orchestrate Jira workflow
+**Output**: Jira tickets with requirement tags, dependency graph, capacity planning
+
+### 4. Code Stage (Section 7.0)
+**Agent**: Code Agent / Developer Agent
+**Purpose**: Implement work units using TDD workflow
+**Output**: Production code with requirement tags, unit tests, integration tests
+**Methodology**: TDD (RED → GREEN → REFACTOR) + Sacred Seven principles
+
+### 5. System Test Stage (Section 8.0)
+**Agent**: System Test Agent / QA Agent
+**Purpose**: Create BDD integration tests validating requirements
+**Output**: BDD feature files (Gherkin), step definitions, coverage matrix
+**Methodology**: BDD (Given/When/Then)
+
+### 6. UAT Stage (Section 9.0)
+**Agent**: UAT Agent
+**Purpose**: Business validation and sign-off
+**Output**: Manual UAT test cases, automated UAT tests, business sign-off
+**Methodology**: BDD in pure business language
+
+### 7. Runtime Feedback Stage (Section 10.0)
+**Agent**: Runtime Feedback Agent
+**Purpose**: Close the feedback loop from production to requirements
+**Output**: Release manifests, runtime telemetry (tagged with REQ keys), alerts, new intents
+
+**Complete Flow**:
+```
+Intent: INT-001 "Customer self-service portal"
+  ↓
+Requirements: REQ-F-AUTH-001 "User login with email/password"
+  ↓
+Design: AuthenticationService → REQ-F-AUTH-001
+  ↓
+Tasks: PORTAL-123 (Jira ticket) → REQ-F-AUTH-001
+  ↓
+Code: auth_service.py
+      # Implements: REQ-F-AUTH-001
+  ↓
+Tests: test_auth.py # Validates: REQ-F-AUTH-001
+       auth.feature # BDD: Given/When/Then for REQ-F-AUTH-001
+  ↓
+UAT: UAT-001 → REQ-F-AUTH-001 (Business sign-off ✅)
+  ↓
+Runtime: Datadog alert: "ERROR: REQ-F-AUTH-001 - Auth timeout"
+  ↓
+Feedback: New intent: INT-042 "Fix auth timeout"
+  [Cycle repeats...]
 ```
 
 ---
@@ -166,7 +254,7 @@ mkdir -p my-project-context/commands
   "displayName": "My Project Context",
   "description": "Project-specific configuration and standards",
   "dependencies": {
-    "aisdlc-methodology": "^1.0.0",
+    "aisdlc-methodology": "^2.0.0",
     "python-standards": "^1.0.0"
   }
 }
@@ -174,16 +262,64 @@ mkdir -p my-project-context/commands
 
 ### 3. Create config/context.yml
 
+You can configure any or all of the 7 SDLC stages:
+
 ```yaml
 project:
   name: "my-payment-api"
   type: "api_service"
   risk_level: "high"
 
-# Override baseline standards
-testing:
-  coverage_minimum: 95  # Higher than baseline 80%
+ai_sdlc:
+  # Load 7-stage methodology plugin
+  methodology_plugin: "file://../aisdlc-methodology/config/stages_config.yml"
 
+  # Enable all 7 stages (or subset)
+  enabled_stages:
+    - requirements    # Intent → Structured requirements
+    - design          # Requirements → Technical solution
+    - tasks           # Work breakdown + Jira orchestration
+    - code            # TDD implementation
+    - system_test     # BDD integration testing
+    - uat             # Business validation
+    - runtime_feedback # Production telemetry feedback
+
+  # Stage-specific overrides
+  stages:
+    requirements:
+      personas:
+        product_owner: john@acme.com
+        business_analyst: sarah@acme.com
+
+      requirement_types:
+        - type: functional
+          prefix: REQ-F
+          template: "file://docs/templates/user_story_template.md"
+        - type: non_functional
+          prefix: REQ-NFR
+          template: "file://docs/templates/nfr_template.md"
+
+    code:
+      # Override Code stage settings
+      testing:
+        coverage_minimum: 95  # Higher than baseline 80%
+        frameworks: [pytest, unittest]
+
+      sacred_seven:
+        enabled: true
+        tdd_workflow: strict  # Enforce RED → GREEN → REFACTOR
+
+    system_test:
+      bdd_framework: behave  # or cucumber, pytest-bdd
+      coverage_requirement: 95  # ≥95% requirement coverage
+
+    runtime_feedback:
+      telemetry_platform: datadog
+      alert_channels:
+        - slack: "#alerts-payment-api"
+        - pagerduty: "payment-service-oncall"
+
+# Project-specific overrides
 security:
   penetration_testing: required
   pci_compliance: true
@@ -225,16 +361,43 @@ plugin-name/
 ├── .claude-plugin/
 │   └── plugin.json          # Plugin manifest
 ├── config/
-│   ├── context.yml         # Context configuration (YAML)
-│   └── overrides.yml       # Optional overrides
+│   ├── stages_config.yml   # 7-stage agent specifications (for methodology plugins)
+│   ├── config.yml          # Sacred Seven + Code stage config
+│   └── overrides.yml       # Optional stage overrides
 ├── commands/                # Slash commands (optional)
 │   └── load-context.md
 ├── docs/                    # Documentation
 │   ├── README.md
-│   ├── guides/
-│   └── principles/
+│   ├── principles/         # Sacred Seven principles
+│   ├── processes/          # TDD workflow, BDD guides
+│   └── guides/             # Stage-specific guides
 └── project.json            # Legacy: for MCP service compatibility
 ```
+
+---
+
+## Example Projects
+
+See complete 7-stage AI SDLC examples:
+
+### Customer Portal Example ⭐
+
+**Location**: `../examples/local_projects/customer_portal/`
+
+**Demonstrates**:
+- All 7 stages: Requirements → Design → Tasks → Code → System Test → UAT → Runtime Feedback
+- Requirement key propagation (REQ-F-*, REQ-NFR-*, REQ-DATA-*)
+- TDD workflow (RED → GREEN → REFACTOR)
+- BDD testing (Given/When/Then scenarios)
+- Bidirectional traceability (Intent ↔ Runtime)
+- Agent orchestration and feedback loops
+
+**Files**:
+- `config/config.yml` - Complete 7-stage agent configuration (650+ lines)
+- `README.md` - Detailed walkthrough (800+ lines)
+- Architecture diagram showing all stages
+
+👉 **Start here** to understand the complete AI SDLC methodology
 
 ---
 
@@ -270,9 +433,49 @@ python -m mcp_service.server --port 8000 --plugins-dir plugins/
 # See mcp_service/docs/ for details
 ```
 
+The MCP service is being updated to support the 7-stage AI SDLC methodology. See `../mcp_service/MCP_SDLC_INTEGRATION_PLAN.md` for the integration plan.
+
 ---
 
 ## Migration Guide
+
+### From v1.0.0 to v2.0.0
+
+**v1.0.0** (Sacred Seven + TDD only):
+```yaml
+methodology:
+  sacred_seven:
+    enabled: true
+  tdd:
+    workflow: "RED → GREEN → REFACTOR"
+```
+
+**v2.0.0** (Complete 7-stage SDLC):
+```yaml
+ai_sdlc:
+  methodology_plugin: "file://plugins/aisdlc-methodology/config/stages_config.yml"
+
+  enabled_stages:
+    - requirements
+    - design
+    - tasks
+    - code          # Includes Sacred Seven + TDD
+    - system_test
+    - uat
+    - runtime_feedback
+
+  stages:
+    code:
+      sacred_seven:
+        enabled: true
+      tdd:
+        workflow: "RED → GREEN → REFACTOR"
+```
+
+The Code stage (Section 7.0) now integrates with the complete SDLC:
+- **Receives**: Work units from Tasks stage (with REQ keys)
+- **Produces**: Code + tests (tagged with REQ keys)
+- **Feeds**: System Test stage (for BDD validation)
 
 ### From example_projects_repo/ to plugins/
 
@@ -285,7 +488,12 @@ New structure:
 ```
 plugins/aisdlc-methodology/    # Note: kebab-case
 ├── .claude-plugin/plugin.json
-└── (rest of files same)
+├── config/
+│   ├── stages_config.yml  # NEW: 7-stage specifications
+│   └── config.yml         # Sacred Seven + Code stage
+└── docs/
+    ├── principles/SACRED_SEVEN.md
+    └── processes/TDD_WORKFLOW.md
 ```
 
 ### From Context Tuples to Plugins
@@ -314,6 +522,10 @@ New (Claude Code):
 
 ## Benefits
 
+✅ **Complete Lifecycle** - 7-stage AI SDLC methodology (not just Code stage)
+✅ **Requirement Traceability** - Track REQ keys from intent to runtime
+✅ **AI Agent Specifications** - Detailed configs for AI agents at each stage
+✅ **Bidirectional Feedback** - Production issues flow back to requirements
 ✅ **Simpler** - Use Claude Code's native plugin system
 ✅ **Standard** - Follow Claude Code conventions
 ✅ **Federated** - Multiple marketplaces (corporate, division, local)
@@ -325,7 +537,24 @@ New (Claude Code):
 
 ## See Also
 
+### Core Documentation
+- [Complete 7-Stage Methodology Guide](../docs/ai_sdlc_guide.md) - 3,300+ line reference (⭐ **Start here**)
+- [Documentation Index](../docs/README.md) - Role-based learning paths for BA, Architect, Developer, QA, DevOps, PM
+- [Customer Portal Example](../examples/local_projects/customer_portal/README.md) - Complete 7-stage walkthrough
+
+### Claude Code Resources
 - [Claude Code Plugin Documentation](https://docs.claude.com/en/docs/claude-code/plugins)
 - [Marketplace Guide](https://docs.claude.com/en/docs/claude-code/plugin-marketplaces)
-- [MCP Service](../mcp_service/) - For non-Claude LLMs
-- [Examples](../examples/) - Example local context plugins
+
+### MCP Service (Non-Claude LLMs)
+- [MCP Service Overview](../mcp_service/README.md)
+- [MCP SDLC Integration Plan](../mcp_service/MCP_SDLC_INTEGRATION_PLAN.md) - 7-stage integration roadmap
+- [MCP Personas Documentation](../mcp_service/docs/PERSONAS.md)
+
+### Examples
+- [Examples Directory](../examples/) - All example projects
+- [API Platform Example](../examples/local_projects/api_platform/) - Public API example
+
+---
+
+**"Excellence or nothing"** 🔥
