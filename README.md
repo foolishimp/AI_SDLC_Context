@@ -1,6 +1,6 @@
 # AI_SDLC_Context
 
-**Claude Code Plugin Marketplace** for baseline development contexts and methodologies.
+**Intent-Driven AI SDLC Methodology** with full requirement traceability and 7-stage agent orchestration.
 
 **Mantra**: **"Excellence or nothing"** 🔥
 
@@ -8,19 +8,39 @@
 
 ## What Is This?
 
-A **Claude Code marketplace** providing baseline development contexts that you can install as plugins:
+A complete **AI-Augmented Software Development Lifecycle (AI SDLC)** framework providing:
 
-- **aisdlc-methodology** - Sacred Seven principles and TDD workflow
-- **python-standards** - Python language standards (PEP 8, pytest, type hints)
-- *(More language standards and contexts coming)*
+- **🎯 7-Stage Methodology**: Requirements → Design → Tasks → Code → System Test → UAT → Runtime Feedback
+- **🔗 Requirement Traceability**: Track requirement keys (REQ-F-*, REQ-NFR-*, REQ-DATA-*) from intent to runtime
+- **🤖 AI Agent Configurations**: Detailed specifications for AI agents at each SDLC stage
+- **📦 Claude Code Plugins**: Installable methodology and standards as plugins
+- **🏢 Federated Architecture**: Compose contexts across corporate → division → team → project
+- **🔄 Bidirectional Feedback**: Production issues flow back to requirements and generate new intents
 
-These contexts can be composed in a **federated architecture**: corporate → division → team → project.
+### The 7-Stage AI SDLC
+
+```
+Intent → Requirements → Design → Tasks → Code → System Test → UAT → Runtime Feedback
+   ↑                                                                         ↓
+   └─────────────────────────── Feedback Loop ───────────────────────────────┘
+```
+
+Each stage has:
+- **AI Agent specification** with clear responsibilities
+- **Quality gates** for stage completion
+- **Traceability** to requirement keys
+- **Personas** (human roles and AI agents)
+
+👉 **Full Methodology**: [AI SDLC Guide](docs/ai_sdlc_guide.md)
+👉 **Example Project**: [customer_portal](examples/local_projects/customer_portal/)
 
 ---
 
 ## Quick Start
 
-### 1. Add This Marketplace
+### Option 1: Use Claude Code Plugins (Recommended)
+
+#### 1. Add This Marketplace
 
 In Claude Code:
 
@@ -43,16 +63,200 @@ Or add to your `.claude/settings.json`:
 }
 ```
 
-### 2. Install Plugins
+#### 2. Install AI SDLC Methodology Plugin
 
 ```bash
 /plugin install @aisdlc/aisdlc-methodology
+```
+
+**What you get**:
+- Complete 7-stage AI SDLC workflow
+- Sacred Seven development principles
+- TDD workflow (RED → GREEN → REFACTOR)
+- BDD testing guidelines
+- Requirement traceability framework
+
+#### 3. Optional: Install Language Standards
+
+```bash
 /plugin install @aisdlc/python-standards
 ```
 
-### 3. Start Coding!
+#### 4. Start Using the Methodology!
 
-The contexts are now active. Claude will follow the Sacred Seven principles and Python standards automatically.
+Claude will now follow the 7-stage AI SDLC methodology automatically.
+
+### Option 2: Explore the Methodology First
+
+```bash
+# Clone the repository
+git clone https://github.com/foolishimp/AI_SDLC_Context.git
+cd AI_SDLC_Context
+
+# Read the complete methodology guide
+open docs/ai_sdlc_guide.md
+
+# Explore the example project (7-stage workflow)
+open examples/local_projects/customer_portal/README.md
+
+# Review the methodology plugin
+open plugins/aisdlc-methodology/README.md
+```
+
+---
+
+## The 7 Stages Explained
+
+### 1. Requirements Stage (Section 4.0)
+**Agent**: Requirements Agent
+**Purpose**: Transform intent into structured requirements with unique, immutable keys
+
+**Outputs**: REQ-F-* (functional), REQ-NFR-* (non-functional), REQ-DATA-* (data quality), REQ-BR-* (business rules)
+
+### 2. Design Stage (Section 5.0)
+**Agent**: Design Agent / Solution Designer
+**Purpose**: Transform requirements into implementable technical and data solution
+
+**Outputs**: Component diagrams, data models, API specifications, architecture decision records (ADRs)
+
+### 3. Tasks Stage (Section 6.0)
+**Agent**: Tasks Stage Orchestrator
+**Purpose**: Work breakdown with Jira integration and agent orchestration
+
+**Outputs**: Jira epics/stories with requirement tags, dependency graph, capacity planning
+
+### 4. Code Stage (Section 7.0)
+**Agent**: Code Agent / Developer Agent
+**Purpose**: TDD-driven implementation (RED → GREEN → REFACTOR)
+
+**Methodology**: Sacred Seven principles + TDD cycle
+**Outputs**: Production code with requirement tags, unit tests, integration tests
+
+### 5. System Test Stage (Section 8.0)
+**Agent**: System Test Agent / QA Agent
+**Purpose**: BDD integration testing (Given/When/Then)
+
+**Outputs**: BDD feature files (Gherkin), step definitions, coverage matrix (≥95% requirement coverage)
+
+### 6. UAT Stage (Section 9.0)
+**Agent**: UAT Agent
+**Purpose**: Business validation with BDD in pure business language
+
+**Outputs**: Manual UAT test cases, automated UAT tests, business sign-off
+
+### 7. Runtime Feedback Stage (Section 10.0)
+**Agent**: Runtime Feedback Agent
+**Purpose**: Production telemetry and feedback loop closure
+
+**Outputs**: Release manifests with requirement traceability, runtime alerts linked to requirement keys, new intents from production issues
+
+👉 **Detailed Specifications**: [AI SDLC Guide](docs/ai_sdlc_guide.md)
+
+---
+
+## Requirement Traceability Example
+
+```
+Intent: INT-001 "Customer self-service portal"
+  ↓
+Requirements: REQ-F-AUTH-001 "User login with email/password"
+  ↓
+Design: AuthenticationService → REQ-F-AUTH-001
+  ↓
+Tasks: PORTAL-123 (Jira ticket) → REQ-F-AUTH-001
+  ↓
+Code: auth_service.py
+      # Implements: REQ-F-AUTH-001
+  ↓
+Tests: test_auth.py # Validates: REQ-F-AUTH-001
+       auth.feature # BDD: Given/When/Then for REQ-F-AUTH-001
+  ↓
+UAT: UAT-001 → REQ-F-AUTH-001 (Business sign-off ✅)
+  ↓
+Runtime: Datadog alert: "ERROR: REQ-F-AUTH-001 - Auth timeout"
+  ↓
+Feedback: New intent: INT-042 "Fix auth timeout"
+  [Cycle repeats...]
+```
+
+**Every artifact tagged with requirement keys** for complete traceability!
+
+---
+
+## Sacred Seven Principles (Code Stage Foundation)
+
+The Code Stage (Section 7.0) is built on these principles:
+
+1. **Test Driven Development** - "No code without tests"
+   - TDD cycle: RED → GREEN → REFACTOR → COMMIT
+   - Minimum 80% coverage (critical paths 100%)
+
+2. **Fail Fast & Root Cause** - "Break loudly, fix completely"
+   - No workarounds or band-aids
+   - Tests fail loudly, fix root causes
+
+3. **Modular & Maintainable** - "Single responsibility, loose coupling"
+   - Each module does one thing well
+   - Clean, understandable code
+
+4. **Reuse Before Build** - "Check first, create second"
+   - Search existing code first
+   - Avoid duplication
+
+5. **Open Source First** - "Suggest alternatives, human decides"
+   - AI suggests options
+   - Humans make final decisions
+
+6. **No Legacy Baggage** - "Clean slate, no debt"
+   - No technical debt
+   - Clean implementation
+
+7. **Perfectionist Excellence** - "Best of breed only"
+   - Quality over quantity
+   - Excellence or nothing
+
+👉 **Full Principles**: [Sacred Seven](plugins/aisdlc-methodology/docs/principles/SACRED_SEVEN.md)
+
+---
+
+## Available Plugins
+
+### aisdlc-methodology v2.0.0
+
+**Core AI SDLC methodology** - Complete 7-stage workflow
+
+**Provides**:
+- ✅ Complete 7-stage AI SDLC agent configurations
+- ✅ Sacred Seven development principles
+- ✅ TDD workflow (RED → GREEN → REFACTOR)
+- ✅ BDD testing guidelines (Given/When/Then)
+- ✅ Requirement traceability framework
+- ✅ Quality gates for each stage
+- ✅ Persona specifications (human roles + AI agents)
+- ✅ Pair programming practices
+- ✅ Session management guides
+
+**Reference**: [docs/ai_sdlc_guide.md](docs/ai_sdlc_guide.md)
+**Dependencies**: None (foundation)
+
+👉 [Full Documentation](plugins/aisdlc-methodology/README.md)
+
+---
+
+### python-standards
+
+**Python language standards** - PEP 8, pytest, type hints, tooling
+
+**Provides**:
+- PEP 8 style guidelines
+- Python testing practices (pytest, coverage >80%)
+- Type hints and docstring standards
+- Tooling configuration (black, mypy, pylint, pytest)
+- Python project structure best practices
+
+**Dependencies**: `aisdlc-methodology`
+
+👉 [Full Documentation](plugins/python-standards/)
 
 ---
 
@@ -74,7 +278,7 @@ The power of this approach is **multiple marketplaces** for organizational hiera
     }
   },
   "plugins": [
-    "@corporate/aisdlc-methodology",      // Corporate baseline
+    "@corporate/aisdlc-methodology",      // Corporate baseline (7 stages)
     "@corporate/python-standards",         // Corporate Python standards
     "@division/backend-standards",         // Division overrides
     "@local/my-team-customizations",       // Team customizations
@@ -87,58 +291,44 @@ The power of this approach is **multiple marketplaces** for organizational hiera
 
 ---
 
-## Available Plugins
+## Example Projects
 
-### aisdlc-methodology
+### customer_portal (⭐ Complete 7-Stage Example)
 
-**Core development methodology** - Foundation for all projects
+**Purpose**: Demonstrates complete 7-stage AI SDLC with full requirement traceability
 
-**Provides**:
-- **Sacred Seven Principles**
-  1. Test Driven Development - "No code without tests"
-  2. Fail Fast & Root Cause - "Break loudly, fix completely"
-  3. Modular & Maintainable - "Single responsibility, loose coupling"
-  4. Reuse Before Build - "Check first, create second"
-  5. Open Source First - "Suggest alternatives, human decides"
-  6. No Legacy Baggage - "Clean slate, no debt"
-  7. Perfectionist Excellence - "Best of breed only"
+**Shows**:
+- All 7 stages in action
+- Requirement key propagation (REQ-F-AUTH-001 flows through all stages)
+- TDD workflow in Code stage
+- BDD testing in System Test and UAT stages
+- Runtime feedback creating new intents
+- Complete bidirectional traceability
 
-- **TDD Workflow**: RED → GREEN → REFACTOR → COMMIT
-- **Pair Programming Practices**: Human-AI collaboration guide
-- **Session Management**: Session starter checklists
-- **Task Documentation**: Templates for finished tasks
+👉 [Detailed Walkthrough](examples/local_projects/customer_portal/README.md)
 
-**Dependencies**: None (foundation)
+### api_platform
 
-👉 [Full Documentation](plugins/aisdlc-methodology/docs/)
+**Purpose**: Public API with backwards compatibility requirements
 
----
+**Shows**: How to override Principle #6 (No Legacy Baggage) for customer-facing APIs using feature flags
 
-### python-standards
+👉 [API Platform Example](examples/local_projects/api_platform/README.md)
 
-**Python language standards** - PEP 8, pytest, type hints, tooling
+### More Examples
 
-**Provides**:
-- PEP 8 style guidelines
-- Python testing practices (pytest, coverage >80%)
-- Type hints and docstring standards
-- Tooling configuration (black, mypy, pylint, pytest)
-- Python project structure best practices
-
-**Dependencies**: `aisdlc-methodology`
-
-👉 [Full Documentation](plugins/python-standards/)
+See [examples/README.md](examples/README.md) for complete list
 
 ---
 
-## Creating Your Own Context Plugin
+## Creating Your Own Project with AI SDLC
 
 See [plugins/README.md](plugins/README.md) for complete guide.
 
 ### Quick Example
 
 ```bash
-# Create plugin structure
+# Create project structure
 mkdir -p my-project/.claude-plugin
 cd my-project
 
@@ -149,21 +339,41 @@ cat > .claude-plugin/plugin.json <<EOF
   "version": "1.0.0",
   "displayName": "My Project",
   "dependencies": {
-    "aisdlc-methodology": "^1.0.0",
+    "aisdlc-methodology": "^2.0.0",
     "python-standards": "^1.0.0"
   }
 }
 EOF
 
-# Create config
+# Create project config with 7-stage SDLC
 mkdir config
 cat > config/context.yml <<EOF
 project:
   name: "my-payment-api"
   risk_level: "high"
 
-testing:
-  coverage_minimum: 95  # Override baseline 80%
+# Reference 7-stage methodology plugin
+ai_sdlc:
+  methodology_plugin: "file://../../plugins/aisdlc-methodology/config/stages_config.yml"
+
+  # Enable stages you need
+  enabled_stages:
+    - requirements
+    - design
+    - tasks
+    - code
+    - system_test
+    - uat
+    - runtime_feedback
+
+  # Project-specific quality standards
+  stages:
+    code:
+      testing:
+        coverage_minimum: 95  # Override baseline 80%
+
+    system_test:
+      requirement_coverage_minimum: 98  # Override baseline 95%
 
 security:
   pci_compliance: required
@@ -184,14 +394,14 @@ Your company hosts a marketplace with baseline contexts:
 
 ```
 corporate-marketplace/
-├── aisdlc-methodology/
+├── aisdlc-methodology/        # 7-stage AI SDLC
 ├── python-standards/
 ├── javascript-standards/
 ├── security-baseline/
 └── compliance-requirements/
 ```
 
-All developers add this marketplace and get company standards.
+All developers add this marketplace and get company standards + 7-stage methodology.
 
 ### Division Customizations
 
@@ -201,7 +411,8 @@ Engineering division extends corporate with specific practices:
 division-marketplace/
 ├── backend-api-standards/      # Extends python-standards
 ├── frontend-standards/          # Extends javascript-standards
-└── microservices-patterns/
+├── microservices-patterns/
+└── division-sdlc-overrides/    # Stage-specific customizations
 ```
 
 ### Team/Project Contexts
@@ -212,13 +423,15 @@ Individual teams create local contexts:
 .claude-plugins/
 ├── team-conventions/
 └── project-specific/
+    └── config/
+        └── context.yml         # Project-specific 7-stage config
 ```
 
 ### Result: Layered Composition
 
 ```
-Corporate (baseline)
-  └─> Division (extensions)
+Corporate (baseline + 7-stage SDLC)
+  └─> Division (extensions + stage customizations)
       └─> Team (customizations)
           └─> Project (specifics)
 ```
@@ -235,52 +448,16 @@ This repository also includes an **MCP service** for non-Claude Code LLMs (Codex
 python -m mcp_service.server --port 8000 --plugins-dir plugins/
 ```
 
-See [mcp_service/docs/](mcp_service/docs/) for details.
+**MCP Service Features**:
+- Project CRUD operations
+- Stage-specific context loading
+- Requirement traceability tracking
+- AI agent orchestration
+- Persona management (human + AI agents)
+
+See [mcp_service/docs/](mcp_service/docs/) and [MCP Integration Plan](mcp_service/MCP_SDLC_INTEGRATION_PLAN.md) for details.
 
 **For Claude Code users**: Just use the marketplace approach (simpler!).
-
----
-
-## Sacred Seven Methodology
-
-All code in this project follows the Sacred Seven principles:
-
-1. **Test Driven Development** - "No code without tests"
-   - 156 unit tests (100% passing)
-   - Comprehensive test coverage
-   - Tests written first, always
-
-2. **Fail Fast & Root Cause** - "Break loudly, fix completely"
-   - No workarounds
-   - Fix root causes
-   - Clear error messages
-
-3. **Modular & Maintainable** - "Single responsibility, loose coupling"
-   - Small, focused modules
-   - Clear separation of concerns
-   - Easy to understand and extend
-
-4. **Reuse Before Build** - "Check first, create second"
-   - Leverage Claude Code's plugin system
-   - Use native marketplace federation
-   - Build only what's unique
-
-5. **Open Source First** - "Suggest alternatives, human decides"
-   - Transparent development
-   - Community-driven
-   - Open to contributions
-
-6. **No Legacy Baggage** - "Clean slate, no debt"
-   - Removed 90% of custom complexity
-   - Leveraged native Claude Code features
-   - Clean, simple architecture
-
-7. **Perfectionist Excellence** - "Best of breed only"
-   - High-quality code
-   - Comprehensive documentation
-   - Production-ready
-
-👉 **Full Methodology**: [aisdlc-methodology plugin](plugins/aisdlc-methodology/)
 
 ---
 
@@ -288,32 +465,82 @@ All code in this project follows the Sacred Seven principles:
 
 ```
 AI_SDLC_Context/
-├── plugins/                     # Claude Code plugins
-│   ├── aisdlc-methodology/     # Core methodology
-│   ├── python-standards/       # Python standards
-│   └── README.md               # Plugin guide
+├── docs/
+│   ├── ai_sdlc_guide.md             # ⭐ Complete 7-stage methodology (3,300+ lines)
+│   └── README.md                     # Documentation index
 │
-├── examples/                    # Example local contexts
-│   ├── local_projects/         # Project examples
-│   └── README.md               # Examples guide
+├── plugins/                          # Claude Code plugins
+│   ├── aisdlc-methodology/          # 7-stage AI SDLC v2.0.0
+│   │   ├── .claude-plugin/
+│   │   │   └── plugin.json          # Plugin metadata (7 stages)
+│   │   ├── config/
+│   │   │   ├── stages_config.yml    # Complete 7-stage agent specs (1,273 lines)
+│   │   │   └── config.yml           # Sacred Seven + TDD workflow
+│   │   ├── docs/                    # Methodology documentation
+│   │   └── README.md                # Plugin overview
+│   │
+│   ├── python-standards/            # Python standards plugin
+│   └── README.md                    # Plugin creation guide
 │
-├── mcp_service/                # MCP service (non-Claude fallback)
-│   ├── server.py
-│   └── docs/
+├── examples/                         # Example projects
+│   ├── local_projects/
+│   │   ├── customer_portal/         # ⭐ Complete 7-stage example
+│   │   ├── api_platform/            # Public API example
+│   │   ├── payment_gateway/         # High-risk project
+│   │   └── admin_dashboard/         # Low-risk project
+│   └── README.md                    # Examples guide
 │
-├── marketplace.json            # Marketplace registry
-└── README.md                   # This file
+├── mcp_service/                     # MCP service (non-Claude fallback)
+│   ├── server/
+│   ├── docs/
+│   ├── MCP_SDLC_INTEGRATION_PLAN.md # 7-stage integration roadmap
+│   └── README.md
+│
+├── marketplace.json                 # Claude Code marketplace registry
+└── README.md                        # This file
 ```
 
 ---
 
 ## Documentation
 
-- **[Plugins Guide](plugins/README.md)** - How to use and create plugins
-- **[Examples](examples/README.md)** - Example local contexts
-- **[Sacred Seven](plugins/aisdlc-methodology/docs/principles/SACRED_SEVEN.md)** - Core principles
+### Core Methodology
+- **[AI SDLC Guide](docs/ai_sdlc_guide.md)** ⭐ - Complete 7-stage methodology (3,300+ lines)
+- **[7-Stage Example](examples/local_projects/customer_portal/README.md)** - Full walkthrough
+- **[Methodology Plugin](plugins/aisdlc-methodology/README.md)** - Plugin overview
+
+### Principles & Processes
+- **[Sacred Seven Principles](plugins/aisdlc-methodology/docs/principles/SACRED_SEVEN.md)** - Core principles
 - **[TDD Workflow](plugins/aisdlc-methodology/docs/processes/TDD_WORKFLOW.md)** - Development process
-- **[MCP Service](mcp_service/docs/)** - For non-Claude LLMs
+- **[Pair Programming](plugins/aisdlc-methodology/docs/guides/PAIR_PROGRAMMING_WITH_AI.md)** - Human-AI collaboration
+
+### Guides
+- **[Plugins Guide](plugins/README.md)** - How to use and create plugins
+- **[Examples Guide](examples/README.md)** - Example local contexts
+- **[MCP Service](mcp_service/README.md)** - For non-Claude LLMs
+- **[MCP Integration Plan](mcp_service/MCP_SDLC_INTEGRATION_PLAN.md)** - 7-stage integration roadmap
+
+---
+
+## Benefits of This Approach
+
+### Methodology Benefits
+✅ **Complete Lifecycle Coverage** - 7 stages from Intent to Runtime Feedback
+✅ **End-to-End Traceability** - Requirement keys flow through entire pipeline
+✅ **AI Agent Ready** - Detailed specifications for each stage agent
+✅ **Feedback-Driven** - Continuous improvement through closed loops
+✅ **Concurrent Execution** - Support for parallel sub-vector SDLCs
+✅ **Context-Driven** - Standards and templates guide all stages
+✅ **Quality Gates** - Clear pass/fail criteria at each stage
+
+### Technical Benefits
+✅ **90% simpler** - Uses Claude Code's native plugin system
+✅ **Standard** - Follows Claude Code conventions
+✅ **Federated** - Multiple marketplaces (corporate, division, local)
+✅ **Composable** - Plugin loading order = merge priority
+✅ **Portable** - Share via GitHub/Git marketplaces
+✅ **Extensible** - Create your own plugins easily
+✅ **Fallback** - MCP service for non-Claude LLMs
 
 ---
 
@@ -323,29 +550,17 @@ If you were using the previous `example_projects_repo/` structure:
 
 **Old**:
 ```
-example_projects_repo/aisdlc_methodology/
+example_projects_repo/aisdlc_methodology/  (v1.0 - Code stage only)
 contexts.json
 ```
 
 **New**:
 ```
-plugins/aisdlc-methodology/
+plugins/aisdlc-methodology/  (v2.0 - Complete 7-stage SDLC)
 marketplace.json
 ```
 
 See [MIGRATION.md](MIGRATION.md) for complete guide.
-
----
-
-## Benefits of This Approach
-
-✅ **90% simpler** - Uses Claude Code's native plugin system instead of custom federation
-✅ **Standard** - Follows Claude Code conventions
-✅ **Federated** - Multiple marketplaces (corporate, division, local)
-✅ **Composable** - Plugin loading order = merge priority
-✅ **Portable** - Share via GitHub/Git marketplaces
-✅ **Extensible** - Create your own plugins easily
-✅ **Fallback** - MCP service for non-Claude LLMs
 
 ---
 
@@ -363,8 +578,30 @@ MIT
 
 ## Acknowledgments
 
-- Inspired by [ai_init](https://github.com/foolishimp/ai_init) - Original Sacred Seven methodology
-- Built with Claude Code and the Sacred Seven principles
-- Simplified dramatically by leveraging Claude Code's native marketplace system
+- **Inspired by** [ai_init](https://github.com/foolishimp/ai_init) - Original Sacred Seven methodology
+- **Expanded with** Complete 7-stage AI SDLC framework
+- **Built with** Claude Code and the Sacred Seven principles
+- **Simplified** by leveraging Claude Code's native marketplace system
+
+---
+
+## Version History
+
+### v2.0.0 (2025-11-14) - 7-Stage AI SDLC
+- ✨ Added complete 7-stage AI SDLC methodology
+- ✨ Added requirement traceability framework (REQ-* keys)
+- ✨ Added AI agent specifications for each stage
+- ✨ Added BDD testing guidelines (System Test & UAT stages)
+- ✨ Added Runtime Feedback stage with observability integration
+- ✨ Added complete example project (customer_portal)
+- ✨ Added comprehensive methodology guide (3,300+ lines)
+- ✨ Added MCP service integration plan
+
+### v1.0.0 (2025-10-17) - Initial Release
+- Initial release with Sacred Seven principles
+- TDD workflow for Code stage
+- Claude Code plugin marketplace
+
+---
 
 **"Excellence or nothing"** 🔥
