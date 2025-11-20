@@ -6,7 +6,7 @@
 
 ## Overview
 
-This plugin provides a complete **7-stage AI SDLC methodology** with fully specified AI agent configurations for each stage. It extends the foundational Sacred Seven principles with end-to-end lifecycle management from intent to runtime feedback.
+This plugin provides a complete **7-stage AI SDLC methodology** with fully specified AI agent configurations for each stage. It extends the foundational Key Principles principles with end-to-end lifecycle management from intent to runtime feedback.
 
 ### What's New in 2.0
 
@@ -51,7 +51,7 @@ AI SDLC Pipeline
 ┌─────────────────────┐                  │
 │ 4. Code Agent       │  TDD Cycle       │
 │    (Section 7.0)    │  RED→GREEN       │
-│    [Sacred Seven]   │  →REFACTOR       │
+│    [Key Principles]   │  →REFACTOR       │
 └──────┬──────────────┘                  │
        │                                  │
        ▼                                  │
@@ -173,7 +173,7 @@ AI SDLC Pipeline
 - Tag all code with requirement keys
 - Maintain ≥80% test coverage (critical paths 100%)
 
-**Sacred Seven Integration**:
+**Key Principles Integration**:
 - Principle #1: Test Driven Development (TDD mandatory)
 - Principle #2: Fail Fast & Root Cause (tests fail loudly)
 - Principle #3: Modular & Maintainable (single responsibility)
@@ -341,7 +341,7 @@ Complete 7-stage agent configuration with:
 - Key principles
 
 ### `config/config.yml`
-Sacred Seven principles and TDD workflow (foundation for Code Stage)
+Key Principles principles and TDD workflow (foundation for Code Stage)
 
 ### Reference: `../../docs/ai_sdlc_guide.md`
 Complete AI SDLC methodology documentation (Sections 1.0-13.0)
@@ -354,7 +354,7 @@ Complete AI SDLC methodology documentation (Sections 1.0-13.0)
 # In your project's AI_SDLC_Context configuration
 methodology:
   base: "file://plugins/aisdlc-methodology/config/stages_config.yml"
-  sacred_seven: "file://plugins/aisdlc-methodology/config/config.yml"
+  key.principles: "file://plugins/aisdlc-methodology/config/config.yml"
 ```
 
 ### Using Stage Agents
@@ -384,9 +384,9 @@ requirements_agent:
     - product_owner_review: required
 ```
 
-## Integration with Sacred Seven
+## Integration with Key Principles
 
-The Code Stage (Section 7.0) fully integrates the Sacred Seven principles:
+The Code Stage (Section 7.0) fully integrates the Key Principles principles:
 
 1. **Test Driven Development** → TDD cycle mandatory (RED → GREEN → REFACTOR)
 2. **Fail Fast & Root Cause** → Tests fail loudly, no workarounds
@@ -407,7 +407,7 @@ The Code Stage (Section 7.0) fully integrates the Sacred Seven principles:
 ✅ **Concurrent Execution**: Support for parallel sub-vector SDLCs
 ✅ **Context-Driven**: Standards and templates guide all stages
 ✅ **Data as First-Class**: Data requirements have parity with functional requirements
-✅ **Sacred Seven Foundation**: Code stage built on proven principles
+✅ **Key Principles Foundation**: Code stage built on proven principles
 
 ## Version History
 
@@ -420,14 +420,14 @@ The Code Stage (Section 7.0) fully integrates the Sacred Seven principles:
 - Updated plugin.json with stage metadata
 
 ### 1.0.0 (2025-10-17)
-- Initial release with Sacred Seven principles
+- Initial release with Key Principles principles
 - TDD workflow for Code stage
 - Pair programming and session management guides
 
 ## References
 
 - **AI SDLC Guide**: `../../docs/ai_sdlc_guide.md`
-- **Sacred Seven**: `docs/principles/SACRED_SEVEN.md`
+- **Key Principles**: `docs/principles/KEY_PRINCIPLES.md`
 - **TDD Workflow**: `docs/processes/TDD_WORKFLOW.md`
 - **Pair Programming**: `docs/guides/PAIR_PROGRAMMING_WITH_AI.md`
 

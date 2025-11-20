@@ -407,7 +407,7 @@ ai_sdlc_stages:
         approved_libraries:
           authentication: ["bcrypt", "PyJWT", "passlib"]
 
-        sacred_seven_integration:
+        key_principles_integration:
           principle_1: "Test Driven Development (TDD mandatory)"
           principle_2: "Fail Fast & Root Cause (tests fail loudly)"
           principle_3: "Modular & Maintainable (single responsibility)"
@@ -775,6 +775,7 @@ metadata:
   created: "2025-01-14"
   version: "1.0.0"
   reference_document: "/Users/jim/src/apps/AI_SDLC_Context/docs/ai_sdlc_guide.md"
-  sacred_seven_integration: "file://config.yml (Sacred Seven principles)"
+  key_principles_integration: "file://config.yml (Key Principles for Code Stage)"
   methodology_origin: "https://github.com/foolishimp/ai_init"
   ultimate_mantra: "Excellence or nothing"
+  note: "Key Principles can evolve per project context - see docs/principles/KEY_PRINCIPLES.md"

@@ -88,11 +88,11 @@ Complete documentation for the **AI-Augmented Software Development Lifecycle (AI
 **Focus**: Code stage (TDD workflow)
 
 1. Read [ai_sdlc_guide.md](ai_sdlc_guide.md) - Section 7.0 (Code Stage)
-2. Read [../plugins/aisdlc-methodology/docs/principles/SACRED_SEVEN.md](../plugins/aisdlc-methodology/docs/principles/SACRED_SEVEN.md) - Sacred Seven principles
+2. Read [../plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md](../plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md) - Key Principles principles
 3. Read [../plugins/aisdlc-methodology/docs/processes/TDD_WORKFLOW.md](../plugins/aisdlc-methodology/docs/processes/TDD_WORKFLOW.md) - TDD cycle
 4. Review [customer_portal example](../examples/local_projects/customer_portal/README.md) - Code stage walkthrough
 
-**Key Concepts**: TDD (RED→GREEN→REFACTOR), requirement tagging, test coverage (≥80%), Sacred Seven principles
+**Key Concepts**: TDD (RED→GREEN→REFACTOR), requirement tagging, test coverage (≥80%), Key Principles principles
 
 ### For QA Engineers
 
@@ -168,12 +168,12 @@ Complete documentation for the **AI-Augmented Software Development Lifecycle (AI
 **Input**: Work units from Tasks stage
 **Output**: Production code with requirement tags, unit tests, integration tests
 
-**Methodology**: TDD (RED → GREEN → REFACTOR) + Sacred Seven principles
+**Methodology**: TDD (RED → GREEN → REFACTOR) + Key Principles principles
 
 **Documentation**:
 - [ai_sdlc_guide.md - Section 7.0](ai_sdlc_guide.md)
 - [stages_config.yml - code_stage](../plugins/aisdlc-methodology/config/stages_config.yml)
-- [Sacred Seven Principles](../plugins/aisdlc-methodology/docs/principles/SACRED_SEVEN.md)
+- [Key Principles Principles](../plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md)
 - [TDD Workflow](../plugins/aisdlc-methodology/docs/processes/TDD_WORKFLOW.md)
 
 ### Stage 5: System Test (Section 8.0)
@@ -248,7 +248,7 @@ These documents describe the underlying configuration merging system:
 - [../examples/README.md](../examples/README.md) - All examples
 
 #### **Principles & Processes**
-- [../plugins/aisdlc-methodology/docs/principles/SACRED_SEVEN.md](../plugins/aisdlc-methodology/docs/principles/SACRED_SEVEN.md) - Sacred Seven
+- [../plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md](../plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md) - Key Principles
 - [../plugins/aisdlc-methodology/docs/processes/TDD_WORKFLOW.md](../plugins/aisdlc-methodology/docs/processes/TDD_WORKFLOW.md) - TDD workflow
 - [../plugins/aisdlc-methodology/docs/guides/](../plugins/aisdlc-methodology/docs/guides/) - Practical guides
 
@@ -276,8 +276,8 @@ These documents describe the underlying configuration merging system:
 → [ai_sdlc_guide.md](ai_sdlc_guide.md) - Section 4.3.4 (Requirement Keys)
 → [customer_portal example](../examples/local_projects/customer_portal/README.md) - Traceability section
 
-**"What are the Sacred Seven principles?"**
-→ [../plugins/aisdlc-methodology/docs/principles/SACRED_SEVEN.md](../plugins/aisdlc-methodology/docs/principles/SACRED_SEVEN.md)
+**"What are the Key Principles principles?"**
+→ [../plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md](../plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md)
 
 **"How does TDD work in this methodology?"**
 → [ai_sdlc_guide.md](ai_sdlc_guide.md) - Section 7.0 (Code Stage)

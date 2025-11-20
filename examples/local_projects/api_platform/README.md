@@ -2,7 +2,7 @@
 
 ## Overview
 
-This example project demonstrates how to **override a single Sacred Seven principle** while keeping all others intact.
+This example project demonstrates how to **override a single Key Principles principle** while keeping all others intact.
 
 **Principle Override**: **#6 - No Legacy Baggage**
 
@@ -26,7 +26,7 @@ This example project demonstrates how to **override a single Sacred Seven princi
 
 **You can't just "break things and move fast"** - that violates customer trust and contracts.
 
-**Solution**: Override Principle #6 to use **feature flags for backwards compatibility** while maintaining all other Sacred Seven principles.
+**Solution**: Override Principle #6 to use **feature flags for backwards compatibility** while maintaining all other Key Principles principles.
 
 ---
 
@@ -148,7 +148,7 @@ Phase 6: FINAL REMOVAL (Month 12+, v3.0.0)
 
 ---
 
-## How This Fits the Sacred Seven
+## How This Fits the Key Principles
 
 ### We Still Follow All 7 Principles
 
@@ -365,11 +365,11 @@ Create a `BACKWARDS_COMPATIBILITY_OVERRIDE.md` in your project explaining:
 
 ## FAQ
 
-### Q: Doesn't this violate the Sacred Seven?
+### Q: Doesn't this violate the Key Principles?
 
 **A**: No. It **adapts** Principle #6 to our business context.
 
-The Sacred Seven are **principles**, not **dogma**. We apply them intelligently based on our constraints.
+The Key Principles are **principles**, not **dogma**. We apply them intelligently based on our constraints.
 
 ### Q: Won't we accumulate tech debt forever?
 
@@ -441,7 +441,7 @@ print(principle_1['mantra'])
 **This example shows**:
 
 1. ✅ How to override ONE principle (Principle #6)
-2. ✅ While keeping all other Sacred Seven principles intact
+2. ✅ While keeping all other Key Principles principles intact
 3. ✅ With clear rationale (customer-facing APIs)
 4. ✅ Time-bounded tech debt removal (2 major versions)
 5. ✅ Systematic approach (6-phase lifecycle)
@@ -456,7 +456,7 @@ print(principle_1['mantra'])
 - [Configuration Override](config/config.yml) - Full config with Principle #6 override
 - [Override Rationale](docs/BACKWARDS_COMPATIBILITY_OVERRIDE.md) - Why we override
 - [Implementation Guide](docs/FEATURE_FLAG_IMPLEMENTATION_GUIDE.md) - How to implement
-- [Sacred Seven (Base)](../../plugins/aisdlc-methodology/docs/principles/SACRED_SEVEN.md) - Original principles
+- [Key Principles (Base)](../../plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md) - Original principles
 
 ---
 

@@ -71,7 +71,7 @@ Or add to your `.claude/settings.json`:
 
 **What you get**:
 - Complete 7-stage AI SDLC workflow
-- Sacred Seven development principles
+- Key Principles development principles
 - TDD workflow (RED → GREEN → REFACTOR)
 - BDD testing guidelines
 - Requirement traceability framework
@@ -129,7 +129,7 @@ open plugins/aisdlc-methodology/README.md
 **Agent**: Code Agent / Developer Agent
 **Purpose**: TDD-driven implementation (RED → GREEN → REFACTOR)
 
-**Methodology**: Sacred Seven principles + TDD cycle
+**Methodology**: Key Principles principles + TDD cycle
 **Outputs**: Production code with requirement tags, unit tests, integration tests
 
 ### 5. System Test Stage (Section 8.0)
@@ -183,7 +183,7 @@ Feedback: New intent: INT-042 "Fix auth timeout"
 
 ---
 
-## Sacred Seven Principles (Code Stage Foundation)
+## Key Principles Principles (Code Stage Foundation)
 
 The Code Stage (Section 7.0) is built on these principles:
 
@@ -215,7 +215,7 @@ The Code Stage (Section 7.0) is built on these principles:
    - Quality over quantity
    - Excellence or nothing
 
-👉 **Full Principles**: [Sacred Seven](plugins/aisdlc-methodology/docs/principles/SACRED_SEVEN.md)
+👉 **Full Principles**: [Key Principles](plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md)
 
 ---
 
@@ -227,7 +227,7 @@ The Code Stage (Section 7.0) is built on these principles:
 
 **Provides**:
 - ✅ Complete 7-stage AI SDLC agent configurations
-- ✅ Sacred Seven development principles
+- ✅ Key Principles development principles
 - ✅ TDD workflow (RED → GREEN → REFACTOR)
 - ✅ BDD testing guidelines (Given/When/Then)
 - ✅ Requirement traceability framework
@@ -475,7 +475,7 @@ AI_SDLC_Context/
 │   │   │   └── plugin.json          # Plugin metadata (7 stages)
 │   │   ├── config/
 │   │   │   ├── stages_config.yml    # Complete 7-stage agent specs (1,273 lines)
-│   │   │   └── config.yml           # Sacred Seven + TDD workflow
+│   │   │   └── config.yml           # Key Principles + TDD workflow
 │   │   ├── docs/                    # Methodology documentation
 │   │   └── README.md                # Plugin overview
 │   │
@@ -510,7 +510,7 @@ AI_SDLC_Context/
 - **[Methodology Plugin](plugins/aisdlc-methodology/README.md)** - Plugin overview
 
 ### Principles & Processes
-- **[Sacred Seven Principles](plugins/aisdlc-methodology/docs/principles/SACRED_SEVEN.md)** - Core principles
+- **[Key Principles Principles](plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md)** - Core principles
 - **[TDD Workflow](plugins/aisdlc-methodology/docs/processes/TDD_WORKFLOW.md)** - Development process
 - **[Pair Programming](plugins/aisdlc-methodology/docs/guides/PAIR_PROGRAMMING_WITH_AI.md)** - Human-AI collaboration
 
@@ -578,9 +578,9 @@ MIT
 
 ## Acknowledgments
 
-- **Inspired by** [ai_init](https://github.com/foolishimp/ai_init) - Original Sacred Seven methodology
+- **Inspired by** [ai_init](https://github.com/foolishimp/ai_init) - Original Key Principles methodology
 - **Expanded with** Complete 7-stage AI SDLC framework
-- **Built with** Claude Code and the Sacred Seven principles
+- **Built with** Claude Code and the Key Principles principles
 - **Simplified** by leveraging Claude Code's native marketplace system
 
 ---
@@ -598,7 +598,7 @@ MIT
 - ✨ Added MCP service integration plan
 
 ### v1.0.0 (2025-10-17) - Initial Release
-- Initial release with Sacred Seven principles
+- Initial release with Key Principles principles
 - TDD workflow for Code stage
 - Claude Code plugin marketplace
 

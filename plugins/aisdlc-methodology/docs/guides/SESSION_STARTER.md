@@ -18,7 +18,7 @@ pytest  # or npm test, depending on your project
 ```
 
 ### 2. Review Core Documents
-- [ ] Read `methodology/principles/SACRED_SEVEN.md` - The 7 Sacred Principles
+- [ ] Read `methodology/principles/KEY_PRINCIPLES.md` - The 7 Sacred Principles
 - [ ] Read `methodology/processes/TDD_WORKFLOW.md` - TDD methodology
 - [ ] Read `methodology/guides/PAIR_PROGRAMMING_WITH_AI.md` - Collaboration approach
 - [ ] Read `methodology/README.md` - Quick reference

@@ -11,7 +11,7 @@ AI_SDLC_Context provides the **complete 7-Stage AI SDLC methodology** as install
 ✅ **7-Stage AI SDLC Methodology** - Requirements → Design → Tasks → Code → System Test → UAT → Runtime Feedback
 ✅ **AI Agent Configurations** - Detailed specifications for AI agents at each SDLC stage (1,273 lines)
 ✅ **Requirement Traceability** - Track REQ keys from intent to runtime
-✅ **Sacred Seven Principles** - Foundation for Code stage (TDD, Fail Fast, Modular, etc.)
+✅ **Key Principles Principles** - Foundation for Code stage (TDD, Fail Fast, Modular, etc.)
 ✅ **TDD Workflow** - RED → GREEN → REFACTOR → COMMIT cycle
 ✅ **BDD Testing** - Given/When/Then scenarios for System Test and UAT stages
 ✅ **Bidirectional Feedback** - Production issues flow back to requirements
@@ -93,7 +93,7 @@ ai_sdlc:
 
   stages:
     code:
-      sacred_seven:
+      key.principles:
         enabled: true
       tdd:
         workflow: "RED → GREEN → REFACTOR"
@@ -113,11 +113,11 @@ plugins/aisdlc-methodology/
 │   └── plugin.json                 # Plugin metadata (v2.0.0)
 ├── config/
 │   ├── stages_config.yml          # 7-stage agent specifications (1,273 lines)
-│   └── config.yml                 # Sacred Seven + Code stage config
+│   └── config.yml                 # Key Principles + Code stage config
 ├── docs/
 │   ├── README.md                  # Plugin overview
 │   ├── principles/
-│   │   └── SACRED_SEVEN.md       # The seven core principles
+│   │   └── KEY_PRINCIPLES.md       # The seven core principles
 │   ├── processes/
 │   │   └── TDD_WORKFLOW.md       # Complete TDD cycle documentation
 │   └── guides/                    # Stage-specific guides
@@ -160,7 +160,7 @@ ai_sdlc:
     code:
       agent:
         name: "Code Agent / Developer Agent"
-        # ... complete specification + Sacred Seven
+        # ... complete specification + Key Principles
 
     system_test:
       agent:
@@ -180,11 +180,11 @@ ai_sdlc:
 
 #### 2. config.yml
 
-Sacred Seven principles and Code stage configuration:
+Key Principles principles and Code stage configuration:
 
 ```yaml
 methodology:
-  sacred_seven:
+  key.principles:
     principles:
       - name: "Test Driven Development"
         mandate: "No code without tests"
@@ -276,7 +276,7 @@ ai_sdlc:
         coverage_minimum: 95  # Higher than baseline 80%
         frameworks: [pytest, unittest]
 
-      sacred_seven:
+      key.principles:
         enabled: true
         tdd_workflow: strict  # Enforce RED → GREEN → REFACTOR
 
@@ -440,7 +440,7 @@ ai_sdlc:
 
   stages:
     code:
-      sacred_seven:
+      key.principles:
         enabled: true
 ```
 
@@ -525,7 +525,7 @@ New cycle begins at Requirements stage to address INT-042
 
 ✅ **Clear Guidance** - AI agents specify exactly what to do at each stage
 ✅ **TDD Workflow** - RED → GREEN → REFACTOR cycle enforced
-✅ **Sacred Seven Principles** - Foundation for excellent code
+✅ **Key Principles Principles** - Foundation for excellent code
 ✅ **Automated Tagging** - Requirement keys automatically tracked
 ✅ **Bidirectional Feedback** - Production issues link back to requirements
 

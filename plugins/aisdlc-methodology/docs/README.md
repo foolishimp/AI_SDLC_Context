@@ -8,7 +8,7 @@ This directory contains the core development methodology for AI_SDLC_Context, ad
 
 ## Quick Start
 
-### The Sacred Seven Principles
+### The Key Principles Principles
 
 1. **Test Driven Development** - "No code without tests"
 2. **Fail Fast & Root Cause** - "Break loudly, fix completely"
@@ -20,7 +20,7 @@ This directory contains the core development methodology for AI_SDLC_Context, ad
 
 **Ultimate Mantra**: **"Excellence or nothing"** 🔥
 
-👉 [Read Full Principles](principles/SACRED_SEVEN.md)
+👉 [Read Full Principles](principles/KEY_PRINCIPLES.md)
 
 ### The TDD Workflow
 
@@ -38,7 +38,7 @@ RED → GREEN → REFACTOR → COMMIT → REPEAT
 methodology/
 ├── README.md                      # This file
 ├── principles/                    # Core principles
-│   └── SACRED_SEVEN.md           # The Sacred Seven
+│   └── KEY_PRINCIPLES.md           # The Key Principles
 ├── processes/                     # Development processes
 │   └── TDD_WORKFLOW.md           # Test-Driven Development
 ├── templates/                     # Templates and examples
@@ -53,7 +53,7 @@ methodology/
 
 ### Principles
 
-#### [The Sacred Seven](principles/SACRED_SEVEN.md)
+#### [The Key Principles](principles/KEY_PRINCIPLES.md)
 The seven fundamental principles that govern all development:
 - Test Driven Development
 - Fail Fast & Root Cause
@@ -83,7 +83,7 @@ Complete guide to Test-Driven Development:
 
 ### Before You Code
 
-Ask these questions (from the Sacred Seven):
+Ask these questions (from the Key Principles):
 
 1. **Have I written tests first?** (Principle #1)
 2. **Will this fail loudly if something's wrong?** (Principle #2)
@@ -174,7 +174,7 @@ Our commitment to these principles is demonstrated by:
 
 ### For New Features
 
-1. Read [Sacred Seven](principles/SACRED_SEVEN.md) - Refresh principles
+1. Read [Key Principles](principles/KEY_PRINCIPLES.md) - Refresh principles
 2. Review [TDD Workflow](processes/TDD_WORKFLOW.md) - Understand process
 3. Write test first (RED phase)
 4. Implement minimally (GREEN phase)
@@ -201,7 +201,7 @@ Our commitment to these principles is demonstrated by:
 
 - [ ] All new code has tests
 - [ ] Tests follow RED→GREEN→REFACTOR
-- [ ] Code follows Sacred Seven principles
+- [ ] Code follows Key Principles principles
 - [ ] No technical debt introduced
 - [ ] Documentation is clear
 - [ ] Commit messages are descriptive
@@ -212,7 +212,7 @@ Our commitment to these principles is demonstrated by:
 
 ### Why These Principles?
 
-The Sacred Seven are not arbitrary rules - they're battle-tested practices that:
+The Key Principles are not arbitrary rules - they're battle-tested practices that:
 
 1. **Reduce bugs** - Tests catch issues early
 2. **Improve design** - TDD leads to better architecture
@@ -225,7 +225,7 @@ The Sacred Seven are not arbitrary rules - they're battle-tested practices that:
 AI_SDLC_Context inherits and extends the ai_init methodology:
 
 **Inherited**:
-- The Sacred Seven principles
+- The Key Principles principles
 - TDD workflow (RED→GREEN→REFACTOR)
 - "Excellence or nothing" mindset
 - Comprehensive testing practices
@@ -266,7 +266,7 @@ These practices are **requirements**, not suggestions:
 
 ### Internal
 
-- [Sacred Seven Principles](principles/SACRED_SEVEN.md)
+- [Key Principles Principles](principles/KEY_PRINCIPLES.md)
 - [TDD Workflow](processes/TDD_WORKFLOW.md)
 - [Test Suite](../tests/)
 - [Test README](../tests/README.md)
@@ -288,7 +288,7 @@ These practices are **requirements**, not suggestions:
 
 When contributing to AI_SDLC_Context:
 
-1. **Read** the Sacred Seven
+1. **Read** the Key Principles
 2. **Understand** the TDD workflow
 3. **Apply** the principles
 4. **Write** tests first
@@ -305,7 +305,7 @@ When contributing to AI_SDLC_Context:
 | Test Coverage | >80% | ✅ 100% |
 | All Tests Passing | 100% | ✅ 156/156 |
 | Test Execution | <5s | ✅ 0.16s |
-| Sacred Seven Adherence | 100% | ✅ Yes |
+| Key Principles Adherence | 100% | ✅ Yes |
 | Technical Debt | 0 items | ✅ None |
 
 ---
@@ -322,7 +322,7 @@ When contributing to AI_SDLC_Context:
 
 ## Summary
 
-**The Methodology**: Sacred Seven + TDD Workflow
+**The Methodology**: Key Principles + TDD Workflow
 **The Commitment**: Excellence or nothing
 **The Evidence**: 156 tests, 100% passing
 **The Result**: High-quality, maintainable code

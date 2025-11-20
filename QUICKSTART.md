@@ -30,7 +30,7 @@ Intent → Requirements → Design → Tasks → Code → System Test → UAT �
 1. **Requirements** - Transform intent into structured requirements (REQ-F-*, REQ-NFR-*, REQ-DATA-*)
 2. **Design** - Create technical solution architecture (components, APIs, data models)
 3. **Tasks** - Break down into work units with Jira orchestration
-4. **Code** - TDD implementation (RED → GREEN → REFACTOR) + Sacred Seven principles
+4. **Code** - TDD implementation (RED → GREEN → REFACTOR) + Key Principles principles
 5. **System Test** - BDD integration testing (Given/When/Then scenarios)
 6. **UAT** - Business validation and sign-off
 7. **Runtime Feedback** - Production telemetry closes the loop back to requirements
@@ -40,7 +40,7 @@ Intent → Requirements → Design → Tasks → Code → System Test → UAT �
 ✅ **Requirement Traceability** - Track requirement keys from intent to runtime
 ✅ **AI Agent Configurations** - Detailed specs for AI agents at each SDLC stage
 ✅ **Bidirectional Feedback** - Production issues flow back to requirements
-✅ **Sacred Seven Principles** - Foundation for Code stage (TDD, Fail Fast, etc.)
+✅ **Key Principles Principles** - Foundation for Code stage (TDD, Fail Fast, etc.)
 ✅ **Claude Code Plugins** - Installable methodology and standards
 ✅ **Federated Architecture** - Compose contexts across corporate → division → team → project
 
@@ -65,7 +65,7 @@ Intent → Requirements → Design → Tasks → Code → System Test → UAT �
 # Claude now has access to:
 # - Complete 7-stage AI SDLC methodology
 # - AI agent configurations for each stage
-# - Sacred Seven principles
+# - Key Principles principles
 # - TDD workflow (RED → GREEN → REFACTOR)
 # - BDD testing guides
 # - Requirement traceability system
@@ -103,7 +103,7 @@ ai_sdlc:
     code:
       testing:
         coverage_minimum: 90
-      sacred_seven:
+      key.principles:
         enabled: true
 ```
 
@@ -160,9 +160,9 @@ requirements_agent = requirements_stage['agent']
 print(f"Role: {requirements_agent['role']}")
 print(f"Purpose: {requirements_agent['purpose']}")
 
-# Get Sacred Seven principles for Code stage
-sacred_seven = code_stage['sacred_seven']
-print(f"TDD Workflow: {sacred_seven['tdd']['workflow']}")
+# Get Key Principles principles for Code stage
+key.principles = code_stage['key.principles']
+print(f"TDD Workflow: {key.principles['tdd']['workflow']}")
 ```
 
 ### Run Examples
@@ -206,7 +206,7 @@ Claude: [uses Requirements Agent spec]
 
 You: "Switch to Code stage"
 Claude: [uses load_stage_context with stage="code"]
-        Loads Code Agent with Sacred Seven principles + TDD workflow
+        Loads Code Agent with Key Principles principles + TDD workflow
 
 You: "Implement REQ-F-AUTH-001"
 Claude: [uses Code Agent spec]
@@ -260,7 +260,7 @@ ai_sdlc:
 
   stages:
     code:
-      sacred_seven:
+      key.principles:
         enabled: true
       tdd:
         workflow: "RED → GREEN → REFACTOR"
@@ -270,7 +270,7 @@ ai_sdlc:
 
 Claude will:
 - Follow TDD workflow strictly
-- Apply Sacred Seven principles
+- Apply Key Principles principles
 - Ensure 80%+ test coverage
 - Tag code with requirement keys
 
@@ -284,7 +284,7 @@ Claude will:
 
 Claude reviews:
 1. Requirements Stage: Does code satisfy REQ-F-AUTH-001?
-2. Code Stage: Does code follow TDD and Sacred Seven principles?
+2. Code Stage: Does code follow TDD and Key Principles principles?
 3. System Test Stage: Are there BDD scenarios validating the requirements?
 ```
 
@@ -340,7 +340,7 @@ New cycle begins at Requirements stage
 ┌─────────────────────────────────────────────────────────────┐
 │  4. CODE STAGE                                              │
 │     • TDD: RED → GREEN → REFACTOR                          │
-│     • Sacred Seven principles                               │
+│     • Key Principles principles                               │
 │     • Output: auth_service.py # Implements: REQ-F-AUTH-001 │
 └────────────────────────┬────────────────────────────────────┘
                          │

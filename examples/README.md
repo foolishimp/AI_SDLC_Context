@@ -30,7 +30,7 @@ examples/
 ### Baseline Contexts (`/contexts/`)
 
 These are **read-only reference contexts** provided by AI_SDLC_Context:
-- `aisdlc_methodology` - Core Sacred Seven principles and TDD workflow
+- `aisdlc_methodology` - Core Key Principles principles and TDD workflow
 - `python_standards` - Python language standards and best practices
 
 **Use case**: Install once, reference from multiple projects

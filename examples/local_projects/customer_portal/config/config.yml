@@ -163,7 +163,7 @@ ai_sdlc:
         - dependencies_identified: true
 
     # -------------------------------------------------------------------------
-    # 4. CODE STAGE (Section 7.0) - TDD with Sacred Seven
+    # 4. CODE STAGE (Section 7.0) - TDD with Key Principles
     # -------------------------------------------------------------------------
     code:
       personas:

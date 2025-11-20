@@ -2,7 +2,7 @@
   "name": "aisdlc-methodology",
   "version": "2.0.0",
   "displayName": "AI SDLC Methodology - Multi-Stage Agent Configuration",
-  "description": "Complete AI SDLC methodology with 7-stage agent configurations: Requirements, Design, Tasks, Code (TDD), System Test (BDD), UAT (BDD), Runtime Feedback. Integrates Sacred Seven principles and full lifecycle traceability.",
+  "description": "Complete AI SDLC methodology with 7-stage agent configurations: Requirements, Design, Tasks, Code (TDD), System Test (BDD), UAT (BDD), Runtime Feedback. Integrates Key Principles principles and full lifecycle traceability.",
   "author": "foolishimp",
   "license": "MIT",
   "keywords": [

@@ -470,7 +470,7 @@ def test_merge_two_hierarchies():
 - **Origin**: [ai_init TDD Process](https://github.com/foolishimp/ai_init)
 - **Applied In**: All AI_SDLC_Context development
 - **Test Suite**: [tests/](../../tests/)
-- **Sacred Seven**: [SACRED_SEVEN.md](../principles/SACRED_SEVEN.md)
+- **Key Principles**: [KEY_PRINCIPLES.md](../principles/KEY_PRINCIPLES.md)
 
 ---
 

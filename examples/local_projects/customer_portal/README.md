@@ -15,7 +15,7 @@ This project demonstrates the **complete 7-stage AI SDLC methodology** with full
 - ✅ **Requirement key traceability**: Every artifact tagged with requirement keys (REQ-F-*, REQ-NFR-*, etc.)
 - ✅ **Bidirectional feedback**: Production issues flow back to requirements and generate new intents
 - ✅ **AI agent orchestration**: Each stage has a configured AI agent with clear responsibilities
-- ✅ **Sacred Seven integration**: Code stage follows TDD with all 7 principles
+- ✅ **Key Principles integration**: Code stage follows TDD with all 7 principles
 - ✅ **BDD testing**: System Test and UAT use Given/When/Then scenarios
 - ✅ **Observability**: Runtime telemetry tagged with requirement keys
 
@@ -68,7 +68,7 @@ AI SDLC Pipeline for Customer Portal
        ▼                                  │
 ┌─────────────────────┐                  │
 │ 4. Code Agent       │  TDD:            │
-│    (Sacred Seven)   │  RED→GREEN       │
+│    (Key Principles)   │  RED→GREEN       │
 │                     │  →REFACTOR       │
 │ Output:             │                  │
 │ - auth.py           │                  │
@@ -602,7 +602,7 @@ Requirements: REQ-F-AUTH-002 "Optimize authentication performance"
 ✅ **Feedback Loops**: Production issues automatically create new requirements
 ✅ **AI Orchestration**: Each stage has a specialized AI agent
 ✅ **Quality Gates**: Every stage has clear pass/fail criteria
-✅ **Sacred Seven**: Code stage follows TDD with all 7 principles
+✅ **Key Principles**: Code stage follows TDD with all 7 principles
 ✅ **BDD Testing**: Business-readable test scenarios
 ✅ **Runtime Observability**: Production metrics linked to requirements
 
@@ -612,7 +612,7 @@ Requirements: REQ-F-AUTH-002 "Optimize authentication performance"
 
 - **AI SDLC Methodology Plugin**: `../../../plugins/aisdlc-methodology/`
 - **AI SDLC Guide**: `../../../docs/ai_sdlc_guide.md`
-- **Sacred Seven Principles**: `../../../plugins/aisdlc-methodology/docs/principles/SACRED_SEVEN.md`
+- **Key Principles Principles**: `../../../plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md`
 - **TDD Workflow**: `../../../plugins/aisdlc-methodology/docs/processes/TDD_WORKFLOW.md`
 
 ---

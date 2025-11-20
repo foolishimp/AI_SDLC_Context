@@ -1,10 +1,11 @@
 methodology:
-  name: Sacred Seven Development Methodology
+  name: Key Principles Development Methodology
   origin: https://github.com/foolishimp/ai_init
-  version: "1.0"
+  version: "2.0"
+  note: "Principles can evolve per project context - see KEY_PRINCIPLES.md"
 
   principles:
-    _uri: "file://docs/principles/SACRED_SEVEN.md"
+    _uri: "file://docs/principles/KEY_PRINCIPLES.md"
 
     test_driven_development:
       principle: 1
@@ -248,7 +249,7 @@ methodology:
     action_if_no: "Don't code yet"
 
   documentation:
-    principles_guide: "file://docs/principles/SACRED_SEVEN.md"
+    principles_guide: "file://docs/principles/KEY_PRINCIPLES.md"
     tdd_workflow_guide: "file://docs/processes/TDD_WORKFLOW.md"
     pair_programming_guide: "file://docs/guides/PAIR_PROGRAMMING_WITH_AI.md"
     session_starter_guide: "file://docs/guides/SESSION_STARTER.md"

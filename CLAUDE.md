@@ -19,7 +19,7 @@ Enable AI-augmented software development where:
 ### Key Features
 
 ✅ **Complete 7-Stage Methodology** - Requirements → Design → Tasks → Code → System Test → UAT → Runtime Feedback
-✅ **Sacred Seven Principles** - Foundation for Code stage (TDD, Fail Fast, Modular, etc.)
+✅ **Key Principles Principles** - Foundation for Code stage (TDD, Fail Fast, Modular, etc.)
 ✅ **TDD Workflow** - RED → GREEN → REFACTOR → COMMIT cycle
 ✅ **BDD Testing** - Given/When/Then scenarios for System Test and UAT stages
 ✅ **AI Agent Specifications** - 1,273-line configuration file with detailed agent specs
@@ -42,9 +42,9 @@ AI_SDLC_Context/
 │   │   │   └── plugin.json      # Plugin metadata
 │   │   ├── config/
 │   │   │   ├── stages_config.yml  # 7-stage agent specifications (1,273 lines)
-│   │   │   └── config.yml         # Sacred Seven + Code stage config
+│   │   │   └── config.yml         # Key Principles + Code stage config
 │   │   ├── docs/
-│   │   │   ├── principles/SACRED_SEVEN.md
+│   │   │   ├── principles/KEY_PRINCIPLES.md
 │   │   │   └── processes/TDD_WORKFLOW.md
 │   │   └── project.json         # Legacy: for MCP service compatibility
 │   ├── python-standards/        # Python language standards plugin
@@ -107,7 +107,7 @@ Intent → Requirements → Design → Tasks → Code → System Test → UAT �
 **Purpose**: Implement work units using TDD workflow
 **Input**: Work units from Tasks stage
 **Output**: Production code with requirement tags, unit tests, integration tests
-**Methodology**: TDD (RED → GREEN → REFACTOR) + Sacred Seven principles
+**Methodology**: TDD (RED → GREEN → REFACTOR) + Key Principles principles
 
 #### 5. System Test Stage (Section 8.0)
 **Agent**: System Test Agent / QA Agent
@@ -216,18 +216,18 @@ requirements_agent = requirements_stage['agent']
 print(f"Role: {requirements_agent['role']}")
 print(f"Purpose: {requirements_agent['purpose']}")
 
-# Get Sacred Seven principles
-sacred_seven = code_stage['sacred_seven']
-print(f"TDD Workflow: {sacred_seven['tdd']['workflow']}")
+# Get Key Principles principles
+key.principles = code_stage['key.principles']
+print(f"TDD Workflow: {key.principles['tdd']['workflow']}")
 ```
 
 ---
 
 ## Development Methodology
 
-**IMPORTANT**: This project follows the **Sacred Seven** principles, which are now integrated as the foundation for the Code stage (Section 7.0) in the complete 7-stage AI SDLC methodology.
+**IMPORTANT**: This project follows the **Key Principles** principles, which are now integrated as the foundation for the Code stage (Section 7.0) in the complete 7-stage AI SDLC methodology.
 
-### The Sacred Seven
+### The Key Principles
 
 1. **Test Driven Development** - "No code without tests"
 2. **Fail Fast & Root Cause** - "Break loudly, fix completely"
@@ -239,7 +239,7 @@ print(f"TDD Workflow: {sacred_seven['tdd']['workflow']}")
 
 **Ultimate Mantra**: **"Excellence or nothing"** 🔥
 
-👉 **Read Full Principles**: [plugins/aisdlc-methodology/docs/principles/SACRED_SEVEN.md](plugins/aisdlc-methodology/docs/principles/SACRED_SEVEN.md)
+👉 **Read Full Principles**: [plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md](plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md)
 
 ### TDD Workflow (Code Stage)
 
@@ -282,7 +282,7 @@ Ask these seven questions:
    - Section 4.0: Requirements Stage
    - Section 5.0: Design Stage
    - Section 6.0: Tasks Stage
-   - Section 7.0: Code Stage (Sacred Seven + TDD)
+   - Section 7.0: Code Stage (Key Principles + TDD)
    - Section 8.0: System Test Stage (BDD)
    - Section 9.0: UAT Stage
    - Section 10.0: Runtime Feedback Stage
@@ -299,7 +299,7 @@ Ask these seven questions:
 See [docs/README.md](docs/README.md) for learning paths tailored to:
 - Business Analysts / Product Owners → Focus on Requirements & UAT stages
 - Architects / Technical Leads → Focus on Design stage
-- Developers → Focus on Code stage (TDD + Sacred Seven)
+- Developers → Focus on Code stage (TDD + Key Principles)
 - QA Engineers → Focus on System Test & UAT stages (BDD)
 - DevOps / SRE → Focus on Runtime Feedback stage
 - Project Managers / Scrum Masters → Focus on Tasks stage
@@ -431,7 +431,7 @@ ai_sdlc:
     code:
       testing:
         coverage_minimum: 90
-      sacred_seven:
+      key.principles:
         enabled: true
 ```
 
@@ -485,7 +485,7 @@ See [mcp_service/MCP_SDLC_INTEGRATION_PLAN.md](mcp_service/MCP_SDLC_INTEGRATION_
 ## Related Projects
 
 This project evolved from and replaces:
-- **ai_init** (https://github.com/foolishimp/ai_init) - Original Sacred Seven methodology (now integrated as Code stage)
+- **ai_init** (https://github.com/foolishimp/ai_init) - Original Key Principles methodology (now integrated as Code stage)
 
 ---
 

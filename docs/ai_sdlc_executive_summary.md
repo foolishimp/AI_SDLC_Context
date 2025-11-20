@@ -102,7 +102,7 @@ flowchart LR
 | **Requirements** | PO, BA, Data Analyst | Intent | REQ-F-*, REQ-NFR-*, REQ-DATA-*, BDD scenarios | All requirements have unique keys, acceptance criteria |
 | **Design** | Tech Lead, Data Architect | Requirements + BDD scenarios | Component design, data models, APIs, traceability matrix | All components mapped to REQ keys, architecture compliance |
 | **Tasks** | PO, Tech Lead | Design assets | Epics, stories, tickets tagged with REQ keys | All tasks linked to REQ keys, dependencies identified |
-| **Code** | Developers, Data Engineers | Tasks + Design | Source code, unit tests (TDD), pipelines | TDD followed (RED→GREEN→REFACTOR), coverage ≥80%, Sacred Seven compliance |
+| **Code** | Developers, Data Engineers | Tasks + Design | Source code, unit tests (TDD), pipelines | TDD followed (RED→GREEN→REFACTOR), coverage ≥80%, Key Principles compliance |
 | **System Test** | QA Engineer, Data Quality Eng | Code + BDD scenarios | Automated BDD tests, coverage reports | Requirement coverage ≥95%, all scenarios pass |
 | **UAT** | Business SME, Data Steward | Tested build + acceptance criteria | UAT results, sign-off | All critical scenarios pass, stakeholder sign-off |
 | **Runtime Feedback** | DevOps, SRE | Deployed system | Metrics, alerts, new intent | Telemetry tagged with REQ keys, alerts routed to Intent Manager |
@@ -167,11 +167,11 @@ flowchart LR
 
 ---
 
-# **7.0 Code Stage (TDD + Sacred Seven)**
+# **7.0 Code Stage (TDD + Key Principles)**
 
 **Purpose**: Create executable artifacts using Test-Driven Development
 
-## **7.1 Sacred Seven Principles**
+## **7.1 Key Principles Principles**
 
 From [ai_init methodology](https://github.com/foolishimp/ai_init):
 
@@ -230,7 +230,7 @@ def authenticate(email: str, password: str) -> AuthResult:
 - ✅ All code has unit tests (TDD followed)
 - ✅ All tests pass (GREEN)
 - ✅ Coverage ≥ 80% (critical paths 100%)
-- ✅ Sacred Seven principles followed
+- ✅ Key Principles principles followed
 - ✅ Linting passes
 - ✅ Security scan clean
 - ✅ All REQ keys in code/tests
@@ -441,7 +441,7 @@ Intent → REQ-F-AUTH-001 → Design → Code → Tests → UAT → Deploy → R
 
 ## **13.2 Quality & Excellence**
 
-✅ Sacred Seven Principles ensure code excellence
+✅ Key Principles Principles ensure code excellence
 ✅ TDD ensures all code is born tested
 ✅ BDD provides executable business specifications
 ✅ Coverage requirements (≥80% unit, ≥95% integration)
@@ -514,7 +514,7 @@ Feature: [Capability]
 | UAT | All critical scenarios pass |
 | Runtime | Telemetry tagged with REQ keys |
 
-## **14.5 Sacred Seven Checklist**
+## **14.5 Key Principles Checklist**
 
 Before coding, ask:
 
@@ -537,13 +537,13 @@ Before coding, ask:
 1. **Read full methodology**: [docs/ai_sdlc_guide_v1_2.md](ai_sdlc_guide_v1_2.md)
 2. **Setup AI_SDLC_Context repository**: Initialize folder structure
 3. **Define REQ key format**: Choose structure for your organization
-4. **Adopt Sacred Seven**: Integrate ai_init principles
+4. **Adopt Key Principles**: Integrate ai_init principles
 5. **Configure AI agents**: Setup TDD workflow in agent prompts
 
 ## **15.2 Learning Resources**
 
 - **Full Guide**: `docs/ai_sdlc_guide_v1_2.md` (2,500+ lines)
-- **Sacred Seven**: `methodology/principles/SACRED_SEVEN.md`
+- **Key Principles**: `methodology/principles/KEY_PRINCIPLES.md`
 - **TDD Workflow**: `methodology/processes/TDD_WORKFLOW.md`
 - **Plugin Guide**: `PLUGIN_GUIDE.md` (Claude Code plugins)
 - **Quick Start**: `QUICKSTART.md` (3 methods to get started)

@@ -10,7 +10,7 @@ project:
     Serves 10,000+ external customers with SLA commitments.
 
 # Override ONLY Principle #6 - No Legacy Baggage
-# All other Sacred Seven principles remain unchanged
+# All other Key Principles principles remain unchanged
 methodology:
   principles:
     # Principle #6 Override: From "No Legacy Baggage" to "Managed Evolution"
@@ -139,12 +139,12 @@ methodology:
           - "Wait 2 major versions before removal"
 
         if_no:
-          - "Follow standard Sacred Seven principles"
+          - "Follow standard Key Principles principles"
           - "Deploy directly (no flag needed)"
           - "No backwards compatibility burden"
 
   # All other principles inherited from aisdlc-methodology
-  # No overrides - we follow Sacred Seven for:
+  # No overrides - we follow Key Principles for:
   #   1. Test Driven Development
   #   2. Fail Fast & Root Cause
   #   3. Modular & Maintainable

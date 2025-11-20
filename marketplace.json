@@ -8,7 +8,7 @@
     {
       "name": "aisdlc-methodology",
       "displayName": "AI SDLC Methodology",
-      "description": "Sacred Seven development principles and TDD workflow",
+      "description": "Key Principles development principles and TDD workflow",
       "version": "1.0.0",
       "path": "plugins/aisdlc-methodology",
       "keywords": ["methodology", "tdd", "sacred-seven", "baseline"],

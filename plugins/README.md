@@ -11,7 +11,7 @@ This directory contains **Claude Code plugins** that provide AI-Augmented Softwa
 **What It Provides**:
 - **7-Stage AI SDLC**: Requirements → Design → Tasks → Code → System Test → UAT → Runtime Feedback
 - **AI Agent Configurations**: Detailed specifications for AI agents at each SDLC stage (1,273 lines)
-- **Sacred Seven Principles**: Foundation for Code stage (TDD, Fail Fast, Modular, etc.)
+- **Key Principles Principles**: Foundation for Code stage (TDD, Fail Fast, Modular, etc.)
 - **Requirement Traceability**: Track requirement keys (REQ-F-*, REQ-NFR-*, REQ-DATA-*) from intent to runtime
 - **TDD Workflow**: RED → GREEN → REFACTOR → COMMIT cycle
 - **BDD Testing**: Given/When/Then scenarios for System Test and UAT stages
@@ -19,15 +19,15 @@ This directory contains **Claude Code plugins** that provide AI-Augmented Softwa
 
 **Key Files**:
 - `config/stages_config.yml` - Complete 7-stage agent specifications (1,273 lines)
-- `config/config.yml` - Sacred Seven principles and Code stage configuration
-- `docs/principles/SACRED_SEVEN.md` - The seven core development principles
+- `config/config.yml` - Key Principles principles and Code stage configuration
+- `docs/principles/KEY_PRINCIPLES.md` - The seven core development principles
 - `docs/processes/TDD_WORKFLOW.md` - Complete TDD cycle documentation
 
 **Dependencies**: None (foundation plugin)
 
 **Version History**:
 - v2.0.0 (2025-11-14): Added 7-stage AI SDLC methodology (Requirements, Design, Tasks, Code, System Test, UAT, Runtime Feedback)
-- v1.0.0 (2025-10-16): Initial release with Sacred Seven principles and TDD workflow
+- v1.0.0 (2025-10-16): Initial release with Key Principles principles and TDD workflow
 
 **Reference**: [Complete 7-Stage Methodology Guide](../docs/ai_sdlc_guide.md) (3,300+ lines)
 
@@ -116,7 +116,7 @@ The **aisdlc-methodology v2.0.0** plugin provides complete agent configurations 
 **Agent**: Code Agent / Developer Agent
 **Purpose**: Implement work units using TDD workflow
 **Output**: Production code with requirement tags, unit tests, integration tests
-**Methodology**: TDD (RED → GREEN → REFACTOR) + Sacred Seven principles
+**Methodology**: TDD (RED → GREEN → REFACTOR) + Key Principles principles
 
 ### 5. System Test Stage (Section 8.0)
 **Agent**: System Test Agent / QA Agent
@@ -305,7 +305,7 @@ ai_sdlc:
         coverage_minimum: 95  # Higher than baseline 80%
         frameworks: [pytest, unittest]
 
-      sacred_seven:
+      key.principles:
         enabled: true
         tdd_workflow: strict  # Enforce RED → GREEN → REFACTOR
 
@@ -362,13 +362,13 @@ plugin-name/
 │   └── plugin.json          # Plugin manifest
 ├── config/
 │   ├── stages_config.yml   # 7-stage agent specifications (for methodology plugins)
-│   ├── config.yml          # Sacred Seven + Code stage config
+│   ├── config.yml          # Key Principles + Code stage config
 │   └── overrides.yml       # Optional stage overrides
 ├── commands/                # Slash commands (optional)
 │   └── load-context.md
 ├── docs/                    # Documentation
 │   ├── README.md
-│   ├── principles/         # Sacred Seven principles
+│   ├── principles/         # Key Principles principles
 │   ├── processes/          # TDD workflow, BDD guides
 │   └── guides/             # Stage-specific guides
 └── project.json            # Legacy: for MCP service compatibility
@@ -441,10 +441,10 @@ The MCP service is being updated to support the 7-stage AI SDLC methodology. See
 
 ### From v1.0.0 to v2.0.0
 
-**v1.0.0** (Sacred Seven + TDD only):
+**v1.0.0** (Key Principles + TDD only):
 ```yaml
 methodology:
-  sacred_seven:
+  key.principles:
     enabled: true
   tdd:
     workflow: "RED → GREEN → REFACTOR"
@@ -459,14 +459,14 @@ ai_sdlc:
     - requirements
     - design
     - tasks
-    - code          # Includes Sacred Seven + TDD
+    - code          # Includes Key Principles + TDD
     - system_test
     - uat
     - runtime_feedback
 
   stages:
     code:
-      sacred_seven:
+      key.principles:
         enabled: true
       tdd:
         workflow: "RED → GREEN → REFACTOR"
@@ -490,9 +490,9 @@ plugins/aisdlc-methodology/    # Note: kebab-case
 ├── .claude-plugin/plugin.json
 ├── config/
 │   ├── stages_config.yml  # NEW: 7-stage specifications
-│   └── config.yml         # Sacred Seven + Code stage
+│   └── config.yml         # Key Principles + Code stage
 └── docs/
-    ├── principles/SACRED_SEVEN.md
+    ├── principles/KEY_PRINCIPLES.md
     └── processes/TDD_WORKFLOW.md
 ```
 

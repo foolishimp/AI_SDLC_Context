@@ -1,12 +1,14 @@
-# 🎯 The Sacred Seven Principles
+# 🎯 The Key Principles (Code Stage)
 
 ## Core Development Methodology for AI_SDLC_Context
 
-These seven principles form the foundation of all development in this project. They are adapted from the [ai_init](https://github.com/foolishimp/ai_init) project and represent our unwavering commitment to excellence.
+These foundational principles guide all development in this project. They are adapted from the [ai_init](https://github.com/foolishimp/ai_init) project and represent our unwavering commitment to excellence.
+
+**Important**: While these seven principles provide an excellent foundation, they can and should evolve based on project context and operational needs. See [Principle Evolution](#-principle-evolution) below.
 
 ---
 
-## The Sacred Seven
+## The Seven Key Principles
 
 ### 1️⃣ Test Driven Development
 **"No code without tests"**
@@ -224,7 +226,7 @@ Need to build something?
 
 ### Our Commitment
 
-Every component in this project adheres to the Sacred Seven:
+Every component in this project adheres to the Key Principles:
 
 #### Models (`src/ai_sdlc_config/models/`)
 - ✅ Comprehensive unit tests (51 tests)
@@ -268,7 +270,7 @@ If you can't answer "yes" to all seven, **don't write the code yet**.
 
 ## Violations Are Unacceptable
 
-The Sacred Seven are not guidelines - they are **requirements**.
+The Key Principles are not guidelines - they are **requirements** (though they may be adapted per project context).
 
 - Code without tests → **Rejected**
 - Silent error handling → **Rejected**
@@ -280,14 +282,82 @@ The Sacred Seven are not guidelines - they are **requirements**.
 
 ---
 
-## References
+## 🔄 Principle Evolution
 
-- **Origin**: [ai_init project](https://github.com/foolishimp/ai_init)
-- **Applied In**: All AI_SDLC_Context development
-- **Enforcement**: Code reviews, CI/CD, peer accountability
+### Why Principles Should Evolve
+
+The seven principles above are **excellent starting points**, but they should adapt to match your project's operational reality. What matters is **explicit documentation** of your principles, not blind adherence to a fixed list.
+
+### Example: Operational Code Evolution
+
+**Context**: Building production operational systems where backwards compatibility is critical.
+
+**Principle #6 Evolution**:
+- **Original**: "No Legacy Baggage" - Clean slate, breaking changes OK
+- **Evolved**: "Feature Flag All Changes" - Use feature flags for all new features, preserve old features for backwards compatibility
+
+**Why This Works**:
+```yaml
+# Document your project's evolved principles
+code_stage:
+  key_principles:
+    - name: "Test Driven Development"
+      mantra: "No code without tests"
+      status: unchanged  # Still applies
+
+    - name: "Feature Flag Driven Development"
+      mantra: "New features behind flags, preserve old features"
+      status: evolved_from_principle_6  # Adapted for ops context
+      rationale: |
+        In production operational systems, backwards compatibility
+        is more important than clean breaks. Feature flags enable:
+        - Safe rollout/rollback
+        - A/B testing
+        - Gradual migrations
+        - Zero-downtime deployments
+```
+
+### Guidelines for Evolution
+
+1. **Document the Change**: Explicitly state which principle evolved and why
+2. **Maintain the Count**: Keep ~7 principles (human working memory limit)
+3. **Preserve the Spirit**: Keep the commitment to excellence
+4. **Context-Specific**: Different projects can have different evolutions
+5. **Version Your Principles**: Track changes over time
+
+### Common Evolution Patterns
+
+| Original Principle | Operational Context Evolution | Data Science Context Evolution |
+|:---|:---|:---|
+| #6: No Legacy Baggage | → Feature Flag All Changes | → Version All Models |
+| #1: Test Driven Development | → Test + Monitor Driven | → Test + Experiment Driven |
+| #5: Open Source First | → Approved Libraries Only | → Research Models First |
+
+### When to Evolve
+
+✅ **Good reasons to evolve**:
+- Compliance requirements (e.g., regulatory constraints)
+- Operational maturity (e.g., need for backwards compatibility)
+- Domain-specific needs (e.g., data science vs web apps)
+- Team growth (e.g., need for standardization)
+
+❌ **Bad reasons to evolve**:
+- Wanting to skip writing tests
+- Avoiding quality standards
+- Rushing to ship incomplete work
+- Cutting corners under pressure
 
 ---
 
-*These principles are the foundation of our excellence. They are not negotiable.*
+## References
+
+- **Origin**: [ai_init project](https://github.com/foolishimp/ai_init) - Original "Key Principles"
+- **Applied In**: All AI_SDLC_Context development
+- **Enforcement**: Code reviews, CI/CD, peer accountability
+- **Evolution**: Document in your project's `config.yml`
+
+---
+
+*These principles are the foundation of our excellence. They can evolve, but the commitment to excellence cannot.*
 
 **Excellence or nothing. 🔥**

@@ -7,7 +7,7 @@
   "base_projects": [
     "aisdlc_methodology"
   ],
-  "description": "Python-specific coding standards and tools (inherits Sacred Seven methodology)",
+  "description": "Python-specific coding standards and tools (inherits Key Principles methodology)",
   "merged_from": null,
   "merge_date": null,
   "runtime_overrides": null,
