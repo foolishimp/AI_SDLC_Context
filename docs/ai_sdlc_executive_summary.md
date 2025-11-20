@@ -2,7 +2,7 @@
 
 *Quick Reference Guide to the AI-Augmented Software Development Lifecycle*
 
-**Version**: 1.0 (Condensed from ai_sdlc_guide_v1_2.md)
+**Version**: 1.2 (Condensed from ai_sdlc_guide_v1_2.md, includes ecosystem integration)
 **Date**: 2025-11-20
 **Audience**: Executives, stakeholders, and practitioners needing quick reference
 
@@ -36,6 +36,9 @@ AI suggests and accelerates; humans decide and own outcomes
 
 ### **Continuous Feedback**
 Production behavior continuously compared to requirements → generates new intent
+
+### **Ecosystem-Aware Development**
+All decisions made within ecosystem constraint vector E(t) - the external operating environment (platforms, APIs, compliance, costs, team skills). Ecosystem is **given** (external reality), not **chosen** (design decision).
 
 ---
 
@@ -100,7 +103,7 @@ flowchart LR
 | Stage | Personas | Input | Output | Key Gates |
 |-------|----------|-------|--------|-----------|
 | **Requirements** | PO, BA, Data Analyst | Intent | REQ-F-*, REQ-NFR-*, REQ-DATA-*, BDD scenarios | All requirements have unique keys, acceptance criteria |
-| **Design** | Tech Lead, Data Architect | Requirements + BDD scenarios | Component design, data models, APIs, traceability matrix | All components mapped to REQ keys, architecture compliance |
+| **Design** | Tech Lead, Data Architect | Requirements + BDD scenarios | Component design, data models, APIs, ADRs, traceability matrix | All components mapped to REQ keys, ADRs for strategic decisions |
 | **Tasks** | PO, Tech Lead | Design assets | Epics, stories, tickets tagged with REQ keys | All tasks linked to REQ keys, dependencies identified |
 | **Code** | Developers, Data Engineers | Tasks + Design | Source code, unit tests (TDD), pipelines | TDD followed (RED→GREEN→REFACTOR), coverage ≥80%, Key Principles compliance |
 | **System Test** | QA Engineer, Data Quality Eng | Code + BDD scenarios | Automated BDD tests, coverage reports | Requirement coverage ≥95%, all scenarios pass |
@@ -137,12 +140,45 @@ flowchart LR
 - Component design (service boundaries, interactions)
 - Data models (ERDs, schemas)
 - API specifications (OpenAPI, GraphQL)
+- **Architecture Decision Records (ADRs)** - Document strategic tech choices acknowledging E(t) constraints
 - Data flow diagrams (lineage, transformations)
 - Traceability matrix (design elements → REQ keys)
+
+## **5.1 Architecture Decision Records (ADRs)**
+
+**Purpose**: Document strategic technical decisions and the ecosystem constraints E(t) that shaped them
+
+**When to write ADRs**:
+- Cloud provider selection
+- Programming language/framework selection
+- Database engine selection
+- Authentication/authorization approach
+
+**ADR Structure**:
+```markdown
+# ADR-XXX: [Decision Title]
+
+## Context
+Requirements: REQ-*, Ecosystem constraints: team, timeline, budget, compliance
+
+## Decision
+Selected: [Option] | Rejected: [Alternatives with rationale]
+
+## Ecosystem Constraints Acknowledged
+- Team knows X, doesn't know Y
+- Timeline Z months rules out learning Y
+- Budget limits cloud provider options
+
+## Constraints Imposed Downstream
+- Code stage must use library L
+- Runtime must deploy to platform P
+```
 
 **Quality Gates**:
 - ✅ Design adheres to architecture context
 - ✅ All components mapped to specific REQ keys
+- ✅ **ADRs written for all strategic decisions (framework, cloud, database, auth)**
+- ✅ **ADRs acknowledge ecosystem constraints E(t) (team, timeline, budget, compliance)**
 - ✅ Data models meet data architecture standards
 - ✅ Security/privacy controls defined
 - ✅ Cost estimates within budget
@@ -335,6 +371,37 @@ All logs/metrics **tagged with REQ keys**:
 - New intent: "Fix authentication failure spike"
 - New requirement: REQ-NFR-AUTH-RESILIENCE-001
 - SDLC cycle begins
+
+## **10.4 Eco-Intent (Ecosystem-Driven Intent)**
+
+**Purpose**: Ecosystem changes E(t) automatically generate intents
+
+**Sources**:
+- **Security vulnerabilities**: CVE-2024-1234 in library X → Intent: "Upgrade library X"
+- **API deprecations**: Stripe API v1 EOL → Intent: "Migrate to Stripe API v2"
+- **Cost alerts**: Cloud bill spike → Intent: "Optimize S3 storage costs"
+- **Compliance changes**: New GDPR rules → Intent: "Update consent flow"
+- **Performance degradation**: External API slow → Intent: "Add caching layer"
+
+**Eco-Intent Flow**:
+```
+E(t) change detected → Monitor generates Eco-Intent → Intent Manager → Requirements → Design (ADR) → Code → Deploy
+```
+
+**Example**:
+```
+GitHub Security Alert: "CVE-2024-5678 in fastapi < 0.110.0"
+  ↓
+Eco-Intent: "Upgrade FastAPI to 0.110.0 (CVE-2024-5678)"
+  ↓
+REQ-SEC-LIB-001: "FastAPI must be ≥ 0.110.0"
+  ↓
+ADR-042: "Upgrade FastAPI" (acknowledges breaking changes, test requirements)
+  ↓
+Code: Update requirements.txt, run tests
+  ↓
+Deploy: Release v2.5.1
+```
 
 ---
 
@@ -553,6 +620,6 @@ Before coding, ask:
 
 **Ultimate Mantra**: **"Excellence or nothing"** 🔥
 
-**Version**: 1.0
-**Source**: Condensed from ai_sdlc_guide_v1_2.md
+**Version**: 1.2
+**Source**: Condensed from ai_sdlc_guide_v1_2.md (includes ecosystem integration)
 **Date**: 2025-11-20
