@@ -171,7 +171,7 @@ claude marketplace search ai-sdlc
 
 Recommended for startups:
   📦 @aisdlc/aisdlc-core          - Requirement traceability foundation
-  📦 @aisdlc/code-tdd-skills      - Test-Driven Development workflow
+  📦 @aisdlc/code-skills      - Test-Driven Development workflow
   📦 @aisdlc/principles-key       - Key Principles (TDD, Fail Fast, etc.)
 
 Full governance:
@@ -189,7 +189,7 @@ claude install @aisdlc/startup-bundle
 
 Installing:
   ✓ @aisdlc/aisdlc-core v3.0.0
-  ✓ @aisdlc/code-tdd-skills v1.0.0
+  ✓ @aisdlc/code-skills v1.0.0
   ✓ @aisdlc/principles-key v1.0.0
 
 Skills available:
@@ -295,7 +295,7 @@ plugins:
   # All 7 stages (compliance requirement)
   - "@aisdlc/requirements-skills"
   - "@aisdlc/design-skills"
-  - "@aisdlc/code-tdd-skills"
+  - "@aisdlc/code-skills"
   - "@aisdlc/testing-skills"
   - "@aisdlc/stage-uat"
   - "@aisdlc/runtime-skills"
@@ -520,7 +520,7 @@ Continue with next ticket?
 **Setup**:
 ```bash
 # Maria's team uses BDD, not TDD
-claude install @aisdlc/code-bdd-skills
+claude install @aisdlc/code-skills
 ```
 
 **Feature Request**:
@@ -781,8 +781,8 @@ Categories:
 
 Popular:
   ⭐ @aisdlc/aisdlc-core (10k downloads)
-  ⭐ @aisdlc/code-tdd-skills (8k downloads)
-  ⭐ @aisdlc/code-bdd-skills (5k downloads)
+  ⭐ @aisdlc/code-skills (8k downloads)
+  ⭐ @aisdlc/code-skills (5k downloads)
 
 Featured:
   🆕 @aisdlc/code-generation-skills (NEW - Autogenerate from business rules)
@@ -795,12 +795,12 @@ Install: claude install @aisdlc/<plugin-name>
 ### Plugin Details
 
 ```bash
-claude marketplace show @aisdlc/code-tdd-skills
+claude marketplace show @aisdlc/code-skills
 ```
 
 **Claude shows**:
 ```
-📦 @aisdlc/code-tdd-skills v1.0.0
+📦 @aisdlc/code-skills v1.0.0
 
 Description:
   Test-Driven Development workflow with RED → GREEN → REFACTOR → COMMIT cycle.
@@ -828,9 +828,9 @@ Reviews:
   ⭐⭐⭐⭐⭐ "Keeps me honest about TDD!" - Sarah, Startup Dev
   ⭐⭐⭐⭐⭐ "Our team's code quality went up 40%" - David, Tech Lead
   ⭐⭐⭐⭐☆ "Love it, but wish it had BDD support" - Maria, QA Lead
-    → Try @aisdlc/code-bdd-skills instead!
+    → Try @aisdlc/code-skills instead!
 
-Install: claude install @aisdlc/code-tdd-skills
+Install: claude install @aisdlc/code-skills
 ```
 
 ### Bundle Recommendations
@@ -847,7 +847,7 @@ claude marketplace bundles
   Perfect for: Solo developers, MVPs, prototypes
   Includes:
     ✓ @aisdlc/aisdlc-core
-    ✓ @aisdlc/code-tdd-skills
+    ✓ @aisdlc/code-skills
     ✓ @aisdlc/principles-key
   What you get:
     - TDD workflow enforcement
@@ -861,7 +861,7 @@ claude marketplace bundles
     ✓ @aisdlc/aisdlc-core
     ✓ @aisdlc/requirements-skills
     ✓ @aisdlc/design-skills
-    ✓ @aisdlc/code-tdd-skills
+    ✓ @aisdlc/code-skills
     ✓ @aisdlc/testing-skills
     ✓ @aisdlc/stage-uat
     ✓ @aisdlc/runtime-skills
@@ -878,7 +878,7 @@ claude marketplace bundles
   Perfect for: QA teams, test-first development
   Includes:
     ✓ @aisdlc/aisdlc-core
-    ✓ @aisdlc/code-bdd-skills
+    ✓ @aisdlc/code-skills
     ✓ @aisdlc/testing-skills
     ✓ @aisdlc/requirements-skills
   What you get:
@@ -921,7 +921,7 @@ From @aisdlc/aisdlc-core:
   📊 check-requirement-coverage    - Detect requirements without tests (Sensor)
   🏷️  propagate-req-keys            - Tag artifacts with REQ-* (Actuator)
 
-From @aisdlc/code-tdd-skills:
+From @aisdlc/code-skills:
   🔄 tdd-workflow                  - Complete TDD orchestration
   🔴 red-phase                     - Write failing tests
   🟢 green-phase                   - Implement minimal code
@@ -1320,7 +1320,7 @@ Installing plugins for Acme Payment Service...
 ✓ @aisdlc/aisdlc-core
 ✓ @aisdlc/requirements-skills
 ✓ @aisdlc/design-skills
-✓ @aisdlc/code-tdd-skills
+✓ @aisdlc/code-skills
 ✓ @aisdlc/testing-skills
 ✓ @aisdlc/runtime-skills
 ✓ @aisdlc/principles-key
@@ -1425,7 +1425,7 @@ plugins:
   - name: "@aisdlc/aisdlc-core"
     version: "^3.0.0"
 
-  - name: "@aisdlc/code-tdd-skills"
+  - name: "@aisdlc/code-skills"
     version: "^1.0.0"
     config:
       minimum_coverage: 90        # Company standard

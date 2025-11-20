@@ -73,62 +73,51 @@ AI_SDLC_Context/
 │   │   ├── README.md
 │   │   └── CHANGELOG.md
 │   │
-│   ├── code-tdd-skills/                       # 💻 Code - TDD (PHASE 4)
+│   ├── code-skills/                           # 💻 Code (PHASE 4) - ALL variants
 │   │   ├── .claude-plugin/
 │   │   │   └── plugin.json
 │   │   ├── skills/
-│   │   │   ├── tdd-workflow/
-│   │   │   │   └── SKILL.md
-│   │   │   ├── red-phase/
-│   │   │   │   ├── SKILL.md
-│   │   │   │   └── templates/
-│   │   │   │       ├── test-template-python.py
-│   │   │   │       ├── test-template-typescript.ts
-│   │   │   │       └── test-template-java.java
-│   │   │   ├── green-phase/
-│   │   │   │   └── SKILL.md
-│   │   │   ├── refactor-phase/
-│   │   │   │   └── SKILL.md
-│   │   │   └── commit-with-req-tag/
-│   │   │       └── SKILL.md
+│   │   │   ├── tdd/                           # TDD variant
+│   │   │   │   ├── tdd-workflow/
+│   │   │   │   │   └── SKILL.md
+│   │   │   │   ├── red-phase/
+│   │   │   │   │   ├── SKILL.md
+│   │   │   │   │   └── templates/
+│   │   │   │   │       ├── test-template-python.py
+│   │   │   │   │       ├── test-template-typescript.ts
+│   │   │   │   │       └── test-template-java.java
+│   │   │   │   ├── green-phase/
+│   │   │   │   │   └── SKILL.md
+│   │   │   │   ├── refactor-phase/
+│   │   │   │   │   └── SKILL.md
+│   │   │   │   └── commit-with-req-tag/
+│   │   │   │       └── SKILL.md
+│   │   │   ├── bdd/                           # BDD variant
+│   │   │   │   ├── bdd-workflow/
+│   │   │   │   │   └── SKILL.md
+│   │   │   │   ├── write-scenario/
+│   │   │   │   │   ├── SKILL.md
+│   │   │   │   │   └── templates/
+│   │   │   │   │       └── gherkin-template.feature
+│   │   │   │   ├── implement-step-definitions/
+│   │   │   │   │   └── SKILL.md
+│   │   │   │   ├── implement-feature/
+│   │   │   │   │   └── SKILL.md
+│   │   │   │   └── refactor-bdd/
+│   │   │   │       └── SKILL.md
+│   │   │   └── generation/                    # Code generation
+│   │   │       ├── autogenerate-from-business-rules/
+│   │   │       │   └── SKILL.md
+│   │   │       ├── autogenerate-validators/
+│   │   │       │   └── SKILL.md
+│   │   │       ├── autogenerate-constraints/
+│   │   │       │   └── SKILL.md
+│   │   │       └── autogenerate-formulas/
+│   │   │           └── SKILL.md
 │   │   ├── README.md
 │   │   └── CHANGELOG.md
 │   │
-│   ├── code-bdd-skills/                       # 💻 Code - BDD (PHASE 5)
-│   │   ├── .claude-plugin/
-│   │   │   └── plugin.json
-│   │   ├── skills/
-│   │   │   ├── bdd-workflow/
-│   │   │   │   └── SKILL.md
-│   │   │   ├── write-scenario/
-│   │   │   │   ├── SKILL.md
-│   │   │   │   └── templates/
-│   │   │   │       └── gherkin-template.feature
-│   │   │   ├── implement-step-definitions/
-│   │   │   │   └── SKILL.md
-│   │   │   ├── implement-feature/
-│   │   │   │   └── SKILL.md
-│   │   │   └── refactor-bdd/
-│   │   │       └── SKILL.md
-│   │   ├── README.md
-│   │   └── CHANGELOG.md
-│   │
-│   ├── code-generation-skills/                # 🤖 Code Generation (PHASE 6)
-│   │   ├── .claude-plugin/
-│   │   │   └── plugin.json
-│   │   ├── skills/
-│   │   │   ├── autogenerate-from-business-rules/
-│   │   │   │   └── SKILL.md
-│   │   │   ├── autogenerate-validators/
-│   │   │   │   └── SKILL.md
-│   │   │   ├── autogenerate-constraints/
-│   │   │   │   └── SKILL.md
-│   │   │   └── autogenerate-formulas/
-│   │   │       └── SKILL.md
-│   │   ├── README.md
-│   │   └── CHANGELOG.md
-│   │
-│   ├── testing-skills/                        # 🧪 Testing (PHASE 7)
+│   ├── testing-skills/                        # 🧪 Testing (PHASE 5)
 │   │   ├── .claude-plugin/
 │   │   │   └── plugin.json
 │   │   ├── skills/
@@ -143,7 +132,7 @@ AI_SDLC_Context/
 │   │   ├── README.md
 │   │   └── CHANGELOG.md
 │   │
-│   ├── runtime-skills/                        # 🚀 Runtime (PHASE 8)
+│   ├── runtime-skills/                        # 🚀 Runtime (PHASE 6)
 │   │   ├── .claude-plugin/
 │   │   │   └── plugin.json
 │   │   ├── skills/
@@ -161,7 +150,7 @@ AI_SDLC_Context/
 │   │   ├── README.md
 │   │   └── CHANGELOG.md
 │   │
-│   ├── principles-key/                        # 📖 Key Principles (PHASE 9)
+│   ├── principles-key/                        # 📖 Key Principles (PHASE 7)
 │   │   ├── .claude-plugin/
 │   │   │   └── plugin.json
 │   │   ├── skills/
@@ -174,7 +163,7 @@ AI_SDLC_Context/
 │   │   ├── README.md
 │   │   └── CHANGELOG.md
 │   │
-│   └── bundles/                               # 🎯 Plugin Bundles (PHASE 10)
+│   └── bundles/                               # 🎯 Plugin Bundles (PHASE 8)
 │       ├── startup-bundle/
 │       │   ├── .claude-plugin/
 │       │   │   └── plugin.json
@@ -394,87 +383,87 @@ plugins/design-skills/
 
 ---
 
-### Phase 4: Code TDD Skills (Week 4)
+### Phase 4: Code Skills (Weeks 4-6)
 
-**Goal**: Create `@aisdlc/code-tdd-skills` with RED→GREEN→REFACTOR
+**Goal**: Create `@aisdlc/code-skills` with TDD, BDD, and code generation - ALL in ONE plugin
+
+**Rationale**: Single plugin simplifies UX - Claude autonomously selects TDD vs BDD vs generation based on context
 
 **Files to Create**:
 ```
-plugins/code-tdd-skills/
+plugins/code-skills/
 ├── .claude-plugin/
 │   └── plugin.json
 ├── skills/
-│   ├── tdd-workflow/
-│   │   └── SKILL.md
-│   ├── red-phase/
-│   │   ├── SKILL.md
-│   │   └── templates/
-│   │       ├── test-template-python.py
-│   │       ├── test-template-typescript.ts
-│   │       └── test-template-java.java
-│   ├── green-phase/
-│   │   └── SKILL.md
-│   ├── refactor-phase/
-│   │   └── SKILL.md
-│   └── commit-with-req-tag/
-│       └── SKILL.md
+│   ├── tdd/                           # TDD variant
+│   │   ├── tdd-workflow/
+│   │   │   └── SKILL.md
+│   │   ├── red-phase/
+│   │   │   ├── SKILL.md
+│   │   │   └── templates/
+│   │   │       ├── test-template-python.py
+│   │   │       ├── test-template-typescript.ts
+│   │   │       └── test-template-java.java
+│   │   ├── green-phase/
+│   │   │   └── SKILL.md
+│   │   ├── refactor-phase/
+│   │   │   └── SKILL.md
+│   │   └── commit-with-req-tag/
+│   │       └── SKILL.md
+│   ├── bdd/                           # BDD variant
+│   │   ├── bdd-workflow/
+│   │   │   └── SKILL.md
+│   │   ├── write-scenario/
+│   │   │   ├── SKILL.md
+│   │   │   └── templates/
+│   │   │       └── gherkin-template.feature
+│   │   ├── implement-step-definitions/
+│   │   │   └── SKILL.md
+│   │   ├── implement-feature/
+│   │   │   └── SKILL.md
+│   │   └── refactor-bdd/
+│   │       └── SKILL.md
+│   └── generation/                    # Code generation
+│       ├── autogenerate-from-business-rules/
+│       │   └── SKILL.md
+│       ├── autogenerate-validators/
+│       │   └── SKILL.md
+│       ├── autogenerate-constraints/
+│       │   └── SKILL.md
+│       └── autogenerate-formulas/
+│           └── SKILL.md
 ├── README.md
 └── CHANGELOG.md
 ```
 
 **Deliverables**:
-- ✅ Complete TDD workflow
-- ✅ RED: Write failing tests tagged with REQ-*
-- ✅ GREEN: Implement code tagged with REQ-*
-- ✅ REFACTOR: Improve quality
-- ✅ COMMIT: Tag commits with REQ-*
+- ✅ TDD workflow (RED → GREEN → REFACTOR → COMMIT)
+- ✅ BDD workflow (SCENARIO → STEP DEF → IMPLEMENT)
+- ✅ Code generation from BR-*, C-*, F-*
+- ✅ Claude autonomously picks TDD vs BDD vs generation
 
 **Test**:
 ```bash
-claude install plugins/code-tdd-skills
-# Test: "Implement REQ-F-AUTH-001 using TDD"
-# Should follow RED → GREEN → REFACTOR → COMMIT
+claude install plugins/code-skills
+claude skills list
+# Should show: tdd-workflow, bdd-workflow, autogenerate-validators, etc.
+
+# Test TDD (Claude chooses based on "implement")
+"Implement REQ-F-AUTH-001"
+# → Claude uses tdd-workflow
+
+# Test BDD (Claude chooses based on "scenario")
+"Write scenario for REQ-F-AUTH-001"
+# → Claude uses bdd-workflow
+
+# Test Generation (Claude chooses when BR-* present)
+"Generate code from BR-001, BR-002"
+# → Claude uses autogenerate-validators
 ```
 
 ---
 
-### Phase 5: Code BDD Skills (Week 5)
-
-**Goal**: Create `@aisdlc/code-bdd-skills` with Gherkin scenarios
-
-**Files to Create**:
-```
-plugins/code-bdd-skills/
-├── .claude-plugin/
-│   └── plugin.json
-├── skills/
-│   ├── bdd-workflow/
-│   │   └── SKILL.md
-│   ├── write-scenario/
-│   │   ├── SKILL.md
-│   │   └── templates/
-│   │       └── gherkin-template.feature
-│   ├── implement-step-definitions/
-│   │   └── SKILL.md
-│   ├── implement-feature/
-│   │   └── SKILL.md
-│   └── refactor-bdd/
-│       └── SKILL.md
-├── README.md
-└── CHANGELOG.md
-```
-
-**Deliverables**:
-- ✅ BDD workflow (SCENARIO → STEP DEF → IMPLEMENT)
-- ✅ Gherkin scenarios tagged with REQ-*
-- ✅ Step definitions
-- ✅ Feature implementation
-
----
-
-### Phase 6: Code Generation Skills (Week 6)
-
-**Goal**: Create `@aisdlc/code-generation-skills` for autogeneration from BR-*/C-*/F-*
+### Phase 5: Testing Skills (Week 7)
 
 **Files to Create**:
 ```
@@ -512,7 +501,7 @@ Output (autogenerated):
 
 ---
 
-### Phase 7: Testing Skills (Week 7)
+### Phase 5: Testing Skills (Week 7)
 
 **Goal**: Create `@aisdlc/testing-skills` with coverage validation
 
@@ -542,7 +531,7 @@ plugins/testing-skills/
 
 ---
 
-### Phase 8: Runtime Skills (Week 8)
+### Phase 6: Runtime Skills (Week 8)
 
 **Goal**: Create `@aisdlc/runtime-skills` with telemetry + feedback loop
 
@@ -575,7 +564,7 @@ plugins/runtime-skills/
 
 ---
 
-### Phase 9: Principles Skills (Week 9)
+### Phase 7: Principles Skills (Week 9)
 
 **Goal**: Create `@aisdlc/principles-key` with Key Principles
 
@@ -602,7 +591,7 @@ plugins/principles-key/
 
 ---
 
-### Phase 10: Bundles (Week 10)
+### Phase 8: Bundles (Week 10)
 
 **Goal**: Create plugin bundles for different use cases
 
@@ -631,7 +620,7 @@ plugins/bundles/
   "name": "@aisdlc/startup-bundle",
   "dependencies": [
     "@aisdlc/aisdlc-core",
-    "@aisdlc/code-tdd-skills",
+    "@aisdlc/code-skills",
     "@aisdlc/principles-key"
   ]
 }
@@ -645,7 +634,7 @@ plugins/bundles/
     "@aisdlc/aisdlc-core",
     "@aisdlc/requirements-skills",
     "@aisdlc/design-skills",
-    "@aisdlc/code-tdd-skills",
+    "@aisdlc/code-skills",
     "@aisdlc/testing-skills",
     "@aisdlc/runtime-skills",
     "@aisdlc/principles-key"
@@ -915,15 +904,14 @@ examples/workflows/
 - **Week 1**: Phase 1 (Core)
 - **Week 2**: Phase 2 (Requirements)
 - **Week 3**: Phase 3 (Design)
-- **Week 4**: Phase 4 (Code TDD)
-- **Week 5**: Phase 5 (Code BDD)
-- **Week 6**: Phase 6 (Code Generation)
-- **Week 7**: Phase 7 (Testing)
-- **Week 8**: Phase 8 (Runtime)
-- **Week 9**: Phase 9 (Principles)
-- **Week 10**: Phase 10 (Bundles)
+- **Weeks 4-6**: Phase 4 (Code Skills - TDD + BDD + Generation)
+- **Week 7**: Phase 5 (Testing)
+- **Week 8**: Phase 6 (Runtime)
+- **Week 9**: Phase 7 (Principles)
+- **Week 10**: Phase 8 (Bundles)
 
 **Total**: 10 weeks (~2.5 months)
+**Plugin Count**: 7 core plugins (was 9) + 4 bundles = 11 packages (was 13)
 
 ---
 
