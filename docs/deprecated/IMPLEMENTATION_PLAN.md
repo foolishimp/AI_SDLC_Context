@@ -202,6 +202,8 @@ Transform v2.0 monolithic plugin into v3.0 modular, skills-based architecture wi
 
 ## Complete File Structure
 
+**Note**: All plugins now include both `skills/` and `commands/` directories for autonomous and explicit invocation respectively. See "Slash Commands" section for complete command mappings.
+
 ```
 ai_sdlc_method/
 ├── plugins/
@@ -216,6 +218,12 @@ ai_sdlc_method/
 │   │   │   │   └── SKILL.md
 │   │   │   └── propagate-req-keys/
 │   │   │       └── SKILL.md
+│   │   ├── commands/                          # ⭐ NEW: Explicit invocation
+│   │   │   ├── trace.md
+│   │   │   ├── coverage-req.md
+│   │   │   ├── missing-reqs.md
+│   │   │   ├── propagate-tags.md
+│   │   │   └── validate-coverage.md
 │   │   ├── README.md
 │   │   └── CHANGELOG.md
 │   │
@@ -846,6 +854,756 @@ plugins/bundles/
 
 ---
 
+## Slash Commands: Explicit Invocation Layer
+
+### Rationale
+
+**Skills** are autonomous (Claude decides when to invoke based on context), but developers need **explicit control** for:
+- Manual workflow triggers (`/tdd`, `/bdd`)
+- Status inspection (`/sdlc-status`, `/coverage-report`)
+- Stage transitions (`/stage requirements`, `/next-stage`)
+- Debugging and inspection (`/trace REQ-KEY`, `/scan-tech-debt`)
+
+**Design Principle**: Every skill and agent should be invocable via slash command for explicit user control.
+
+---
+
+### Complete Command Mapping
+
+#### Phase 1: Core Traceability Commands
+
+**Plugin**: `aisdlc-core`
+
+| Slash Command | Invokes Skill | Purpose | Arguments |
+|---------------|---------------|---------|-----------|
+| `/trace` | `requirement-traceability` | Show full REQ-* lineage (intent → runtime) | `<REQ-KEY>` |
+| `/coverage-req` | `check-requirement-coverage` | Show requirement coverage matrix | None |
+| `/missing-reqs` | `check-requirement-coverage` | Find code/tests without REQ tags | None |
+| `/propagate-tags` | `propagate-req-keys` | Tag code/commits/tests with REQ-* | `<REQ-KEY>` |
+| `/validate-coverage` | `check-requirement-coverage` | Check if all REQs have tests | None |
+
+**Files to Create**:
+```
+plugins/aisdlc-core/commands/
+├── trace.md                    # /trace <REQ-KEY>
+├── coverage-req.md             # /coverage-req
+├── missing-reqs.md             # /missing-reqs
+├── propagate-tags.md           # /propagate-tags <REQ-KEY>
+└── validate-coverage.md        # /validate-coverage
+```
+
+---
+
+#### Phase 2: Requirements Commands
+
+**Plugin**: `requirements-skills`
+
+| Slash Command | Invokes Skill | Purpose | Arguments |
+|---------------|---------------|---------|-----------|
+| `/extract-requirements` | `requirement-extraction` | Extract REQ-* from intent | `<intent-file>` |
+| `/disambiguate` | `disambiguate-requirements` | Break into BR-*, C-*, F-* | `<REQ-KEY>` |
+| `/extract-business-rules` | `extract-business-rules` | Extract business rules | `<REQ-KEY>` |
+| `/extract-constraints` | `extract-constraints` | Extract constraints | `<REQ-KEY>` |
+| `/extract-formulas` | `extract-formulas` | Extract formulas | `<REQ-KEY>` |
+| `/refine-requirements` | `refine-requirements` | Refine from TDD discoveries | `<REQ-KEY>` |
+| `/traceability-matrix` | `create-traceability-matrix` | Create INT-* → REQ-* matrix | None |
+| `/validate-requirements` | `validate-requirements` | Validate all requirements | None |
+
+**Files to Create**:
+```
+plugins/requirements-skills/commands/
+├── extract-requirements.md     # /extract-requirements <intent-file>
+├── disambiguate.md             # /disambiguate <REQ-KEY>
+├── extract-business-rules.md   # /extract-business-rules <REQ-KEY>
+├── extract-constraints.md      # /extract-constraints <REQ-KEY>
+├── extract-formulas.md         # /extract-formulas <REQ-KEY>
+├── refine-requirements.md      # /refine-requirements <REQ-KEY>
+├── traceability-matrix.md      # /traceability-matrix
+└── validate-requirements.md    # /validate-requirements
+```
+
+---
+
+#### Phase 3: Design Commands
+
+**Plugin**: `design-skills`
+
+| Slash Command | Invokes Skill | Purpose | Arguments |
+|---------------|---------------|---------|-----------|
+| `/design` | `design-with-traceability` | Create design with REQ tags | `<REQ-KEY>` |
+| `/create-adr` | `create-adrs` | Create Architecture Decision Record | `<title>` |
+| `/validate-design` | `validate-design-coverage` | Check all REQs have design | None |
+| `/design-coverage` | `validate-design-coverage` | Show design coverage matrix | None |
+
+**Files to Create**:
+```
+plugins/design-skills/commands/
+├── design.md                   # /design <REQ-KEY>
+├── create-adr.md               # /create-adr <title>
+├── validate-design.md          # /validate-design
+└── design-coverage.md          # /design-coverage
+```
+
+---
+
+#### Phase 4: Code Commands (TDD, BDD, Generation, Debt)
+
+**Plugin**: `code-skills`
+
+##### TDD Commands
+
+| Slash Command | Invokes Skill | Purpose | Arguments |
+|---------------|---------------|---------|-----------|
+| `/tdd` | `tdd-workflow` | Start TDD workflow (RED→GREEN→REFACTOR) | `<REQ-KEY>` |
+| `/red` | `red-phase` | Write failing test | `<REQ-KEY>` |
+| `/green` | `green-phase` | Make test pass | None |
+| `/refactor` | `refactor-phase` | Refactor with Principle #6 | None |
+| `/commit-req` | `commit-with-req-tag` | Git commit with REQ tag | `<REQ-KEY>` |
+
+##### BDD Commands
+
+| Slash Command | Invokes Skill | Purpose | Arguments |
+|---------------|---------------|---------|-----------|
+| `/bdd` | `bdd-workflow` | Start BDD workflow | `<REQ-KEY>` |
+| `/scenario` | `write-scenario` | Write Gherkin scenario | `<REQ-KEY>` |
+| `/step-definitions` | `implement-step-definitions` | Implement step definitions | `<feature-file>` |
+| `/implement-feature` | `implement-feature` | Implement BDD feature | `<feature-file>` |
+| `/refactor-bdd` | `refactor-bdd` | BDD refactor phase | None |
+
+##### Code Generation Commands
+
+| Slash Command | Invokes Skill | Purpose | Arguments |
+|---------------|---------------|---------|-----------|
+| `/generate-from-br` | `autogenerate-from-business-rules` | Generate code from BR-* | `<BR-KEY>` |
+| `/generate-validators` | `autogenerate-validators` | Auto-generate validators | None |
+| `/generate-constraints` | `autogenerate-constraints` | Auto-generate constraint checks | None |
+| `/generate-formulas` | `autogenerate-formulas` | Auto-generate formula implementations | None |
+
+##### Tech Debt Commands
+
+| Slash Command | Invokes Skill | Purpose | Arguments |
+|---------------|---------------|---------|-----------|
+| `/scan-tech-debt` | `detect-unused-code` + `detect-complexity` | Scan for all tech debt | None |
+| `/detect-unused` | `detect-unused-code` | Find unused imports/code | None |
+| `/prune-unused` | `prune-unused-code` | Auto-delete unused code | None |
+| `/detect-complexity` | `detect-complexity` | Find over-complex logic | None |
+| `/simplify` | `simplify-complex-code` | Simplify complex code | `<file>` |
+| `/debt-report` | (new orchestrator) | Generate tech debt report | None |
+
+**Files to Create**:
+```
+plugins/code-skills/commands/
+├── tdd/
+│   ├── tdd.md                  # /tdd <REQ-KEY>
+│   ├── red.md                  # /red <REQ-KEY>
+│   ├── green.md                # /green
+│   ├── refactor.md             # /refactor
+│   └── commit-req.md           # /commit-req <REQ-KEY>
+├── bdd/
+│   ├── bdd.md                  # /bdd <REQ-KEY>
+│   ├── scenario.md             # /scenario <REQ-KEY>
+│   ├── step-definitions.md     # /step-definitions <feature-file>
+│   ├── implement-feature.md    # /implement-feature <feature-file>
+│   └── refactor-bdd.md         # /refactor-bdd
+├── generation/
+│   ├── generate-from-br.md     # /generate-from-br <BR-KEY>
+│   ├── generate-validators.md  # /generate-validators
+│   ├── generate-constraints.md # /generate-constraints
+│   └── generate-formulas.md    # /generate-formulas
+└── debt/
+    ├── scan-tech-debt.md       # /scan-tech-debt
+    ├── detect-unused.md        # /detect-unused
+    ├── prune-unused.md         # /prune-unused
+    ├── detect-complexity.md    # /detect-complexity
+    ├── simplify.md             # /simplify <file>
+    └── debt-report.md          # /debt-report
+```
+
+---
+
+#### Phase 5: Testing Commands
+
+**Plugin**: `testing-skills`
+
+| Slash Command | Invokes Skill | Purpose | Arguments |
+|---------------|---------------|---------|-----------|
+| `/coverage-report` | `create-coverage-report` | Generate coverage report | None |
+| `/validate-test-coverage` | `validate-test-coverage` | Check coverage % | None |
+| `/missing-tests` | `validate-test-coverage` | Find REQs without tests | None |
+| `/generate-tests` | `generate-missing-tests` | Auto-generate missing tests | `<REQ-KEY>` |
+| `/run-integration-tests` | `run-integration-tests` | Run integration test suite | None |
+| `/run-tests` | (new) | Run tests for specific REQ | `<REQ-KEY>` |
+
+**Files to Create**:
+```
+plugins/testing-skills/commands/
+├── coverage-report.md          # /coverage-report
+├── validate-test-coverage.md   # /validate-test-coverage
+├── missing-tests.md            # /missing-tests
+├── generate-tests.md           # /generate-tests <REQ-KEY>
+├── run-integration-tests.md    # /run-integration-tests
+└── run-tests.md                # /run-tests <REQ-KEY>
+```
+
+---
+
+#### Phase 6: Runtime Commands
+
+**Plugin**: `runtime-skills`
+
+| Slash Command | Invokes Skill | Purpose | Arguments |
+|---------------|---------------|---------|-----------|
+| `/tag-telemetry` | `telemetry-tagging` | Add REQ tags to logs/metrics | `<REQ-KEY>` |
+| `/create-observability` | `create-observability-config` | Setup Datadog/Splunk/Prometheus | `<provider>` |
+| `/trace-production-issue` | `trace-production-issue` | Trace alert → REQ → INT | `<alert-id>` |
+| `/runtime-status` | (new) | Show runtime health by REQ | `<REQ-KEY>` |
+
+**Files to Create**:
+```
+plugins/runtime-skills/commands/
+├── tag-telemetry.md            # /tag-telemetry <REQ-KEY>
+├── create-observability.md     # /create-observability <provider>
+├── trace-production-issue.md   # /trace-production-issue <alert-id>
+└── runtime-status.md           # /runtime-status <REQ-KEY>
+```
+
+---
+
+#### Phase 7: Principles Commands
+
+**Plugin**: `principles-key`
+
+| Slash Command | Invokes Skill | Purpose | Arguments |
+|---------------|---------------|---------|-----------|
+| `/seven-questions` | `seven-questions-checklist` | Run Seven Questions Checklist | None |
+| `/apply-principles` | `apply-key-principles` | Apply Key Principles to code | `<file>` |
+| `/check-principles` | `seven-questions-checklist` | Check if principles satisfied | None |
+
+**Files to Create**:
+```
+plugins/principles-key/commands/
+├── seven-questions.md          # /seven-questions
+├── apply-principles.md         # /apply-principles <file>
+└── check-principles.md         # /check-principles
+```
+
+---
+
+#### NEW: Phase 8: Stage Management Commands
+
+**Plugin**: `stage-management` (NEW)
+
+| Slash Command | Purpose | Arguments |
+|---------------|---------|-----------|
+| `/stage` | Switch to SDLC stage | `<requirements\|design\|code\|test\|runtime>` |
+| `/stage-status` | Show current stage status | None |
+| `/next-stage` | Move to next stage (with validation) | None |
+| `/sdlc-status` | Full SDLC dashboard | None |
+| `/stage-validate` | Validate current stage complete | None |
+
+**Files to Create**:
+```
+plugins/stage-management/
+├── .claude-plugin/
+│   └── plugin.json
+├── commands/
+│   ├── stage.md                # /stage <stage-name>
+│   ├── stage-status.md         # /stage-status
+│   ├── next-stage.md           # /next-stage
+│   ├── sdlc-status.md          # /sdlc-status
+│   └── stage-validate.md       # /stage-validate
+├── README.md
+└── CHANGELOG.md
+```
+
+**Plugin Manifest**:
+```json
+{
+  "name": "@aisdlc/stage-management",
+  "version": "1.0.0",
+  "description": "SDLC stage management and status commands",
+  "author": "AI SDLC Project",
+  "license": "MIT",
+  "homepage": "https://github.com/foolishimp/ai_sdlc_method",
+  "commands": {
+    "enabled": true,
+    "paths": ["commands/"]
+  }
+}
+```
+
+---
+
+### Command Categories
+
+#### 1. Orchestrator Commands (Workflow Entry Points)
+Trigger complete workflows:
+- `/tdd <REQ-KEY>` → RED → GREEN → REFACTOR → COMMIT
+- `/bdd <REQ-KEY>` → SCENARIO → STEP DEF → IMPLEMENT → REFACTOR
+- `/stage <name>` → Switch entire SDLC stage
+
+#### 2. Phase Commands (Individual Workflow Steps)
+Trigger specific phases:
+- `/red <REQ-KEY>` → Just write failing test
+- `/green` → Just make test pass
+- `/refactor` → Just refactor code
+
+#### 3. Sensor Commands (Inspection/Status)
+Read-only queries:
+- `/coverage-report` → Show test coverage
+- `/missing-tests` → Find gaps
+- `/scan-tech-debt` → Find violations
+- `/sdlc-status` → Full dashboard
+
+#### 4. Actuator Commands (Corrections)
+Make changes:
+- `/prune-unused` → Delete dead code
+- `/generate-tests` → Create missing tests
+- `/propagate-tags` → Tag with REQ-*
+
+#### 5. Traceability Commands (Navigation)
+Follow lineage:
+- `/trace <REQ-KEY>` → Full lineage tree
+- `/trace-production-issue` → Alert → REQ → INT
+
+---
+
+### Updated Plugin File Structures
+
+All plugins now include both `skills/` and `commands/`:
+
+```
+plugins/aisdlc-core/
+├── .claude-plugin/
+│   └── plugin.json                 # Enables both skills + commands
+├── skills/
+│   ├── requirement-traceability/   # Autonomous invocation
+│   ├── check-requirement-coverage/
+│   └── propagate-req-keys/
+├── commands/                       # ⭐ NEW: Explicit invocation
+│   ├── trace.md
+│   ├── coverage-req.md
+│   ├── missing-reqs.md
+│   ├── propagate-tags.md
+│   └── validate-coverage.md
+├── README.md
+└── CHANGELOG.md
+```
+
+**Updated Plugin Manifest** (all plugins):
+```json
+{
+  "name": "@aisdlc/<plugin-name>",
+  "version": "1.0.0",
+  "description": "...",
+  "author": "AI SDLC Project",
+  "license": "MIT",
+  "homepage": "https://github.com/foolishimp/ai_sdlc_method",
+  "skills": {
+    "enabled": true,
+    "paths": ["skills/"]
+  },
+  "commands": {                     // ⭐ NEW
+    "enabled": true,
+    "paths": ["commands/"]
+  }
+}
+```
+
+---
+
+### Example Slash Command Implementation
+
+#### `/trace` Command
+
+**File**: `plugins/aisdlc-core/commands/trace.md`
+
+```markdown
+---
+name: trace
+description: Trace requirement lineage from intent to runtime
+accepts_arguments: true
+---
+
+# Trace Requirement Lineage
+
+Trace a requirement key (REQ-*) through the entire SDLC lifecycle.
+
+## Usage
+
+/trace <REQ-KEY>
+
+## Arguments
+
+- `REQ-KEY`: Requirement key (e.g., REQ-F-AUTH-001)
+
+## Workflow
+
+1. **Invoke Skill**: Use `requirement-traceability` skill
+2. **Search Codebase**: Grep for REQ-KEY across all files
+3. **Build Lineage Tree**:
+   - Requirements: Where defined (docs/requirements/)
+   - Design: ADRs, diagrams (docs/design/, docs/adrs/)
+   - Code: Implementation (src/ with `# Implements: REQ-KEY`)
+   - Tests: Test files (tests/ with `# Validates: REQ-KEY`)
+   - Commits: Git log (git log --all --grep="REQ-KEY")
+   - Runtime: Telemetry (logs, metrics, alerts)
+4. **Display Tree**: Show full lineage with coverage status
+
+## Output Format
+
+REQ-F-AUTH-001: User login with email/password
+│
+├─ 📋 Requirements
+│   └─ docs/requirements/authentication.md:15
+│
+├─ 🎨 Design
+│   ├─ docs/design/auth-service.md:42
+│   └─ docs/adrs/ADR-003-auth-approach.md
+│
+├─ 💻 Implementation
+│   ├─ src/auth/auth_service.py:23  # Implements: REQ-F-AUTH-001
+│   └─ src/auth/validators.py:67    # Implements: REQ-F-AUTH-001
+│
+├─ ✅ Tests
+│   ├─ tests/auth/test_auth_service.py:15  # Validates: REQ-F-AUTH-001
+│   └─ tests/bdd/features/auth.feature:5   # Validates: REQ-F-AUTH-001
+│
+├─ 📦 Commits
+│   ├─ abc123 "Add user login (REQ-F-AUTH-001)"
+│   └─ def456 "Fix auth timeout (REQ-F-AUTH-001)"
+│
+└─ 🚀 Runtime
+    ├─ Status: ✅ Deployed (v1.2.0)
+    ├─ Metrics: 1,234 logins/day
+    └─ Alerts: ⚠️ 2 warnings (latency spikes)
+
+## Coverage Analysis
+
+- Requirements: ✅ Defined
+- Design: ✅ Covered
+- Implementation: ✅ Implemented (2 files)
+- Tests: ✅ Unit tests + BDD scenarios
+- Commits: ✅ Tagged (2 commits)
+- Runtime: ⚠️ 2 warnings (investigate latency)
+
+## Example
+
+/trace REQ-F-AUTH-001
+```
+
+---
+
+#### `/tdd` Command (Orchestrator)
+
+**File**: `plugins/code-skills/commands/tdd/tdd.md`
+
+```markdown
+---
+name: tdd
+description: Start TDD workflow for a requirement (RED→GREEN→REFACTOR→COMMIT)
+accepts_arguments: true
+---
+
+# TDD Workflow
+
+Start Test-Driven Development workflow for a requirement.
+
+## Usage
+
+/tdd <REQ-KEY>
+
+## Arguments
+
+- `REQ-KEY`: Requirement key (e.g., REQ-F-AUTH-001)
+
+## Workflow (Invokes Multiple Skills)
+
+### 1. RED Phase
+- Invoke: `red-phase` skill
+- Input: REQ-KEY
+- Output: Failing test (test_*.py)
+- Verify: Test runs and fails ❌
+
+### 2. GREEN Phase
+- Invoke: `green-phase` skill
+- Input: Failing test
+- Output: Minimal implementation
+- Verify: Test passes ✅
+
+### 3. REFACTOR Phase
+- Invoke: `refactor-phase` skill
+- Input: Working code
+- Output: Refactored code (Principle #6 enforced)
+- Checks:
+  - Unused code detection
+  - Complexity analysis
+  - Tech debt removal
+- Verify: Tests still pass ✅
+
+### 4. COMMIT Phase
+- Invoke: `commit-with-req-tag` skill
+- Input: REQ-KEY
+- Output: Git commit with message:
+  ```
+  Add <feature> (REQ-KEY)
+
+  🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+  Co-Authored-By: Claude <noreply@anthropic.com>
+  ```
+
+## Homeostasis
+
+If any phase fails:
+- **RED fails** (test doesn't fail): Fix test, retry
+- **GREEN fails** (test doesn't pass): Debug code, retry
+- **REFACTOR fails** (tests break): Revert refactor, retry
+- **COMMIT fails** (nothing to commit): Skip commit
+
+## Example
+
+/tdd REQ-F-AUTH-001
+
+Output:
+[RED] ✅ Created failing test: tests/auth/test_login.py
+      ❌ Test failed (expected)
+
+[GREEN] ✅ Implemented: src/auth/login.py
+        ✅ Test passed
+
+[REFACTOR] ✅ Removed 3 unused imports
+           ✅ Simplified complexity (CCN 8 → 4)
+           ✅ Tests still pass
+
+[COMMIT] ✅ Committed: abc123 "Add user login (REQ-F-AUTH-001)"
+
+TDD cycle complete! ✅
+```
+
+---
+
+#### `/sdlc-status` Command (Dashboard)
+
+**File**: `plugins/stage-management/commands/sdlc-status.md`
+
+```markdown
+---
+name: sdlc-status
+description: Show complete SDLC status dashboard
+accepts_arguments: false
+---
+
+# SDLC Status Dashboard
+
+Complete overview of AI SDLC methodology status.
+
+## Usage
+
+/sdlc-status
+
+## Dashboard Output
+
+═══════════════════════════════════════════════════════
+AI SDLC METHODOLOGY STATUS DASHBOARD
+═══════════════════════════════════════════════════════
+
+📊 CURRENT STAGE: Code Stage
+   Last Updated: 2025-11-20 14:32:15
+
+───────────────────────────────────────────────────────
+1️⃣  REQUIREMENTS STAGE
+───────────────────────────────────────────────────────
+Status: ✅ Complete
+Total Requirements: 42
+├─ REQ-F-*    : 28 (Functional)
+├─ REQ-NFR-*  : 8  (Non-Functional)
+├─ REQ-DATA-* : 4  (Data Quality)
+└─ REQ-BR-*   : 2  (Business Rules)
+
+Disambiguated:
+├─ BR-* (Business Rules): 15
+├─ C-*  (Constraints)   : 8
+└─ F-*  (Formulas)      : 3
+
+───────────────────────────────────────────────────────
+2️⃣  DESIGN STAGE
+───────────────────────────────────────────────────────
+Status: ✅ Complete
+Design Coverage: 100% (42/42 requirements)
+ADRs Created: 5
+├─ ADR-001: Authentication approach
+├─ ADR-002: Database selection
+├─ ADR-003: API design pattern
+├─ ADR-004: Caching strategy
+└─ ADR-005: Error handling
+
+───────────────────────────────────────────────────────
+3️⃣  CODE STAGE (CURRENT)
+───────────────────────────────────────────────────────
+Status: 🟡 In Progress
+Implementation Coverage: 67% (28/42 requirements)
+
+TDD Workflow:
+├─ Completed: 28 requirements
+├─ In Progress: 3 requirements
+└─ Not Started: 11 requirements
+
+Test Coverage: 87%
+├─ Unit Tests: 156 tests (100% pass)
+├─ Integration Tests: 24 tests (100% pass)
+└─ BDD Scenarios: 12 scenarios (100% pass)
+
+Tech Debt: ✅ Zero violations
+├─ Unused Code: 0
+├─ High Complexity: 0
+└─ Principle #6: ✅ Enforced
+
+Git Commits Tagged: 45/45 (100%)
+
+───────────────────────────────────────────────────────
+4️⃣  TESTING STAGE
+───────────────────────────────────────────────────────
+Status: 🟡 In Progress
+Test Coverage: 87% (target: 100%)
+Missing Tests: 14 requirements
+Coverage by Type:
+├─ Unit: 92%
+├─ Integration: 78%
+└─ BDD: 65%
+
+───────────────────────────────────────────────────────
+5️⃣  RUNTIME STAGE
+───────────────────────────────────────────────────────
+Status: 🔴 Not Started
+Deployed Requirements: 0/42
+Telemetry Tags: 0% configured
+Alerts: Not configured
+
+───────────────────────────────────────────────────────
+📈 TRACEABILITY HEALTH
+───────────────────────────────────────────────────────
+Intent → Requirements: ✅ 100%
+Requirements → Design: ✅ 100%
+Design → Code: 🟡 67%
+Code → Tests: ✅ 100% (of implemented)
+Tests → Runtime: 🔴 0%
+Runtime → Feedback: 🔴 0%
+
+───────────────────────────────────────────────────────
+🎯 NEXT ACTIONS
+───────────────────────────────────────────────────────
+1. Complete 11 remaining code implementations
+2. Generate 14 missing tests (target: 100% coverage)
+3. Setup runtime telemetry tagging
+4. Configure observability (Datadog/Prometheus)
+
+═══════════════════════════════════════════════════════
+Use /stage <name> to switch stages
+Use /next-stage to advance (validation required)
+═══════════════════════════════════════════════════════
+```
+
+---
+
+### Command Statistics
+
+**Total Commands**: 62 slash commands across 8 plugins
+
+| Plugin | Skills | Commands | Coverage |
+|--------|--------|----------|----------|
+| aisdlc-core | 3 | 5 | 167% |
+| requirements-skills | 8 | 8 | 100% |
+| design-skills | 3 | 4 | 133% |
+| code-skills | 18 | 27 | 150% |
+| testing-skills | 4 | 6 | 150% |
+| runtime-skills | 3 | 4 | 133% |
+| principles-key | 2 | 3 | 150% |
+| stage-management | 0 | 5 | N/A |
+| **TOTAL** | **41** | **62** | **151%** |
+
+**Coverage > 100%**: Some commands invoke multiple skills or provide additional orchestration.
+
+---
+
+### Updated Phase Deliverables
+
+#### Phase 1: Foundation
+**New Deliverables**:
+- ✅ 3 skills + **5 slash commands**
+- ✅ Commands: `/trace`, `/coverage-req`, `/missing-reqs`, `/propagate-tags`, `/validate-coverage`
+
+#### Phase 2: Requirements
+**New Deliverables**:
+- ✅ 8 skills + **8 slash commands**
+- ✅ All skills have corresponding commands
+
+#### Phase 3: Design
+**New Deliverables**:
+- ✅ 3 skills + **4 slash commands**
+- ✅ Extra command: `/design-coverage` (aggregator)
+
+#### Phase 4: Code
+**New Deliverables**:
+- ✅ 18 skills + **27 slash commands**
+- ✅ Organized by category: TDD (5), BDD (5), Generation (4), Debt (6), Orchestrators (7)
+
+#### Phase 5: Testing
+**New Deliverables**:
+- ✅ 4 skills + **6 slash commands**
+- ✅ Extra commands: `/run-tests`, `/validate-test-coverage`
+
+#### Phase 6: Runtime
+**New Deliverables**:
+- ✅ 3 skills + **4 slash commands**
+- ✅ Extra command: `/runtime-status`
+
+#### Phase 7: Principles
+**New Deliverables**:
+- ✅ 2 skills + **3 slash commands**
+- ✅ Extra command: `/check-principles`
+
+#### Phase 8: Stage Management (NEW)
+**New Deliverables**:
+- ✅ **5 slash commands** (no skills - pure orchestration)
+- ✅ Commands: `/stage`, `/stage-status`, `/next-stage`, `/sdlc-status`, `/stage-validate`
+
+---
+
+### Bundle Updates
+
+All bundles now include stage-management plugin:
+
+**startup-bundle**:
+```json
+{
+  "dependencies": [
+    "@aisdlc/aisdlc-core",
+    "@aisdlc/code-skills",
+    "@aisdlc/principles-key",
+    "@aisdlc/stage-management"  // ⭐ NEW
+  ]
+}
+```
+
+**enterprise-bundle**:
+```json
+{
+  "dependencies": [
+    "@aisdlc/aisdlc-core",
+    "@aisdlc/requirements-skills",
+    "@aisdlc/design-skills",
+    "@aisdlc/code-skills",
+    "@aisdlc/testing-skills",
+    "@aisdlc/runtime-skills",
+    "@aisdlc/principles-key",
+    "@aisdlc/stage-management"  // ⭐ NEW
+  ]
+}
+```
+
+---
+
 ## Key File Templates
 
 ### Plugin Manifest Template
@@ -862,6 +1620,10 @@ plugins/bundles/
   "skills": {
     "enabled": true,
     "paths": ["skills/"]
+  },
+  "commands": {
+    "enabled": true,
+    "paths": ["commands/"]
   }
 }
 ```
@@ -918,6 +1680,80 @@ If prerequisites missing:
 Input: ...
 Output: ...
 ```
+```
+
+### Slash Command Template
+
+```markdown
+---
+name: command-name
+description: Brief description of what this command does
+accepts_arguments: true | false
+---
+
+# Command Name
+
+Detailed description of what this command does and when to use it.
+
+## Usage
+
+/command-name [arguments]
+
+## Arguments
+
+- `argument1`: Description of argument 1 (required/optional)
+- `argument2`: Description of argument 2 (required/optional)
+
+## Workflow
+
+1. **Step 1**: What happens first
+   - Invokes: `skill-name` (if applicable)
+   - Input: What data is needed
+   - Output: What is produced
+
+2. **Step 2**: What happens next
+   - Action taken
+   - Result expected
+
+3. **Step 3**: Final step
+   - Validation performed
+   - Output displayed
+
+## Invokes Skills
+
+- `skill-1`: For capability X
+- `skill-2`: For capability Y
+
+## Output Format
+
+```
+Example output showing what the user sees
+Including any structured data, tables, or visualizations
+```
+
+## Error Handling
+
+If X fails:
+- Error message shown
+- Recovery action (if any)
+
+If Y is missing:
+- Warning displayed
+- Suggested next steps
+
+## Example
+
+/command-name arg1 arg2
+
+Expected output:
+```
+Output example here
+```
+
+## See Also
+
+- `/related-command`: Related functionality
+- `skill-name`: Underlying skill documentation
 ```
 
 ---
@@ -1213,25 +2049,25 @@ examples/workflows/
 
 ---
 
-### Phase 4: Code Skills - 🟡 PARTIALLY COMPLETE (5/22 skills)
+### Phase 4: Code Skills - 🟡 PARTIALLY COMPLETE (9/18 skills)
 
-**Status**: 🟡 In Progress (NO plugin.json - cannot install!)
-**Completion**: 23% (5/22 skills)
+**Status**: 🟢 TDD TESTED & VERIFIED ✅
+**Completion**: 50% (9/18 skills)
 
 #### Current State
 
 **Plugin Structure**:
-- ❌ `.claude-plugin/plugin.json` - **CRITICAL BLOCKER**
-- ❌ `README.md`
-- ❌ `CHANGELOG.md`
-- ✅ `skills/` directory structure exists
+- [x] `.claude-plugin/plugin.json` - ✅ COMPLETE (68 lines)
+- [x] `README.md` - ✅ COMPLETE (363 lines)
+- [x] `CHANGELOG.md` - ✅ COMPLETE (107 lines)
+- [x] `skills/` directory structure exists
 
-**TDD Skills** (1/5 = 20%):
-- [x] `refactor-phase/SKILL.md` - ✅ COMPLETE (281 lines, Principle #6 enforcement)
-- [ ] `tdd-workflow/SKILL.md` - Orchestrator skill
-- [ ] `red-phase/SKILL.md` - Write failing tests
-- [ ] `green-phase/SKILL.md` - Make tests pass
-- [ ] `commit-with-req-tag/SKILL.md` - Git commit with REQ-*
+**TDD Skills** (5/5 = 100%) ✅:
+- [x] `tdd-workflow/SKILL.md` - ✅ COMPLETE (267 lines, orchestrator)
+- [x] `red-phase/SKILL.md` - ✅ COMPLETE (385 lines, failing tests)
+- [x] `green-phase/SKILL.md` - ✅ COMPLETE (377 lines, minimal implementation)
+- [x] `refactor-phase/SKILL.md` - ✅ COMPLETE (280 lines, Principle #6 enforcement)
+- [x] `commit-with-req-tag/SKILL.md` - ✅ COMPLETE (440 lines, traceability)
 
 **Tech Debt Skills** (4/4 = 100%):
 - [x] `detect-unused-code/SKILL.md` - ✅ Sensor (250 lines)
@@ -1252,25 +2088,56 @@ examples/workflows/
 - [ ] `autogenerate-constraints/SKILL.md`
 - [ ] `autogenerate-formulas/SKILL.md`
 
-**Templates Needed**:
+**Templates Needed** (0/4 = 0%):
 - [ ] `skills/tdd/red-phase/templates/test-template-python.py`
 - [ ] `skills/tdd/red-phase/templates/test-template-typescript.ts`
 - [ ] `skills/tdd/red-phase/templates/test-template-java.java`
 - [ ] `skills/bdd/write-scenario/templates/gherkin-template.feature`
 
+---
+
+#### ✅ TDD Workflow Test Results (2025-11-20)
+
+**Test Project**: REQ-F-CALC-001 (Calculator Addition)
+**Test Location**: `/tmp/test-tdd-workflow`
+
+**Workflow Execution**:
+| Phase | Status | Output | Commit |
+|-------|--------|--------|--------|
+| Prerequisites | ✅ | REQ-* exists, git clean | - |
+| RED | ✅ | 5 tests created, FAILED ✓ | c7c9db0 |
+| GREEN | ✅ | Implementation, tests PASSED ✓ | 435124f |
+| REFACTOR | ✅ | Tech debt = 0 (Principle #6) | 8f847c4 |
+| COMMIT | ✅ | Full traceability | c6764b7 |
+
+**Metrics**:
+- Tests: 5/5 passing (100%)
+- Coverage: 100% (2/2 statements)
+- Tech Debt: 0 violations
+- Commits: 5 (requirement + RED + GREEN + REFACTOR + final)
+- Files: 2 (src/calculator.py 33 lines, tests/test_calculator.py 39 lines)
+
+**Traceability Verified**:
+- ✅ Forward: `git log --grep="REQ-F-CALC-001"` → 5 commits
+- ✅ Backward: `grep -rn "REQ-F-CALC-001" src/ tests/` → 3 matches
+
+**Skills Validated**: All 5 TDD skills work as designed ✅
+
+---
+
 #### Next Tasks (Prioritized)
-1. **URGENT**: Create `.claude-plugin/plugin.json` (blocks installation)
-2. Create `README.md` and `CHANGELOG.md`
-3. Complete TDD skills (4 remaining)
-4. Create BDD skills (5 needed)
-5. Create generation skills (4 needed)
-6. Create templates (4 needed)
+1. Create BDD skills (5 remaining)
+2. Create generation skills (4 remaining)
+3. Create templates (4 remaining)
 
 **Success Criteria**:
-- ✅ Plugin installable (has plugin.json)
-- ✅ All 22 skills complete
-- ✅ Templates created
-- ✅ Documentation complete
+- ✅ Plugin installable (has plugin.json) ✅ DONE
+- ✅ TDD skills complete (5/5) ✅ DONE
+- ✅ TDD workflow tested ✅ DONE
+- ⏳ BDD skills complete (0/5)
+- ⏳ Generation skills complete (0/4)
+- ⏳ Templates created (0/4)
+- ✅ Documentation complete ✅ DONE
 
 ---
 
