@@ -43,3 +43,9 @@ htmlcov/
 
 # Project specific
 *.log
+
+# Developer Workspace - ignore active session state
+.ai-workspace/session/current_session.md
+.ai-workspace/session/history/
+
+# Keep in git: templates, config, finished tasks, todo list, active tasks
