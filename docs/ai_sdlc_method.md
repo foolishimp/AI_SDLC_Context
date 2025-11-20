@@ -220,13 +220,23 @@ flowchart TD
     subgraph GOVERN["Governance Loop"]
         OB["Observer"]
         EV["Evaluator (Homeostasis Model)"]
+        ECO_MON["Ecosystem Monitor
+(CVEs, deprecations, costs)"]
         EX -->|"Metrics / logs / lineage"| OB
         OB -->|"Observations"| EV
         EV -->|"Deviation detected / new insight"| IM
+        ECO_MON -->|"Eco-Intent
+(ecosystem changes)"| IM
     end
 
     EV -.->|"Feeds new Intent"| IM
     IM -.->|"Continuous AI SDLC loop"| IC
+
+    %% --- 6. Ecosystem Constraint Vector E(t) ---
+    E_t["E(t)
+Ecosystem Constraints
+(platforms, APIs, compliance, costs, team)"]
+    E_t -.->|"Constrains all stages"| BUILDER
 ```
 
 ---
@@ -478,12 +488,16 @@ Assets: Req spec, user stories, NFRs, data requirements"]
     subgraph DESIGN_STAGE["Design – Solution & Data Design (Tech Lead)"]
         DES["Design
 Persona: Tech Lead
-Assets: Solution design, integration patterns, data design"]
+Assets: Solution design, integration patterns, data design, ADRs"]
 
-        ARCH_CTX["Architecture Context
+        ADR["ADRs
+(Architecture Decision Records)
+Document strategic decisions acknowledging E(t)"]
+
+        ARCH_CTX["Architecture Context [part of E(t)]
 (tech stack, platforms, standards, patterns)"]
 
-        DATA_CTX["Data Architecture Context
+        DATA_CTX["Data Architecture Context [part of E(t)]
 (models, schemas, contracts, lineage, retention, privacy)"]
 
         REQ -->|"Refined requirements"| DES
@@ -491,6 +505,7 @@ Assets: Solution design, integration patterns, data design"]
         ARCH_CTX -->|"Guide solution architecture"| DES
         DATA_CTX -->|"Guide data modelling & flows"| DES
 
+        DES -->|"Document strategic tech decisions"| ADR
         DES -->|"Iterate / refine design"| DES
     end
 

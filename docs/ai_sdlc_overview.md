@@ -96,14 +96,16 @@ AI SDLC: Requirements = living control system (continuously compared to runtime)
 
 ```mermaid
 flowchart LR
-    REQ["Requirements"] --> DES["Design"]
+    REQ["Requirements"] --> DES["Design
+    (ADRs acknowledge E(t))"]
     DES --> TASKS["Tasks"]
     TASKS --> CODE["Code"]
     CODE --> ST["System Test"]
     ST --> UAT["UAT"]
     UAT --> DEPLOY["Deploy"]
     DEPLOY --> RUNTIME["Runtime"]
-    RUNTIME -.->|"Feedback"| REQ
+    RUNTIME -.->|"Feedback + Eco-Intent"| REQ
+    ECO["Ecosystem E(t)"] -.->|"Constrains"| DES
 ```
 
 ## **3.2 Stage Summary**
