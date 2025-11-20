@@ -423,15 +423,24 @@ plugins/code-skills/
 │   │   │   └── SKILL.md
 │   │   └── refactor-bdd/
 │   │       └── SKILL.md
-│   └── generation/                    # Code generation
-│       ├── autogenerate-from-business-rules/
-│       │   └── SKILL.md
-│       ├── autogenerate-validators/
-│       │   └── SKILL.md
-│       ├── autogenerate-constraints/
-│       │   └── SKILL.md
-│       └── autogenerate-formulas/
-│           └── SKILL.md
+│   ├── generation/                    # Code generation
+│   │   ├── autogenerate-from-business-rules/
+│   │   │   └── SKILL.md
+│   │   ├── autogenerate-validators/
+│   │   │   └── SKILL.md
+│   │   ├── autogenerate-constraints/
+│   │   │   └── SKILL.md
+│   │   └── autogenerate-formulas/
+│   │       └── SKILL.md
+│   └── debt/                          # Tech debt management (Principle #6 enforcement)
+│       ├── detect-unused-code/
+│       │   └── SKILL.md              # Sensor: Find unused imports, dead code
+│       ├── prune-unused-code/
+│       │   └── SKILL.md              # Actuator: Auto-delete unused code
+│       ├── detect-complexity/
+│       │   └── SKILL.md              # Sensor: Find over-complex logic
+│       └── simplify-complex-code/
+│           └── SKILL.md              # Actuator: Simplify complex code
 ├── README.md
 └── CHANGELOG.md
 ```
@@ -440,7 +449,8 @@ plugins/code-skills/
 - ✅ TDD workflow (RED → GREEN → REFACTOR → COMMIT)
 - ✅ BDD workflow (SCENARIO → STEP DEF → IMPLEMENT)
 - ✅ Code generation from BR-*, C-*, F-*
-- ✅ Claude autonomously picks TDD vs BDD vs generation
+- ✅ Tech debt management (Principle #6 enforcement)
+- ✅ Claude autonomously picks TDD vs BDD vs generation vs debt detection
 
 **Test**:
 ```bash
@@ -459,6 +469,10 @@ claude skills list
 # Test Generation (Claude chooses when BR-* present)
 "Generate code from BR-001, BR-002"
 # → Claude uses autogenerate-validators
+
+# Test Tech Debt Detection (Claude chooses during refactor)
+"Refactor auth_service.py and remove any tech debt"
+# → Claude uses detect-unused-code, prune-unused-code, detect-complexity, simplify-complex-code
 ```
 
 ---

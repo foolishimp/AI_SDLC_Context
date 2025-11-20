@@ -1185,6 +1185,108 @@ Homeostasis achieved! All requirements have >= 80% coverage.
 
 ---
 
+### Example: Tech Debt Detected (Principle #6 Enforcement)
+
+```
+User: "I'm done with the authentication refactor"
+
+Claude: Let me check for technical debt...
+
+[Invoking: detect-unused-code skill (Sensor)]
+
+Tech Debt Report:
+  auth_service.py:
+    ⚠️ Unused imports (5):
+      - import hashlib      # Line 3 (never used)
+      - import re           # Line 4 (never used)
+      - from typing import Dict  # Line 7 (never used)
+
+    ⚠️ Dead code (2 functions):
+      - legacy_hash_password()  # Line 45-52 (no callers)
+      - validate_old_token()    # Line 89-97 (no callers)
+
+    ⚠️ Commented code (15 lines):
+      - Lines 120-135 (old implementation)
+
+[Invoking: detect-complexity skill (Sensor)]
+
+Complexity Report:
+  auth_service.py:
+    ❌ login() - Cyclomatic complexity: 18 (threshold: 10)
+      - 6 nested if statements
+      - 4 try/except blocks
+      - Recommend extracting validation logic
+
+Homeostasis deviation detected! Tech debt > 0 (Principle #6 violated).
+
+Should I automatically prune this tech debt?
+
+User: "Yes"
+
+Claude: [Invoking: prune-unused-code skill (Actuator)]
+
+Removing unused imports...
+  ✓ Deleted: import hashlib (line 3)
+  ✓ Deleted: import re (line 4)
+  ✓ Deleted: from typing import Dict (line 7)
+
+Removing dead code...
+  ✓ Deleted: legacy_hash_password() (8 lines)
+  ✓ Deleted: validate_old_token() (9 lines)
+
+Removing commented code...
+  ✓ Deleted: Lines 120-135 (16 lines)
+
+[Invoking: simplify-complex-code skill (Actuator)]
+
+Refactoring login() to reduce complexity...
+
+Before (Complexity: 18):
+def login(email: str, password: str) -> LoginResult:
+    if email is None:
+        if not is_valid_email(email):
+            if User.exists(email):
+                user = User.get(email)
+                if user.is_locked:
+                    if user.lockout_expired():
+                        # ... 50 more lines of nested logic
+
+After (Complexity: 6):
+def login(email: str, password: str) -> LoginResult:
+    validation_error = validate_login_input(email, password)
+    if validation_error:
+        return LoginResult(success=False, error=validation_error)
+
+    user = get_user_or_fail(email)
+
+    if user.is_locked and not user.lockout_expired():
+        return LoginResult(success=False, error="Account locked")
+
+    return authenticate_user(user, password)
+
+# Extracted functions (each < 10 lines, complexity < 5)
+def validate_login_input(email, password): ...
+def get_user_or_fail(email): ...
+def authenticate_user(user, password): ...
+
+Running tests to verify refactor...
+  ✓ All 47 tests passing
+
+Tech debt re-checked:
+  ✓ Unused imports: 0
+  ✓ Dead code: 0 functions
+  ✓ Commented code: 0 lines
+  ✓ Complexity: Max 6 (threshold: 10)
+
+Homeostasis achieved! Tech debt = 0 (Principle #6: "No Legacy Baggage" ✓)
+
+File size reduced: 487 lines → 312 lines (-36%)
+```
+
+**User's reaction**: "It automatically deleted all the cruft I accumulated and simplified my overly complex function. Principle #6 actually has teeth now!"
+
+---
+
 ## Requirements Refinement Loop
 
 ### User Experience of Discovery → Feedback
@@ -1509,6 +1611,14 @@ Sensors (Monitoring):
     Status: 2 tests failing
     Deviation: test_payment_in_euros, test_security_headers
 
+  ⚠️ detect-unused-code            - Last run: 1 min ago
+    Status: Tech debt detected
+    Deviation: 5 unused imports, 2 dead functions, 15 lines of commented code
+
+  ⚠️ detect-complexity             - Last run: 1 min ago
+    Status: Complexity violations
+    Deviation: login() complexity 18 (threshold: 10)
+
   ✓ seven-questions-checklist      - Last run: 5 min ago
     Status: All questions answered ✓
 
@@ -1517,15 +1627,25 @@ Actuators (Correcting):
     Target: REQ-F-PAY-005, REQ-NFR-SEC-002
     Progress: 1/2 tests generated
 
+  🔄 prune-unused-code             - Queued
+    Target: 5 unused imports, 2 dead functions, 15 lines commented code
+    Waiting for: generate-missing-tests to complete
+
+  🔄 simplify-complex-code         - Queued
+    Target: login() (complexity 18 → 6)
+    Waiting for: prune-unused-code to complete
+
   ⏸️ tdd-workflow                  - Idle
     Last used: 10 min ago
 
 Homeostasis Goal:
   ✗ 100% coverage (currently 94%)
   ✗ All tests passing (2 failing)
+  ✗ Tech debt = 0 (currently 22 violations)
+  ✗ Complexity ≤ 10 (max: 18)
   ✓ All questions answered
 
-Estimated time to homeostasis: 3 minutes
+Estimated time to homeostasis: 5 minutes
 
 Watch live: claude homeostasis watch
 ```
