@@ -31,7 +31,8 @@ Each stage has:
 - **Traceability** to requirement keys
 - **Personas** (human roles and AI agents)
 
-👉 **Full Methodology**: [AI SDLC Guide](docs/ai_sdlc_guide.md)
+👉 **Quick Introduction**: [AI SDLC Overview](docs/ai_sdlc_overview.md) (~30 min read)
+👉 **Complete Methodology**: [AI SDLC Method](docs/ai_sdlc_method.md) (Sections 1-13)
 👉 **Example Project**: [customer_portal](examples/local_projects/customer_portal/)
 
 ---
@@ -93,8 +94,11 @@ Claude will now follow the 7-stage AI SDLC methodology automatically.
 git clone https://github.com/foolishimp/AI_SDLC_Context.git
 cd AI_SDLC_Context
 
-# Read the complete methodology guide
-open docs/ai_sdlc_guide.md
+# Read the methodology overview
+open docs/ai_sdlc_overview.md
+
+# Or dive into the complete method
+open docs/ai_sdlc_method.md
 
 # Explore the example project (7-stage workflow)
 open examples/local_projects/customer_portal/README.md

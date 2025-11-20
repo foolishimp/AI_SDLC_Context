@@ -16,7 +16,7 @@
     "workflow": "Multi-Stage AI SDLC (7 stages)",
     "mantra": "Excellence or nothing",
     "stages": 7,
-    "reference_guide": "../../docs/ai_sdlc_guide.md",
+    "reference_guide": "../../docs/ai_sdlc_method.md",
     "methodologies": ["TDD", "BDD", "Requirement Traceability"]
   }
 }

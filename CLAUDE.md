@@ -32,10 +32,14 @@ Enable AI-augmented software development where:
 ```
 AI_SDLC_Context/
 ├── docs/
-│   ├── ai_sdlc_guide.md         # ⭐ Complete 7-stage methodology (3,300+ lines)
+│   ├── ai_sdlc_overview.md      # 📊 High-level introduction (~30 min read)
+│   ├── ai_sdlc_method.md        # 📖 Complete methodology (Sections 1-13, ~2,850 lines)
+│   ├── ai_sdlc_appendices.md    # 🔬 Technical deep-dives (category theory, ecosystem)
+│   ├── guides/                  # 👥 Role-specific application guides
+│   │   └── README.md            # Guide index (architect, developer, QA, manager)
 │   ├── ai_sdlc_full_flow.md     # Flow diagrams
 │   ├── README.md                # Documentation index with role-based learning paths
-│   └── guides/                  # Configuration system guides (legacy)
+│   └── deprecated/              # Archive of previous versions
 ├── plugins/
 │   ├── aisdlc-methodology/      # 7-stage methodology plugin (v2.0.0)
 │   │   ├── .claude-plugin/
@@ -275,7 +279,7 @@ Ask these seven questions:
 
 ### Must-Read Documents
 
-1. **[docs/ai_sdlc_guide.md](docs/ai_sdlc_guide.md)** ⭐ - Complete 7-stage methodology (3,300+ lines)
+1. **[docs/ai_sdlc_method.md](docs/ai_sdlc_method.md)** ⭐ - Complete 7-stage methodology (3,300+ lines)
    - Section 1.0: Introduction
    - Section 2.0: End-to-End Intent Lifecycle
    - Section 3.0: Builder Pipeline Overview
@@ -493,7 +497,7 @@ This project evolved from and replaces:
 
 - **Quick Start**: See [QUICKSTART.md](QUICKSTART.md)
 - **Plugin Guide**: See [PLUGIN_GUIDE.md](PLUGIN_GUIDE.md)
-- **Complete Methodology**: See [docs/ai_sdlc_guide.md](docs/ai_sdlc_guide.md)
+- **Complete Methodology**: See [docs/ai_sdlc_method.md](docs/ai_sdlc_method.md)
 - **Examples**: See [examples/local_projects/customer_portal/](examples/local_projects/customer_portal/)
 - **Documentation Index**: See [docs/README.md](docs/README.md)
 - **Ask Claude Code**: I'm here to help!
