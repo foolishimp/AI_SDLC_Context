@@ -9,6 +9,7 @@
 
 **Related Documents**:
 - [AI SDLC Overview](ai_sdlc_overview.md) - High-level introduction
+- [AI SDLC Concepts](ai_sdlc_concepts.md) - Exhaustive concept inventory (audit checklist)
 - [AI SDLC Appendices](ai_sdlc_appendices.md) - Technical deep-dives
 - [Role-Specific Guides](guides/) - Practical application guides
 

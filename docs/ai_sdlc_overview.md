@@ -10,6 +10,7 @@
 
 **Related Documents**:
 - [AI SDLC Method](ai_sdlc_method.md) - Complete methodology reference (Sections 1-13)
+- [AI SDLC Concepts](ai_sdlc_concepts.md) - Exhaustive concept inventory (audit checklist)
 - [AI SDLC Appendices](ai_sdlc_appendices.md) - Technical deep-dives
 - [Role-Specific Guides](guides/) - Practical application guides
 - [QUICKSTART](../QUICKSTART.md) - Getting started (3 methods)
