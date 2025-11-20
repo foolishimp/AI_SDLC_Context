@@ -2,13 +2,201 @@
 
 **Status**: Implementation Roadmap
 **Date**: 2025-11-20
+**Last Updated**: 2025-11-20
 **Based on**: [AI_SDLC_UX_DESIGN.md](AI_SDLC_UX_DESIGN.md)
+
+---
+
+## 🔄 Session Tracking & Active Tasks
+
+### Current Session Status
+- **Session Started**: 2025-11-20
+- **Current Phase**: Phase 1 - Foundation (Ready to Start)
+- **Active Task**: Documentation and planning complete, ready for implementation
+- **Last Checkpoint**: Updated IMPLEMENTATION_PLAN.md with session tracking, validated architecture alignment
+
+### Session Continuity Checklist
+When resuming, verify:
+- [ ] Read this IMPLEMENTATION_PLAN.md first
+- [ ] Check "Active Tasks This Session" below
+- [ ] Review "Current Phase Progress"
+- [ ] Continue from "Next Action Items"
+
+---
+
+## 📋 Active Tasks This Session
+
+### ✅ Completed This Session
+- [x] Read AI_SDLC_UX_DESIGN.md (2040 lines)
+- [x] Read ai_sdlc_concepts.md (634 lines)
+- [x] Read deprecated/IMPLEMENTATION_PLAN.md (943 lines)
+- [x] Fetch Claude Code plugin documentation
+- [x] Fetch Claude Code skills documentation
+- [x] Fetch Claude Code agents/subagents documentation
+- [x] Fetch Claude Code marketplace documentation
+- [x] Fetch Claude Code plugins-reference documentation
+- [x] Validate architecture alignment with Claude Code native features
+- [x] Update IMPLEMENTATION_PLAN.md with session tracking
+- [x] Audit existing plugins directory structure
+- [x] Reconcile existing work against implementation plan
+
+### 🔨 In Progress
+- None (planning complete, ready to implement)
+
+### 📌 Next Action Items (Prioritized)
+1. [ ] **URGENT**: Create `plugins/code-skills/.claude-plugin/plugin.json` (plugin exists but has NO manifest!)
+2. [ ] Complete code-skills TDD skills: `tdd-workflow`, `red-phase`, `green-phase`, `commit-with-req-tag`
+3. [ ] Create Phase 1 plugin: `plugins/aisdlc-core/`
+4. [ ] Create code-skills BDD skills (all missing)
+5. [ ] Create code-skills generation skills (all missing)
+
+### 🚧 Blocked/Waiting
+- None currently
+
+---
+
+## 📊 Existing Work Reconciliation
+
+**Audit Date**: 2025-11-20
+**Audited**: `/Users/jim/src/apps/ai_sdlc_method/plugins/`
+
+### Existing Plugins (3 total)
+
+#### 1. `aisdlc-methodology` (v2.0.0) - ⚠️ LEGACY
+**Status**: Monolithic config-based plugin (NOT skills-based)
+**Files**:
+- ✅ `.claude-plugin/plugin.json` - Complete manifest
+- ✅ `config/stages_config.yml` - 7-stage agent specifications (1,273 lines)
+- ✅ `config/config.yml` - Key Principles + Code stage
+- ✅ `docs/principles/KEY_PRINCIPLES.md`
+- ✅ `docs/processes/TDD_WORKFLOW.md`
+- ✅ `README.md` (14,783 bytes)
+
+**Migration Plan**: Mark as deprecated in v3.0, extract to skills-based plugins
+
+---
+
+#### 2. `code-skills` - 🔴 PARTIALLY CREATED (NO MANIFEST!)
+**Status**: Skills exist but plugin is NOT installable (missing plugin.json)
+**Critical Issue**: ❌ **NO `.claude-plugin/plugin.json`** - Plugin cannot be installed!
+
+**Existing Skills** (5 total):
+
+**TDD Skills** (1/5 complete):
+- ✅ `skills/tdd/refactor-phase/SKILL.md` - Comprehensive refactor with Principle #6 enforcement (281 lines)
+- ❌ `skills/tdd/tdd-workflow/` - MISSING (orchestrator)
+- ❌ `skills/tdd/red-phase/` - MISSING
+- ❌ `skills/tdd/green-phase/` - MISSING
+- ❌ `skills/tdd/commit-with-req-tag/` - MISSING
+
+**Tech Debt Skills** (4/4 complete):
+- ✅ `skills/debt/detect-unused-code/SKILL.md` - Sensor (250 lines)
+- ✅ `skills/debt/prune-unused-code/SKILL.md` - Actuator (need to verify)
+- ✅ `skills/debt/detect-complexity/SKILL.md` - Sensor (need to verify)
+- ✅ `skills/debt/simplify-complex-code/SKILL.md` - Actuator (need to verify)
+
+**BDD Skills** (0/5 complete):
+- ❌ All BDD skills missing
+
+**Generation Skills** (0/4 complete):
+- ❌ All generation skills missing
+
+**Missing Files**:
+- ❌ `.claude-plugin/plugin.json` - **CRITICAL**
+- ❌ `README.md`
+- ❌ `CHANGELOG.md`
+
+**Action Required**:
+1. **URGENT**: Create plugin.json manifest
+2. Complete TDD skills (4 remaining)
+3. Create BDD skills (5 needed)
+4. Create generation skills (4 needed)
+
+---
+
+#### 3. `python-standards` - ✅ COMPLETE
+**Status**: Language standards plugin (fully configured)
+**Files**:
+- ✅ `.claude-plugin/plugin.json` - Complete manifest
+- ✅ `config/config.yml` - Python standards
+- ✅ `project.json`
+
+**Action Required**: None (ready to use)
+
+---
+
+### Plugins NOT Started (6 plugins)
+
+#### Phase 1: Foundation
+- ❌ `aisdlc-core` - Traceability foundation (3 skills needed)
+
+#### Phase 2: Requirements
+- ❌ `requirements-skills` - Requirements extraction and refinement (8 skills needed)
+
+#### Phase 3: Design
+- ❌ `design-skills` - Architecture and ADRs (3 skills needed)
+
+#### Phase 5: Testing
+- ❌ `testing-skills` - Coverage validation (4 skills needed)
+
+#### Phase 6: Runtime
+- ❌ `runtime-skills` - Telemetry and feedback loop (3 skills needed)
+
+#### Phase 7: Principles
+- ❌ `principles-key` - Key Principles enforcement (2 skills needed)
+
+#### Phase 8: Bundles
+- ❌ `startup-bundle` - Bundle meta-plugin
+- ❌ `enterprise-bundle` - Bundle meta-plugin
+- ❌ `qa-bundle` - Bundle meta-plugin
+- ❌ `datascience-bundle` - Bundle meta-plugin
+
+---
+
+### Summary Statistics
+
+**Plugins**:
+- Total planned: 11 (7 core + 4 bundles)
+- Completed: 1 (`python-standards`)
+- Partial: 1 (`code-skills` - **NO MANIFEST**)
+- Legacy: 1 (`aisdlc-methodology` v2.0.0)
+- Not started: 8
+
+**Skills**:
+- Completed: 5 (1 TDD refactor, 4 debt skills)
+- Missing from code-skills: 13 skills (4 TDD + 5 BDD + 4 generation)
+- Not started (other plugins): ~23 skills
+
+**Critical Blockers**:
+- ❌ `code-skills` has NO `.claude-plugin/plugin.json` - cannot be installed!
+
+---
+
+## ✅ Architecture Validation Results
+
+**Validated Against**: Claude Code native features (2025-11-20)
+
+### Perfect Alignment Confirmed
+- ✅ **Plugin System**: `.claude-plugin/plugin.json` matches native Claude Code format
+- ✅ **Skills System**: `SKILL.md` with autonomous invocation - native feature
+- ✅ **Agents**: Subagents in `agents/` directory - native feature
+- ✅ **Marketplace**: `marketplace.json` - native feature
+- ✅ **Homeostasis**: Sensors/actuators map to skill invocation patterns
+
+### Key Claude Code Features Leveraged
+1. **Autonomous Skill Invocation**: Claude decides when to invoke based on description
+2. **Subagent Context Switching**: Separate context windows for SDLC stage personas
+3. **Tool Restrictions**: `allowed-tools` for sensor-only (read) vs actuator (write) skills
+4. **Plugin Bundles**: Dependencies field for meta-plugins
+5. **Marketplace Distribution**: GitHub/Git/local sources supported
 
 ---
 
 ## Overview
 
 Transform v2.0 monolithic plugin into v3.0 modular, skills-based architecture with homeostatic orchestration.
+
+**Architecture validated against Claude Code native capabilities - ready to implement.**
 
 ---
 
@@ -913,29 +1101,255 @@ examples/workflows/
 
 ---
 
-## Timeline
+## Implementation Sequence
 
-- **Week 1**: Phase 1 (Core)
-- **Week 2**: Phase 2 (Requirements)
-- **Week 3**: Phase 3 (Design)
-- **Weeks 4-6**: Phase 4 (Code Skills - TDD + BDD + Generation)
-- **Week 7**: Phase 5 (Testing)
-- **Week 8**: Phase 6 (Runtime)
-- **Week 9**: Phase 7 (Principles)
-- **Week 10**: Phase 8 (Bundles)
+**Phases**:
+1. Phase 1: Foundation (`aisdlc-core`)
+2. Phase 2: Requirements (`requirements-skills`)
+3. Phase 3: Design (`design-skills`)
+4. Phase 4: Code (`code-skills`) - 🟡 23% COMPLETE
+5. Phase 5: Testing (`testing-skills`)
+6. Phase 6: Runtime (`runtime-skills`)
+7. Phase 7: Principles (`principles-key`)
+8. Phase 8: Bundles (4 meta-plugins)
 
-**Total**: 10 weeks (~2.5 months)
-**Plugin Count**: 7 core plugins (was 9) + 4 bundles = 11 packages (was 13)
+**Recommended Order**:
+1. **Complete Phase 4 first** (code-skills already started - finish it!)
+2. Then Phase 1 (aisdlc-core - foundation)
+3. Then Phase 2 (requirements-skills - needed for full workflow)
+4. Then remaining phases
+
+**Plugin Count**: 11 total (7 core + 4 bundles)
 
 ---
 
-## Next Steps
+## 📊 Current Phase Progress
 
-1. **Validate UX Design** - Review [AI_SDLC_UX_DESIGN.md](AI_SDLC_UX_DESIGN.md) with stakeholders
-2. **Prototype Phase 1** - Build `@aisdlc/aisdlc-core` plugin
-3. **Test with Real Users** - Sarah, David, Maria, James personas
-4. **Iterate** - Refine based on feedback
-5. **Continue Phases 2-10** - Build remaining plugins
+### Phase 1: Foundation (Week 1) - NOT STARTED
+
+**Status**: 🔴 Not Started
+**Target Completion**: [SET DATE WHEN STARTING]
+
+#### Tasks Breakdown
+- [ ] Create plugin directory structure
+  - [ ] `plugins/aisdlc-core/.claude-plugin/`
+  - [ ] `plugins/aisdlc-core/skills/`
+  - [ ] `plugins/aisdlc-core/README.md`
+  - [ ] `plugins/aisdlc-core/CHANGELOG.md`
+
+- [ ] Create plugin.json manifest
+  - [ ] Set name: "@aisdlc/aisdlc-core"
+  - [ ] Set version: "3.0.0"
+  - [ ] Set description
+  - [ ] Set author info
+  - [ ] Configure skills path
+
+- [ ] Create Skill 1: requirement-traceability
+  - [ ] Create `skills/requirement-traceability/SKILL.md`
+  - [ ] Write YAML frontmatter (name, description)
+  - [ ] Write skill instructions
+  - [ ] Create `req-key-patterns.yml` reference file
+  - [ ] Define REQ-F-*, REQ-NFR-*, REQ-DATA-*, REQ-BR-* patterns
+
+- [ ] Create Skill 2: check-requirement-coverage (Sensor)
+  - [ ] Create `skills/check-requirement-coverage/SKILL.md`
+  - [ ] Set allowed-tools: [Read, Grep, Glob] (read-only sensor)
+  - [ ] Write detection logic instructions
+  - [ ] Define deviation signals
+
+- [ ] Create Skill 3: propagate-req-keys (Actuator)
+  - [ ] Create `skills/propagate-req-keys/SKILL.md`
+  - [ ] Set allowed-tools: [Read, Write, Edit] (write actuator)
+  - [ ] Write tagging instructions (code, tests, commits)
+  - [ ] Define output format
+
+- [ ] Testing
+  - [ ] Create local marketplace for testing
+  - [ ] Install plugin: `/plugin marketplace add ./plugins`
+  - [ ] Test skill discovery: Check skills list
+  - [ ] Test requirement-traceability skill invocation
+  - [ ] Test sensor detection (check-requirement-coverage)
+  - [ ] Test actuator tagging (propagate-req-keys)
+
+- [ ] Documentation
+  - [ ] Write plugins/aisdlc-core/README.md
+  - [ ] Add usage examples
+  - [ ] Document skill descriptions
+  - [ ] Add troubleshooting section
+
+**Success Criteria**:
+- ✅ 3 foundation skills working
+- ✅ REQ-* key patterns defined
+- ✅ Can tag code/commits/tests with REQ-*
+- ✅ Can detect coverage gaps (sensor)
+
+---
+
+### Phase 2: Requirements Skills (Week 2) - NOT STARTED
+
+**Status**: 🔴 Not Started
+**Blocked By**: Phase 1 completion
+
+#### Tasks Breakdown
+- [ ] Create plugin structure
+- [ ] Create requirement-extraction skill
+- [ ] Create disambiguate-requirements skill ⭐ NEW
+- [ ] Create extract-business-rules skill ⭐ NEW
+- [ ] Create extract-constraints skill ⭐ NEW
+- [ ] Create extract-formulas skill ⭐ NEW
+- [ ] Create refine-requirements skill ⭐ NEW (feedback loop)
+- [ ] Create traceability-matrix skill
+- [ ] Create validate-requirements skill
+- [ ] Create templates (functional-req.md, nfr-req.md, data-req.md)
+- [ ] Test requirement extraction workflow
+- [ ] Test requirements refinement loop
+
+---
+
+### Phase 3: Design Skills (Week 3) - NOT STARTED
+
+**Status**: 🔴 Not Started
+**Blocked By**: Phase 2 completion
+
+---
+
+### Phase 4: Code Skills - 🟡 PARTIALLY COMPLETE (5/22 skills)
+
+**Status**: 🟡 In Progress (NO plugin.json - cannot install!)
+**Completion**: 23% (5/22 skills)
+
+#### Current State
+
+**Plugin Structure**:
+- ❌ `.claude-plugin/plugin.json` - **CRITICAL BLOCKER**
+- ❌ `README.md`
+- ❌ `CHANGELOG.md`
+- ✅ `skills/` directory structure exists
+
+**TDD Skills** (1/5 = 20%):
+- [x] `refactor-phase/SKILL.md` - ✅ COMPLETE (281 lines, Principle #6 enforcement)
+- [ ] `tdd-workflow/SKILL.md` - Orchestrator skill
+- [ ] `red-phase/SKILL.md` - Write failing tests
+- [ ] `green-phase/SKILL.md` - Make tests pass
+- [ ] `commit-with-req-tag/SKILL.md` - Git commit with REQ-*
+
+**Tech Debt Skills** (4/4 = 100%):
+- [x] `detect-unused-code/SKILL.md` - ✅ Sensor (250 lines)
+- [x] `prune-unused-code/SKILL.md` - ✅ Actuator
+- [x] `detect-complexity/SKILL.md` - ✅ Sensor
+- [x] `simplify-complex-code/SKILL.md` - ✅ Actuator
+
+**BDD Skills** (0/5 = 0%):
+- [ ] `bdd-workflow/SKILL.md` - Orchestrator skill
+- [ ] `write-scenario/SKILL.md` - Create Gherkin scenarios
+- [ ] `implement-step-definitions/SKILL.md` - Step definitions
+- [ ] `implement-feature/SKILL.md` - Feature implementation
+- [ ] `refactor-bdd/SKILL.md` - BDD refactor phase
+
+**Generation Skills** (0/4 = 0%):
+- [ ] `autogenerate-from-business-rules/SKILL.md`
+- [ ] `autogenerate-validators/SKILL.md`
+- [ ] `autogenerate-constraints/SKILL.md`
+- [ ] `autogenerate-formulas/SKILL.md`
+
+**Templates Needed**:
+- [ ] `skills/tdd/red-phase/templates/test-template-python.py`
+- [ ] `skills/tdd/red-phase/templates/test-template-typescript.ts`
+- [ ] `skills/tdd/red-phase/templates/test-template-java.java`
+- [ ] `skills/bdd/write-scenario/templates/gherkin-template.feature`
+
+#### Next Tasks (Prioritized)
+1. **URGENT**: Create `.claude-plugin/plugin.json` (blocks installation)
+2. Create `README.md` and `CHANGELOG.md`
+3. Complete TDD skills (4 remaining)
+4. Create BDD skills (5 needed)
+5. Create generation skills (4 needed)
+6. Create templates (4 needed)
+
+**Success Criteria**:
+- ✅ Plugin installable (has plugin.json)
+- ✅ All 22 skills complete
+- ✅ Templates created
+- ✅ Documentation complete
+
+---
+
+### Phase 5: Testing Skills (Week 7) - NOT STARTED
+### Phase 6: Runtime Skills (Week 8) - NOT STARTED
+### Phase 7: Principles Skills (Week 9) - NOT STARTED
+### Phase 8: Bundles (Week 10) - NOT STARTED
+
+---
+
+## 🎯 Next Steps (When Resuming)
+
+### Immediate Actions
+1. **Review session tracking** at top of this document
+2. **Check "Active Tasks This Session"** - what was in progress?
+3. **Verify Phase 1 status** - has anything been completed?
+4. **Start next unchecked task** from Phase 1 breakdown
+
+### Quick Start Commands (When Ready to Begin)
+```bash
+# Create Phase 1 plugin directory
+mkdir -p plugins/aisdlc-core/.claude-plugin
+mkdir -p plugins/aisdlc-core/skills/requirement-traceability
+mkdir -p plugins/aisdlc-core/skills/check-requirement-coverage
+mkdir -p plugins/aisdlc-core/skills/propagate-req-keys
+
+# Create initial files
+touch plugins/aisdlc-core/.claude-plugin/plugin.json
+touch plugins/aisdlc-core/README.md
+touch plugins/aisdlc-core/CHANGELOG.md
+```
+
+### Session Exit Checklist
+Before exiting session:
+- [ ] Update "Session Tracking" section with current status
+- [ ] Mark completed tasks in "Active Tasks This Session"
+- [ ] Update "Current Phase Progress" checkboxes
+- [ ] Note any blockers in "Blocked/Waiting"
+- [ ] Update "Last Checkpoint" with summary
+
+---
+
+## 📝 Session Notes
+
+### 2025-11-20 Session - Architecture Validation & Reconciliation
+
+**What We Did**:
+- ✅ Read 3 core design documents (AI_SDLC_UX_DESIGN.md, ai_sdlc_concepts.md, IMPLEMENTATION_PLAN.md)
+- ✅ Fetched all Claude Code native feature documentation (plugins, skills, agents, marketplace)
+- ✅ Validated complete architecture alignment with Claude Code capabilities
+- ✅ Audited existing plugins directory structure
+- ✅ Reconciled existing work against implementation plan
+- ✅ Updated IMPLEMENTATION_PLAN.md with comprehensive session tracking and reconciliation
+
+**Key Findings**:
+
+1. **Perfect Architecture Alignment**: v3.0 design maps exactly to Claude Code native features
+   - Plugin system: `.claude-plugin/plugin.json` ✅
+   - Skills system: `SKILL.md` with autonomous invocation ✅
+   - Agents: Subagents in `agents/` directory ✅
+   - Marketplace: `marketplace.json` for distribution ✅
+   - Homeostasis: Sensors/actuators work via skill invocation ✅
+
+2. **Existing Work Discovered**:
+   - ✅ `code-skills` plugin exists with 5 skills (23% complete)
+   - ✅ TDD refactor-phase: Comprehensive Principle #6 enforcement
+   - ✅ Tech debt skills: All 4 complete (detect/prune unused code, detect/simplify complexity)
+   - ⚠️ Missing 13 skills: 4 TDD + 5 BDD + 4 generation
+
+3. **Critical Blocker Found**:
+   - ❌ `code-skills` has NO `.claude-plugin/plugin.json` - plugin cannot be installed!
+   - ❌ Missing README.md and CHANGELOG.md
+
+4. **Recommended Strategy**:
+   - **Finish code-skills first** (already 23% done, just needs plugin.json + remaining skills)
+   - Then build aisdlc-core (foundation)
+   - Then requirements-skills (completes workflow)
+
+**Next Steps**: Create code-skills plugin.json manifest (URGENT), then complete remaining TDD/BDD/generation skills
 
 ---
 
