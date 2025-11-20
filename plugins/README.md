@@ -29,7 +29,7 @@ This directory contains **Claude Code plugins** that provide AI-Augmented Softwa
 - v2.0.0 (2025-11-14): Added 7-stage AI SDLC methodology (Requirements, Design, Tasks, Code, System Test, UAT, Runtime Feedback)
 - v1.0.0 (2025-10-16): Initial release with Key Principles principles and TDD workflow
 
-**Reference**: [Complete 7-Stage Methodology Guide](../docs/ai_sdlc_guide.md) (3,300+ lines)
+**Reference**: [Complete 7-Stage Methodology](../docs/ai_sdlc_method.md) (3,300+ lines)
 
 ---
 
@@ -538,7 +538,9 @@ New (Claude Code):
 ## See Also
 
 ### Core Documentation
-- [Complete 7-Stage Methodology Guide](../docs/ai_sdlc_guide.md) - 3,300+ line reference (⭐ **Start here**)
+- [AI SDLC Overview](../docs/ai_sdlc_overview.md) - High-level introduction (⭐ **Start here**)
+- [Complete 7-Stage Methodology](../docs/ai_sdlc_method.md) - 3,300+ line reference
+- [Technical Deep-Dives](../docs/ai_sdlc_appendices.md) - Advanced concepts
 - [Documentation Index](../docs/README.md) - Role-based learning paths for BA, Architect, Developer, QA, DevOps, PM
 - [Customer Portal Example](../examples/local_projects/customer_portal/README.md) - Complete 7-stage walkthrough
 

@@ -20,7 +20,7 @@ project:
 # AI SDLC METHODOLOGY - 7-STAGE CONFIGURATION
 # ============================================================================
 # Reference: plugins/aisdlc-methodology v2.0.0
-# Guide: docs/ai_sdlc_guide.md
+# Guide: docs/ai_sdlc_method.md
 
 ai_sdlc:
   # Load 7-stage methodology plugin

@@ -2,7 +2,7 @@
 
 **Version**: 2.0.0
 **Author**: foolishimp
-**Reference Guide**: [AI SDLC Methodology Guide](../../docs/ai_sdlc_guide.md)
+**Reference Guide**: [AI SDLC Methodology](../../docs/ai_sdlc_method.md)
 
 ## Overview
 
@@ -343,7 +343,7 @@ Complete 7-stage agent configuration with:
 ### `config/config.yml`
 Key Principles principles and TDD workflow (foundation for Code Stage)
 
-### Reference: `../../docs/ai_sdlc_guide.md`
+### Reference: `../../docs/ai_sdlc_method.md`
 Complete AI SDLC methodology documentation (Sections 1.0-13.0)
 
 ## Usage
@@ -426,7 +426,7 @@ The Code Stage (Section 7.0) fully integrates the Key Principles principles:
 
 ## References
 
-- **AI SDLC Guide**: `../../docs/ai_sdlc_guide.md`
+- **AI SDLC Method**: `../../docs/ai_sdlc_method.md`
 - **Key Principles**: `docs/principles/KEY_PRINCIPLES.md`
 - **TDD Workflow**: `docs/processes/TDD_WORKFLOW.md`
 - **Pair Programming**: `docs/guides/PAIR_PROGRAMMING_WITH_AI.md`

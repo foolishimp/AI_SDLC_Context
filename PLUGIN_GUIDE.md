@@ -541,7 +541,9 @@ New cycle begins at Requirements stage to address INT-042
 ## Documentation
 
 ### Core Methodology
-- [docs/ai_sdlc_guide.md](docs/ai_sdlc_guide.md) - Complete 7-stage methodology (3,300+ lines) ⭐
+- [docs/ai_sdlc_overview.md](docs/ai_sdlc_overview.md) - High-level overview (~30 min read)
+- [docs/ai_sdlc_method.md](docs/ai_sdlc_method.md) - Complete 7-stage methodology (3,300+ lines) ⭐
+- [docs/ai_sdlc_appendices.md](docs/ai_sdlc_appendices.md) - Technical deep-dives
 - [docs/README.md](docs/README.md) - Documentation index with role-based learning paths
 
 ### Plugin Documentation

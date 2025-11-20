@@ -20,10 +20,12 @@
   "configuration": {
     "stages": "config/stages_config.yml",
     "sacred_seven": "config/config.yml",
-    "reference_guide": "../../docs/ai_sdlc_guide.md"
+    "reference_guide": "../../docs/ai_sdlc_method.md"
   },
   "documentation": {
-    "ai_sdlc_guide": "../../docs/ai_sdlc_guide.md",
+    "ai_sdlc_overview": "../../docs/ai_sdlc_overview.md",
+    "ai_sdlc_method": "../../docs/ai_sdlc_method.md",
+    "ai_sdlc_appendices": "../../docs/ai_sdlc_appendices.md",
     "stages_overview": "docs/README.md",
     "principles": "docs/principles/SACRED_SEVEN.md",
     "tdd_workflow": "docs/processes/TDD_WORKFLOW.md",

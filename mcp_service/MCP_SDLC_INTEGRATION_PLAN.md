@@ -2,7 +2,7 @@
 
 **Date**: 2025-11-14
 **Plugin**: aisdlc-methodology v2.0.0
-**Reference**: `/docs/ai_sdlc_guide.md` (Sections 4.0-10.0)
+**Reference**: `/docs/ai_sdlc_method.md` (Sections 4.0-10.0)
 
 ---
 
@@ -698,5 +698,6 @@ This integration plan brings the MCP service into full alignment with the 7-stag
 
 **Reference**:
 - Plugin: `/plugins/aisdlc-methodology` v2.0.0
-- Guide: `/docs/ai_sdlc_guide.md`
+- Overview: `/docs/ai_sdlc_overview.md`
+- Method: `/docs/ai_sdlc_method.md`
 - Example: `/examples/local_projects/customer_portal/`

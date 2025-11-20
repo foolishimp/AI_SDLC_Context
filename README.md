@@ -154,7 +154,7 @@ open plugins/aisdlc-methodology/README.md
 
 **Outputs**: Release manifests with requirement traceability, runtime alerts linked to requirement keys, new intents from production issues
 
-👉 **Detailed Specifications**: [AI SDLC Guide](docs/ai_sdlc_guide.md)
+👉 **Detailed Specifications**: [AI SDLC Method](docs/ai_sdlc_method.md)
 
 ---
 
@@ -240,7 +240,7 @@ The Code Stage (Section 7.0) is built on these principles:
 - ✅ Pair programming practices
 - ✅ Session management guides
 
-**Reference**: [docs/ai_sdlc_guide.md](docs/ai_sdlc_guide.md)
+**Reference**: [docs/ai_sdlc_method.md](docs/ai_sdlc_method.md)
 **Dependencies**: None (foundation)
 
 👉 [Full Documentation](plugins/aisdlc-methodology/README.md)
@@ -470,7 +470,9 @@ See [mcp_service/docs/](mcp_service/docs/) and [MCP Integration Plan](mcp_servic
 ```
 AI_SDLC_Context/
 ├── docs/
-│   ├── ai_sdlc_guide.md             # ⭐ Complete 7-stage methodology (3,300+ lines)
+│   ├── ai_sdlc_overview.md          # High-level overview (~30 min read)
+│   ├── ai_sdlc_method.md            # ⭐ Complete 7-stage methodology (3,300+ lines)
+│   ├── ai_sdlc_appendices.md        # Technical deep-dives
 │   └── README.md                     # Documentation index
 │
 ├── plugins/                          # Claude Code plugins
@@ -509,7 +511,9 @@ AI_SDLC_Context/
 ## Documentation
 
 ### Core Methodology
-- **[AI SDLC Guide](docs/ai_sdlc_guide.md)** ⭐ - Complete 7-stage methodology (3,300+ lines)
+- **[AI SDLC Overview](docs/ai_sdlc_overview.md)** - High-level introduction (~30 min read)
+- **[AI SDLC Method](docs/ai_sdlc_method.md)** ⭐ - Complete 7-stage methodology (3,300+ lines)
+- **[AI SDLC Appendices](docs/ai_sdlc_appendices.md)** - Technical deep-dives
 - **[7-Stage Example](examples/local_projects/customer_portal/README.md)** - Full walkthrough
 - **[Methodology Plugin](plugins/aisdlc-methodology/README.md)** - Plugin overview
 

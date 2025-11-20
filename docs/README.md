@@ -6,26 +6,36 @@ Complete documentation for the **AI-Augmented Software Development Lifecycle (AI
 
 ## 🎯 Start Here
 
-### ⭐ Core Methodology Document
+### ⭐ Core Methodology Documents
 
-**[ai_sdlc_guide.md](ai_sdlc_guide.md)** - The complete 7-stage AI SDLC methodology (3,300+ lines)
+**Three-tier documentation structure:**
 
-**Sections**:
-- 1.0 Introduction - What is AI SDLC?
-- 2.0 End-to-End Intent Lifecycle
-- 3.0 Builder Pipeline Overview
-- **4.0 Requirements Stage** - Intent → Structured requirements
-- **5.0 Design Stage** - Requirements → Technical solution
-- **6.0 Tasks Stage** - Work breakdown + Jira orchestration
-- **7.0 Code Stage** - TDD implementation (RED→GREEN→REFACTOR)
-- **8.0 System Test Stage** - BDD integration testing
-- **9.0 UAT Stage** - Business validation
-- **10.0 Runtime Feedback Stage** - Production telemetry feedback
-- 11.0 Personas & Collaboration
-- 12.0 Data Quality Integration
-- 13.0 Governance & Compliance
+1. **[ai_sdlc_overview.md](ai_sdlc_overview.md)** - High-level introduction (~30 min read)
+   - Quick overview of AI SDLC concepts
+   - Perfect for executives and stakeholders
+   - Visual diagrams and examples
 
-👉 **Read this first** to understand the complete methodology!
+2. **[ai_sdlc_method.md](ai_sdlc_method.md)** ⭐ - Complete methodology reference (3,300+ lines)
+   - Section 1.0: Introduction - What is AI SDLC?
+   - Section 2.0: End-to-End Intent Lifecycle
+   - Section 3.0: Builder Pipeline Overview
+   - **Section 4.0: Requirements Stage** - Intent → Structured requirements
+   - **Section 5.0: Design Stage** - Requirements → Technical solution
+   - **Section 6.0: Tasks Stage** - Work breakdown + Jira orchestration
+   - **Section 7.0: Code Stage** - TDD implementation (RED→GREEN→REFACTOR)
+   - **Section 8.0: System Test Stage** - BDD integration testing
+   - **Section 9.0: UAT Stage** - Business validation
+   - **Section 10.0: Runtime Feedback Stage** - Production telemetry feedback
+   - Section 11.0: Personas & Collaboration
+   - Section 12.0: Data Quality Integration
+   - Section 13.0: Governance & Compliance
+
+3. **[ai_sdlc_appendices.md](ai_sdlc_appendices.md)** - Technical deep-dives
+   - Category theory foundations
+   - Ecosystem requirements integration
+   - Advanced technical concepts
+
+👉 **Quick start**: Read [ai_sdlc_overview.md](ai_sdlc_overview.md) first, then dive into [ai_sdlc_method.md](ai_sdlc_method.md) for details!
 
 ---
 
@@ -34,9 +44,10 @@ Complete documentation for the **AI-Augmented Software Development Lifecycle (AI
 **New to AI_SDLC_Context?** Start here:
 
 1. **[../README.md](../README.md)** - Project overview and quick start
-2. **[ai_sdlc_guide.md](ai_sdlc_guide.md)** - Complete 7-stage methodology
-3. **[../examples/local_projects/customer_portal/](../examples/local_projects/customer_portal/)** - Example project walkthrough
-4. **[../plugins/aisdlc-methodology/README.md](../plugins/aisdlc-methodology/README.md)** - Methodology plugin documentation
+2. **[ai_sdlc_overview.md](ai_sdlc_overview.md)** - High-level overview (30 min read)
+3. **[ai_sdlc_method.md](ai_sdlc_method.md)** - Complete 7-stage methodology (detailed reference)
+4. **[../examples/local_projects/customer_portal/](../examples/local_projects/customer_portal/)** - Example project walkthrough
+5. **[../plugins/aisdlc-methodology/README.md](../plugins/aisdlc-methodology/README.md)** - Methodology plugin documentation
 
 ---
 
@@ -44,7 +55,9 @@ Complete documentation for the **AI-Augmented Software Development Lifecycle (AI
 
 ### AI SDLC Methodology
 
-- **[ai_sdlc_guide.md](ai_sdlc_guide.md)** ⭐ - Complete 7-stage methodology document
+- **[ai_sdlc_overview.md](ai_sdlc_overview.md)** - High-level introduction (executives, stakeholders)
+- **[ai_sdlc_method.md](ai_sdlc_method.md)** ⭐ - Complete 7-stage methodology (practitioners)
+- **[ai_sdlc_appendices.md](ai_sdlc_appendices.md)** - Technical deep-dives (advanced topics)
 - **[ai_sdlc_full_flow.md](ai_sdlc_full_flow.md)** - Full flow diagrams and visualizations
 
 ### Plugin Documentation
@@ -65,10 +78,11 @@ Complete documentation for the **AI-Augmented Software Development Lifecycle (AI
 
 **Focus**: Requirements stage and business validation
 
-1. Read [ai_sdlc_guide.md](ai_sdlc_guide.md) - Section 4.0 (Requirements Stage)
-2. Read [ai_sdlc_guide.md](ai_sdlc_guide.md) - Section 9.0 (UAT Stage)
-3. Review [customer_portal example](../examples/local_projects/customer_portal/README.md) - Requirements artifacts
-4. Review [customer_portal config](../examples/local_projects/customer_portal/config/config.yml) - Requirements agent configuration
+1. Read [ai_sdlc_overview.md](ai_sdlc_overview.md) - Get the big picture
+2. Read [ai_sdlc_method.md](ai_sdlc_method.md) - Section 4.0 (Requirements Stage)
+3. Read [ai_sdlc_method.md](ai_sdlc_method.md) - Section 9.0 (UAT Stage)
+4. Review [customer_portal example](../examples/local_projects/customer_portal/README.md) - Requirements artifacts
+5. Review [customer_portal config](../examples/local_projects/customer_portal/config/config.yml) - Requirements agent configuration
 
 **Key Concepts**: Intent transformation, requirement keys (REQ-F-*, REQ-NFR-*, REQ-DATA-*), acceptance criteria, traceability
 
@@ -76,10 +90,12 @@ Complete documentation for the **AI-Augmented Software Development Lifecycle (AI
 
 **Focus**: Design stage and technical solution
 
-1. Read [ai_sdlc_guide.md](ai_sdlc_guide.md) - Section 5.0 (Design Stage)
-2. Read [ai_sdlc_guide.md](ai_sdlc_guide.md) - Section 11.0 (Personas & Collaboration)
-3. Review [customer_portal example](../examples/local_projects/customer_portal/README.md) - Design artifacts
-4. Review [plugins/aisdlc-methodology/config/stages_config.yml](../plugins/aisdlc-methodology/config/stages_config.yml) - Design agent spec
+1. Read [ai_sdlc_overview.md](ai_sdlc_overview.md) - Get the big picture
+2. Read [ai_sdlc_method.md](ai_sdlc_method.md) - Section 5.0 (Design Stage)
+3. Read [ai_sdlc_method.md](ai_sdlc_method.md) - Section 11.0 (Personas & Collaboration)
+4. Read [ai_sdlc_appendices.md](ai_sdlc_appendices.md) - Advanced architectural concepts
+5. Review [customer_portal example](../examples/local_projects/customer_portal/README.md) - Design artifacts
+6. Review [plugins/aisdlc-methodology/config/stages_config.yml](../plugins/aisdlc-methodology/config/stages_config.yml) - Design agent spec
 
 **Key Concepts**: Requirements → Technical solution, component design, data models, API specifications, ADRs, traceability matrix
 
@@ -87,21 +103,23 @@ Complete documentation for the **AI-Augmented Software Development Lifecycle (AI
 
 **Focus**: Code stage (TDD workflow)
 
-1. Read [ai_sdlc_guide.md](ai_sdlc_guide.md) - Section 7.0 (Code Stage)
-2. Read [../plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md](../plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md) - Key Principles principles
-3. Read [../plugins/aisdlc-methodology/docs/processes/TDD_WORKFLOW.md](../plugins/aisdlc-methodology/docs/processes/TDD_WORKFLOW.md) - TDD cycle
-4. Review [customer_portal example](../examples/local_projects/customer_portal/README.md) - Code stage walkthrough
+1. Read [ai_sdlc_overview.md](ai_sdlc_overview.md) - Get the big picture
+2. Read [ai_sdlc_method.md](ai_sdlc_method.md) - Section 7.0 (Code Stage)
+3. Read [../plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md](../plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md) - Key Principles
+4. Read [../plugins/aisdlc-methodology/docs/processes/TDD_WORKFLOW.md](../plugins/aisdlc-methodology/docs/processes/TDD_WORKFLOW.md) - TDD cycle
+5. Review [customer_portal example](../examples/local_projects/customer_portal/README.md) - Code stage walkthrough
 
-**Key Concepts**: TDD (RED→GREEN→REFACTOR), requirement tagging, test coverage (≥80%), Key Principles principles
+**Key Concepts**: TDD (RED→GREEN→REFACTOR), requirement tagging, test coverage (≥80%), Key Principles
 
 ### For QA Engineers
 
 **Focus**: System Test and UAT stages (BDD testing)
 
-1. Read [ai_sdlc_guide.md](ai_sdlc_guide.md) - Section 8.0 (System Test Stage)
-2. Read [ai_sdlc_guide.md](ai_sdlc_guide.md) - Section 9.0 (UAT Stage)
-3. Review [customer_portal example](../examples/local_projects/customer_portal/README.md) - BDD testing examples
-4. Review [customer_portal config](../examples/local_projects/customer_portal/config/config.yml) - Test agent configurations
+1. Read [ai_sdlc_overview.md](ai_sdlc_overview.md) - Get the big picture
+2. Read [ai_sdlc_method.md](ai_sdlc_method.md) - Section 8.0 (System Test Stage)
+3. Read [ai_sdlc_method.md](ai_sdlc_method.md) - Section 9.0 (UAT Stage)
+4. Review [customer_portal example](../examples/local_projects/customer_portal/README.md) - BDD testing examples
+5. Review [customer_portal config](../examples/local_projects/customer_portal/config/config.yml) - Test agent configurations
 
 **Key Concepts**: BDD (Given/When/Then), requirement coverage (≥95%), scenario-to-requirement matrix, business validation
 
@@ -109,10 +127,11 @@ Complete documentation for the **AI-Augmented Software Development Lifecycle (AI
 
 **Focus**: Runtime Feedback stage (observability)
 
-1. Read [ai_sdlc_guide.md](ai_sdlc_guide.md) - Section 10.0 (Runtime Feedback Stage)
-2. Read [ai_sdlc_guide.md](ai_sdlc_guide.md) - Section 2.0 (End-to-End Intent Lifecycle)
-3. Review [customer_portal example](../examples/local_projects/customer_portal/README.md) - Runtime feedback section
-4. Review [customer_portal config](../examples/local_projects/customer_portal/config/config.yml) - Runtime feedback agent config
+1. Read [ai_sdlc_overview.md](ai_sdlc_overview.md) - Get the big picture
+2. Read [ai_sdlc_method.md](ai_sdlc_method.md) - Section 10.0 (Runtime Feedback Stage)
+3. Read [ai_sdlc_method.md](ai_sdlc_method.md) - Section 2.0 (End-to-End Intent Lifecycle)
+4. Review [customer_portal example](../examples/local_projects/customer_portal/README.md) - Runtime feedback section
+5. Review [customer_portal config](../examples/local_projects/customer_portal/config/config.yml) - Runtime feedback agent config
 
 **Key Concepts**: Release manifests, requirement key tagging in telemetry, alerts → intents feedback loop, observability platforms
 
@@ -120,10 +139,11 @@ Complete documentation for the **AI-Augmented Software Development Lifecycle (AI
 
 **Focus**: Tasks stage (work breakdown and orchestration)
 
-1. Read [ai_sdlc_guide.md](ai_sdlc_guide.md) - Section 6.0 (Tasks Stage)
-2. Read [ai_sdlc_guide.md](ai_sdlc_guide.md) - Section 3.0 (Builder Pipeline Overview)
-3. Review [customer_portal example](../examples/local_projects/customer_portal/README.md) - Tasks stage
-4. Review [customer_portal config](../examples/local_projects/customer_portal/config/config.yml) - Tasks orchestrator config
+1. Read [ai_sdlc_overview.md](ai_sdlc_overview.md) - Get the big picture
+2. Read [ai_sdlc_method.md](ai_sdlc_method.md) - Section 6.0 (Tasks Stage)
+3. Read [ai_sdlc_method.md](ai_sdlc_method.md) - Section 3.0 (Builder Pipeline Overview)
+4. Review [customer_portal example](../examples/local_projects/customer_portal/README.md) - Tasks stage
+5. Review [customer_portal config](../examples/local_projects/customer_portal/config/config.yml) - Tasks orchestrator config
 
 **Key Concepts**: Design → Work units, Jira integration, requirement key tagging, dependency tracking, agent orchestration
 
@@ -138,7 +158,7 @@ Complete documentation for the **AI-Augmented Software Development Lifecycle (AI
 **Output**: Structured requirements with unique keys (REQ-F-*, REQ-NFR-*, REQ-DATA-*, REQ-BR-*)
 
 **Documentation**:
-- [ai_sdlc_guide.md - Section 4.0](ai_sdlc_guide.md)
+- [ai_sdlc_method.md - Section 4.0](ai_sdlc_method.md#40-requirements-stage)
 - [stages_config.yml - requirements_stage](../plugins/aisdlc-methodology/config/stages_config.yml)
 - [customer_portal - Requirements Config](../examples/local_projects/customer_portal/config/config.yml)
 
@@ -149,7 +169,7 @@ Complete documentation for the **AI-Augmented Software Development Lifecycle (AI
 **Output**: Component diagrams, data models, API specs, ADRs, traceability matrix
 
 **Documentation**:
-- [ai_sdlc_guide.md - Section 5.0](ai_sdlc_guide.md)
+- [ai_sdlc_method.md - Section 5.0](ai_sdlc_method.md#50-design-stage)
 - [stages_config.yml - design_stage](../plugins/aisdlc-methodology/config/stages_config.yml)
 
 ### Stage 3: Tasks (Section 6.0)
@@ -159,7 +179,7 @@ Complete documentation for the **AI-Augmented Software Development Lifecycle (AI
 **Output**: Jira tickets with requirement tags, dependency graph, capacity planning
 
 **Documentation**:
-- [ai_sdlc_guide.md - Section 6.0](ai_sdlc_guide.md)
+- [ai_sdlc_method.md - Section 6.0](ai_sdlc_method.md#60-tasks-stage)
 - [stages_config.yml - tasks_stage](../plugins/aisdlc-methodology/config/stages_config.yml)
 
 ### Stage 4: Code (Section 7.0)
@@ -168,12 +188,12 @@ Complete documentation for the **AI-Augmented Software Development Lifecycle (AI
 **Input**: Work units from Tasks stage
 **Output**: Production code with requirement tags, unit tests, integration tests
 
-**Methodology**: TDD (RED → GREEN → REFACTOR) + Key Principles principles
+**Methodology**: TDD (RED → GREEN → REFACTOR) + Key Principles
 
 **Documentation**:
-- [ai_sdlc_guide.md - Section 7.0](ai_sdlc_guide.md)
+- [ai_sdlc_method.md - Section 7.0](ai_sdlc_method.md#70-code-stage)
 - [stages_config.yml - code_stage](../plugins/aisdlc-methodology/config/stages_config.yml)
-- [Key Principles Principles](../plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md)
+- [Key Principles](../plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md)
 - [TDD Workflow](../plugins/aisdlc-methodology/docs/processes/TDD_WORKFLOW.md)
 
 ### Stage 5: System Test (Section 8.0)
@@ -185,7 +205,7 @@ Complete documentation for the **AI-Augmented Software Development Lifecycle (AI
 **Methodology**: BDD (Given/When/Then)
 
 **Documentation**:
-- [ai_sdlc_guide.md - Section 8.0](ai_sdlc_guide.md)
+- [ai_sdlc_method.md - Section 8.0](ai_sdlc_method.md#80-system-test-stage)
 - [stages_config.yml - system_test_stage](../plugins/aisdlc-methodology/config/stages_config.yml)
 
 ### Stage 6: UAT (Section 9.0)
@@ -197,7 +217,7 @@ Complete documentation for the **AI-Augmented Software Development Lifecycle (AI
 **Methodology**: BDD in pure business language
 
 **Documentation**:
-- [ai_sdlc_guide.md - Section 9.0](ai_sdlc_guide.md)
+- [ai_sdlc_method.md - Section 9.0](ai_sdlc_method.md#90-uat-stage)
 - [stages_config.yml - uat_stage](../plugins/aisdlc-methodology/config/stages_config.yml)
 
 ### Stage 7: Runtime Feedback (Section 10.0)
@@ -207,7 +227,7 @@ Complete documentation for the **AI-Augmented Software Development Lifecycle (AI
 **Output**: Release manifests, runtime telemetry (tagged with REQ keys), alerts, new intents
 
 **Documentation**:
-- [ai_sdlc_guide.md - Section 10.0](ai_sdlc_guide.md)
+- [ai_sdlc_method.md - Section 10.0](ai_sdlc_method.md#100-runtime-feedback-stage)
 - [stages_config.yml - runtime_feedback_stage](../plugins/aisdlc-methodology/config/stages_config.yml)
 
 ---
@@ -238,7 +258,9 @@ These documents describe the underlying configuration merging system:
 ### By Topic
 
 #### **AI SDLC Methodology** (Start Here!)
-- [ai_sdlc_guide.md](ai_sdlc_guide.md) - Complete methodology
+- [ai_sdlc_overview.md](ai_sdlc_overview.md) - High-level overview
+- [ai_sdlc_method.md](ai_sdlc_method.md) - Complete methodology
+- [ai_sdlc_appendices.md](ai_sdlc_appendices.md) - Technical deep-dives
 - [ai_sdlc_full_flow.md](ai_sdlc_full_flow.md) - Flow diagrams
 - [../plugins/aisdlc-methodology/](../plugins/aisdlc-methodology/) - Plugin implementation
 
@@ -267,24 +289,26 @@ These documents describe the underlying configuration merging system:
 ## 🔍 Common Questions
 
 **"What is the AI SDLC methodology?"**
-→ [ai_sdlc_guide.md](ai_sdlc_guide.md) - Section 1.0 (Introduction)
+→ [ai_sdlc_overview.md](ai_sdlc_overview.md) - Quick introduction
+→ [ai_sdlc_method.md](ai_sdlc_method.md) - Section 1.0 (Introduction)
 
 **"How do the 7 stages work?"**
-→ [ai_sdlc_guide.md](ai_sdlc_guide.md) - Sections 4.0-10.0
+→ [ai_sdlc_overview.md](ai_sdlc_overview.md) - High-level overview
+→ [ai_sdlc_method.md](ai_sdlc_method.md) - Sections 4.0-10.0 (detailed)
 
 **"How does requirement traceability work?"**
-→ [ai_sdlc_guide.md](ai_sdlc_guide.md) - Section 4.3.4 (Requirement Keys)
+→ [ai_sdlc_method.md](ai_sdlc_method.md) - Section 4.3.4 (Requirement Keys)
 → [customer_portal example](../examples/local_projects/customer_portal/README.md) - Traceability section
 
-**"What are the Key Principles principles?"**
+**"What are the Key Principles?"**
 → [../plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md](../plugins/aisdlc-methodology/docs/principles/KEY_PRINCIPLES.md)
 
 **"How does TDD work in this methodology?"**
-→ [ai_sdlc_guide.md](ai_sdlc_guide.md) - Section 7.0 (Code Stage)
+→ [ai_sdlc_method.md](ai_sdlc_method.md) - Section 7.0 (Code Stage)
 → [../plugins/aisdlc-methodology/docs/processes/TDD_WORKFLOW.md](../plugins/aisdlc-methodology/docs/processes/TDD_WORKFLOW.md)
 
 **"How does BDD testing work?"**
-→ [ai_sdlc_guide.md](ai_sdlc_guide.md) - Sections 8.0 & 9.0 (System Test & UAT)
+→ [ai_sdlc_method.md](ai_sdlc_method.md) - Sections 8.0 & 9.0 (System Test & UAT)
 
 **"How do I install and use the plugin?"**
 → [../README.md](../README.md) - Quick Start section
@@ -296,44 +320,47 @@ These documents describe the underlying configuration merging system:
 **"Can I use this with non-Claude LLMs?"**
 → [../mcp_service/README.md](../mcp_service/README.md)
 
+**"What are the advanced technical concepts?"**
+→ [ai_sdlc_appendices.md](ai_sdlc_appendices.md) - Category theory, ecosystem integration
+
 ---
 
 ## 📦 Documentation Structure
 
 ```
 docs/
-├── README.md                           # This file
-├── ai_sdlc_guide.md                   # ⭐ Complete 7-stage methodology (3,300+ lines)
-├── ai_sdlc_full_flow.md               # Flow diagrams
+├── README.md                           # This file - Documentation index
 │
-├── ARCHITECTURE.md                     # Config system architecture (legacy)
-├── MCP_SETUP.md                        # MCP server setup (legacy)
-├── USAGE_EXAMPLES.md                   # Usage examples (legacy)
-├── SUBAGENTS_GUIDE.md                  # Subagents guide (legacy)
+├── ai_sdlc_overview.md                # ⭐ High-level overview (~30 min read)
+├── ai_sdlc_method.md                  # ⭐ Complete 7-stage methodology (3,300+ lines)
+├── ai_sdlc_appendices.md              # ⭐ Technical deep-dives (category theory, ecosystem)
+├── ai_sdlc_full_flow.md               # Flow diagrams and visualizations
 │
-├── guides/                             # Configuration system guides (legacy)
-│   ├── CREATING_MERGE_TUPLES.md
-│   ├── DYNAMIC_MERGE_TUPLES.md
-│   ├── MERGE_KEYS_EXPLAINED.md
-│   └── URI_REPLACEMENT_GUIDE.md
-│
-├── quick-reference/                    # Config quick references (legacy)
-│   ├── MERGE_KEYS_SUMMARY.md
-│   ├── MERGE_TUPLE_QUICK_REFERENCE.md
-│   ├── DYNAMIC_TUPLES_QUICK_REF.md
-│   └── URI_REPLACEMENT_SUMMARY.md
-│
-├── design/                             # Design documentation (historical)
-│   ├── DESIGN_REVIEW_SUMMARY.md
-│   ├── METHODOLOGY_PROJECT_DESIGN_REVIEW.md
-│   └── FULL_CONTEXT_STATE_FEATURE.md
+├── guides/                             # Role-specific application guides
+│   └── README.md                       # Guide index (coming soon)
 │
 └── deprecated/                         # Archived documentation
-    ├── AI_INIT_REVIEW.md
-    ├── RENAME_SUMMARY.md
-    ├── STATUS.md
-    └── EXAMPLE_WALKTHROUGH.md
+    ├── ai_sdlc_guide_V1_0.md          # v1.0 methodology (replaced by ai_sdlc_method.md)
+    ├── ai_sdlc_guide_V1_0.pdf         # v1.0 PDF version
+    ├── ai_sdlc_guide_v1_2.md          # v1.2 pre-split version
+    ├── ai_sdlc_executive_summary.md   # v1.2 executive summary
+    ├── ARCHITECTURE.md                 # Legacy config system architecture
+    ├── MCP_SETUP.md                    # Legacy MCP server setup
+    ├── USAGE_EXAMPLES.md               # Legacy usage examples
+    ├── SUBAGENTS_GUIDE.md              # Legacy subagents guide
+    ├── AI_INIT_REVIEW.md               # ai_init integration review
+    ├── ECOSYSTEM_*.md                  # Ecosystem integration drafts
+    ├── CATEGORY_THEORY_REVIEW.md       # Category theory draft
+    ├── CONSOLIDATION_PLAN.md           # Documentation consolidation plan
+    ├── design/                         # Historical design documentation
+    ├── guides/                         # Legacy configuration guides
+    └── quick-reference/                # Legacy quick references
 ```
+
+**Current Active Documentation** (v1.2):
+- [ai_sdlc_overview.md](ai_sdlc_overview.md) - Start here for quick understanding
+- [ai_sdlc_method.md](ai_sdlc_method.md) - Complete methodology reference
+- [ai_sdlc_appendices.md](ai_sdlc_appendices.md) - Advanced technical concepts
 
 ---
 
@@ -341,11 +368,18 @@ docs/
 
 When adding new documentation:
 
-1. **AI SDLC methodology docs** → Update [ai_sdlc_guide.md](ai_sdlc_guide.md) or add to [../plugins/aisdlc-methodology/docs/](../plugins/aisdlc-methodology/docs/)
-2. **Examples** → Add to [../examples/](../examples/)
-3. **Plugin docs** → Add to [../plugins/](../plugins/)
-4. **MCP service docs** → Add to [../mcp_service/docs/](../mcp_service/docs/)
-5. **Update this README** → Add links to new documentation
+1. **AI SDLC methodology docs** → Update [ai_sdlc_method.md](ai_sdlc_method.md) or add to [../plugins/aisdlc-methodology/docs/](../plugins/aisdlc-methodology/docs/)
+2. **Overview updates** → Update [ai_sdlc_overview.md](ai_sdlc_overview.md) for high-level changes
+3. **Technical deep-dives** → Add to [ai_sdlc_appendices.md](ai_sdlc_appendices.md)
+4. **Examples** → Add to [../examples/](../examples/)
+5. **Plugin docs** → Add to [../plugins/](../plugins/)
+6. **MCP service docs** → Add to [../mcp_service/docs/](../mcp_service/docs/)
+7. **Update this README** → Add links to new documentation
+
+**Documentation Versioning**:
+- Major methodology changes → Increment version in [ai_sdlc_method.md](ai_sdlc_method.md) header
+- Archive previous versions → Move to [deprecated/](deprecated/)
+- Update "Last updated" date below
 
 ---
 
@@ -355,6 +389,11 @@ See [../LICENSE](../LICENSE) for license information.
 
 ---
 
-*Last updated: 2025-11-14*
+*Last updated: 2025-11-20*
+
+**Version**: Documentation restructured to reflect v1.2 methodology split into:
+- Overview (ai_sdlc_overview.md)
+- Method (ai_sdlc_method.md)
+- Appendices (ai_sdlc_appendices.md)
 
 **"Excellence or nothing"** 🔥

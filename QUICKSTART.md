@@ -373,7 +373,9 @@ New cycle begins at Requirements stage
 ## Documentation
 
 ### Core Methodology
-- [docs/ai_sdlc_guide.md](docs/ai_sdlc_guide.md) - Complete 7-stage methodology (3,300+ lines) ⭐ **Start here**
+- [docs/ai_sdlc_overview.md](docs/ai_sdlc_overview.md) - High-level overview (~30 min read) ⭐ **Start here**
+- [docs/ai_sdlc_method.md](docs/ai_sdlc_method.md) - Complete 7-stage methodology (3,300+ lines)
+- [docs/ai_sdlc_appendices.md](docs/ai_sdlc_appendices.md) - Technical deep-dives
 - [docs/README.md](docs/README.md) - Documentation index with role-based learning paths
 
 ### Plugin Documentation
@@ -394,7 +396,7 @@ New cycle begins at Requirements stage
 
 ### For New Users
 
-1. **Read the methodology**: [docs/ai_sdlc_guide.md](docs/ai_sdlc_guide.md)
+1. **Read the methodology**: Start with [docs/ai_sdlc_overview.md](docs/ai_sdlc_overview.md), then [docs/ai_sdlc_method.md](docs/ai_sdlc_method.md)
 2. **Review the example**: [examples/local_projects/customer_portal/](examples/local_projects/customer_portal/)
 3. **Install the plugin**: `/plugin install @aisdlc/aisdlc-methodology`
 4. **Start developing**: Ask Claude to follow the 7-stage AI SDLC methodology
