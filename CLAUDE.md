@@ -31,16 +31,16 @@ Enable AI-augmented software development where:
 
 ```
 ai_sdlc_method/
-├── docs/
+├── docs/                        # Core documentation
 │   ├── ai_sdlc_overview.md      # 📊 High-level introduction (~30 min read)
 │   ├── ai_sdlc_method.md        # 📖 Complete methodology (Sections 1-13, ~2,850 lines)
 │   ├── ai_sdlc_appendices.md    # 🔬 Technical deep-dives (category theory, ecosystem)
 │   ├── guides/                  # 👥 Role-specific application guides
 │   │   └── README.md            # Guide index (architect, developer, QA, manager)
-│   ├── ai_sdlc_full_flow.md     # Flow diagrams
 │   ├── README.md                # Documentation index with role-based learning paths
 │   └── deprecated/              # Archive of previous versions
-├── plugins/
+│
+├── plugins/                     # Claude Code plugins and skills
 │   ├── aisdlc-methodology/      # 7-stage methodology plugin (v2.0.0)
 │   │   ├── .claude-plugin/
 │   │   │   └── plugin.json      # Plugin metadata
@@ -50,20 +50,37 @@ ai_sdlc_method/
 │   │   ├── docs/
 │   │   │   ├── principles/KEY_PRINCIPLES.md
 │   │   │   └── processes/TDD_WORKFLOW.md
-│   │   └── project.json         # Legacy: for MCP service compatibility
+│   │   └── README.md            # Plugin overview
 │   ├── python-standards/        # Python language standards plugin
+│   ├── code-skills/             # Code generation skills plugin
 │   └── README.md                # Plugin creation and usage guide
-├── examples/
+│
+├── installers/                  # Python installation scripts
+│   └── README.md                # Installation scripts documentation
+│
+├── mcp_service/                 # MCP service for non-Claude Code LLMs
+│   ├── src/                     # Python package source
+│   │   └── ai_sdlc_config/      # Configuration management library
+│   ├── tests/                   # Test suite
+│   ├── server/                  # MCP server implementation
+│   ├── client/                  # Client utilities
+│   ├── storage/                 # Project storage
+│   ├── docs/                    # MCP documentation
+│   ├── examples/                # MCP usage examples
+│   ├── setup.py                 # Python package setup
+│   ├── pytest.ini               # Pytest configuration
+│   ├── README.md                # MCP overview
+│   └── MCP_SDLC_INTEGRATION_PLAN.md  # 7-stage integration roadmap
+│
+├── examples/                    # Example projects
 │   ├── local_projects/
 │   │   └── customer_portal/     # ⭐ Complete 7-stage example (800+ lines)
 │   │       ├── config/config.yml  # 7-stage agent configuration (650+ lines)
 │   │       └── README.md          # Detailed walkthrough
 │   └── README.md                # All examples overview
-├── mcp_service/                 # MCP service for non-Claude LLMs
-│   ├── server/                  # MCP server implementation
-│   ├── docs/                    # MCP documentation
-│   ├── README.md                # MCP overview
-│   └── MCP_SDLC_INTEGRATION_PLAN.md  # 7-stage integration roadmap
+│
+├── .claude-plugin/              # Root plugin metadata
+├── marketplace.json             # Claude Code marketplace registry
 ├── README.md                    # Project overview
 ├── QUICKSTART.md                # Quick start guide
 ├── PLUGIN_GUIDE.md              # Plugin creation and usage guide

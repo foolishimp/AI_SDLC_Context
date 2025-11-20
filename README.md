@@ -502,14 +502,14 @@ This repository includes an **MCP service** for non-Claude Code LLMs (Copilot, G
 
 ```
 ai_sdlc_method/
-├── docs/
+├── docs/                            # Core documentation
 │   ├── ai_sdlc_overview.md          # High-level overview (~30 min read)
 │   ├── ai_sdlc_method.md            # ⭐ Complete 7-stage methodology (3,300+ lines)
 │   ├── ai_sdlc_appendices.md        # Technical deep-dives
 │   ├── guides/                      # Role-specific guides
-│   └── README.md                     # Documentation index
+│   └── README.md                    # Documentation index
 │
-├── plugins/                          # Claude Code plugins
+├── plugins/                         # Claude Code plugins and skills
 │   ├── aisdlc-methodology/          # 7-stage AI SDLC v2.0.0
 │   │   ├── .claude-plugin/
 │   │   │   └── plugin.json          # Plugin metadata (7 stages)
@@ -523,14 +523,31 @@ ai_sdlc_method/
 │   ├── python-standards/            # Python standards plugin
 │   └── README.md                    # Plugin creation guide
 │
-├── src/                              # Python package source (for MCP service)
-│   └── ai_sdlc_config/              # Configuration management library
-│       ├── core/                    # Core configuration manager
-│       ├── models/                  # Data models (hierarchy_node)
-│       ├── mergers/                 # Configuration merging logic
-│       └── loaders/                 # YAML loader and URI resolver
+├── installers/                      # Python installation scripts
+│   └── README.md                    # Installation scripts documentation
 │
-├── examples/                         # Example projects
+├── mcp_service/                     # MCP service (non-Claude Code LLMs)
+│   ├── src/                         # Python package source
+│   │   └── ai_sdlc_config/          # Configuration management library
+│   │       ├── core/                # Core configuration manager
+│   │       ├── models/              # Data models (hierarchy_node)
+│   │       ├── mergers/             # Configuration merging logic
+│   │       └── loaders/             # YAML loader and URI resolver
+│   ├── tests/                       # Test suite
+│   │   ├── test_config_manager.py   # Configuration manager tests
+│   │   ├── test_hierarchy_merger.py # Merger tests
+│   │   └── test_hierarchy_node.py   # Data model tests
+│   ├── server/                      # MCP server implementation
+│   ├── client/                      # Client utilities
+│   ├── storage/                     # Project storage
+│   ├── docs/                        # MCP documentation
+│   ├── examples/                    # MCP usage examples
+│   ├── setup.py                     # Python package setup
+│   ├── pytest.ini                   # Pytest configuration
+│   ├── MCP_SDLC_INTEGRATION_PLAN.md # 7-stage integration roadmap
+│   └── README.md                    # MCP service documentation
+│
+├── examples/                        # Example projects
 │   ├── local_projects/
 │   │   ├── customer_portal/         # ⭐ Complete 7-stage example
 │   │   ├── api_platform/            # Public API example
@@ -539,24 +556,9 @@ ai_sdlc_method/
 │   ├── federated_setup/             # Federated architecture examples
 │   └── README.md                    # Examples guide
 │
-├── tests/                            # Test suite
-│   ├── test_config_manager.py       # Configuration manager tests
-│   ├── test_hierarchy_merger.py     # Merger tests
-│   └── test_hierarchy_node.py       # Data model tests
-│
-├── mcp_service/                     # MCP service (non-Claude fallback)
-│   ├── server/                      # MCP server implementation
-│   ├── client/                      # Client utilities
-│   ├── docs/                        # MCP documentation
-│   ├── MCP_SDLC_INTEGRATION_PLAN.md # 7-stage integration roadmap
-│   └── README.md
-│
 ├── .claude-plugin/                  # Root plugin metadata
 │   └── plugin.json                  # Repository as plugin
 │
-├── setup.py                         # Python package setup
-├── pyproject.toml                   # Python project configuration
-├── pytest.ini                       # Pytest configuration
 ├── marketplace.json                 # Claude Code marketplace registry
 ├── CLAUDE.md                        # Claude Code guidance
 ├── QUICKSTART.md                    # Quick start guide
@@ -564,7 +566,7 @@ ai_sdlc_method/
 └── README.md                        # This file
 ```
 
-**Note**: The `src/ai_sdlc_config/` Python library is only needed for the MCP service (Option 2). Claude Code plugin users (Option 1) don't need to install it - plugins work directly with YAML configuration files.
+**Note**: The `mcp_service/src/ai_sdlc_config/` Python library is only needed for the MCP service (Option 2). Claude Code plugin users (Option 1) don't need to install it - plugins work directly with YAML configuration files.
 
 ---
 
