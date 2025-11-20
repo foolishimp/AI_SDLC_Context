@@ -1,4 +1,4 @@
-# AI_SDLC_Context Quick Start Guide
+# ai_sdlc_method Quick Start Guide
 
 Get started with the **7-Stage AI SDLC Methodology** in 3 different ways:
 1. Claude Code Plugin (recommended)
@@ -6,7 +6,7 @@ Get started with the **7-Stage AI SDLC Methodology** in 3 different ways:
 3. Through Claude Desktop (MCP)
 
 ## Table of Contents
-- [What is AI_SDLC_Context?](#what-is-ai_sdlc_context)
+- [What is ai_sdlc_method?](#what-is-ai_sdlc_context)
 - [Method 1: Claude Code Plugin (Recommended)](#method-1-claude-code-plugin-recommended)
 - [Method 2: Direct Python Usage](#method-2-direct-python-usage)
 - [Method 3: MCP with Claude Desktop](#method-3-mcp-with-claude-desktop)
@@ -14,9 +14,9 @@ Get started with the **7-Stage AI SDLC Methodology** in 3 different ways:
 
 ---
 
-## What is AI_SDLC_Context?
+## What is ai_sdlc_method?
 
-AI_SDLC_Context is an **Intent-Driven AI SDLC Methodology** providing:
+ai_sdlc_method is an **Intent-Driven AI SDLC Methodology** providing:
 
 ### 7-Stage Software Development Lifecycle
 
@@ -52,7 +52,7 @@ Intent → Requirements → Design → Tasks → Code → System Test → UAT �
 
 ```bash
 # In Claude Code (CLI or VS Code)
-/plugin marketplace add foolishimp/AI_SDLC_Context
+/plugin marketplace add foolishimp/ai_sdlc_method
 /plugin install @aisdlc/aisdlc-methodology
 ```
 
@@ -133,8 +133,8 @@ For programmatic access or custom integrations:
 
 ```bash
 # Clone repository
-git clone https://github.com/foolishimp/AI_SDLC_Context.git
-cd AI_SDLC_Context
+git clone https://github.com/foolishimp/ai_sdlc_method.git
+cd ai_sdlc_method
 
 # Install dependencies
 pip install pyyaml

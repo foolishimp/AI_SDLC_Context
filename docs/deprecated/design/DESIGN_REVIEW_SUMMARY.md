@@ -233,7 +233,7 @@ ai_init_methodology/
 ### Design Quality: 9/10
 
 **Excellent implementation of**:
-- AI_SDLC_Context patterns
+- ai_sdlc_method patterns
 - URI-based content separation
 - Reusable configuration design
 - Methodology-as-code concept
@@ -252,7 +252,7 @@ No changes required. Optional enhancements can be added incrementally.
 
 ## What This Demonstrates
 
-This project showcases the AI_SDLC_Context system's ability to:
+This project showcases the ai_sdlc_method system's ability to:
 
 1. **Package methodologies as configuration** - Not just project settings
 2. **Separate structure from content** - YAML + Markdown via URIs

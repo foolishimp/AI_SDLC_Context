@@ -2,7 +2,7 @@
   "hooks": {
     "on_session_start": {
       "description": "Show available contexts and personas on session start",
-      "action": "echo '\n🎯 AI_SDLC_Context Plugin Loaded!\n\nQuick Start:\n  /list-projects    - See available project contexts\n  /list-personas    - See available personas\n  /load-context <project>   - Load a project\n  /apply-persona <persona>  - Apply a role perspective\n\nExample: /load-context payment_gateway && /apply-persona security_engineer\n'"
+      "action": "echo '\n🎯 ai_sdlc_method Plugin Loaded!\n\nQuick Start:\n  /list-projects    - See available project contexts\n  /list-personas    - See available personas\n  /load-context <project>   - Load a project\n  /apply-persona <persona>  - Apply a role perspective\n\nExample: /load-context payment_gateway && /apply-persona security_engineer\n'"
     },
     "on_file_open": {
       "description": "Auto-detect context based on file patterns",

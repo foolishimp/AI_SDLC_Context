@@ -1,10 +1,10 @@
 {
-  "name": "AI_SDLC_Context",
+  "name": "ai_sdlc_method",
   "displayName": "AI SDLC Context Manager",
   "description": "Dynamic context and persona management for Software Development Lifecycle. Switch between project contexts and apply role-based perspectives (BA, Engineer, QA, Security, DevOps, Data Architect).",
   "version": "1.0.0",
   "author": "foolishimp",
-  "repository": "https://github.com/foolishimp/AI_SDLC_Context",
+  "repository": "https://github.com/foolishimp/ai_sdlc_method",
   "license": "MIT",
   "keywords": [
     "context-management",

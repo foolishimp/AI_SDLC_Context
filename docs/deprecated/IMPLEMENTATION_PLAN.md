@@ -15,7 +15,7 @@ Transform v2.0 monolithic plugin into v3.0 modular, skills-based architecture wi
 ## Complete File Structure
 
 ```
-AI_SDLC_Context/
+ai_sdlc_method/
 ├── plugins/
 │   ├── aisdlc-core/                           # 🏗️ Foundation (PHASE 1)
 │   │   ├── .claude-plugin/
@@ -670,7 +670,7 @@ plugins/bundles/
   "description": "...",
   "author": "AI SDLC Project",
   "license": "MIT",
-  "homepage": "https://github.com/foolishimp/AI_SDLC_Context",
+  "homepage": "https://github.com/foolishimp/ai_sdlc_method",
   "skills": {
     "enabled": true,
     "paths": ["skills/"]

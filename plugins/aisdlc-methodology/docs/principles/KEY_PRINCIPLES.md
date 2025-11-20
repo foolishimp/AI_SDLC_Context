@@ -1,6 +1,6 @@
 # 🎯 The Key Principles (Code Stage)
 
-## Core Development Methodology for AI_SDLC_Context
+## Core Development Methodology for ai_sdlc_method
 
 These foundational principles guide all development in this project. They are adapted from the [ai_init](https://github.com/foolishimp/ai_init) project and represent our unwavering commitment to excellence.
 
@@ -222,7 +222,7 @@ Need to build something?
 
 ---
 
-## Application to AI_SDLC_Context
+## Application to ai_sdlc_method
 
 ### Our Commitment
 
@@ -352,7 +352,7 @@ code_stage:
 ## References
 
 - **Origin**: [ai_init project](https://github.com/foolishimp/ai_init) - Original "Key Principles"
-- **Applied In**: All AI_SDLC_Context development
+- **Applied In**: All ai_sdlc_method development
 - **Enforcement**: Code reviews, CI/CD, peer accountability
 - **Evolution**: Document in your project's `config.yml`
 

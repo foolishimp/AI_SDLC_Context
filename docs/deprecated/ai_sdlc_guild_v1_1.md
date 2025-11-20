@@ -223,14 +223,14 @@ flowchart LR
 
 ## **3.2 The Context Framework**
 
-**Context** is the set of constraints, templates, and knowledge that guides the Synthesis step. In the AI SDLC, context is **explicit**, **versioned**, and stored in the `AI_SDLC_Context` repository.
+**Context** is the set of constraints, templates, and knowledge that guides the Synthesis step. In the AI SDLC, context is **explicit**, **versioned**, and stored in the `ai_sdlc_method` repository.
 
 ### **3.2.1 Context Configuration Schema**
 
 Context is loaded lazily by stage. The repository structure maps directly to the SDLC stages.
 
 ```yaml
-# Example: AI_SDLC_Context/context/stages/code.yml
+# Example: ai_sdlc_method/context/stages/code.yml
 code_stage:
   standards:
     python: "file://standards/coding/python_style_guide.md"
@@ -597,11 +597,11 @@ flowchart TD
 
 # **12.0 Conclusion**
 
-This methodology provides the **blueprint for the `AI_SDLC_Context` repository**. By defining the **Fundamental Unit** (Input $\to$ Synthesis $\to$ Asset), structuring **Context** as explicit configurations, and enforcing **Traceability** via Requirement Keys, we create a system where AI agents can safely and effectively augment human engineering.
+This methodology provides the **blueprint for the `ai_sdlc_method` repository**. By defining the **Fundamental Unit** (Input $\to$ Synthesis $\to$ Asset), structuring **Context** as explicit configurations, and enforcing **Traceability** via Requirement Keys, we create a system where AI agents can safely and effectively augment human engineering.
 
 ## **Next Steps**
 
-1.  **Repository Setup:** Initialize the `AI_SDLC_Context` folder structure (per Section 3.2).
+1.  **Repository Setup:** Initialize the `ai_sdlc_method` folder structure (per Section 3.2).
 2.  **Traceability:** Define the `REQ` key format for your project.
 3.  **Agent Configuration:** Configure the `Code-Agent` and `Req-Agent` system prompts to obey the Fundamental Unit loop.
 4.  **Sub-Vectors:** Identify if Architecture or Data Platform sub-vectors are needed immediately.

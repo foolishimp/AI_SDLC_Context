@@ -1,6 +1,6 @@
-# AI_SDLC_Context Test Suite
+# ai_sdlc_method Test Suite
 
-This directory contains comprehensive unit tests for the AI_SDLC_Context library.
+This directory contains comprehensive unit tests for the ai_sdlc_method library.
 
 ## Test Coverage
 

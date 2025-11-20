@@ -8,7 +8,7 @@
 
 ## Overview
 
-The `ai_init` project is a comprehensive setup and methodology system designed to make development projects "Claude-aware" by providing structured workflows, task management, and testing frameworks. It evolved into the current `AI_SDLC_Context` project.
+The `ai_init` project is a comprehensive setup and methodology system designed to make development projects "Claude-aware" by providing structured workflows, task management, and testing frameworks. It evolved into the current `ai_sdlc_method` project.
 
 ## Project Structure
 
@@ -256,7 +256,7 @@ featureFlags.resetOverrides()
 - No external dependencies
 - All templates embedded in setup script
 
-## Evolution to AI_SDLC_Context
+## Evolution to ai_sdlc_method
 
 ### What Changed
 
@@ -266,7 +266,7 @@ featureFlags.resetOverrides()
 - **Purpose**: Making projects "Claude-aware"
 - **Structure**: Files and task directories
 
-#### To AI_SDLC_Context:
+#### To ai_sdlc_method:
 - **Focus**: Configuration management and SDLC metadata
 - **Scope**: Organization-level configuration systems
 - **Purpose**: Multi-layer hierarchical configuration with URI references
@@ -295,14 +295,14 @@ Both projects maintain the Sacred Seven:
 - Structured workflows for AI assistance
 - Clear documentation and patterns
 
-### What's New in AI_SDLC_Context
+### What's New in ai_sdlc_method
 
 #### 1. Hierarchical Configuration System
 ```python
 # ai_init: Task-focused files
 claude_tasks/active/ACTIVE_TASKS.md
 
-# AI_SDLC_Context: Configuration hierarchy
+# ai_sdlc_method: Configuration hierarchy
 system.agents.discovery.model = "claude-3-5-sonnet"
 ```
 
@@ -313,7 +313,7 @@ prompt: |
   You are a discovery agent...
   [100 lines of text]
 
-# AI_SDLC_Context: URI references
+# ai_sdlc_method: URI references
 prompt:
   uri: "file:///prompts/discovery.md"
 ```
@@ -351,7 +351,7 @@ Runtime Overrides (API/CLI)
 
 ## Comparison Matrix
 
-| Feature | ai_init | AI_SDLC_Context |
+| Feature | ai_init | ai_sdlc_method |
 |---------|---------|----------------|
 | **Primary Focus** | Task management | Configuration management |
 | **Data Structure** | File-based | Tree-based (HierarchyNode) |
@@ -391,7 +391,7 @@ Runtime Overrides (API/CLI)
 - Clear communication patterns
 - Structured task management
 
-## Lessons Applied to AI_SDLC_Context
+## Lessons Applied to ai_sdlc_method
 
 ### 1. Clear Principles
 - Maintained The Sacred Seven
@@ -423,15 +423,15 @@ Runtime Overrides (API/CLI)
 - Version control friendly
 - Commit message templates
 
-## Recommendations for AI_SDLC_Context
+## Recommendations for ai_sdlc_method
 
 Based on ai_init's strengths:
 
 ### 1. Consider Adding Task Management
-While AI_SDLC_Context focuses on configuration, the task management system from ai_init could be valuable:
+While ai_sdlc_method focuses on configuration, the task management system from ai_init could be valuable:
 
 ```
-AI_SDLC_Context/
+ai_sdlc_method/
 ├── sdlc_tasks/              # Similar to claude_tasks/
 │   ├── active/
 │   ├── finished/
@@ -513,13 +513,13 @@ if flags.is_enabled('uri_caching'):
 ## Integration Opportunities
 
 ### 1. Combine Both Projects
-Use ai_init's task management with AI_SDLC_Context's configuration:
+Use ai_init's task management with ai_sdlc_method's configuration:
 
 ```
 Project/
 ├── claude_tasks/           # From ai_init
 │   └── active/
-├── sdlc_config/           # From AI_SDLC_Context
+├── sdlc_config/           # From ai_sdlc_method
 │   ├── corporate.yml
 │   ├── project.yml
 │   └── runtime.yml
@@ -553,7 +553,7 @@ The `ai_init` project provides a solid foundation for AI-assisted development wi
 - Test dashboard
 - Easy installation
 
-`AI_SDLC_Context` evolved from these concepts to focus specifically on:
+`ai_sdlc_method` evolved from these concepts to focus specifically on:
 - Configuration management
 - Hierarchical structures
 - URI-based content
@@ -565,17 +565,17 @@ Both projects share the same core values of **excellence, testing, and modularit
 ### Key Takeaway
 
 **ai_init** = "How to develop" (methodology and tasks)
-**AI_SDLC_Context** = "What to develop with" (configuration and metadata)
+**ai_sdlc_method** = "What to develop with" (configuration and metadata)
 
 They are complementary tools that together provide a comprehensive system for AI-assisted software development.
 
 ## References
 
 - **GitHub Repository**: https://github.com/foolishimp/ai_init
-- **AI_SDLC_Context**: Current repository
+- **ai_sdlc_method**: Current repository
 - **CLAUDE.md**: Instructions for Claude in both projects
 - **The Sacred Seven**: Core principles maintained across both
 
 ---
 
-*This review was generated as part of understanding the evolution from ai_init to AI_SDLC_Context.*
+*This review was generated as part of understanding the evolution from ai_init to ai_sdlc_method.*

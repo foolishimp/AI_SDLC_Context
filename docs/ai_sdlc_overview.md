@@ -613,7 +613,7 @@ Before coding, ask:
 ## **15.1 Getting Started**
 
 1. **Read complete methodology**: [AI SDLC Method](ai_sdlc_method.md) (Sections 1-13)
-2. **Setup AI_SDLC_Context repository**: Initialize folder structure
+2. **Setup ai_sdlc_method repository**: Initialize folder structure
 3. **Define REQ key format**: Choose structure for your organization
 4. **Adopt Key Principles**: Integrate principles from methodology
 5. **Configure AI agents**: Setup TDD workflow in agent prompts

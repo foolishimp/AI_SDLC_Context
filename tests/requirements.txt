@@ -1,4 +1,4 @@
-# Test requirements for AI_SDLC_Context
+# Test requirements for ai_sdlc_method
 
 # Core testing framework
 pytest>=7.0.0

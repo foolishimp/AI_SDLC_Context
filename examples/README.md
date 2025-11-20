@@ -1,6 +1,6 @@
 # Example Projects - Federated Context Usage
 
-This directory contains **example projects** demonstrating how to use AI_SDLC_Context in various scenarios, including federated multi-server setups.
+This directory contains **example projects** demonstrating how to use ai_sdlc_method in various scenarios, including federated multi-server setups.
 
 ## Directory Structure
 
@@ -29,7 +29,7 @@ examples/
 
 ### Baseline Contexts (`/contexts/`)
 
-These are **read-only reference contexts** provided by AI_SDLC_Context:
+These are **read-only reference contexts** provided by ai_sdlc_method:
 - `aisdlc_methodology` - Core Key Principles principles and TDD workflow
 - `python_standards` - Python language standards and best practices
 
@@ -102,7 +102,7 @@ Contexts are loaded as **layers** with priority-based merging:
 
 ```bash
 # Start local MCP context service
-cd /path/to/AI_SDLC_Context
+cd /path/to/ai_sdlc_method
 python -m mcp_service.server --port 8000
 
 # In your project directory, create context configuration
@@ -229,7 +229,7 @@ EOF
 # Hosts: division-specific standards and processes
 
 # Local server (you run it)
-cd /path/to/AI_SDLC_Context
+cd /path/to/ai_sdlc_method
 python -m mcp_service.server --port 8000 --data-dir ~/my_contexts
 ```
 

@@ -394,7 +394,7 @@ Internal code follows **original Principle #6**: Break freely, no backwards comp
 
 ---
 
-## Integration with AI_SDLC_Context
+## Integration with ai_sdlc_method
 
 ### Configuration Merging
 

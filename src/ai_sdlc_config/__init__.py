@@ -1,5 +1,5 @@
 """
-AI_SDLC_Context - Generic URI-based dot hierarchy configuration merging system
+ai_sdlc_method - Generic URI-based dot hierarchy configuration merging system
 
 This library provides a flexible way to manage configuration using:
 1. Dot hierarchy paths (e.g., "system.agents.discovery")

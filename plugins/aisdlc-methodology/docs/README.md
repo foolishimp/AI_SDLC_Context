@@ -1,8 +1,8 @@
 # Development Methodology
 
-## Baseline Practices for AI_SDLC_Context
+## Baseline Practices for ai_sdlc_method
 
-This directory contains the core development methodology for AI_SDLC_Context, adapted from the [ai_init project](https://github.com/foolishimp/ai_init). These practices form the **foundation** of how we build software.
+This directory contains the core development methodology for ai_sdlc_method, adapted from the [ai_init project](https://github.com/foolishimp/ai_init). These practices form the **foundation** of how we build software.
 
 ---
 
@@ -142,7 +142,7 @@ git commit -m "feat: add new feature with tests"
 
 ---
 
-## Application to AI_SDLC_Context
+## Application to ai_sdlc_method
 
 ### Evidence of Excellence
 
@@ -220,9 +220,9 @@ The Key Principles are not arbitrary rules - they're battle-tested practices tha
 4. **Accelerate development** - Clear patterns speed up work
 5. **Ensure quality** - Excellence is built in, not added later
 
-### From ai_init to AI_SDLC_Context
+### From ai_init to ai_sdlc_method
 
-AI_SDLC_Context inherits and extends the ai_init methodology:
+ai_sdlc_method inherits and extends the ai_init methodology:
 
 **Inherited**:
 - The Key Principles principles
@@ -286,7 +286,7 @@ These practices are **requirements**, not suggestions:
 
 ## Contributing
 
-When contributing to AI_SDLC_Context:
+When contributing to ai_sdlc_method:
 
 1. **Read** the Key Principles
 2. **Understand** the TDD workflow

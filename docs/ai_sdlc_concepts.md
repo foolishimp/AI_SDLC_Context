@@ -233,7 +233,7 @@
 
 ### 6.1 Context Definition
 - **Purpose**: Explicit, versioned constraints/templates/knowledge guiding synthesis
-- **Storage**: AI_SDLC_Context repository
+- **Storage**: ai_sdlc_method repository
 - **Types**:
   - Architecture context (tech stack, platforms, standards, patterns)
   - Data architecture context (models, schemas, lineage, retention)

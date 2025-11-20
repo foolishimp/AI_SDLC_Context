@@ -1,4 +1,4 @@
-# Usage Examples - AI_SDLC_Context
+# Usage Examples - ai_sdlc_method
 
 Practical examples showing different ways to use the system.
 
@@ -15,7 +15,7 @@ Practical examples showing different ways to use the system.
 The fastest way to see the system in action:
 
 ```bash
-cd /Users/jim/src/apps/AI_SDLC_Context
+cd /Users/jim/src/apps/ai_sdlc_method
 
 # Demo 1: Project Management
 python mcp_service/examples/direct_usage_example.py
@@ -440,4 +440,4 @@ EOF
 
 ---
 
-**Start using AI_SDLC_Context now!** 🚀
+**Start using ai_sdlc_method now!** 🚀

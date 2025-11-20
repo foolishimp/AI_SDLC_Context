@@ -55,7 +55,7 @@ Add this repository as a Claude Code marketplace:
 
 ```bash
 # In Claude Code
-/plugin marketplace add foolishimp/AI_SDLC_Context
+/plugin marketplace add foolishimp/ai_sdlc_method
 ```
 
 Or in your `.claude/settings.json`:
@@ -66,7 +66,7 @@ Or in your `.claude/settings.json`:
     "aisdlc": {
       "source": {
         "source": "github",
-        "repo": "foolishimp/AI_SDLC_Context"
+        "repo": "foolishimp/ai_sdlc_method"
       }
     }
   }
@@ -85,9 +85,9 @@ Then install plugins:
 Clone this repository and add as local marketplace:
 
 ```bash
-git clone https://github.com/foolishimp/AI_SDLC_Context.git
+git clone https://github.com/foolishimp/ai_sdlc_method.git
 cd your-project
-/plugin marketplace add ../AI_SDLC_Context
+/plugin marketplace add ../ai_sdlc_method
 /plugin install aisdlc-methodology
 ```
 

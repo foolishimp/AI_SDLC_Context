@@ -2,7 +2,7 @@
 
 ## The RED → GREEN → REFACTOR Cycle
 
-This document defines the complete TDD workflow for AI_SDLC_Context, adapted from [ai_init](https://github.com/foolishimp/ai_init).
+This document defines the complete TDD workflow for ai_sdlc_method, adapted from [ai_init](https://github.com/foolishimp/ai_init).
 
 ---
 
@@ -468,7 +468,7 @@ def test_merge_two_hierarchies():
 ## References
 
 - **Origin**: [ai_init TDD Process](https://github.com/foolishimp/ai_init)
-- **Applied In**: All AI_SDLC_Context development
+- **Applied In**: All ai_sdlc_method development
 - **Test Suite**: [tests/](../../tests/)
 - **Key Principles**: [KEY_PRINCIPLES.md](../principles/KEY_PRINCIPLES.md)
 

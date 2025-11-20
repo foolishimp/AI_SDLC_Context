@@ -2,7 +2,7 @@
 
 ## Changes Made
 
-The project has been renamed from **AI_SDLC_config** to **AI_SDLC_Context**.
+The project has been renamed from **AI_SDLC_config** to **ai_sdlc_method**.
 
 ### Why the Rename?
 
@@ -15,7 +15,7 @@ The new name better reflects the project's core purpose:
 ### What Was Changed
 
 ✅ **Completed:**
-1. Directory renamed: `AI_SDLC_config` → `AI_SDLC_Context`
+1. Directory renamed: `AI_SDLC_config` → `ai_sdlc_method`
 2. All documentation updated (87 references in .md files)
 3. All Python code updated (imports, paths, references)
 4. All example scripts updated
@@ -29,14 +29,14 @@ The new name better reflects the project's core purpose:
 1. Go to: https://github.com/foolishimp/AI_SDLC_config
 2. Click **Settings** tab
 3. Scroll to **Repository name** section
-4. Change: `AI_SDLC_config` → `AI_SDLC_Context`
+4. Change: `AI_SDLC_config` → `ai_sdlc_method`
 5. Click **Rename**
 
 **Then update your local remote:**
 
 ```bash
-cd /Users/jim/src/apps/AI_SDLC_Context
-git remote set-url origin https://github.com/foolishimp/AI_SDLC_Context.git
+cd /Users/jim/src/apps/ai_sdlc_method
+git remote set-url origin https://github.com/foolishimp/ai_sdlc_method.git
 git push origin main
 ```
 

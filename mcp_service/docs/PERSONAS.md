@@ -4,7 +4,7 @@
 
 **Note**: This document describes the persona system design. Personas are now implemented as hierarchical projects within `example_projects_repo/` rather than standalone YAML files. Personas can be created as projects and loaded as layers in the merge hierarchy.
 
-For current implementation, personas should be structured as AI_SDLC_Context projects with `project.json` and `config/config.yml` files.
+For current implementation, personas should be structured as ai_sdlc_method projects with `project.json` and `config/config.yml` files.
 
 ---
 

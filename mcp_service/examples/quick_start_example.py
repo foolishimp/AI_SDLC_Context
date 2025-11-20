@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Quick Start Example - Real-world usage of AI_SDLC_Context MCP service.
+Quick Start Example - Real-world usage of ai_sdlc_method MCP service.
 
 This example shows a realistic scenario:
 1. Setting up corporate standards

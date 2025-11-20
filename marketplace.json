@@ -1,9 +1,9 @@
 {
-  "name": "AI SDLC Context Marketplace",
+  "name": "AI SDLC Method Marketplace",
   "description": "Baseline development contexts and methodologies for AI-assisted software development",
   "version": "1.0.0",
   "author": "foolishimp",
-  "repository": "https://github.com/foolishimp/AI_SDLC_Context",
+  "repository": "https://github.com/foolishimp/ai_sdlc_method",
   "plugins": [
     {
       "name": "aisdlc-methodology",

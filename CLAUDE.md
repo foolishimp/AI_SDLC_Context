@@ -1,10 +1,10 @@
-# CLAUDE.md - AI_SDLC_Context Project Guide
+# CLAUDE.md - ai_sdlc_method Project Guide
 
 This file provides guidance to Claude Code when working with this repository.
 
 ## Project Overview
 
-**AI_SDLC_Context** provides a complete **Intent-Driven AI SDLC Methodology** with full lifecycle traceability from intent to runtime.
+**ai_sdlc_method** provides a complete **Intent-Driven AI SDLC Methodology** with full lifecycle traceability from intent to runtime.
 
 ### Purpose
 
@@ -30,7 +30,7 @@ Enable AI-augmented software development where:
 ## Project Structure
 
 ```
-AI_SDLC_Context/
+ai_sdlc_method/
 ├── docs/
 │   ├── ai_sdlc_overview.md      # 📊 High-level introduction (~30 min read)
 │   ├── ai_sdlc_method.md        # 📖 Complete methodology (Sections 1-13, ~2,850 lines)
@@ -170,7 +170,7 @@ Feedback: New intent: INT-042 "Fix auth timeout"
 
 ```bash
 # Install Claude Code plugin
-/plugin marketplace add foolishimp/AI_SDLC_Context
+/plugin marketplace add foolishimp/ai_sdlc_method
 /plugin install @aisdlc/aisdlc-methodology
 
 # Claude now has access to complete 7-stage methodology

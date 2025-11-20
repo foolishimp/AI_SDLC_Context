@@ -16,7 +16,7 @@
     "traceability",
     "agent-orchestration"
   ],
-  "homepage": "https://github.com/foolishimp/AI_SDLC_Context",
+  "homepage": "https://github.com/foolishimp/ai_sdlc_method",
   "configuration": {
     "stages": "config/stages_config.yml",
     "sacred_seven": "config/config.yml",

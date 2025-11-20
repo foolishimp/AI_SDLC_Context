@@ -465,7 +465,7 @@ assigned_to: Requirements Agent
 
 ```bash
 # From your AI development environment (Claude Code, etc.)
-cd /path/to/AI_SDLC_Context/examples/local_projects/customer_portal
+cd /path/to/ai_sdlc_method/examples/local_projects/customer_portal
 
 # AI assistant loads config.yml
 # - Reads ai_sdlc.methodology_plugin

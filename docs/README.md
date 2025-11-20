@@ -1,4 +1,4 @@
-# AI_SDLC_Context Documentation
+# ai_sdlc_method Documentation
 
 Complete documentation for the **AI-Augmented Software Development Lifecycle (AI SDLC)** framework.
 
@@ -41,7 +41,7 @@ Complete documentation for the **AI-Augmented Software Development Lifecycle (AI
 
 ## 📚 Quick Start
 
-**New to AI_SDLC_Context?** Start here:
+**New to ai_sdlc_method?** Start here:
 
 1. **[../README.md](../README.md)** - Project overview and quick start
 2. **[ai_sdlc_overview.md](ai_sdlc_overview.md)** - High-level overview (30 min read)

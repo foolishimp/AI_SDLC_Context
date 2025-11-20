@@ -1,4 +1,4 @@
-# AI_SDLC_Context
+# ai_sdlc_method
 
 **Intent-Driven AI SDLC Methodology** with full requirement traceability and 7-stage agent orchestration.
 
@@ -46,7 +46,7 @@ Each stage has:
 In Claude Code:
 
 ```bash
-/plugin marketplace add foolishimp/AI_SDLC_Context
+/plugin marketplace add foolishimp/ai_sdlc_method
 ```
 
 Or add to your `.claude/settings.json`:
@@ -57,7 +57,7 @@ Or add to your `.claude/settings.json`:
     "aisdlc": {
       "source": {
         "source": "github",
-        "repo": "foolishimp/AI_SDLC_Context"
+        "repo": "foolishimp/ai_sdlc_method"
       }
     }
   }
@@ -87,12 +87,43 @@ Or add to your `.claude/settings.json`:
 
 Claude will now follow the 7-stage AI SDLC methodology automatically.
 
-### Option 2: Explore the Methodology First
+### Option 2: Use MCP Service (For Non-Claude LLMs)
+
+If you're using Copilot, Gemini, or other LLMs that support Model Context Protocol:
+
+```bash
+# Clone repository
+git clone https://github.com/foolishimp/ai_sdlc_method.git
+cd ai_sdlc_method
+
+# Install the configuration management library
+pip install -e .
+
+# Install MCP service
+cd mcp_service
+pip install -e .
+
+# Run MCP server (for Claude Desktop integration)
+python -m mcp_service.server.main --stdio
+
+# Or run as HTTP service
+python -m mcp_service.server.main --port 8080
+```
+
+**What you get**:
+- MCP tools for project management
+- Configuration merging engine
+- Stage-specific context loading
+- Requirement traceability tracking
+
+👉 **Complete MCP Setup**: [mcp_service/README.md](mcp_service/README.md)
+
+### Option 3: Explore the Methodology First
 
 ```bash
 # Clone the repository
-git clone https://github.com/foolishimp/AI_SDLC_Context.git
-cd AI_SDLC_Context
+git clone https://github.com/foolishimp/ai_sdlc_method.git
+cd ai_sdlc_method
 
 # Read the methodology overview
 open docs/ai_sdlc_overview.md
@@ -446,33 +477,36 @@ Each layer can override the previous, creating a flexible hierarchy.
 
 ## For Non-Claude LLMs
 
-This repository also includes an **MCP service** for non-Claude Code LLMs (Codex, Gemini, etc.):
+This repository includes an **MCP service** for non-Claude Code LLMs (Copilot, Gemini, etc.).
 
-```bash
-python -m mcp_service.server --port 8000 --plugins-dir plugins/
-```
+**Installation**: See [Quick Start - Option 2](#option-2-use-mcp-service-for-non-claude-llms) above.
 
 **MCP Service Features**:
 - Project CRUD operations
 - Stage-specific context loading
 - Requirement traceability tracking
+- Configuration merging engine (`ai_sdlc_config` Python library)
 - AI agent orchestration
 - Persona management (human + AI agents)
 
-See [mcp_service/docs/](mcp_service/docs/) and [MCP Integration Plan](mcp_service/MCP_SDLC_INTEGRATION_PLAN.md) for details.
+**Documentation**:
+- [MCP Service README](mcp_service/README.md) - Complete setup and usage
+- [MCP Integration Plan](mcp_service/MCP_SDLC_INTEGRATION_PLAN.md) - 7-stage integration roadmap
+- [MCP Service Docs](mcp_service/docs/) - API documentation
 
-**For Claude Code users**: Just use the marketplace approach (simpler!).
+**For Claude Code users**: Just use the marketplace approach (Option 1) - it's simpler and doesn't require Python installation!
 
 ---
 
 ## Project Structure
 
 ```
-AI_SDLC_Context/
+ai_sdlc_method/
 ├── docs/
 │   ├── ai_sdlc_overview.md          # High-level overview (~30 min read)
 │   ├── ai_sdlc_method.md            # ⭐ Complete 7-stage methodology (3,300+ lines)
 │   ├── ai_sdlc_appendices.md        # Technical deep-dives
+│   ├── guides/                      # Role-specific guides
 │   └── README.md                     # Documentation index
 │
 ├── plugins/                          # Claude Code plugins
@@ -485,8 +519,16 @@ AI_SDLC_Context/
 │   │   ├── docs/                    # Methodology documentation
 │   │   └── README.md                # Plugin overview
 │   │
+│   ├── code-skills/                 # Code generation skills plugin
 │   ├── python-standards/            # Python standards plugin
 │   └── README.md                    # Plugin creation guide
+│
+├── src/                              # Python package source (for MCP service)
+│   └── ai_sdlc_config/              # Configuration management library
+│       ├── core/                    # Core configuration manager
+│       ├── models/                  # Data models (hierarchy_node)
+│       ├── mergers/                 # Configuration merging logic
+│       └── loaders/                 # YAML loader and URI resolver
 │
 ├── examples/                         # Example projects
 │   ├── local_projects/
@@ -494,17 +536,35 @@ AI_SDLC_Context/
 │   │   ├── api_platform/            # Public API example
 │   │   ├── payment_gateway/         # High-risk project
 │   │   └── admin_dashboard/         # Low-risk project
+│   ├── federated_setup/             # Federated architecture examples
 │   └── README.md                    # Examples guide
 │
+├── tests/                            # Test suite
+│   ├── test_config_manager.py       # Configuration manager tests
+│   ├── test_hierarchy_merger.py     # Merger tests
+│   └── test_hierarchy_node.py       # Data model tests
+│
 ├── mcp_service/                     # MCP service (non-Claude fallback)
-│   ├── server/
-│   ├── docs/
+│   ├── server/                      # MCP server implementation
+│   ├── client/                      # Client utilities
+│   ├── docs/                        # MCP documentation
 │   ├── MCP_SDLC_INTEGRATION_PLAN.md # 7-stage integration roadmap
 │   └── README.md
 │
+├── .claude-plugin/                  # Root plugin metadata
+│   └── plugin.json                  # Repository as plugin
+│
+├── setup.py                         # Python package setup
+├── pyproject.toml                   # Python project configuration
+├── pytest.ini                       # Pytest configuration
 ├── marketplace.json                 # Claude Code marketplace registry
+├── CLAUDE.md                        # Claude Code guidance
+├── QUICKSTART.md                    # Quick start guide
+├── PLUGIN_GUIDE.md                  # Plugin creation guide
 └── README.md                        # This file
 ```
+
+**Note**: The `src/ai_sdlc_config/` Python library is only needed for the MCP service (Option 2). Claude Code plugin users (Option 1) don't need to install it - plugins work directly with YAML configuration files.
 
 ---
 

@@ -1,10 +1,10 @@
 # Design Review: ai_init_methodology Context Project
 
 ## Project Location
-`/Users/jim/src/apps/AI_SDLC_Context/example_projects_repo/ai_init_methodology`
+`/Users/jim/src/apps/ai_sdlc_method/example_projects_repo/ai_init_methodology`
 
 ## Purpose
-A reusable methodology configuration that defines the Sacred Seven principles and TDD workflow from [ai_init](https://github.com/foolishimp/ai_init), packaged as an AI_SDLC_Context project.
+A reusable methodology configuration that defines the Sacred Seven principles and TDD workflow from [ai_init](https://github.com/foolishimp/ai_init), packaged as an ai_sdlc_method project.
 
 ---
 
@@ -260,7 +260,7 @@ docs/
 **SACRED_SEVEN.md** (294 lines):
 - All 7 principles explained
 - Examples (good vs bad)
-- Application to AI_SDLC_Context
+- Application to ai_sdlc_method
 - Decision tree
 - Mantras
 
@@ -285,7 +285,7 @@ docs/
 
 ---
 
-## 5. Integration with AI_SDLC_Context System
+## 5. Integration with ai_sdlc_method System
 
 ### How This Project Fits
 
@@ -600,7 +600,7 @@ The current design is excellent and follows best practices.
 
 ## 12. Summary
 
-**What You Built**: A reusable methodology configuration that demonstrates the power of AI_SDLC_Context.
+**What You Built**: A reusable methodology configuration that demonstrates the power of ai_sdlc_method.
 
 **Design Quality**: Excellent - follows all best practices.
 
@@ -618,7 +618,7 @@ The current design is excellent and follows best practices.
 
 ## Conclusion
 
-The `ai_init_methodology` project is a **well-designed, production-ready context project** that correctly implements the AI_SDLC_Context system patterns. It can serve as:
+The `ai_init_methodology` project is a **well-designed, production-ready context project** that correctly implements the ai_sdlc_method system patterns. It can serve as:
 
 1. A reference implementation for other methodology projects
 2. A reusable base layer for all projects

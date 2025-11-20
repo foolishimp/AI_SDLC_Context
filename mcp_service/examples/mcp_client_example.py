@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Example MCP client demonstrating AI_SDLC_Context service usage.
+Example MCP client demonstrating ai_sdlc_method service usage.
 
 This example shows how to:
 1. Create projects via MCP

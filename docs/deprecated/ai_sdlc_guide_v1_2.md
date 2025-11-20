@@ -572,14 +572,14 @@ flowchart LR
 
 ## **3.4 The Context Framework**
 
-**Context** is the set of constraints, templates, and knowledge that guides the Synthesis step. In the AI SDLC, context is **explicit**, **versioned**, and stored in the `AI_SDLC_Context` repository.
+**Context** is the set of constraints, templates, and knowledge that guides the Synthesis step. In the AI SDLC, context is **explicit**, **versioned**, and stored in the `ai_sdlc_method` repository.
 
 ### **3.4.1 Context Configuration Schema**
 
 Context is loaded lazily by stage. The repository structure maps directly to the SDLC stages.
 
 ```yaml
-# Example: AI_SDLC_Context/context/stages/code.yml
+# Example: ai_sdlc_method/context/stages/code.yml
 code_stage:
   standards:
     python: "file://standards/coding/python_style_guide.md"
@@ -2258,9 +2258,9 @@ A centralized dashboard provides real-time visibility:
 * **Requirement Risk**: Which requirements are causing issues in production
 * **Requirement Impact**: Dependency graph showing related requirements
 
-### **11.5.3 Integration with AI_SDLC_Context**
+### **11.5.3 Integration with ai_sdlc_method**
 
-The **AI_SDLC_Context** configuration system can manage requirement metadata:
+The **ai_sdlc_method** configuration system can manage requirement metadata:
 
 ```yaml
 # requirements/REQ-F-AUTH-001.yml
@@ -2758,7 +2758,7 @@ Coordinate multiple AI SDLCs through:
      → REQ-ARCH-SEC-001 (architecture SDLC)
    ```
 
-2. **Shared Context**: Use AI_SDLC_Context to share constraints, templates, standards
+2. **Shared Context**: Use ai_sdlc_method to share constraints, templates, standards
    - Coding standards referenced by all code sub-vectors
    - Data standards referenced by all data sub-vectors
    - Security policies referenced across all sub-vectors
@@ -2827,7 +2827,7 @@ The AI SDLC methodology provides a **closed-loop, intent-driven** framework that
 
 ### **For Implementation:**
 
-1. **Setup AI_SDLC_Context repository**: Initialize folder structure for context (Section 3.4)
+1. **Setup ai_sdlc_method repository**: Initialize folder structure for context (Section 3.4)
 2. **Define requirement key format**: Choose REQ key structure for your organization (Section 3.5)
 3. **Adopt Key Principles Principles**: Integrate ai_init methodology into development workflow (Section 7.1.3)
 4. **Configure AI agents**: Setup agent system prompts to follow TDD workflow (Section 7.3)

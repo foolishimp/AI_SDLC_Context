@@ -898,7 +898,7 @@ Design is constrained by:
 
 ### **5.4.2 Templates**
 
-Templates stored in AI_SDLC_Context reference:
+Templates stored in ai_sdlc_method reference:
 - Stage-specific templates (user stories, designs, tasks, code, tests, deployment plans)
 - Context constraints (standards, patterns, approved tools)
 - Governance rules (quality gates, approval workflows)
@@ -1016,7 +1016,7 @@ Task breakdown is constrained by:
 
 ### **6.4.2 Templates**
 
-Templates stored in AI_SDLC_Context reference:
+Templates stored in ai_sdlc_method reference:
 - Stage-specific templates (user stories, designs, tasks, code, tests, deployment plans)
 - Context constraints (standards, patterns, approved tools)
 - Governance rules (quality gates, approval workflows)
@@ -1673,7 +1673,7 @@ The UAT stage operates within these constraints:
 
 ### **9.4.2 Templates**
 
-Templates stored in AI_SDLC_Context reference:
+Templates stored in ai_sdlc_method reference:
 - UAT strategy, user scenarios, user personas (end users, analysts, stewards)
 - UAT templates (plans, scripts, checklists), data validation procedures
 - Sign-off process, UAT environment, governance (entry/exit criteria, escalation)
@@ -1956,7 +1956,7 @@ A centralized dashboard provides real-time visibility:
 
 ### **11.4.3 Integration with AI SDLC Context**
 
-The **AI_SDLC_Context** configuration system can manage requirement metadata:
+The **ai_sdlc_method** configuration system can manage requirement metadata:
 
 ```yaml
 # requirements/REQ-F-AUTH-001.yml
@@ -2636,7 +2636,7 @@ Coordinate multiple AI SDLCs through:
      → REQ-ARCH-SEC-001 (architecture SDLC)
    ```
 
-2. **Shared Context**: Use AI_SDLC_Context to share constraints, templates, standards
+2. **Shared Context**: Use ai_sdlc_method to share constraints, templates, standards
    - Coding standards referenced by all code sub-vectors
    - Data standards referenced by all data sub-vectors
    - Security policies referenced across all sub-vectors
@@ -2697,7 +2697,7 @@ The AI SDLC methodology provides a **closed-loop, intent-driven** framework that
 
 ### **For Implementation:**
 
-* **Configure AI_SDLC_Context**: Set up hierarchical context management with standards, templates, and constraints
+* **Configure ai_sdlc_method**: Set up hierarchical context management with standards, templates, and constraints
 * **Define AI agent orchestration**: Establish agent roles (Req-Agent, Design-Agent, Code-Agent, Test-Agent) and coordination patterns
 * **Enable concurrent execution**: Configure agents to run sub-vectors concurrently when dependencies allow
 * **Map concrete tools**: Integrate Jira (work visibility), Git (version control), CI/CD (deployment), and monitoring platforms
@@ -2792,14 +2792,14 @@ The input to asset creation consists of two components:
 
 #### **Context** (The "How" Constraints)
 - **Constraints** that shape how the asset is created
-- **Source**: Stored in AI_SDLC_Context as URI references
+- **Source**: Stored in ai_sdlc_method as URI references
 - **Types**:
   - **Stage-specific context**: Design patterns, coding standards, test frameworks
   - **Regulatory context**: Compliance requirements, data governance
   - **Technical context**: Tech stack, architecture constraints, performance targets
   - **Organizational context**: Templates, standards, approved libraries
 
-**Example Context** (from AI_SDLC_Context):
+**Example Context** (from ai_sdlc_method):
 
 **Code Stage Context:**
 - **Coding standards**: `file://standards/coding/python_style_guide.md`
@@ -3282,7 +3282,7 @@ At the meta level, you apply the pattern to build **the infrastructure itself**�
 | **Asset**      | **UAT Test Framework** including:<br>• Test framework code (Python + Selenium)<br>• BDD step definitions<br>• Test templates (Gherkin templates)<br>• CI/CD integration<br>• Documentation for business SMEs |
 | **Observe**    | • Run meta-tests: Does the framework detect failures correctly?<br>• Business SMEs write sample tests using the framework<br>• Measure: Test coverage of main application features |
 | **Evaluate**   | ✅ Test framework detects 95% of known bugs<br>✅ Business SMEs can write tests without developer help<br>✅ Tests run in CI/CD pipeline successfully |
-| **Feedback**   | **Test framework accelerates delivery**:<br>• UAT cycle time reduced from 2 weeks to 3 days<br>• Business confidence improved<br><br>**Context update**:<br>• Add UAT framework documentation to AI_SDLC_Context → `file://testing/frameworks/uat_framework_guide.md` |
+| **Feedback**   | **Test framework accelerates delivery**:<br>• UAT cycle time reduced from 2 weeks to 3 days<br>• Business confidence improved<br><br>**Context update**:<br>• Add UAT framework documentation to ai_sdlc_method → `file://testing/frameworks/uat_framework_guide.md` |
 
 **Key insight**: At this scale, you're building the **testing infrastructure itself** using the same pattern. This is a **meta-level SDLC** (a sub-vector)—building the tools that will be used to test future features. The framework becomes part of the **Context** for future asset creation.
 
@@ -3298,7 +3298,7 @@ At the meta level, you apply the pattern to build **the infrastructure itself**�
 
 ### **A.7.2 Context is Explicit, Not Implicit**
 
-- All context constraints are **explicitly documented** in AI_SDLC_Context
+- All context constraints are **explicitly documented** in ai_sdlc_method
 - No "tribal knowledge" or undocumented standards
 - Context is **reusable** across projects and teams
 
@@ -3329,7 +3329,7 @@ Input (Intent + Context) → Synthesis → Asset → Observe → Evaluate → Fe
 1. **Every asset** in the AI SDLC is created using this pattern
 2. **Assets chain together**: One asset's output becomes the next asset's input
 3. **Context evolves**: Feedback updates context for future asset creation
-4. **AI_SDLC_Context**: Stores all context as URI references, loaded lazily
+4. **ai_sdlc_method**: Stores all context as URI references, loaded lazily
 5. **Scalable**: Pattern works at all scales (function → service → feature → system)
 6. **Traceable**: Requirement keys flow through the entire chain
 7. **Learning**: Each cycle improves both assets and context

@@ -64,7 +64,7 @@ The proposed category-theoretic formalization demonstrates **strong conceptual a
 | Co-multiplication δ | ✅ "Propagate standards, architecture, patterns" (Section 3.4) |
 
 **Quote from v1.2** (Section 3.4):
-> Context is the set of constraints, templates, and knowledge that guides the Synthesis step. In the AI SDLC, context is **explicit**, **versioned**, and stored in the `AI_SDLC_Context` repository.
+> Context is the set of constraints, templates, and knowledge that guides the Synthesis step. In the AI SDLC, context is **explicit**, **versioned**, and stored in the `ai_sdlc_method` repository.
 
 **Assessment**: ✅ **Strong alignment**. The comonad precisely models context propagation.
 

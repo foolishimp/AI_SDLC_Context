@@ -351,7 +351,7 @@ Complete AI SDLC methodology documentation (Sections 1.0-13.0)
 ### Loading the Plugin
 
 ```yaml
-# In your project's AI_SDLC_Context configuration
+# In your project's ai_sdlc_method configuration
 methodology:
   base: "file://plugins/aisdlc-methodology/config/stages_config.yml"
   key.principles: "file://plugins/aisdlc-methodology/config/config.yml"
@@ -437,4 +437,4 @@ MIT License - See LICENSE file
 
 ## Author
 
-foolishimp - https://github.com/foolishimp/AI_SDLC_Context
+foolishimp - https://github.com/foolishimp/ai_sdlc_method

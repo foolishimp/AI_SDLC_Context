@@ -1,4 +1,4 @@
-# Subagents Guide for AI_SDLC_Context
+# Subagents Guide for ai_sdlc_method
 
 ## What Are Subagents?
 
@@ -10,7 +10,7 @@ Subagents are **specialized AI assistants** for specific tasks in Claude Code:
 
 ## How They Fit in Your Plugin
 
-Your AI_SDLC_Context plugin can include subagents that work WITH your role-based configurations and contexts:
+Your ai_sdlc_method plugin can include subagents that work WITH your role-based configurations and contexts:
 
 ```
 Plugin Components:
@@ -47,7 +47,7 @@ tools: Read, list_projects, get_project
 # Context Advisor Subagent
 
 You are an expert at analyzing code and suggesting the appropriate
-project context from the AI_SDLC_Context system.
+project context from the ai_sdlc_method system.
 
 Your expertise:
 - Analyzing code to determine project type
@@ -392,7 +392,7 @@ Example workflow:
 
 ## Next Steps
 
-Want to add subagents to AI_SDLC_Context?
+Want to add subagents to ai_sdlc_method?
 
 1. Create `.claude/agents/` directory
 2. Add the example subagents above
@@ -406,4 +406,4 @@ Your plugin will then offer:
 - ✅ Auto-behavior hooks
 - ✅ 5 specialized subagents ← NEW!
 
-This makes AI_SDLC_Context even more powerful! 🚀
+This makes ai_sdlc_method even more powerful! 🚀

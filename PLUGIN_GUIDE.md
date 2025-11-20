@@ -1,10 +1,10 @@
-# AI_SDLC_Context Claude Code Plugin Guide
+# ai_sdlc_method Claude Code Plugin Guide
 
 **Complete guide to using the 7-Stage AI SDLC Methodology as a Claude Code plugin**
 
 ## Overview
 
-AI_SDLC_Context provides the **complete 7-Stage AI SDLC methodology** as installable Claude Code plugins, enabling intent-driven development with full lifecycle traceability.
+ai_sdlc_method provides the **complete 7-Stage AI SDLC methodology** as installable Claude Code plugins, enabling intent-driven development with full lifecycle traceability.
 
 ### What You Get
 
@@ -24,7 +24,7 @@ AI_SDLC_Context provides the **complete 7-Stage AI SDLC methodology** as install
 
 ```bash
 # Add marketplace
-/plugin marketplace add foolishimp/AI_SDLC_Context
+/plugin marketplace add foolishimp/ai_sdlc_method
 
 # Install methodology plugin
 /plugin install @aisdlc/aisdlc-methodology
@@ -608,8 +608,8 @@ Ensure your project dependencies match available versions:
 
 ## Support
 
-- **GitHub**: https://github.com/foolishimp/AI_SDLC_Context
-- **Issues**: https://github.com/foolishimp/AI_SDLC_Context/issues
+- **GitHub**: https://github.com/foolishimp/ai_sdlc_method
+- **Issues**: https://github.com/foolishimp/ai_sdlc_method/issues
 - **Documentation**: [docs/README.md](docs/README.md)
 
 ---

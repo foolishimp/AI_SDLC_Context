@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MCP Server for AI_SDLC_Context.
+MCP Server for ai_sdlc_method.
 
 Provides Model Context Protocol interface for managing configuration projects.
 """
@@ -872,7 +872,7 @@ async def main(repo_path: Optional[str] = None, personas_path: Optional[str] = N
 if __name__ == "__main__":
     import argparse
 
-    parser = argparse.ArgumentParser(description="AI_SDLC_Context MCP Server")
+    parser = argparse.ArgumentParser(description="ai_sdlc_method MCP Server")
     parser.add_argument(
         "--repo-path",
         help="Path to project repository (default: ./projects_repo)"

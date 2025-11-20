@@ -87,7 +87,7 @@ class ProjectRepository:
 
         # Configure git user (required for commits)
         subprocess.run(
-            ["git", "config", "user.name", "AI_SDLC_Context"],
+            ["git", "config", "user.name", "ai_sdlc_method"],
             cwd=self.repo_path,
             check=True,
             capture_output=True,
