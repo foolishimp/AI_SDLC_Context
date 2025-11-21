@@ -43,8 +43,8 @@ This makes the system inflexible and organization-specific.
 asset_types:
   requirement:
     folders:
-      - ".ai-workspace/requirements"
-      - "docs/requirements"
+      - ".ai-workspace/requirements"      # Primary: AI SDLC requirements
+      - "docs/requirements"               # Optional: Project's requirements
     file_patterns:
       - "*.md"
       - "*.yml"
@@ -53,8 +53,8 @@ asset_types:
 
   design:
     folders:
-      - ".ai-workspace/designs"
-      - "docs/design"
+      - ".ai-workspace/designs"           # Primary: AI SDLC designs
+      - "docs/design"                     # Optional: Project's design docs
     file_patterns:
       - "*.md"
       - "*.mermaid"
@@ -64,8 +64,8 @@ asset_types:
 
   task:
     folders:
-      - ".ai-workspace/tasks"
-      - ".jira-sync"           # Synced from Jira
+      - ".ai-workspace/tasks"             # Primary: AI SDLC task tracking
+      - ".jira-sync"                      # Optional: Synced from Jira
     file_patterns:
       - "*.md"
       - "*.yml"
@@ -73,7 +73,7 @@ asset_types:
 
   code:
     folders:
-      - "src"
+      - "src"                             # Project source code
       - "lib"
     file_patterns:
       - "*.py"
@@ -84,20 +84,19 @@ asset_types:
 
   test:
     folders:
-      - "tests"
-      - "test"
-      - "spec"
+      - "tests"                           # Project tests
+      - ".ai-workspace/tests"             # AI SDLC test plans
     file_patterns:
       - "test_*.py"
       - "*.test.js"
       - "*.spec.ts"
-      - "*.feature"          # BDD scenarios
+      - "*.feature"                       # BDD scenarios
     description: "Test files and scenarios"
 
   runtime:
     folders:
-      - ".ai-workspace/runtime"
-      - "monitoring"
+      - ".ai-workspace/runtime"           # Primary: AI SDLC monitoring
+      - "monitoring"                      # Optional: Project's monitoring
     file_patterns:
       - "*.yml"
       - "*.json"
@@ -109,57 +108,61 @@ asset_types:
 ## Universal Folder Structure
 
 ```
-project-root/
+project-root/                       # Your project
   │
-  ├─ .ai-workspace/
-  │   ├─ requirements/              # 📋 Type: requirement
-  │   │   ├─ functional/
-  │   │   │   ├─ user-login.md
-  │   │   │   └─ password-reset.md
-  │   │   ├─ non-functional/
-  │   │   │   ├─ performance.yml
-  │   │   │   └─ security.yml
-  │   │   └─ business-rules/
-  │   │       ├─ email-validation.md
-  │   │       └─ password-policy.md
-  │   │
-  │   ├─ designs/                   # 🎨 Type: design
-  │   │   ├─ auth-architecture.md
-  │   │   ├─ component-diagram.mermaid
-  │   │   └─ api-spec.yml
-  │   │
-  │   ├─ tasks/                     # 📦 Type: task
-  │   │   ├─ active/
-  │   │   │   ├─ implement-login.md
-  │   │   │   └─ PROJ-123.md        # Jira sync
-  │   │   └─ completed/
-  │   │       └─ deploy-auth.md
-  │   │
-  │   ├─ tests/                     # 🧪 Type: test (project-level)
-  │   │   ├─ scenarios/
-  │   │   │   └─ login.feature      # BDD
-  │   │   └─ test-plans/
-  │   │       └─ auth-test-plan.md
-  │   │
-  │   ├─ runtime/                   # 📈 Type: runtime
-  │   │   ├─ dashboards/
-  │   │   │   └─ auth-metrics.json
-  │   │   └─ alerts/
-  │   │       └─ auth-sla.yml
-  │   │
-  │   └─ traceability/              # 🔗 Auto-generated mappings
-  │       └─ asset-graph.yml
-  │
-  ├─ src/                           # 💻 Type: code
+  ├─ docs/                          # Project's documentation
+  ├─ requirements/                  # Project's requirements (optional)
+  ├─ src/                           # Source code
   │   └─ auth_service.py
-  │
-  ├─ tests/                         # 🧪 Type: test (codebase tests)
+  ├─ tests/                         # Project's tests
   │   └─ test_auth.py
   │
-  └─ docs/                          # 📚 Additional locations
-      ├─ requirements/              # Alternative requirement location
-      └─ design/                    # Alternative design location
+  └─ .ai-workspace/                 # Hidden AI SDLC folder (self-contained)
+      │
+      ├─ requirements/              # 📋 AI SDLC requirements
+      │   ├─ functional/
+      │   │   ├─ user-login.md
+      │   │   └─ password-reset.md
+      │   ├─ non-functional/
+      │   │   ├─ performance.yml
+      │   │   └─ security.yml
+      │   └─ business-rules/
+      │       ├─ email-validation.md
+      │       └─ password-policy.md
+      │
+      ├─ designs/                   # 🎨 AI SDLC designs
+      │   ├─ auth-architecture.md
+      │   ├─ component-diagram.mermaid
+      │   └─ api-spec.yml
+      │
+      ├─ tasks/                     # 📦 AI SDLC task tracking
+      │   ├─ active/
+      │   │   ├─ implement-login.md
+      │   │   └─ PROJ-123.md        # Jira sync
+      │   └─ completed/
+      │       └─ deploy-auth.md
+      │
+      ├─ tests/                     # 🧪 AI SDLC test plans
+      │   ├─ scenarios/
+      │   │   └─ login.feature      # BDD scenarios
+      │   └─ test-plans/
+      │       └─ auth-test-plan.md
+      │
+      ├─ runtime/                   # 📈 AI SDLC runtime monitoring
+      │   ├─ dashboards/
+      │   │   └─ auth-metrics.json
+      │   └─ alerts/
+      │       └─ auth-sla.yml
+      │
+      └─ traceability/              # 🔗 Auto-generated mappings
+          └─ asset-graph.yml
 ```
+
+**Key Points**:
+- `.ai-workspace/` is **hidden** (dot prefix) - won't clutter directory listings
+- **Self-contained** - all AI SDLC artifacts in one place
+- **Non-intrusive** - project keeps its own structure (docs/, src/, tests/, etc.)
+- **Separate concerns** - project files vs AI SDLC methodology files
 
 ---
 
@@ -354,21 +357,21 @@ Organizations have assets in different locations:
 asset_types:
   requirement:
     folders:
-      - ".ai-workspace/requirements"    # Primary (AI SDLC workspace)
-      - "docs/requirements"             # Human documentation
-      - ".jira-sync/requirements"       # Synced from Jira
+      - ".ai-workspace/requirements"    # Primary: AI SDLC requirements
+      - "docs/requirements"             # Optional: Project's requirements
+      - ".jira-sync/requirements"       # Optional: Synced from Jira
 
   design:
     folders:
-      - ".ai-workspace/designs"         # AI-generated designs
-      - "docs/design"                   # Human-authored designs
-      - "architecture"                  # ADRs and architecture docs
+      - ".ai-workspace/designs"         # Primary: AI SDLC designs
+      - "docs/design"                   # Optional: Project's design docs
+      - "docs/architecture"             # Optional: ADRs
 
   task:
     folders:
-      - ".ai-workspace/tasks"           # Local task tracking
-      - ".jira-sync/tasks"              # Jira tickets
-      - ".github/projects"              # GitHub Projects (synced)
+      - ".ai-workspace/tasks"           # Primary: AI SDLC task tracking
+      - ".jira-sync/tasks"              # Optional: Jira tickets
+      - ".github-sync/projects"         # Optional: GitHub Projects (synced)
 ```
 
 Skills discover from ALL configured folders.

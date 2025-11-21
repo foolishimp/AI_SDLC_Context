@@ -50,32 +50,44 @@ done
 ## Folder Structure
 
 ```
-.ai-workspace/
+project-root/                     # Your project
   │
-  ├─ requirements/              # 📁 Requirement files (any format, any naming)
-  │   ├─ functional/            # Optional: organize by type
-  │   │   ├─ user-login.md
-  │   │   └─ user-registration.md
-  │   ├─ non-functional/
-  │   │   ├─ performance.yml
-  │   │   └─ security.md
-  │   └─ business-rules/
-  │       ├─ email-validation.md
-  │       └─ password-policy.md
+  ├─ docs/                        # Project's documentation
+  ├─ src/                         # Source code
+  ├─ tests/                       # Tests
   │
-  ├─ design/                    # Design artifacts
-  │   └─ auth-architecture.md
-  │       # References: requirements/functional/user-login.md
-  │
-  ├─ tasks/                     # Work items
-  │   └─ active/
-  │       └─ implement-login.md
-  │           # Implements: requirements/functional/user-login.md
-  │
-  └─ traceability/              # Auto-generated mappings
-      └─ requirement-to-code.yml
-          # Maps requirement files → design → tasks → code
+  └─ .ai-workspace/               # Hidden AI SDLC folder (self-contained)
+      │
+      ├─ requirements/            # 📁 Requirement files (any format, any naming)
+      │   ├─ functional/          # Optional: organize by type
+      │   │   ├─ user-login.md
+      │   │   └─ user-registration.md
+      │   ├─ non-functional/
+      │   │   ├─ performance.yml
+      │   │   └─ security.md
+      │   └─ business-rules/
+      │       ├─ email-validation.md
+      │       └─ password-policy.md
+      │
+      ├─ designs/                 # Design artifacts
+      │   └─ auth-architecture.md
+      │       # References: .ai-workspace/requirements/functional/user-login.md
+      │
+      ├─ tasks/                   # Work items
+      │   └─ active/
+      │       └─ implement-login.md
+      │           # Implements: .ai-workspace/requirements/functional/user-login.md
+      │
+      └─ traceability/            # Auto-generated mappings
+          └─ requirement-to-code.yml
+              # Maps requirement files → design → tasks → code
 ```
+
+**Key Points**:
+- `.ai-workspace/` is **hidden** (dot prefix)
+- **Self-contained** - all AI SDLC artifacts
+- **Non-intrusive** - doesn't pollute project structure
+- Project can have its own `docs/`, `requirements/`, etc.
 
 ---
 
@@ -466,29 +478,29 @@ Skills automatically discover and reference these:
 ### Example 1: Startup (No Process)
 
 ```
-requirements/
+.ai-workspace/requirements/
   ├─ login.md
   ├─ signup.md
   └─ payments.md
 ```
 
-**Reference**: `Implements: requirements/login.md`
+**Reference**: `Implements: .ai-workspace/requirements/login.md`
 
 ### Example 2: Enterprise (Jira)
 
 ```
-requirements/
+.ai-workspace/requirements/
   ├─ PORTAL-123.md
   ├─ PORTAL-124.md
   └─ PORTAL-125.md
 ```
 
-**Reference**: `Implements: requirements/PORTAL-123.md`
+**Reference**: `Implements: .ai-workspace/requirements/PORTAL-123.md`
 
 ### Example 3: Structured Organization
 
 ```
-requirements/
+.ai-workspace/requirements/
   ├─ functional/
   │   ├─ REQ-F-AUTH-001.md
   │   └─ REQ-F-AUTH-002.md
@@ -498,7 +510,7 @@ requirements/
       └─ BR-001-email-validation.md
 ```
 
-**Reference**: `Implements: requirements/functional/REQ-F-AUTH-001.md`
+**Reference**: `Implements: .ai-workspace/requirements/functional/REQ-F-AUTH-001.md`
 
 ---
 
@@ -513,11 +525,12 @@ requirements/
 
 **New Way (Folder-Based)**:
 ```python
-# Implements: requirements/functional/user-login.md
+# Implements: .ai-workspace/requirements/functional/user-login.md
 ```
 ✅ Works with any naming convention
 ✅ Discovered automatically
 ✅ Organization agnostic
+✅ Hidden folder (non-intrusive)
 
 ---
 
