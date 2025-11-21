@@ -28,26 +28,50 @@ Your goal is to design:
 
 ## Workflow
 
-### Step 1: Review Requirements
+### Step 1: Discover and Review Requirements
 
-**Understand what needs to be designed**:
+**Find all requirement files**:
+
+```bash
+# Discover requirements from folder
+REQUIREMENTS_DIR="${REQUIREMENTS_DIR:-.ai-workspace/requirements}"
+requirements=$(find "$REQUIREMENTS_DIR" -type f \( -name "*.md" -o -name "*.yml" -o -name "*.yaml" \))
+
+echo "Found requirements:"
+for req in $requirements; do
+  echo "  - $req"
+done
+```
+
+**Read and understand requirements**:
 
 ```markdown
-Requirements:
-- REQ-F-AUTH-001: User login with email/password
-- REQ-F-AUTH-002: Password reset via email
-- REQ-NFR-SEC-001: Password encryption (bcrypt)
-- REQ-NFR-PERF-001: Login response < 500ms
+requirements/functional/user-login.md:
+  Title: User Login Feature
+  Content: User wants to log in with email/password
+  Priority: P0
 
-Business Rules:
-- BR-001: Email validation
-- BR-002: Password min 12 chars
-- BR-003: Account lockout (3 attempts, 15min)
+requirements/functional/password-reset.md:
+  Title: Password Reset
+  Content: User can reset forgotten password via email
+  Priority: P1
 
-Constraints:
-- C-001: bcrypt hashing (cost 12)
-- C-002: JWT sessions (30min timeout)
-- C-003: Database timeout 100ms
+requirements/non-functional/security.yml:
+  encryption: bcrypt
+  session: JWT (30min timeout)
+
+requirements/non-functional/performance.yml:
+  login_response: <500ms
+  db_timeout: 100ms
+
+requirements/business-rules/email-validation.md:
+  regex: RFC 5322 compliant
+  normalization: lowercase
+
+requirements/business-rules/password-policy.md:
+  minimum_length: 12
+  max_attempts: 3
+  lockout_duration: 15min
 ```
 
 ---
@@ -59,18 +83,29 @@ Constraints:
 ```yaml
 # docs/design/authentication-architecture.md
 
-# Implements: REQ-F-AUTH-001, REQ-F-AUTH-002
-# Acknowledges: C-001, C-002, C-003
+# Implements:
+#   - requirements/functional/user-login.md
+#   - requirements/functional/password-reset.md
+#
+# References:
+#   - requirements/non-functional/security.yml
+#   - requirements/non-functional/performance.yml
+#   - requirements/business-rules/email-validation.md
+#   - requirements/business-rules/password-policy.md
 
 ## Components
 
 ### AuthenticationService
-**Implements**: REQ-F-AUTH-001, REQ-F-AUTH-002
+**Implements**:
+  - requirements/functional/user-login.md
+  - requirements/functional/password-reset.md
+
 **Purpose**: Handle user authentication and password management
+
 **Responsibilities**:
-- User login (REQ-F-AUTH-001)
-- Password reset (REQ-F-AUTH-002)
-- Session management (C-002)
+- User login (requirements/functional/user-login.md)
+- Password reset (requirements/functional/password-reset.md)
+- Session management (requirements/non-functional/security.yml)
 
 **Methods**:
 - `login(email, password)` → LoginResult
@@ -78,16 +113,16 @@ Constraints:
 - `reset_password(token, new_password)` → ResetResult
 
 **Dependencies**:
-- EmailValidator (BR-001)
-- PasswordValidator (BR-002)
-- LockoutTracker (BR-003)
-- PasswordHasher (C-001)
-- SessionManager (C-002)
+- EmailValidator (requirements/business-rules/email-validation.md)
+- PasswordValidator (requirements/business-rules/password-policy.md)
+- LockoutTracker (requirements/business-rules/password-policy.md: lockout)
+- PasswordHasher (requirements/non-functional/security.yml: bcrypt)
+- SessionManager (requirements/non-functional/security.yml: JWT)
 
 ---
 
 ### EmailValidator
-**Implements**: BR-001
+**Implements**: requirements/business-rules/email-validation.md
 **Purpose**: Validate email format and normalization
 **Methods**:
 - `validate(email)` → bool
@@ -96,16 +131,16 @@ Constraints:
 ---
 
 ### PasswordValidator
-**Implements**: BR-002, BR-003 (partial)
+**Implements**: requirements/business-rules/password-policy.md
 **Purpose**: Validate password requirements
 **Methods**:
-- `validate_length(password)` → bool
+- `validate_length(password)` → bool (minimum 12 chars)
 - `validate_complexity(password)` → bool
 
 ---
 
 ### LockoutTracker
-**Implements**: BR-003, F-001, F-002
+**Implements**: requirements/business-rules/password-policy.md (lockout section)
 **Purpose**: Track failed login attempts and manage lockouts
 **Methods**:
 - `record_failed_attempt(user_id)` → bool (is_locked)
@@ -116,7 +151,7 @@ Constraints:
 ---
 
 ### PasswordHasher
-**Implements**: C-001
+**Implements**: requirements/non-functional/security.yml (encryption)
 **Purpose**: Hash and verify passwords using bcrypt
 **Methods**:
 - `hash(password)` → str
@@ -125,7 +160,7 @@ Constraints:
 ---
 
 ### SessionManager
-**Implements**: C-002
+**Implements**: requirements/non-functional/security.yml (session management)
 **Purpose**: Manage JWT sessions with 30min timeout
 **Methods**:
 - `create_session(user_id)` → str (JWT token)
@@ -140,10 +175,10 @@ Constraints:
 **Define API contracts**:
 
 ```yaml
-# API Design (tagged with REQ-*)
+# API Design (tagged with requirement files)
 
 ## POST /api/v1/auth/login
-**Implements**: REQ-F-AUTH-001
+**Implements**: requirements/functional/user-login.md
 
 **Request**:
 {
@@ -164,7 +199,8 @@ Constraints:
 **Response (Error - 400)**:
 {
   "success": false,
-  "error": "Invalid email format"  # BR-001
+  "error": "Invalid email format"
+  # requirements/business-rules/email-validation.md
 }
 
 **Response (Error - 401)**:
@@ -176,20 +212,21 @@ Constraints:
 **Response (Error - 429)**:
 {
   "success": false,
-  "error": "Account locked. Try again in 12 minutes"  # BR-003
+  "error": "Account locked. Try again in 12 minutes"
+  # requirements/business-rules/password-policy.md (lockout)
 }
 
 **Validation**:
-- Email: BR-001 (regex validation)
-- Password: BR-002 (minimum length)
-- Lockout: BR-003 (3 attempts, 15min)
+- Email: requirements/business-rules/email-validation.md (regex validation)
+- Password: requirements/business-rules/password-policy.md (minimum length)
+- Lockout: requirements/business-rules/password-policy.md (3 attempts, 15min)
 
-**Performance**: REQ-NFR-PERF-001 (< 500ms response)
+**Performance**: requirements/non-functional/performance.yml (< 500ms response)
 
 ---
 
 ## POST /api/v1/auth/password-reset-request
-**Implements**: REQ-F-AUTH-002
+**Implements**: requirements/functional/password-reset.md
 
 **Request**:
 {
@@ -213,7 +250,9 @@ Constraints:
 # Data Model Design
 
 ## User Entity
-**Implements**: REQ-F-AUTH-001, REQ-F-AUTH-002
+**Implements**:
+  - requirements/functional/user-login.md
+  - requirements/functional/password-reset.md
 
 **Schema**:
 {
@@ -226,17 +265,17 @@ Constraints:
 
 **Constraints**:
 - email: UNIQUE index, NOT NULL
-- password_hash: NOT NULL (C-001: bcrypt)
+- password_hash: NOT NULL (requirements/non-functional/security.yml: bcrypt)
 
 **Requirements Satisfied**:
-- REQ-F-AUTH-001: Stores credentials
-- BR-001: Email unique and normalized
-- C-001: Password hashed with bcrypt
+- requirements/functional/user-login.md: Stores credentials
+- requirements/business-rules/email-validation.md: Email unique and normalized
+- requirements/non-functional/security.yml: Password hashed with bcrypt
 
 ---
 
 ## LoginAttempt Entity
-**Implements**: BR-003 (account lockout)
+**Implements**: requirements/business-rules/password-policy.md (lockout tracking)
 
 **Schema**:
 {
@@ -251,13 +290,13 @@ Constraints:
 - (user_id, timestamp) - For querying recent attempts
 
 **Requirements Satisfied**:
-- BR-003: Track failed attempts
-- F-001: Calculate lockout expiry from timestamps
+- requirements/business-rules/password-policy.md: Track failed attempts
+- requirements/business-rules/password-policy.md: Calculate lockout expiry from timestamps
 
 ---
 
 ## Session Entity
-**Implements**: C-002 (session management)
+**Implements**: requirements/non-functional/security.yml (session management)
 
 **Schema**:
 {
@@ -271,10 +310,10 @@ Constraints:
 
 **Constraints**:
 - token: UNIQUE
-- expires_at: created_at + 30 minutes (C-002)
+- expires_at: created_at + 30 minutes (requirements/non-functional/security.yml)
 
 **Requirements Satisfied**:
-- C-002: JWT sessions with 30min timeout
+- requirements/non-functional/security.yml: JWT sessions with 30min timeout
 ```
 
 ---
@@ -295,84 +334,99 @@ Constraints:
         └─────────┬───────────┘
                   │
                   ▼
-        ┌─────────────────────────────┐
-        │ AuthenticationService       │ ← REQ-F-AUTH-001, 002
-        │ - login()                   │
-        │ - request_password_reset()  │
-        │ - reset_password()          │
-        └───┬─────────────────────┬───┘
-            │                     │
-            ▼                     ▼
-    ┌───────────────┐     ┌──────────────┐
-    │ Validators    │     │ LockoutTracker│ ← BR-003
-    │ - Email       │ ← BR-001
-    │ - Password    │ ← BR-002
-    └───────────────┘     └──────────────┘
-            │                     │
-            ▼                     ▼
-        ┌─────────────────────────────┐
-        │ Database (PostgreSQL)       │
-        │ - User table                │
-        │ - LoginAttempt table        │
-        │ - Session table             │
-        └─────────────────────────────┘
+        ┌──────────────────────────────────────┐
+        │ AuthenticationService                │ ← requirements/functional/
+        │ - login()                            │    user-login.md,
+        │ - request_password_reset()           │    password-reset.md
+        │ - reset_password()                   │
+        └───┬──────────────────────────────┬───┘
+            │                              │
+            ▼                              ▼
+    ┌───────────────┐             ┌──────────────────┐
+    │ Validators    │             │ LockoutTracker   │
+    │ - Email       │ ← email-    │                  │ ← password-policy.md
+    │ - Password    │   validation │                  │   (lockout)
+    └───────────────┘   .md       └──────────────────┘
+            │                              │
+            ▼                              ▼
+        ┌─────────────────────────────────────┐
+        │ Database (PostgreSQL)               │
+        │ - User table                        │
+        │ - LoginAttempt table                │
+        │ - Session table                     │
+        └─────────────────────────────────────┘
 
-Constraints:
-- C-001: PasswordHasher uses bcrypt (cost 12)
-- C-002: SessionManager uses JWT (30min timeout)
-- C-003: All DB queries timeout at 100ms
+References:
+- requirements/non-functional/security.yml: bcrypt, JWT
+- requirements/non-functional/performance.yml: <500ms, 100ms DB timeout
+- requirements/business-rules/email-validation.md
+- requirements/business-rules/password-policy.md
 ```
 
 ---
 
 ### Step 6: Tag All Design Artifacts
 
-**Add REQ-* tags to all design documents**:
+**Reference requirement files in all design documents**:
 
 ```markdown
-# docs/design/authentication-architecture.md
+# .ai-workspace/designs/authentication-architecture.md
 
-# Design for: REQ-F-AUTH-001, REQ-F-AUTH-002
-# Constraints: C-001, C-002, C-003
-# Business Rules: BR-001, BR-002, BR-003
+# Implements:
+#   - .ai-workspace/requirements/functional/user-login.md
+#   - .ai-workspace/requirements/functional/password-reset.md
+#
+# References:
+#   - .ai-workspace/requirements/non-functional/security.yml
+#   - .ai-workspace/requirements/non-functional/performance.yml
+#   - .ai-workspace/requirements/business-rules/email-validation.md
+#   - .ai-workspace/requirements/business-rules/password-policy.md
 
 ## Architecture Overview
 
-This design implements user authentication (REQ-F-AUTH-001)
-and password reset (REQ-F-AUTH-002).
+This design implements user authentication and password reset.
 ```
 
 ---
 
 ### Step 7: Create Traceability Matrix
 
-**Map requirements to design components**:
+**Map requirement files to design components**:
 
-| REQ-* | Component | API | Data Model | Diagram |
-|-------|-----------|-----|------------|---------|
-| REQ-F-AUTH-001 | AuthenticationService | POST /auth/login | User, LoginAttempt, Session | Fig 1 |
-| REQ-F-AUTH-002 | AuthenticationService | POST /auth/password-reset | User, PasswordResetToken | Fig 1 |
-| BR-001 | EmailValidator | - | - | Fig 2 |
-| BR-002 | PasswordValidator | - | - | Fig 2 |
-| BR-003 | LockoutTracker | - | LoginAttempt | Fig 3 |
+| Requirement File | Component | API | Data Model | Diagram |
+|-----------------|-----------|-----|------------|---------|
+| requirements/functional/user-login.md | AuthenticationService | POST /auth/login | User, LoginAttempt, Session | Fig 1 |
+| requirements/functional/password-reset.md | AuthenticationService | POST /auth/password-reset | User, PasswordResetToken | Fig 1 |
+| requirements/business-rules/email-validation.md | EmailValidator | - | - | Fig 2 |
+| requirements/business-rules/password-policy.md | PasswordValidator, LockoutTracker | - | LoginAttempt | Fig 2, 3 |
 
 ---
 
 ### Step 8: Commit Design
 
 ```bash
-git add docs/design/
-git commit -m "DESIGN: Create architecture for REQ-F-AUTH-001, REQ-F-AUTH-002
+git add .ai-workspace/designs/
+git commit -m "DESIGN: Create architecture for authentication
 
-Design technical solution for user authentication.
+Design technical solution for user authentication and password reset.
+
+Implements:
+  - .ai-workspace/requirements/functional/user-login.md
+  - .ai-workspace/requirements/functional/password-reset.md
+
+References:
+  - .ai-workspace/requirements/non-functional/security.yml
+  - .ai-workspace/requirements/non-functional/performance.yml
+  - .ai-workspace/requirements/business-rules/email-validation.md
+  - .ai-workspace/requirements/business-rules/password-policy.md
 
 Components:
-- AuthenticationService (REQ-F-AUTH-001, REQ-F-AUTH-002)
-- EmailValidator (BR-001)
-- PasswordValidator (BR-002)
-- LockoutTracker (BR-003)
-- PasswordHasher (C-001: bcrypt)
-- SessionManager (C-002: JWT)
+- AuthenticationService (user-login.md, password-reset.md)
+- EmailValidator (email-validation.md)
+- PasswordValidator (password-policy.md)
+- LockoutTracker (password-policy.md: lockout)
+- PasswordHasher (security.yml: bcrypt)
+- SessionManager (security.yml: JWT)
 
 APIs:
 - POST /api/v1/auth/login
@@ -381,17 +435,12 @@ APIs:
 
 Data Models:
 - User entity (email, password_hash)
-- LoginAttempt entity (tracking for BR-003)
-- Session entity (JWT tokens, C-002)
+- LoginAttempt entity (lockout tracking)
+- Session entity (JWT tokens)
 
 Traceability:
-- REQ-F-AUTH-001 → AuthenticationService → login() method
-- REQ-F-AUTH-002 → AuthenticationService → password reset methods
-
-Acknowledges Ecosystem E(t):
-- C-001: bcrypt (industry standard)
-- C-002: JWT (existing infrastructure)
-- C-003: Database RDS limits
+- requirements/functional/user-login.md → AuthenticationService → login()
+- requirements/functional/password-reset.md → AuthenticationService → reset()
 
 Design Coverage: 100% (all requirements have design)
 "
@@ -402,29 +451,37 @@ Design Coverage: 100% (all requirements have design)
 ## Output Format
 
 ```
-[DESIGN WITH TRACEABILITY - REQ-F-AUTH-001, REQ-F-AUTH-002]
+[DESIGN WITH TRACEABILITY - Authentication]
 
-Requirements: User authentication and password reset
+Requirements Implemented:
+  - requirements/functional/user-login.md
+  - requirements/functional/password-reset.md
+
+Requirements Referenced:
+  - requirements/non-functional/security.yml
+  - requirements/non-functional/performance.yml
+  - requirements/business-rules/email-validation.md
+  - requirements/business-rules/password-policy.md
 
 Design Created:
 
 Components (6):
-  ✓ AuthenticationService (REQ-F-AUTH-001, REQ-F-AUTH-002)
-  ✓ EmailValidator (BR-001)
-  ✓ PasswordValidator (BR-002)
-  ✓ LockoutTracker (BR-003, F-001, F-002)
-  ✓ PasswordHasher (C-001)
-  ✓ SessionManager (C-002)
+  ✓ AuthenticationService (user-login.md, password-reset.md)
+  ✓ EmailValidator (email-validation.md)
+  ✓ PasswordValidator (password-policy.md)
+  ✓ LockoutTracker (password-policy.md: lockout)
+  ✓ PasswordHasher (security.yml: bcrypt)
+  ✓ SessionManager (security.yml: JWT)
 
 APIs (3):
-  ✓ POST /api/v1/auth/login (REQ-F-AUTH-001)
-  ✓ POST /api/v1/auth/password-reset-request (REQ-F-AUTH-002)
-  ✓ POST /api/v1/auth/password-reset (REQ-F-AUTH-002)
+  ✓ POST /api/v1/auth/login (user-login.md)
+  ✓ POST /api/v1/auth/password-reset-request (password-reset.md)
+  ✓ POST /api/v1/auth/password-reset (password-reset.md)
 
 Data Models (3):
   ✓ User entity (email, password_hash)
-  ✓ LoginAttempt entity (for BR-003 lockout tracking)
-  ✓ Session entity (for C-002 JWT sessions)
+  ✓ LoginAttempt entity (lockout tracking)
+  ✓ Session entity (JWT tokens)
 
 Diagrams:
   ✓ Component diagram (architecture-overview.png)
@@ -432,14 +489,14 @@ Diagrams:
   ✓ Data model diagram (authentication-erd.png)
 
 Files Created:
-  + docs/design/authentication-architecture.md (287 lines)
-  + docs/design/diagrams/authentication-components.png
-  + docs/design/api-specs/auth-api.yml (OpenAPI spec)
+  + .ai-workspace/designs/authentication-architecture.md (287 lines)
+  + .ai-workspace/designs/diagrams/authentication-components.png
+  + .ai-workspace/designs/api-specs/auth-api.yml (OpenAPI spec)
 
 Traceability:
-  ✓ All components tagged with REQ-*
-  ✓ All APIs tagged with REQ-*
-  ✓ All data models tagged with REQ-*
+  ✓ All components reference requirement files
+  ✓ All APIs reference requirement files
+  ✓ All data models reference requirement files
   ✓ Traceability matrix created
 
 Design Coverage: 100% (2/2 requirements have complete design)
