@@ -7,7 +7,8 @@ This directory contains **example projects** demonstrating how to use ai_sdlc_me
 ```
 examples/
 ├── local_projects/              # Example local project configurations
-│   ├── customer_portal/        # ⭐ NEW: Complete 7-stage AI SDLC example
+│   ├── customer_portal/        # ⭐ Complete 7-stage example: Authentication system
+│   ├── data_mapper/            # ⭐ Complete 7-stage example: ETL configuration system
 │   ├── acme_corporate/         # Corporate-level standards
 │   ├── payment_gateway/        # High-risk enterprise project
 │   ├── admin_dashboard/        # Low-risk internal tool
