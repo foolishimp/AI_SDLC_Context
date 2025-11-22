@@ -1,6 +1,9 @@
 """
 Unit tests for hierarchy_node module.
 
+# Validates: REQ-NFR-FEDERATE-001 (Hierarchical configuration composition)
+# Validates: REQ-NFR-CONTEXT-001 (Persistent context structure)
+
 Tests cover:
 - URIScheme enum
 - URIReference creation and parsing

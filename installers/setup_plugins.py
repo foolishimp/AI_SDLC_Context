@@ -4,6 +4,11 @@ AI SDLC Method - Plugins Setup Script
 
 Installs AI SDLC plugins directly (alternative to Claude marketplace).
 
+# Implements: REQ-F-PLUGIN-001 (Plugin system with marketplace support)
+# Implements: REQ-F-PLUGIN-002 (Federated plugin loading)
+# Implements: REQ-F-PLUGIN-003 (Plugin bundles)
+# Implements: REQ-F-PLUGIN-004 (Plugin versioning and dependency management)
+
 Provides two installation modes:
 1. Global: ~/.config/claude/plugins/ (user-wide)
 2. Project: ./.claude/plugins/ (project-specific)

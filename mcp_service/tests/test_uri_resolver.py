@@ -1,6 +1,9 @@
 """
 Unit tests for uri_resolver module.
 
+# Validates: REQ-F-PLUGIN-001 (Plugin system with marketplace support)
+# Validates: REQ-NFR-FEDERATE-001 (Hierarchical configuration composition)
+
 Tests cover:
 - Resolving file:// URIs
 - Resolving http:// and https:// URIs

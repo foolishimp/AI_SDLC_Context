@@ -10,6 +10,11 @@ The workspace provides:
 - Templates for tasks, sessions, pair programming
 - Configuration files
 
+# Implements: REQ-F-WORKSPACE-001 (Developer workspace structure)
+# Implements: REQ-F-WORKSPACE-002 (Task management templates)
+# Implements: REQ-F-WORKSPACE-003 (Session tracking templates)
+# Implements: REQ-NFR-CONTEXT-001 (Persistent context across sessions)
+
 Usage:
     python setup_workspace.py [options]
 

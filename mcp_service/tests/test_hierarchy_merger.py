@@ -1,6 +1,9 @@
 """
 Unit tests for hierarchy_merger module.
 
+# Validates: REQ-NFR-FEDERATE-001 (Hierarchical configuration composition)
+# Validates: REQ-F-PLUGIN-002 (Federated plugin loading)
+
 Tests cover:
 - MergeStrategy enum
 - Basic two-node merging

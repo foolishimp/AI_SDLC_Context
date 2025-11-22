@@ -1,6 +1,9 @@
 """
 Unit tests for yaml_loader module.
 
+# Validates: REQ-F-PLUGIN-001 (Plugin system - YAML loading)
+# Validates: REQ-NFR-FEDERATE-001 (Configuration composition)
+
 Tests cover:
 - Loading YAML files into HierarchyNode structures
 - URI detection and conversion

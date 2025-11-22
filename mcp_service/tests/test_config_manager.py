@@ -1,6 +1,9 @@
 """
 Unit tests for config_manager module.
 
+# Validates: REQ-NFR-FEDERATE-001 (Hierarchical configuration composition)
+# Validates: REQ-F-TESTING-001 (Test coverage validation)
+
 Tests cover:
 - ConfigManager initialization
 - Loading hierarchies from files and strings
