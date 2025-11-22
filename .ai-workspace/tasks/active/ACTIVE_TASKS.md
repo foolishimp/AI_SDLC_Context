@@ -1,38 +1,6 @@
 # Active Tasks
 
-*Last Updated: 2025-11-23 00:12*
-
----
-
-## Task #2: Complete Design Documentation for Template System
-
-**Priority**: High
-**Status**: Not Started
-**Started**: 2025-11-23
-**Estimated Time**: 2 hours
-**Dependencies**: None
-**Feature Flag**: N/A (documentation task)
-
-**Requirements Traceability**:
-- REQ-F-WORKSPACE-001: Developer workspace (.ai-workspace/)
-- REQ-F-WORKSPACE-002: Task management templates
-- REQ-F-WORKSPACE-003: Session tracking templates
-
-**Description**:
-Create design documentation (docs/design/TEMPLATE_SYSTEM.md) covering:
-- Template structure (templates/claude/)
-- Template types (workspace, tasks, sessions, pair programming)
-- Template deployment mechanism
-- Installer integration (setup_workspace.py)
-
-**Acceptance Criteria**:
-- [ ] All template types documented
-- [ ] Deployment mechanism explained
-- [ ] Traceability to requirements
-- [ ] Examples from templates/claude/
-
-**TDD Checklist**:
-N/A - Documentation task
+*Last Updated: 2025-11-23 00:41*
 
 ---
 
@@ -180,11 +148,11 @@ Add `# Implements: REQ-*` tags to all implementation code and `# Validates: REQ-
 ---
 
 **Summary**:
-- Total Active Tasks: 5
-- High Priority: 4
+- Total Active Tasks: 4
+- High Priority: 3
 - Critical Priority: 1
-- Not Started: 4
+- Not Started: 3
 - In Progress: 1
-- Documentation: 3 tasks
-- Implementation: 1 task
-- Validation: 1 task
+- Documentation: 2 tasks (Command System, Traceability Matrix)
+- Validation: 1 task (Validate Implementation)
+- Implementation: 1 task (Backfill Traceability Tags)
