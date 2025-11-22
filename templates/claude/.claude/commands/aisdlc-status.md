@@ -1,5 +1,8 @@
 Display current task status from `.ai-workspace/tasks/`.
 
+<!-- Implements: REQ-F-TODO-003 (List all TODOs) -->
+<!-- Implements: REQ-F-CMD-001 (Slash commands for workflow) -->
+
 ## Instructions
 
 Show a quick snapshot of the task queue:

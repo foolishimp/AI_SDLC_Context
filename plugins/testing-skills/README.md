@@ -1,5 +1,8 @@
 # testing-skills Plugin
 
+<!-- Implements: REQ-F-TESTING-002 (Test generation) -->
+<!-- Implements: REQ-F-TESTING-001 (Test coverage validation) -->
+
 **Test Coverage Validation and Auto-Generation for AI SDLC v3.0**
 
 Version: 1.0.0

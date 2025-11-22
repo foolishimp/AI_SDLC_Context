@@ -1,5 +1,9 @@
 # Quick Capture Todos
 
+<!-- Implements: REQ-F-TODO-001 (Create TODO item) -->
+<!-- Implements: REQ-F-TODO-002 (Mark TODO as complete) -->
+<!-- Implements: REQ-F-TODO-003 (List all TODOs) -->
+
 *Last Updated: 2025-01-21*
 
 ---
