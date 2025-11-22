@@ -538,3 +538,220 @@ The system is considered "Green" when:
 12. **Computation as Topology:** The system successfully registers and executes an external Cashflow Engine binary as a Morphism, with traceable type signature and version (REQ-INT-08).  
 13. **Idempotent Partial Failure:** Re-running a job with partial errors under the same inputs and configurations produces bit-identical valid outputs and identical error outputs, including consistent Error Domain entries (REQ-TYP-04).
 
+-----
+
+## Appendix A — Requirements Implementation Constraints & Algorithmic Optimizations
+
+**Version:** 1.1  
+**Context:** Companion to CDME Specification v7.2  
+**Purpose:** To define the physical and algorithmic constraints required to implement the idealistic logical requirements at scale, with particular focus on lineage, skew, error handling, aggregation, and physical storage alignment.
+
+---
+
+### A.1 Lineage & Backward Traversal Constraints (REQ-TRV-05, REQ-INT-03)
+
+The main specification mandates full traceability. Naively, this implies storing every intermediate key and join key at every step, which is prohibitively expensive at scale. This appendix defines modes and constraints that maintain the ability to reconstruct lineage without always persisting every intermediate key.
+
+#### A.1.1 Lineage Modes (RIC-LIN-01)
+
+The engine MUST support at least three lineage modes per job/mapping, selectable via the **Execution Artifact (Job Configuration)**:
+
+**Full Lineage Mode:**
+
+* Persist all intermediate keys and morphism steps for every record.  
+* Guarantee: Direct, record-precise backward traversal with no recomputation.
+
+**Key-Derivable Lineage Mode:**
+
+* Persist a compressed key envelope sufficient to reconstruct intermediate keys deterministically.  
+* May omit explicit storage of every intermediate join key, relying on sorted keys and lossless morphism composition.
+
+**Summary / Sampled Lineage Mode:**
+
+* Persist lineage for a configurable sample or aggregate statistics per segment.  
+* Used where full lineage is not required by regulation or policy.
+
+---
+
+#### A.1.2 Lossless vs Lossy Morphisms (RIC-LIN-06)
+
+For lineage and checkpointing purposes, every morphism in the compiled execution plan MUST be classified as:
+
+**Lossless Morphism:**  
+
+Deterministic, injective with respect to record identity, does not drop records, does not merge records, and does not depend on volatile or non-versioned state.
+
+Examples:
+
+* Pure field derivations.  
+* Reshaping that retains keys.  
+* Deterministic enrichments using versioned lookups.
+
+**Lossy Morphism:**  
+
+Drops records (filters), merges records (aggregations), uses non-deterministic or non-versioned state, or irreversibly projects keys needed for reconstruction.
+
+Examples:
+
+* Sum / Count / Grouped aggregates.  
+* Filters or inner joins that drop unmatched rows.  
+* Non-versioned API calls or side-effectful services.
+
+---
+
+#### A.1.3 Checkpointing Policy (RIC-LIN-07)
+
+Given a compiled execution DAG, the implementation:
+
+MUST persist key envelopes at:
+
+1. All graph inputs (sources).  
+2. All graph outputs (sinks).  
+3. Immediately after every lossy morphism.
+
+MAY omit key capture at intermediate nodes that form a connected subgraph of lossless morphisms operating over sorted keys (see A.1.5).
+
+**RIC-LIN-03 (Envelope Recording Requirement):**  
+For each checkpointed segment, persist:
+
+* Segment Identifier (e.g., Partition ID or Stage ID).  
+* Start Key and End Key (under a total order within that partition).  
+* Key Generation Function Identifier (hash or ID of the morphism chain producing the key).  
+* Offset/Count metadata (e.g., start offset, count of records).
+
+---
+
+#### A.1.4 Reconstructability Invariant (RIC-LIN-04)
+
+For jobs in **Key-Derivable Lineage Mode**, it MUST be algorithmically possible to reconstruct the set of source keys for any target record using only:
+
+* The immutable input data.  
+* The recorded checkpoint envelopes.  
+* The compiled plan logic (morphism definitions, key derivation logic).
+
+If a plan cannot guarantee this (e.g., unsorted keys in a nominally lossless segment, or non-deterministic morphisms), the engine MUST:
+
+* Insert additional checkpoints, or  
+* Downgrade the job (or relevant segment) to Full Lineage Mode.
+
+---
+
+#### A.1.5 Algorithmic Implementation Strategies
+
+To satisfy the above constraints efficiently, the engine should employ the following optimizations:
+
+**Range-Based Key Inference:**
+
+* Strategy: If source data is strictly sorted by Time/Key, the "Residue" for a target aggregate can be represented as the tuple `(PartitionId, StartOffset, Count)`.  
+* Benefit: Eliminates the need to store large lists of IDs (e.g., 50M record IDs) for a single daily total.
+
+**Roaring Bitmap Compression:**
+
+* Strategy: For high-cardinality sets that are not contiguous ranges (e.g., random ID filtering), map keys to dense 32-bit integers and store the lineage as a Roaring Bitmap.  
+* Benefit: Compresses sparse lineage sets by ~100x compared to standard lists.
+
+**Deterministic Replay (Predicate Pushdown):**
+
+* Strategy: To trace a specific target record or aggregate, re-execute the corresponding slice of the DAG by pushing the target key predicate up toward the sources, rather than storing explicit mappings for every record at every step.  
+* Trade-off: Increases compute (re-running logic for a subset) in exchange for reduced storage of lineage.
+
+---
+
+### A.2 Kleisli Lifting & Skew Management (REQ-TRV-01, REQ-TRV-06)
+
+The ideal model lifts scalar context to list context for `1:N` relationships. In practice, data skew (e.g., "whale" keys) can cause executor imbalance and resource exhaustion.
+
+#### A.2.1 Constraint: The Cardinality Budget (REQ-TRV-06)
+
+The engine MUST enforce a cardinality budget for `1:N` expansions:
+
+* Before executing a Kleisli lift, the engine SHOULD sample or estimate the data distribution.  
+* If the predicted cardinality for a key or partition exceeds the configured Budget, the engine MUST either:
+  * Apply skew-mitigation strategies, or  
+  * Reject the execution plan as violating the budget.
+
+**Algorithmic Note:** Reservoir sampling or other streaming sampling techniques MAY be used to estimate distribution without full scans.
+
+#### A.2.2 Optimization: Salted Joins
+
+To mitigate data skew:
+
+* Add a random Salt in the range `[0..N)` to the source or expanded side.  
+* Explode the target or join side `N` times with corresponding salts.  
+* Perform the join on `(Key, Salt)` rather than just `Key`.
+
+This distributes a high-cardinality key (“whale key”) across multiple executors, avoiding single-node overload while preserving join semantics.
+
+---
+
+### A.3 The Error Domain & Short-Circuiting (REQ-TYP-03)
+
+The ideal specification requires routing all failures to the Error Domain without short-circuiting the job. In practice, a systemic upstream schema change or configuration error may cause nearly all rows to fail, creating a risk of overwhelming DLQ storage or logging infrastructure.
+
+#### A.3.1 Optimization: Probabilistic Circuit Breakers
+
+To avoid cascading failure:
+
+* Maintain a Failure Counter and Total Counter during early stages of execution.  
+* If the FailureRate exceeds a configured threshold (e.g., 5% of the first 10k rows, or other policy-defined sample window), the engine MUST:
+  * Halt further processing.  
+  * Emit a structural or configuration error for the job.  
+  * Avoid attempting to write the remaining failed records to the DLQ.
+
+This optimisation distinguishes **structural/configuration errors** from genuine **data quality errors** and prevents denial-of-service scenarios caused by mass error routing.
+
+---
+
+### A.4 Monoidal Aggregation (REQ-LDM-04)
+
+The ideal requirement allows only monoidal aggregations for distributed correctness. In practice, users demand metrics such as Median, Mode, and Percentiles, which are not strictly monoids if implemented exactly.
+
+#### A.4.1 Optimization: Approximate Data Structures (Sketches)
+
+To reconcile the requirement with real-world needs:
+
+* For large datasets, exact non-monoidal metrics SHOULD be prohibited or flagged as non-scalable.  
+* Instead, the engine SHOULD support approximate, mergeable data structures (“sketches”), such as:
+  * t-Digest for quantiles/percentiles.  
+  * Q-Digest or similar structures for approximate median.  
+  * HyperLogLog for approximate distinct counts.
+
+These structures behave as monoids:
+
+* They can be merged associatively across partitions.  
+* They have well-defined identity states (empty sketch).  
+* They allow bounded-error approximations with predictable memory and performance characteristics.
+
+**Requirement Constraint:** The LDM (or associated configuration) SHOULD distinguish between:
+
+* **ExactAgg:** Sum, Count, Min, Max, etc.  
+* **ApproxAgg:** Median, Percentile, DistinctCount when implemented via sketches.
+
+This distinction allows governance to control where approximations are permissible.
+
+---
+
+### A.5 Physical Storage Alignment (REQ-PDM-01)
+
+Logical topology is independent of physical storage. However, performance and feasibility of the execution plan depend heavily on alignment of physical partitioning and sorting strategies.
+
+#### A.5.1 Constraint: Partition Homomorphism
+
+To execute joins and traversals efficiently in a distributed environment:
+
+* The compiler SHOULD attempt to plan joins where the partitioning schemes of joined datasets are compatible, i.e.  
+  `Partitioning(A) ≅ Partitioning(B)` on the join key(s).  
+
+* If the physical layouts are incompatible (e.g., A partitioned by `Date`, B partitioned by `Region` while joining on `AccountId`), the compiler MUST inject one or more of:
+  * Repartition-by-key morphisms.  
+  * Sort-by-key morphisms.  
+
+This ensures that:
+
+* The execution runtime can perform local joins where possible.  
+* Expensive global shuffles are limited to cases where they are strictly required by the topology and cannot be prevented by pre-alignment.
+
+---
+
+**End of Appendix A**
+````
