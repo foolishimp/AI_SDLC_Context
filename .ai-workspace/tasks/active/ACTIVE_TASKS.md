@@ -1,42 +1,6 @@
 # Active Tasks
 
-*Last Updated: 2025-11-23*
-
----
-
-## Task #1: Complete Design Documentation for Plugin Architecture
-
-**Priority**: High
-**Status**: Not Started
-**Started**: 2025-11-23
-**Estimated Time**: 4 hours
-**Dependencies**: None
-**Feature Flag**: N/A (documentation task)
-
-**Requirements Traceability**:
-- REQ-F-PLUGIN-001: Plugin system with marketplace support
-- REQ-F-PLUGIN-002: Federated plugin loading (corporate → division → team → project)
-- REQ-F-PLUGIN-003: Plugin bundles (startup, datascience, qa, enterprise)
-
-**Description**:
-Create comprehensive design documentation (docs/design/PLUGIN_ARCHITECTURE.md) covering:
-- Plugin structure (.claude-plugin/plugin.json, config/, docs/)
-- Plugin loading mechanism and priority
-- Plugin categories (methodology, skills, standards, bundles)
-- Current plugins inventory (8+ plugins implemented)
-- Plugin metadata format
-- Marketplace integration design
-
-**Acceptance Criteria**:
-- [ ] Document covers all 8+ implemented plugins
-- [ ] Plugin.json schema documented
-- [ ] Loading priority and override mechanism explained
-- [ ] Traceability to requirements (REQ-F-PLUGIN-*)
-- [ ] Examples from actual implementation
-- [ ] Diagrams showing plugin composition
-
-**TDD Checklist**:
-N/A - Documentation task
+*Last Updated: 2025-11-23 00:12*
 
 ---
 
@@ -111,7 +75,7 @@ N/A - Documentation task
 **Status**: Not Started
 **Started**: 2025-11-23
 **Estimated Time**: 3 hours
-**Dependencies**: Task #1, #2, #3
+**Dependencies**: Task #2, #3 (design docs), Traceability validator
 **Feature Flag**: N/A (documentation task)
 
 **Requirements Traceability**:
@@ -126,7 +90,7 @@ Create traceability matrix (docs/TRACEABILITY_MATRIX.md) showing:
 - Test coverage per requirement
 
 **Acceptance Criteria**:
-- [ ] All REQ-* keys from AI_SDLC_REQUIREMENTS.md listed
+- [ ] All REQ-* keys from AISDLC_IMPLEMENTATION_REQUIREMENTS.md listed
 - [ ] Each requirement mapped to design docs
 - [ ] Each requirement mapped to code (plugins, commands, templates)
 - [ ] Coverage percentage calculated
@@ -134,6 +98,10 @@ Create traceability matrix (docs/TRACEABILITY_MATRIX.md) showing:
 
 **TDD Checklist**:
 N/A - Documentation task
+
+**Notes**:
+- Use validate_traceability.py to generate matrix
+- Command: `python installers/validate_traceability.py --matrix > docs/TRACEABILITY_MATRIX.md`
 
 ---
 
@@ -147,17 +115,17 @@ N/A - Documentation task
 **Feature Flag**: N/A (validation task)
 
 **Requirements Traceability**:
-- ALL REQ-* from AI_SDLC_REQUIREMENTS.md
+- ALL REQ-* from AISDLC_IMPLEMENTATION_REQUIREMENTS.md
 
 **Description**:
-Systematically review AI_SDLC_REQUIREMENTS.md and validate:
+Systematically review AISDLC_IMPLEMENTATION_REQUIREMENTS.md and validate:
 - Which requirements are fully implemented
 - Which requirements are partially implemented
 - Which requirements are not implemented
 - Create action plan for gaps
 
 **Acceptance Criteria**:
-- [ ] All sections of AI_SDLC_REQUIREMENTS.md reviewed
+- [ ] All sections of AISDLC_IMPLEMENTATION_REQUIREMENTS.md reviewed
 - [ ] Implementation status documented
 - [ ] Gaps prioritized
 - [ ] Action plan for completing missing requirements
@@ -166,3 +134,57 @@ Systematically review AI_SDLC_REQUIREMENTS.md and validate:
 N/A - Validation task
 
 ---
+
+## Task #6: Backfill Traceability Tags in Code (Bootstrap Phase 2)
+
+**Priority**: Critical
+**Status**: In Progress
+**Started**: 2025-11-23
+**Estimated Time**: 6 hours
+**Dependencies**: AISDLC_IMPLEMENTATION_REQUIREMENTS.md, validate_traceability.py
+**Feature Flag**: N/A (code maintenance)
+
+**Requirements Traceability**:
+- REQ-NFR-TRACE-001: Full lifecycle traceability
+- REQ-NFR-TRACE-002: Requirement key propagation
+
+**Description**:
+Add `# Implements: REQ-*` tags to all implementation code and `# Validates: REQ-*` tags to all tests.
+
+**Current Status**:
+- Implementation coverage: 3.4% (2/58 requirements tagged)
+- Test coverage: 0.0% (0/58 requirements tagged)
+- Goal: ≥80% coverage (46+ requirements tagged)
+
+**Acceptance Criteria**:
+- [ ] installers/setup_plugins.py tagged with REQ-F-PLUGIN-*
+- [ ] installers/setup_commands.py tagged with REQ-F-CMD-*
+- [ ] installers/setup_workspace.py tagged with REQ-F-WORKSPACE-*
+- [ ] .claude/commands/*.md tagged with REQ-F-CMD-*, REQ-F-TODO-*
+- [ ] mcp_service/ tagged with REQ-F-TESTING-*, REQ-NFR-COVERAGE-*
+- [ ] All tests tagged with `# Validates: REQ-*`
+- [ ] Quality gate: ≥80% implementation coverage
+- [ ] Quality gate: ≥80% test coverage
+
+**TDD Checklist**:
+- [x] Validator built (validate_traceability.py)
+- [x] Validator tagged (REQ-NFR-TRACE-001/002)
+- [ ] Systematic tagging of all code files
+- [ ] Validation with quality gates
+
+**Notes**:
+- Bootstrap approach (compiler-style)
+- Use LLM with full context to assist tagging
+- Validate after each batch with: `python installers/validate_traceability.py --check-all`
+
+---
+
+**Summary**:
+- Total Active Tasks: 5
+- High Priority: 4
+- Critical Priority: 1
+- Not Started: 4
+- In Progress: 1
+- Documentation: 3 tasks
+- Implementation: 1 task
+- Validation: 1 task
