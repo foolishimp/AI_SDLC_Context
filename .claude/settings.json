@@ -1,7 +1,7 @@
 {
   "plugins": [
+    "file://plugins/aisdlc-core",
     "file://plugins/aisdlc-methodology",
-    "file://plugins/principles-key",
-    "file://plugins/python-standards"
+    "file://plugins/principles-key"
   ]
 }

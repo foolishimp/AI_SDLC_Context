@@ -36,15 +36,6 @@
       "dependencies": ["aisdlc-core"]
     },
     {
-      "name": "python-standards",
-      "displayName": "Python Standards",
-      "description": "Python-specific coding standards and best practices - PEP 8, pytest, type hints",
-      "version": "1.0.0",
-      "path": "plugins/python-standards",
-      "keywords": ["python", "pep8", "pytest", "standards", "best-practices"],
-      "dependencies": ["aisdlc-methodology"]
-    },
-    {
       "name": "requirements-skills",
       "displayName": "AI SDLC Requirements Skills - Intent to Structured Requirements",
       "description": "Transform raw intent into structured, traceable requirements with REQ-* keys. Disambiguate into business rules (BR-*), constraints (C-*), and formulas (F-*). Support requirements refinement loop from TDD/BDD discoveries.",
@@ -134,7 +125,6 @@
     "foundation": ["aisdlc-core"],
     "methodology": ["aisdlc-methodology", "principles-key"],
     "skills": ["requirements-skills", "design-skills", "code-skills", "testing-skills", "runtime-skills"],
-    "standards": ["python-standards"],
     "bundles": ["startup-bundle", "datascience-bundle", "qa-bundle", "enterprise-bundle"]
   },
 
