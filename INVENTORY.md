@@ -43,11 +43,12 @@ templates/claude/.ai-workspace/
     ├── FINISHED_TASK_TEMPLATE.md                # v2.0.0 - Completion documentation
     ├── SESSION_TEMPLATE.md                      # v2.0.0 - Development session template
     ├── SESSION_STARTER.md                       # v2.0.0 - Session startup checklist
-    └── PAIR_PROGRAMMING_GUIDE.md                # v2.0.0 - AI pair programming patterns
+    ├── PAIR_PROGRAMMING_GUIDE.md                # v2.0.0 - AI pair programming patterns
+    └── AISDLC_METHOD_REFERENCE.md               # v2.0.0 - Context refresh for Claude ⭐ NEW
 ```
 
-**File Count:** 11 files
-**Total Lines:** ~800 lines
+**File Count:** 12 files
+**Total Lines:** ~1,100 lines
 
 ### 1.2 Command Templates
 
@@ -56,6 +57,7 @@ templates/claude/.claude/commands/
 ├── aisdlc-start-session.md                      # v2.0.0 - Start development session
 ├── aisdlc-status.md                             # v2.0.0 - Show 7-stage SDLC status
 ├── aisdlc-checkpoint-tasks.md                   # v2.0.0 - Auto-update task status
+├── aisdlc-refresh-context.md                    # v2.0.0 - Refresh Claude's context ⭐ NEW
 ├── aisdlc-todo.md                               # v2.0.0 - Quick todo capture
 ├── aisdlc-finish-task.md                        # v2.0.0 - Complete task with docs
 ├── aisdlc-commit-task.md                        # v2.0.0 - Generate commit message
@@ -71,8 +73,8 @@ templates/claude/.claude/commands/
 └── .claude/hooks.json                           # v2.0.0 - Claude Code hooks config
 ```
 
-**File Count:** 16 commands
-**Total Lines:** ~250 lines
+**File Count:** 17 commands
+**Total Lines:** ~320 lines
 
 ### 1.3 Agent Templates
 
@@ -98,8 +100,8 @@ templates/claude/
 └── README.md                                    # v2.0.0 - Template documentation
 ```
 
-**Total Template Files:** 36 files
-**Total Template Lines:** ~27,000 lines
+**Total Template Files:** 38 files
+**Total Template Lines:** ~27,400 lines
 
 ---
 
@@ -571,12 +573,12 @@ python setup_commands.py --force
 
 | Category | Files | Lines | Size |
 |----------|-------|-------|------|
-| Templates | 36 | ~27,000 | ~1.2 MB |
+| Templates | 38 | ~27,400 | ~1.2 MB |
 | Plugins | 50+ | ~5,000 | ~500 KB |
 | Installers | 6 | ~2,500 | ~100 KB |
 | Documentation | 20+ | ~12,000 | ~800 KB |
 | Examples | 15+ | ~2,000 | ~150 KB |
-| **Total** | **127+** | **~48,500** | **~2.75 MB** |
+| **Total** | **129+** | **~48,900** | **~2.75 MB** |
 
 ### 11.2 Lines of Code by Type
 
