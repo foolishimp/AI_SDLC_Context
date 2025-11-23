@@ -392,6 +392,145 @@ New cycle begins at Requirements stage
 
 ---
 
+## Updating & Refreshing
+
+### Check Current Version
+
+```bash
+# Check installed version
+cat ~/.config/claude/plugins/aisdlc-methodology/README.md | grep "Version"
+
+# Check component inventory
+cat INVENTORY.md  # See complete component list
+```
+
+### Update Strategies
+
+#### Strategy 1: Marketplace Update (Plugins Only)
+
+**Best for:** Production use, automatic updates
+
+```bash
+# Update all plugins
+/plugin update @aisdlc/aisdlc-methodology
+/plugin update @aisdlc/python-standards
+
+# Lists available updates
+/plugin list
+```
+
+**Note:** This only updates plugins, not templates or commands.
+
+#### Strategy 2: Python Installer Refresh (Complete)
+
+**Best for:** Development, dogfooding, full control
+
+```bash
+# Navigate to your project
+cd /path/to/your/project
+
+# Backup
+git commit -am "Checkpoint before AISDLC refresh"
+
+# Full refresh
+python /path/to/ai_sdlc_method/installers/setup_all.py \
+  --force \
+  --with-plugins \
+  --bundle startup
+
+# Review and commit
+git diff
+git add .
+git commit -m "Update AI SDLC Method to latest version"
+```
+
+#### Strategy 3: Hybrid (Recommended)
+
+**Best for:** Flexibility + convenience
+
+**Templates/Commands:** Use Python installers
+```bash
+# Update workspace and commands
+python /path/to/ai_sdlc_method/installers/setup_workspace.py --force
+python /path/to/ai_sdlc_method/installers/setup_commands.py --force
+```
+
+**Plugins:** Use marketplace
+```bash
+/plugin update @aisdlc/aisdlc-methodology
+```
+
+### Create Project Update Script
+
+Add to your project for easy refresh:
+
+```bash
+# Create refresh script
+mkdir -p .ai-workspace/scripts
+cat > .ai-workspace/scripts/refresh_aisdlc.sh <<'EOF'
+#!/bin/bash
+# Refresh AI SDLC Method from repository
+
+AISDLC_ROOT="/path/to/ai_sdlc_method"
+PROJECT_ROOT="$(pwd)"
+
+echo "🔄 Refreshing AI SDLC Method..."
+
+# Backup
+git commit -am "Checkpoint before AISDLC refresh" || true
+
+# Refresh all components
+python "$AISDLC_ROOT/installers/setup_all.py" \
+  --target "$PROJECT_ROOT" \
+  --force \
+  --with-plugins \
+  --bundle startup
+
+echo "✅ Refresh complete! Review: git diff"
+EOF
+
+chmod +x .ai-workspace/scripts/refresh_aisdlc.sh
+```
+
+**Usage:**
+```bash
+bash .ai-workspace/scripts/refresh_aisdlc.sh
+```
+
+### What Gets Updated
+
+| Component | Installer | Marketplace |
+|-----------|-----------|-------------|
+| .ai-workspace/ | ✅ Yes | ❌ No |
+| .claude/commands/ | ✅ Yes | ❌ No |
+| .claude/agents/ | ✅ Yes | ❌ No |
+| Plugins | ✅ Yes | ✅ Yes |
+| CLAUDE.md | ✅ Yes | ❌ No |
+
+**Recommendation:**
+- **Use installers** for templates, commands, and agents
+- **Use marketplace** for plugins (easier version tracking)
+
+---
+
+## Component Inventory
+
+See [INVENTORY.md](INVENTORY.md) for complete list of:
+- All templates and their versions
+- All plugins and dependencies
+- All installers and their capabilities
+- Update strategies and deployment matrix
+- Version history and breaking changes
+
+**Quick Stats:**
+- **Templates:** 36 files (~27,000 lines)
+- **Plugins:** 10 plugins + 4 bundles
+- **Commands:** 16 slash commands
+- **Agents:** 7 stage-specific agents
+- **Total:** 127+ files (~48,500 lines)
+
+---
+
 ## Next Steps
 
 ### For New Users
@@ -400,6 +539,13 @@ New cycle begins at Requirements stage
 2. **Review the example**: [examples/local_projects/customer_portal/](examples/local_projects/customer_portal/)
 3. **Install the plugin**: `/plugin install @aisdlc/aisdlc-methodology`
 4. **Start developing**: Ask Claude to follow the 7-stage AI SDLC methodology
+
+### For Existing Users
+
+1. **Check updates**: Review [INVENTORY.md](INVENTORY.md) version history
+2. **Update components**: Use one of the refresh strategies above
+3. **Review changes**: Check git diff for breaking changes
+4. **Test**: Run `/aisdlc-status` to verify installation
 
 ### For Role-Specific Learning
 
@@ -410,6 +556,16 @@ See [docs/README.md](docs/README.md) for learning paths tailored to:
 - QA Engineers
 - DevOps / SRE
 - Project Managers / Scrum Masters
+
+---
+
+## Support & Resources
+
+- **Component Inventory:** [INVENTORY.md](INVENTORY.md) - Complete deployment guide
+- **New Project Setup:** [NEW_PROJECT_SETUP.md](NEW_PROJECT_SETUP.md) - Step-by-step setup
+- **Plugin Guide:** [PLUGIN_GUIDE.md](PLUGIN_GUIDE.md) - Plugin creation and usage
+- **Issues:** https://github.com/foolishimp/ai_sdlc_method/issues
+- **Examples:** [examples/](examples/) - Working examples
 
 ---
 

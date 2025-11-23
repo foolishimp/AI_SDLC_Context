@@ -603,12 +603,270 @@ mkdir config && touch config/config.yml
 
 ---
 
+## Updating Existing Projects
+
+**Scenario:** You already have AI SDLC Method installed and want to update to the latest version.
+
+### Strategy 1: Full Refresh (Recommended)
+
+**Use Case:** Major updates, ensure everything is current
+
+```bash
+cd /path/to/your/project
+
+# Backup current state
+git commit -am "Checkpoint before AI SDLC refresh"
+
+# Full refresh from latest
+python /Users/jim/src/apps/ai_sdlc_method/installers/setup_all.py \
+  --force \
+  --with-plugins \
+  --bundle startup
+
+# Review changes
+git diff
+
+# If satisfied, commit
+git add .
+git commit -m "Update AI SDLC Method to latest version"
+```
+
+### Strategy 2: Selective Refresh
+
+**Use Case:** Update specific components only
+
+```bash
+# Update only commands (useful after command changes)
+python /Users/jim/src/apps/ai_sdlc_method/installers/setup_commands.py --force
+
+# Update workspace templates
+python /Users/jim/src/apps/ai_sdlc_method/installers/setup_workspace.py --force
+
+# Update plugins
+python /Users/jim/src/apps/ai_sdlc_method/installers/setup_plugins.py \
+  --force \
+  --bundle startup
+```
+
+### Strategy 3: Marketplace Updates (Plugins Only)
+
+**Use Case:** Automatic plugin updates, but manual templates/commands
+
+```bash
+# Update plugins via marketplace
+/plugin update @aisdlc/aisdlc-methodology
+/plugin update @aisdlc/python-standards
+
+# Manually refresh templates/commands when needed
+python /Users/jim/src/apps/ai_sdlc_method/installers/setup_commands.py --force
+```
+
+### Strategy 4: Create Update Script
+
+Create a project-specific refresh script:
+
+```bash
+# Create script
+cat > .ai-workspace/scripts/refresh_aisdlc.sh <<'EOF'
+#!/bin/bash
+# Refresh AI SDLC Method from parent repository
+
+AISDLC_ROOT="/Users/jim/src/apps/ai_sdlc_method"
+PROJECT_ROOT="$(pwd)"
+
+echo "🔄 Refreshing AI SDLC Method from: $AISDLC_ROOT"
+
+# Backup
+git commit -am "Checkpoint before AISDLC refresh" || true
+
+# Refresh
+python "$AISDLC_ROOT/installers/setup_all.py" \
+  --target "$PROJECT_ROOT" \
+  --force \
+  --with-plugins \
+  --bundle startup
+
+echo "✅ Refresh complete! Review changes with: git diff"
+EOF
+
+chmod +x .ai-workspace/scripts/refresh_aisdlc.sh
+```
+
+**Usage:**
+```bash
+bash .ai-workspace/scripts/refresh_aisdlc.sh
+```
+
+---
+
+## Component Inventory
+
+Track which components you have installed:
+
+### Check Installed Versions
+
+```bash
+# Check workspace version
+cat .ai-workspace/README.md | head -5
+
+# Check installed commands
+ls .claude/commands/aisdlc-* | wc -l
+# Should show: 6 commands (aisdlc-*)
+
+# Check installed agents
+ls .claude/agents/ | wc -l
+# Should show: 7 agents (one per SDLC stage)
+
+# Check global plugins
+ls ~/.config/claude/plugins/
+# Should show: aisdlc-core, aisdlc-methodology, principles-key (+ more)
+
+# Check project plugins (if installed locally)
+ls .claude/plugins/
+```
+
+### What Should Be Installed
+
+**Minimal (Workspace + Commands):**
+- `.ai-workspace/` (11 files)
+- `.claude/commands/` (16 commands)
+- `.claude/agents/` (7 agents)
+- `CLAUDE.md`
+
+**With Plugins (Startup Bundle):**
+- Everything from Minimal
+- Global plugins:
+  - `aisdlc-core`
+  - `aisdlc-methodology`
+  - `principles-key`
+
+**With Plugins (Enterprise Bundle):**
+- Everything from Startup
+- Additional plugins:
+  - `testing-skills`
+  - `code-skills`
+  - `design-skills`
+  - `requirements-skills`
+  - `runtime-skills`
+  - `python-standards`
+
+### Verify Installation
+
+```bash
+# Run installation verification
+python /Users/jim/src/apps/ai_sdlc_method/installers/validate_traceability.py
+
+# Check if all slash commands work
+/aisdlc-status
+```
+
+---
+
+## Keeping AI SDLC Method Up to Date
+
+### Option 1: Manual Tracking
+
+Check for updates periodically:
+
+```bash
+# Navigate to AI SDLC Method repo
+cd /Users/jim/src/apps/ai_sdlc_method
+
+# Pull latest changes
+git pull
+
+# Review changes
+git log --oneline -10
+
+# If significant updates, refresh your projects
+cd /path/to/your/project
+python /Users/jim/src/apps/ai_sdlc_method/installers/setup_all.py --force
+```
+
+### Option 2: Automated Check (Cron Job)
+
+Create a weekly check:
+
+```bash
+# Add to crontab
+crontab -e
+
+# Add line (runs every Monday at 9 AM):
+0 9 * * 1 cd /Users/jim/src/apps/ai_sdlc_method && git pull && echo "AI SDLC updated" | mail -s "AI SDLC Update" your-email@example.com
+```
+
+### Option 3: CI/CD Integration
+
+For team projects, add to CI/CD:
+
+```bash
+# .github/workflows/update-aisdlc.yml
+name: Update AI SDLC Method
+on:
+  schedule:
+    - cron: '0 9 * * 1'  # Every Monday at 9 AM
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Refresh AI SDLC
+        run: |
+          python /path/to/ai_sdlc_method/installers/setup_all.py --force
+          git diff > aisdlc_changes.txt
+      - name: Create PR if changes
+        run: gh pr create --title "Update AI SDLC Method"
+```
+
+---
+
+## Migration Guide
+
+### From v1.0.0 to v2.0.0
+
+**Breaking Changes:**
+1. Slash commands renamed with `aisdlc-` prefix
+2. Added 7-stage SDLC agent definitions
+3. Updated config.yml schema
+
+**Migration Steps:**
+
+```bash
+# 1. Backup your project
+git commit -am "Pre-migration checkpoint"
+
+# 2. Run installer with force flag
+python /Users/jim/src/apps/ai_sdlc_method/installers/setup_all.py \
+  --force \
+  --with-plugins \
+  --bundle startup
+
+# 3. Update config.yml to use new schema
+# (See examples/local_projects/customer_portal/config/config.yml)
+
+# 4. Update slash command references in documentation
+# Old: /todo "task"
+# New: /aisdlc-todo "task"
+
+# 5. Test all commands
+/aisdlc-status
+/aisdlc-start-session
+
+# 6. Commit migration
+git add .
+git commit -m "Migrate to AI SDLC Method v2.0.0"
+```
+
+---
+
 ## Getting Help
 
 - **Workspace Guide**: `.ai-workspace/README.md`
 - **Example Project**: `/Users/jim/src/apps/ai_sdlc_method/examples/local_projects/customer_portal/`
 - **Complete Docs**: `/Users/jim/src/apps/ai_sdlc_method/docs/`
 - **Plugin Docs**: `~/.config/claude/plugins/aisdlc-methodology/README.md`
+- **Component Inventory**: `/Users/jim/src/apps/ai_sdlc_method/INVENTORY.md` ⭐ **NEW!**
+- **Issues**: https://github.com/foolishimp/ai_sdlc_method/issues
 
 ---
 
