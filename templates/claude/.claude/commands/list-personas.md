@@ -1,5 +1,7 @@
 # List Available Personas
 
+<!-- Implements: REQ-F-CMD-003 (Persona management) -->
+
 Show all available role-based personas that can be applied to project contexts.
 
 ## Usage

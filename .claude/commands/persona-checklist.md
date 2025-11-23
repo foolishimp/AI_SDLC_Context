@@ -1,5 +1,7 @@
 # Get Persona Review Checklist
 
+<!-- Implements: REQ-F-CMD-003 (Persona management) -->
+
 Get the code review checklist for the current or specified persona.
 
 ## Usage

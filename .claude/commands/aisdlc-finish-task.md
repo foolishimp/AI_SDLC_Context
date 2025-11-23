@@ -1,5 +1,7 @@
 Complete the specified task and create a finished task document.
 
+<!-- Implements: REQ-F-CMD-001 (Slash commands for workflow) -->
+
 **Usage**: `/finish-task {task_id}`
 
 **Instructions**:

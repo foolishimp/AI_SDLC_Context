@@ -1,5 +1,7 @@
 Start a new development session by running through the session starter checklist.
 
+<!-- Implements: REQ-F-CMD-001 (Slash commands for workflow) -->
+
 **Instructions**:
 
 ## Phase 1: Check Current State

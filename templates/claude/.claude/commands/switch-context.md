@@ -1,5 +1,7 @@
 # Switch Project Context
 
+<!-- Implements: REQ-F-CMD-002 (Context switching) -->
+
 Switch from the current project context to a different one. Claude will detect and highlight any requirement changes.
 
 ## Usage

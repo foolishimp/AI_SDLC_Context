@@ -1,5 +1,7 @@
 # Show Full Context State
 
+<!-- Implements: REQ-F-CMD-002 (Context switching) -->
+
 Display the complete materialized context state with all configuration layers, merged values, and active persona.
 
 ## Usage

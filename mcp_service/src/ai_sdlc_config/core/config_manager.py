@@ -1,6 +1,8 @@
 """
 High-level API for working with hierarchical configuration.
 
+# Implements: REQ-NFR-FEDERATE-001 (Hierarchical configuration composition)
+
 This provides a simple interface that combines loading, merging, and resolving.
 Similar to how C4H uses configurations, but generic and URI-based.
 """

@@ -1,5 +1,7 @@
 Add the following item to the quick capture todo list.
 
+<!-- Implements: REQ-F-TODO-001 (Create TODO item) -->
+
 **Instructions**:
 
 1. **Read** `.ai-workspace/tasks/todo/TODO_LIST.md`

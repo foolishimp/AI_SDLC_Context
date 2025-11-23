@@ -1,5 +1,7 @@
 Refresh Claude's context with AI SDLC methodology and workspace structure.
 
+<!-- Implements: REQ-F-CMD-001 (Slash commands for workflow) -->
+
 **Usage**: `/aisdlc-refresh-context`
 
 **Instructions**:

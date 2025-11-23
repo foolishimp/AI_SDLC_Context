@@ -1,5 +1,7 @@
 # Apply Persona
 
+<!-- Implements: REQ-F-CMD-003 (Persona management) -->
+
 Apply a role-based persona to the current project context. This customizes how Claude views and interacts with the project.
 
 ## Usage

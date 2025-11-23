@@ -1,5 +1,7 @@
 # List Available Projects
 
+<!-- Implements: REQ-F-CMD-002 (Context switching) -->
+
 Show all available project contexts in the repository.
 
 ## Usage

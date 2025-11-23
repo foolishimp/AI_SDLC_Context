@@ -1,5 +1,7 @@
 # Switch Persona
 
+<!-- Implements: REQ-F-CMD-003 (Persona management) -->
+
 Switch from one persona to another and see what changed in focus areas.
 
 ## Usage

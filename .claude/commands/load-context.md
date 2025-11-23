@@ -1,5 +1,7 @@
 # Load Project Context
 
+<!-- Implements: REQ-F-CMD-002 (Context switching) -->
+
 Load a project context to apply its specific requirements and standards. When a context is loaded, all code generation and review will follow that project's guidelines.
 
 ## Usage

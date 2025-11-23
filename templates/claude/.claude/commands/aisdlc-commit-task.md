@@ -1,5 +1,7 @@
 Commit a completed task using information from the finished task document.
 
+<!-- Implements: REQ-F-CMD-001 (Slash commands for workflow) -->
+
 **Usage**: `/commit-task {task_id}`
 
 **Instructions**:

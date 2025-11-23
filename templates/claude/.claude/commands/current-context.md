@@ -1,5 +1,7 @@
 # Show Current Context
 
+<!-- Implements: REQ-F-CMD-002 (Context switching) -->
+
 Display information about the currently loaded project context.
 
 ## Usage
