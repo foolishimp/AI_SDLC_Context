@@ -4,6 +4,25 @@ Checkpoint active tasks against current conversation context and update their st
 
 **Instructions**:
 
+## Phase 0: Refresh AI SDLC Context
+
+**CRITICAL**: Before proceeding, refresh Claude's context with the AI SDLC methodology:
+
+1. **Read** `.ai-workspace/templates/AISDLC_METHOD_REFERENCE.md`
+   - This loads workspace structure rules
+   - This loads workflow patterns
+   - This loads violation warnings
+   - This ensures correct file locations
+
+2. **Confirm understanding**:
+   - Finished tasks go in: `.ai-workspace/tasks/finished/`
+   - Active tasks are in: `.ai-workspace/tasks/active/ACTIVE_TASKS.md`
+   - Never put tasks in `docs/` or anywhere else
+
+**Why this matters**: Without context refresh, Claude may violate workspace structure rules and create files in wrong locations.
+
+---
+
 ## Phase 1: Analyze Current Context
 1. **Review conversation history** to identify:
    - What work has been completed recently
