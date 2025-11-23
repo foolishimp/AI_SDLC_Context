@@ -1,0 +1,7 @@
+{
+  "plugins": [
+    "file://plugins/aisdlc-methodology",
+    "file://plugins/principles-key",
+    "file://plugins/python-standards"
+  ]
+}
